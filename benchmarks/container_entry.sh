@@ -17,7 +17,7 @@ optimize|tune)
     if [ "$TGO_CONTAINER_ACTION" = tune ]; then TGO_DEFAULT_PAIRS=5; fi
     exec "$TGO_APP" "$TGO_CONTAINER_ACTION" --run "$TGO_RUN" -o "$TGO_BUNDLE" \
         --image "${TGO_IMAGE_FILTER:-libpython3.12.so.1.0}" \
-        --metric decode --validate "${TGO_VALIDATE_PAIRS:-$TGO_DEFAULT_PAIRS}" --timeout 600
+        --entry-mode executable --metric decode --validate "${TGO_VALIDATE_PAIRS:-$TGO_DEFAULT_PAIRS}" --timeout 600
     ;;
 *) echo "unknown TGO_CONTAINER_ACTION" >&2; exit 2 ;;
 esac
