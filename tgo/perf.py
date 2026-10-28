@@ -26,10 +26,12 @@ def perf_profile(root, perf, pid=None):
         parts = line.split(None, 1)
         if len(parts) == 2 and parts[1].startswith("/"):
             paths.add(parts[1]); recorded_ids[parts[1]] = parts[0]
-    report = subprocess.run([perf, "report", "-i", str(root / "perf.data"), "--stdio", "--full-paths",
+    report = subprocess.run([perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
                              "--sort=dso", "--field-separator=\t", "--percent-limit=0", "--no-children"],
                             capture_output=True, text=True)
     (root / "hotspots.txt").write_text(report.stdout + report.stderr)
+    if report.returncode:
+        raise ValueError("perf report failed; see hotspots.txt")
     weights = {}
     for line in report.stdout.splitlines():
         f = line.strip().split("\t")

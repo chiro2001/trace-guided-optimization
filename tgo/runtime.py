@@ -34,9 +34,16 @@ def build_runtime(out, qemu_header=None):
     if qemu_header:
         source = NATIVE / "qemu.c"
         target = out / "libtgo_qemu.so"
-        flags = shlex.split(subprocess.check_output(["pkg-config", "--cflags", "--libs", "glib-2.0"], text=True))
-        run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", "-I", Path(qemu_header).parent,
-             source, "-o", target, *flags], out / "qemu.build.log")
+        # QEMU's header exposes GLib only through opaque pointer types that this
+        # plugin does not use. Keep its API declarations and forward-declare these
+        # types, so recording needs neither GLib headers nor a plugin GLib link.
+        include = out / "include"
+        include.mkdir(exist_ok=True)
+        api = Path(qemu_header).read_text().replace("#include <glib.h>",
+            "typedef struct _GArray GArray;\ntypedef struct _GByteArray GByteArray;\ntypedef struct _GString GString;")
+        (include / "qemu-plugin.h").write_text(api)
+        run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", "-pthread", "-I", include,
+             source, "-o", target], out / "qemu.build.log")
     return out
 
 
