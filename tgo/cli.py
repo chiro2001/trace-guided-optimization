@@ -65,6 +65,7 @@ def main(argv=None):
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
+    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned"], action="append")
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
     v.add_argument("--pairs", type=int, default=5)

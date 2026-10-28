@@ -8,6 +8,7 @@ import shlex
 import shutil
 import subprocess
 import time
+from dataclasses import dataclass
 from .runtime import build_runtime, make_launcher
 from .util import command_path, read_json, write_json, sha256, tool, workload_env
 from .validate import execute_trial, validate
@@ -78,6 +79,87 @@ def correctness_fixture(go, env, root, timeout):
     if code or timed_out or output != "go-correctness-ok\n":
         raise ValueError(f"Go compiler correctness fixture failed: {root}")
     return {"build": command, "run_seconds": seconds, "stdout_sha256": digest}
+
+
+def build_settings(go, compiler, env):
+    result = subprocess.run([go, "version", "-m", "-json", compiler], env=env, capture_output=True, text=True)
+    if result.returncode == 0:
+        return {row["Key"]: row["Value"] for row in json.loads(result.stdout).get("Settings", [])}
+    text = subprocess.check_output([go, "version", "-m", compiler], env=env, text=True)
+    settings = {}
+    for line in text.splitlines():
+        if line.startswith("\tbuild\t"):
+            key, _, value = line[7:].partition("=")
+            settings[key] = value.strip('"')
+    return settings
+
+
+@dataclass
+class CompilerContext:
+    go: str
+    compiler: str
+    version: str
+    info: dict
+    base: dict
+    overrides: dict
+    runtime: Path
+    capture: Path
+    profile: Path
+    state: dict
+    settings: dict
+    timeout: float
+
+
+def build_candidate(ctx, candidate, extra_gc="", extra_ld=""):
+    candidate.mkdir()
+    build_runtime(candidate)
+    optimized = candidate / "compile"
+    env = dict(ctx.base)
+    env.update(GOFLAGS="", GOOS=ctx.info["GOHOSTOS"], GOARCH=ctx.info["GOHOSTARCH"], GOTOOLCHAIN="local")
+    for key in ("CGO_ENABLED", "GOAMD64", "GOARM64", "GOARM", "GOMIPS", "GOMIPS64", "GOEXPERIMENT"):
+        if key in ctx.settings:
+            env[key] = ctx.settings[key]
+    env.pop("TGO_DISABLE", None)
+    flags = []
+    if ctx.settings.get("-trimpath") == "true":
+        flags.append("-trimpath")
+    gc = ctx.settings.get("-gcflags", "")
+    if extra_gc:
+        gc = gc + " " + extra_gc if gc else "cmd/...=" + extra_gc
+    if gc:
+        flags.append("-gcflags=" + gc.strip())
+    ld = (ctx.settings.get("-ldflags", "") + " " + extra_ld).strip()
+    if ld:
+        flags.append("-ldflags=" + ld)
+    compilation = go_command(["build", "-pgo=" + str(ctx.profile), *flags, "-o", optimized, "cmd/compile"],
+                             ctx.go, env, candidate, "compiler-build", ctx.timeout)
+    actual_version = subprocess.check_output([optimized, "-V=full"], env=ctx.base, text=True).strip()
+    if actual_version != ctx.version:
+        raise ValueError(f"rebuilt compiler version differs: {actual_version!r} != {ctx.version!r}")
+    digest = sha256(optimized)
+    pgo_base = dict(ctx.overrides); pgo_base["GOFLAGS"] = ctx.base.get("GOFLAGS", "")
+    changed = adapter_env(pgo_base, ctx.runtime, ctx.compiler, ctx.version, digest, optimized)
+    checkenv = dict(ctx.base); checkenv.update(changed)
+    checkenv.update(GOOS=ctx.info["GOHOSTOS"], GOARCH=ctx.info["GOHOSTARCH"],
+                    GOCACHE=str(candidate / "correctness-cache"), TGO_GO_EXEC_LOG=str(candidate / "correctness-tools.tsv"))
+    fixture = correctness_fixture(ctx.go, checkenv, candidate, ctx.timeout)
+    if str(optimized) not in (candidate / "correctness-tools.tsv").read_text():
+        raise ValueError("correctness fixture did not execute the candidate compiler")
+    shutil.rmtree(candidate / "correctness-cache", ignore_errors=True)
+    deployed = {k: v for k, v in changed.items() if k != "GOFLAGS"}
+    if "GOFLAGS" in ctx.overrides:
+        deployed["GOFLAGS"] = ctx.overrides["GOFLAGS"]
+    deployed["TGO_GO_TOOLEXEC"] = str(ctx.runtime / "go-tool")
+    checks = [ctx.go, ctx.compiler, optimized, ctx.runtime / "go-tool"]
+    entry = make_launcher(candidate, candidate / "run", ctx.state["command"], [], deployed, ctx.state["cwd"], check_paths=checks)
+    built = {"schema": "tgo.build.v1", "strategy": "go-compiler-pgo", "source_run": str(ctx.capture),
+             "workload": {k: ctx.state[k] for k in ("command", "cwd", "env")}, "images": [],
+             "entry": entry, "entry_mode": "command", "state": "candidate",
+             "go_compiler": {"original": ctx.compiler, "optimized": str(optimized), "sha256": digest,
+                             "build": compilation, "fixture": fixture, "build_settings": build_settings(ctx.go, optimized, ctx.base)},
+             "profile_sha256": sha256(ctx.profile)}
+    write_json(candidate / "build.json", built)
+    return built, deployed, checks
 
 
 def tune_go(args, root_exists=False):
@@ -166,60 +248,53 @@ def tune_go(args, root_exists=False):
         shutil.rmtree(capture / "cache", ignore_errors=True)
         result.update(capture=str(capture), training=totals, state="building")
         write_json(root / "tune.json", result)
-        candidate = root / "pgo"; candidate.mkdir()
-        build_runtime(candidate)
-        optimized = candidate / "compile"
-        buildenv = dict(base)
-        buildenv.update(GOFLAGS="", GOOS=info["GOHOSTOS"], GOARCH=info["GOHOSTARCH"], GOTOOLCHAIN="local")
-        buildenv.pop("TGO_DISABLE", None)
-        compilation = go_command(["build", "-pgo=" + str(merged), "-o", optimized, "cmd/compile"],
-                                 go, buildenv, candidate, "compiler-build", args.timeout)
-        actual_version = subprocess.check_output([optimized, "-V=full"], env=base, text=True).strip()
-        if actual_version != version:
-            raise ValueError(f"rebuilt compiler version differs: {actual_version!r} != {version!r}")
-        digest = sha256(optimized)
-        pgo_base = dict(overrides)
-        pgo_base["GOFLAGS"] = base.get("GOFLAGS", "")
-        changed = adapter_env(pgo_base, runtime, compiler, version, digest, optimized)
-        # Build a representative semantics fixture using the candidate compiler.
-        checkenv = dict(base); checkenv.update(changed)
-        checkenv.update(GOOS=info["GOHOSTOS"], GOARCH=info["GOHOSTARCH"],
-                        GOCACHE=str(candidate / "correctness-cache"), TGO_GO_EXEC_LOG=str(candidate / "correctness-tools.tsv"))
-        fixture = correctness_fixture(go, checkenv, candidate, args.timeout)
-        shutil.rmtree(candidate / "correctness-cache", ignore_errors=True)
-        deployed_pgo = {k: v for k, v in changed.items() if k != "GOFLAGS"}
-        if "GOFLAGS" in overrides:
-            deployed_pgo["GOFLAGS"] = overrides["GOFLAGS"]
-        deployed_pgo["TGO_GO_TOOLEXEC"] = str(runtime / "go-tool")
-        entry = make_launcher(candidate, candidate / "run", command, [], deployed_pgo, state["cwd"],
-                              check_paths=[go, compiler, optimized, runtime / "go-tool"])
-        built = {"schema": "tgo.build.v1", "strategy": "go-compiler-pgo", "source_run": str(capture),
-                 "workload": {k: state[k] for k in ("command", "cwd", "env")}, "images": [],
-                 "entry": entry, "entry_mode": "command", "state": "candidate",
-                 "go_compiler": {"original": compiler, "optimized": str(optimized), "sha256": digest,
-                                 "build": compilation, "fixture": fixture},
-                 "profile_sha256": sha256(merged)}
-        write_json(candidate / "build.json", built)
-        screening = validate(candidate, args.search_pairs, args.timeout)
-        built["validation"] = screening
-        built["state"] = "validated" if screening["equivalent"] else "rejected"
-        write_json(candidate / "build.json", built)
-        result["candidates"].append({"name": "go-pgo", "validation": screening})
-        selected = screening["equivalent"] and screening["min_reduction_percent"] > args.minimum_gain
-        if selected:
-            confirmation = validate(candidate, args.validate, args.timeout)
+        settings = build_settings(go, compiler, base)
+        result["compiler"]["build_settings"] = settings
+        ctx = CompilerContext(go, compiler, version, info, base, overrides, runtime, capture,
+                              merged, state, settings, args.timeout)
+        choices = {"pgo": ("", ""), "compact": ("-d=pgoinlinebudget=256", ""),
+                   "aligned": ("", "-funcalign=" + ("128" if info["GOHOSTARCH"] == "arm64" else "64"))}
+        best = None
+        for name in args.go_variant or choices:
+            candidate = root / name
+            try:
+                built, candidate_env, checks = build_candidate(ctx, candidate, *choices[name])
+                screening = validate(candidate, args.search_pairs, args.timeout)
+                built["validation"] = screening
+                built["state"] = "validated" if screening["equivalent"] else "rejected"
+                write_json(candidate / "build.json", built)
+                result["candidates"].append({"name": name, "validation": screening})
+                if screening["equivalent"] and screening["min_reduction_percent"] > args.minimum_gain:
+                    if best is None or screening["median_reduction_percent"] > best["gain"]:
+                        best = {"name": name, "path": candidate, "env": candidate_env, "checks": checks,
+                                "compiler": built["go_compiler"]["optimized"], "gain": screening["median_reduction_percent"]}
+                if not screening["equivalent"]:
+                    Path(built["entry"]).unlink(missing_ok=True)
+            except (ValueError, RuntimeError, OSError) as error:
+                result["candidates"].append({"name": name, "error": str(error)})
+                failed = candidate / "build.json"
+                if failed.exists():
+                    record = read_json(failed)
+                    Path(record["entry"]).unlink(missing_ok=True)
+                    record.update(state="failed", error=str(error)); write_json(failed, record)
+            write_json(root / "tune.json", result)
+        selected = False
+        if best:
+            confirmation = validate(best["path"], args.validate, args.timeout)
             result["confirmation"] = confirmation
             selected = confirmation["equivalent"] and confirmation["min_reduction_percent"] > args.minimum_gain
+            record = read_json(best["path"] / "build.json"); record["validation"] = confirmation
+            write_json(best["path"] / "build.json", record)
         if selected:
-            result["selected"] = "go-pgo"
-            deployed_env, checks = deployed_pgo, [go, compiler, optimized, runtime / "go-tool"]
+            result["selected"] = best["name"]
+            deployed_env, checks = best["env"], best["checks"]
         else:
             deployed_env, checks = overrides, []
         build_runtime(root)
         deployed = command[:1] if args.entry_mode == "executable" else command
         result["entry"] = make_launcher(root, args.entry or root / "run", deployed, [], deployed_env,
                                          None if args.entry_mode == "executable" else state["cwd"], check_paths=checks)
-        result.update(entry_mode=args.entry_mode, optimized_compiler=str(optimized) if selected else None, state="complete")
+        result.update(entry_mode=args.entry_mode, optimized_compiler=best["compiler"] if selected else None, state="complete")
     except BaseException as error:
         if 'built' in locals() and built.get("entry") and not built.get("validation", {}).get("equivalent"):
             Path(built["entry"]).unlink(missing_ok=True)
