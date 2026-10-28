@@ -1,0 +1,32 @@
+{
+  "llvm": {
+    "version": "22.1.0",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.0/llvm-project-22.1.0.src.tar.xz",
+    "sha256": "933765a1c2cd518d95a9033a92d88d7109a79aefa4609247c31f28b8bc8dd96e"
+  },
+  "qemu": {
+    "version": "10.0.0",
+    "url": "https://download.qemu.org/qemu-10.0.0.tar.xz",
+    "sha256": "22c075601fdcf8c7b2671a839ebdcef1d4f2973eb6735254fd2e1bd0f30b3896"
+  },
+  "python": {
+    "version": "3.12.13",
+    "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tar.xz",
+    "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
+  },
+  "glib": {
+    "version": "2.84.1",
+    "url": "https://download.gnome.org/sources/glib/2.84/glib-2.84.1.tar.xz",
+    "sha256": "2b4bc2ec49611a5fc35f86aca855f2ed0196e69e53092bab6bb73396bf30789a"
+  },
+  "appimagetool-aarch64": {
+    "version": "1.9.0",
+    "url": "https://github.com/AppImage/appimagetool/releases/download/1.9.0/appimagetool-aarch64.AppImage",
+    "sha256": "04f45ea45b5aa07bb2b071aed9dbf7a5185d3953b11b47358c1311f11ea94a96"
+  },
+  "appimagetool-x86_64": {
+    "version": "1.9.0",
+    "url": "https://github.com/AppImage/appimagetool/releases/download/1.9.0/appimagetool-x86_64.AppImage",
+    "sha256": "46fdd785094c7f6e545b61afcfb0f3d98d8eab243f644b4b17698c01d06083d1"
+  }
+}
