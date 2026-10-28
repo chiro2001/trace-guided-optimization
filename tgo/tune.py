@@ -31,6 +31,7 @@ def tune(args):
             adapter.go = args.go or (str(inferred) if inferred.is_file() else None)
             result = tune_go(adapter)
             result["discovery"] = {"capture": str(capture), "compiler": compiler["path"]}
+            write_json(root / "build.json", read_json(Path(adapter.output) / "build.json"))
             write_json(root / "tune.json", result)
             return result
     variants = [
@@ -72,5 +73,9 @@ def tune(args):
     result["entry"] = make_launcher(root, args.entry or root / "run", deployed, images, state["env"],
                                      None if args.entry_mode == "executable" else state["cwd"])
     result["optimized_images"] = [r["optimized"] for r in images]
+    write_json(root / "build.json", {"schema": "tgo.build.v1", "strategy": "bolt", "source_run": str(capture),
+        "images": images, "entry": result["entry"], "entry_mode": args.entry_mode,
+        "state": "validated" if images else "baseline", "validation": result.get("confirmation"),
+        "workload": {k: state[k] for k in ("command", "cwd", "env")}})
     write_json(root / "tune.json", result)
     return result

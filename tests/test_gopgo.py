@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from tgo.gopgo import adapter_env, profile_totals, blend_preprocessed
+from tgo.gopgo import adapter_env, profile_totals, blend_profiles
 from tgo.runtime import build_runtime, make_launcher
 
 
@@ -54,9 +54,8 @@ class GoToolAdapter(unittest.TestCase):
             merged=root/"merged.pprof"
             subprocess.run([go,"tool","pprof","-proto","-symbolize=none","-output",merged,profile],check=True,capture_output=True)
             subprocess.run([go,"tool","preprofile","-i",merged,"-o",root/"preprocessed.pgo"],check=True,capture_output=True)
-            blended=root/"blended.pgo"
-            result=blend_preprocessed(root/"preprocessed.pgo",root/"preprocessed.pgo",blended)
-            self.assertGreater(result["edges"],0)
+            blended,result=blend_profiles(go,merged,merged,root,os.environ,60)
+            self.assertEqual(result["format"],"pprof")
             subprocess.run([go,"tool","preprofile","-i",blended,"-o",root/"blend-verified.pgo"],check=True,capture_output=True)
 
 

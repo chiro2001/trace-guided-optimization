@@ -40,35 +40,31 @@ def profile_totals(text):
     return {"samples": count, "cpu_nanoseconds": ns}
 
 
-def blend_preprocessed(target, default, output, target_fraction=0.25):
-    """Blend actual named-edge weights in Go's explicitly versioned format."""
-    def edges(path):
-        lines = Path(path).read_text().splitlines()
-        if not lines or lines[0] != "GO PREPROFILE V1" or (len(lines)-1) % 3:
-            raise ValueError("unsupported Go preprocessed profile format")
-        values = {}
-        for i in range(1, len(lines), 3):
-            offset, weight = map(int, lines[i+2].split())
-            if weight < 0:
-                raise ValueError("negative PGO edge weight")
-            key = (lines[i], lines[i+1], offset)
-            values[key] = values.get(key, 0) + weight
-        return values
-    merged = {}
-    for path, fraction in [(target, target_fraction), (default, 1-target_fraction)]:
-        data = edges(path); total = sum(data.values())
-        if not total:
-            raise ValueError("cannot blend an empty PGO graph")
-        for key, weight in data.items():
-            merged[key] = merged.get(key, 0) + round(weight/total*fraction*1_000_000_000)
-    with Path(output).open("w") as f:
-        f.write("GO PREPROFILE V1\n")
-        for (caller, callee, offset), weight in sorted(merged.items(), key=lambda x: (-x[1], x[0])):
-            if weight:
-                f.write(f"{caller}\n{callee}\n{offset} {weight}\n")
-    return {"format": "GO PREPROFILE V1", "target_fraction": target_fraction,
-            "sources": [{"path": str(p), "sha256": sha256(p)} for p in (target, default)],
-            "sha256": sha256(output), "edges": len(merged)}
+def blend_profiles(go, target, default, root, env, timeout, target_fraction=0.25):
+    """Weight pprof samples through the public tool, preserving function metadata."""
+    totals = []
+    for label, path in [("target", target), ("default", default)]:
+        report = go_command(["tool", "pprof", "-raw", "-symbolize=none", path],
+                            go, env, root, "hybrid-" + label + "-info", timeout)
+        totals.append(profile_totals(Path(report["stdout"]).read_text()))
+    ratio = totals[1]["samples"] * target_fraction / ((1-target_fraction) * totals[0]["samples"])
+    target_scale, default_scale = (ratio, 1.0) if ratio >= 1 else (1.0, 1/ratio)
+    inputs = [target, default]
+    scaled = root / "hybrid-scaled.pprof"
+    which = 0 if ratio >= 1 else 1
+    multiplier = target_scale if which == 0 else default_scale
+    scaling = go_command(["tool", "pprof", "-proto", "-symbolize=none", "-divide_by=" + str(1/multiplier),
+                          "-output", scaled, inputs[which]], go, env, root, "hybrid-scale", timeout)
+    inputs[which] = scaled
+    output = root / "hybrid.pprof"
+    merging = go_command(["tool", "pprof", "-proto", "-symbolize=none", "-output", output, *inputs],
+                         go, env, root, "hybrid-merge", timeout)
+    check = go_command(["tool", "preprofile", "-i", output, "-o", root / "hybrid-check.preprocessed"],
+                       go, env, root, "hybrid-check", timeout)
+    return output, {"format": "pprof", "requested_target_sample_fraction": target_fraction,
+        "target_scale": target_scale, "default_scale": default_scale, "input_totals": totals,
+        "sources": [{"path": str(p), "sha256": sha256(p)} for p in (target, default)],
+        "sha256": sha256(output), "scaling": scaling, "merging": merging, "metadata_validation": check}
 
 
 def go_command(args, go, env, root, log, timeout=1800, cwd=None):
@@ -298,11 +294,7 @@ def tune_go(args, root_exists=False):
                     raise ValueError(f"Go toolchain does not provide the profile required by variant {name}")
                 variant_ctx = ctx
                 if name == "hybrid":
-                    default_graph = capture / "default.preprocessed"
-                    go_command(["tool", "preprofile", "-i", default_profile, "-o", default_graph],
-                               go, base, capture, "default-preprofile", args.timeout)
-                    blended = capture / "hybrid.preprocessed"
-                    blend = blend_preprocessed(capture / "profile.preprocessed", default_graph, blended)
+                    blended, blend = blend_profiles(go, merged, default_profile, capture, base, args.timeout)
                     write_json(capture / "hybrid.json", blend)
                     variant_ctx = replace(ctx, profile=blended)
                 built, candidate_env, checks = build_candidate(variant_ctx, candidate, *choices[name])
@@ -342,6 +334,13 @@ def tune_go(args, root_exists=False):
         result["entry"] = make_launcher(root, args.entry or root / "run", deployed, [], deployed_env,
                                          None if args.entry_mode == "executable" else state["cwd"], check_paths=checks)
         result.update(entry_mode=args.entry_mode, optimized_compiler=best["compiler"] if selected else None, state="complete")
+        final_build = {"schema": "tgo.build.v1", "strategy": "go-compiler-pgo", "source_run": str(capture),
+            "images": [], "entry": result["entry"], "entry_mode": args.entry_mode,
+            "state": "validated" if selected else "baseline", "validation": result.get("confirmation"),
+            "workload": {k: state[k] for k in ("command", "cwd", "env")}}
+        if selected:
+            final_build["go_compiler"] = read_json(best["path"] / "build.json")["go_compiler"]
+        write_json(root / "build.json", final_build)
     except BaseException as error:
         if 'built' in locals() and built.get("entry") and not built.get("validation", {}).get("equivalent"):
             Path(built["entry"]).unlink(missing_ok=True)

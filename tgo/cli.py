@@ -117,7 +117,7 @@ def main(argv=None):
         elif args.action == "inspect":
             path = Path(args.path)
             if path.is_dir():
-                path = next((path / n for n in ("build.json", "profile.json", "run.json") if (path / n).exists()), path)
+                path = next((path / n for n in ("tune.json", "build.json", "profile.json", "run.json") if (path / n).exists()), path)
             result = read_json(path)
         elif args.action == "bind":
             path = Path(args.run) / "run.json"
