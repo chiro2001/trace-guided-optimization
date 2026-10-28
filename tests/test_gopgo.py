@@ -51,6 +51,9 @@ class GoToolAdapter(unittest.TestCase):
             profile=next(profiles.glob("*.pprof"))
             raw=subprocess.check_output([go,"tool","pprof","-raw",profile],text=True,stderr=subprocess.DEVNULL)
             self.assertGreater(profile_totals(raw)["samples"],0)
+            merged=root/"merged.pprof"
+            subprocess.run([go,"tool","pprof","-proto","-symbolize=none","-output",merged,profile],check=True,capture_output=True)
+            subprocess.run([go,"tool","preprofile","-i",merged,"-o",root/"preprocessed.pgo"],check=True,capture_output=True)
 
 
 if __name__ == "__main__":

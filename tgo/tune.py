@@ -15,6 +15,24 @@ def tune(args):
         recording = deepcopy(args); recording.output = str(capture)
         record(recording)
     state = read_json(capture / "run.json")
+    if args.strategy == "auto":
+        profile = read_json(capture / "profile.json")
+        compilers = [row for row in profile["images"] if row.get("go") and Path(row["path"]).name == "compile"]
+        if compilers:
+            from .gopgo import tune_go
+            compiler = max(compilers, key=lambda row: row.get("sample_percent", row.get("dynamic_instructions", 0)))
+            adapter = deepcopy(args)
+            adapter.run = None
+            adapter.output = str(root / "go-compiler")
+            adapter.command = state["command"]
+            adapter.env = [f"{k}={v}" for k, v in state["env"].items()]
+            adapter.entry = args.entry or str(root / "run")
+            inferred = Path(compiler["path"]).parents[3] / "bin/go"
+            adapter.go = args.go or (str(inferred) if inferred.is_file() else None)
+            result = tune_go(adapter)
+            result["discovery"] = {"capture": str(capture), "compiler": compiler["path"]}
+            write_json(root / "tune.json", result)
+            return result
     variants = [
         ("ext-tsp", []),
         ("compact", ["-split-functions=false", "-split-all-cold=false"]),
