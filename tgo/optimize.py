@@ -36,6 +36,13 @@ def optimize(args):
     build_runtime(out)
     bolt = tool("llvm-bolt", args.bolt)
     p2b = tool("perf2bolt", args.perf2bolt or str(Path(bolt).with_name("perf2bolt")))
+    recover = args.bolt_mode == "recover"
+    recovery = ["-relocs", "-force-patch", "-pgo128-trampoline-mode", "-pgo128-recover-code-relocs",
+                "-aarch64-relaxation-non-reloc"] if recover else []
+    if recover:
+        caps = subprocess.check_output([bolt, "--help-hidden"], text=True, env=tool_env())
+        if "pgo128-recover-code-relocs" not in caps:
+            raise ValueError("selected BOLT lacks the recorded AArch64 recovery capability")
     patchelf = tool("patchelf", required=False)
     selected = []
     skipped = []
@@ -78,6 +85,8 @@ def optimize(args):
             result["perf"] = {"path": perf, "sha256": sha256(perf)}
         for row in selected:
             original = Path(row["path"])
+            if recover and row["machine"] != 183:
+                raise ValueError("recovery policy currently requires AArch64")
             if sha256(original) != row["sha256"]:
                 raise ValueError(f"source changed since capture: {original}")
             image_id = row.get("image_id") or row["sha256"][:16] + "-" + hashlib.sha256(row["path"].encode()).hexdigest()[:8]
@@ -92,19 +101,22 @@ def optimize(args):
             else:
                 cmd += ["-p", row["perf_data"]]
                 cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
+            cmd += recovery
             aggregate_env["TGO_SPE_STATS"] = str(image_dir / "spe-bridge.json")
             aggregation = run(cmd, image_dir / "aggregate.log", env=aggregate_env)
             if not fdata.exists() or not fdata.stat().st_size:
                 raise ValueError(f"empty BOLT profile: {original}")
             target = image_dir / original.name
-            flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] else "none"),
+            flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] or recover else "none"),
                      "-split-functions", "-split-all-cold", "-split-strategy=profile2", "-dyno-stats",
                      "-align-functions=4", "-align-functions-max-bytes=4", "-enable-bat", "-thread-count=4"]
             if row["machine"] == 183:
                 flags += ["-group-stubs=false"]
                 # Existing pages BOLT supports ADR/ADRP reconstruction for non-reloc ARM inputs.
-                if not row["relocations"]:
+                if not row["relocations"] and not recover:
                     flags += ["-aarch64-relaxation-non-reloc"]
+            if recover:
+                flags += [*recovery, "-use-old-text=false"]
             flags += args.bolt_arg
             optimization = run([bolt, original, "-data=" + str(fdata), "-o", target, *flags], image_dir / "bolt.log")
             # Preserve $ORIGIN search semantics after moving an image out of its original directory.
@@ -123,6 +135,7 @@ def optimize(args):
             result["images"].append({"original": str(original), "optimized": str(target),
                                      "input": row, "output": output_meta,
                                      "fdata_sha256": sha256(fdata),
+                                     "recovered_relocations": recover,
                                      "aggregation": aggregation, "optimization": optimization})
             if profile["backend"] == "spe":
                 result["images"][-1]["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
