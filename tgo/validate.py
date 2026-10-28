@@ -4,8 +4,34 @@ from pathlib import Path
 import statistics
 import subprocess
 import time
-from .util import read_json, write_json, workload_env
+import signal
+import math
+from .util import read_json, write_json, workload_env, sha256
 from .elf import is_executable_image
+
+
+def execute_trial(command, prefix, env, cwd, timeout):
+    stdout, stderr = Path(str(prefix) + ".stdout"), Path(str(prefix) + ".stderr")
+    timed_out = False
+    start = time.perf_counter()
+    with stdout.open("wb") as out, stderr.open("wb") as err:
+        p = subprocess.Popen(command, cwd=cwd, env=env, stdout=out, stderr=err, start_new_session=True)
+        try:
+            p.wait(timeout=timeout)
+        except (subprocess.TimeoutExpired, KeyboardInterrupt) as failure:
+            timed_out = isinstance(failure, subprocess.TimeoutExpired)
+            try:
+                os.killpg(p.pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+            try:
+                p.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(p.pid, signal.SIGKILL)
+                p.wait()
+            if not timed_out:
+                raise
+    return p.returncode, time.perf_counter() - start, timed_out, sha256(stdout)
 
 
 def validate(bundle, pairs=5, timeout=300, metric=None):
@@ -29,45 +55,53 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 env["TGO_NATIVE_COUNTERS"] = "1"
             tail = state["command"][1:] if build.get("entry_mode") == "executable" else []
             command = state["command"] if arm == "baseline" else [build["entry"], *tail]
-            t = time.perf_counter()
-            p = subprocess.run(command, cwd=state["cwd"], env=env, capture_output=True, timeout=timeout)
-            elapsed = time.perf_counter() - t
-            stdout = prefix.with_suffix(".stdout"); stdout.write_bytes(p.stdout)
-            stderr = prefix.with_suffix(".stderr"); stderr.write_bytes(p.stderr)
+            baseline_times = [p["baseline"]["seconds"] for p in trials]
+            if "baseline" in pair:
+                baseline_times.append(pair["baseline"]["seconds"])
+            limit = min(timeout, max(5, statistics.median(baseline_times) * 3 + 2)) if arm == "candidate" and baseline_times else timeout
+            code, elapsed, timed_out, stdout_sha = execute_trial(command, prefix, env, state["cwd"], limit)
             observed = set()
             for f in bundle.glob(prefix.name + ".*.images"):
                 for line in f.read_text().splitlines():
                     observed.add(line.split("\t", 2)[-1])
             measurement = elapsed
             pmu = []
+            missing_metric = False
             if metric:
                 import json
                 f = Path(str(prefix) + ".metrics")
                 rows = [json.loads(l) for l in f.read_text().splitlines()] if f.exists() else []
                 values = [r["nanoseconds"] for r in rows if r["region"] == metric]
                 if not values:
-                    raise ValueError(f"ROI metric missing: {metric}, {prefix}")
-                measurement = statistics.median(values) / 1e9
+                    missing_metric = True
+                elif not all(isinstance(v, (int, float)) and math.isfinite(v) and v > 0 for v in values):
+                    raise ValueError(f"invalid ROI metric: {prefix}")
+                else:
+                    measurement = statistics.median(values) / 1e9
                 pmu = [r.get("pmu") for r in rows if r["region"] == metric]
             result_file = Path(env["TGO_RESULT_FILE"])
-            correctness = p.stdout
+            correctness_sha = stdout_sha
             if result_file.exists():
                 import json
-                correctness = json.dumps(json.loads(result_file.read_text()), sort_keys=True, allow_nan=False).encode()
-            pair[arm] = {"seconds": elapsed, "metric_seconds": measurement, "returncode": p.returncode,
-                         "stdout_sha256": hashlib.sha256(p.stdout).hexdigest(),
-                         "correctness_sha256": hashlib.sha256(correctness).hexdigest(),
+                correctness_sha = hashlib.sha256(json.dumps(json.loads(result_file.read_text()), sort_keys=True, allow_nan=False).encode()).hexdigest()
+            pair[arm] = {"seconds": elapsed, "metric_seconds": measurement, "returncode": code,
+                         "timed_out": timed_out, "metric_missing": missing_metric,
+                         "stdout_sha256": stdout_sha,
+                         "correctness_sha256": correctness_sha,
                          "correctness_source": "result-json" if result_file.exists() else "stdout",
                          "pmu": pmu,
                          "loaded_optimized": sorted(observed & expected)}
-            if p.returncode or (arm == "candidate" and not expected <= observed):
+            if code or timed_out or missing_metric or (arm == "candidate" and not expected <= observed):
                 equivalent = False
         if pair["baseline"]["correctness_sha256"] != pair["candidate"]["correctness_sha256"] or pair["baseline"]["correctness_source"] != pair["candidate"]["correctness_source"]:
             equivalent = False
         pair["reduction_percent"] = (1 - pair["candidate"]["metric_seconds"] / pair["baseline"]["metric_seconds"]) * 100
         trials.append(pair)
+        if not equivalent:
+            break
     reductions = [p["reduction_percent"] for p in trials]
     result = {"schema": "tgo.validation.v1", "pairs": trials, "equivalent": equivalent,
+              "requested_pairs": pairs, "completed_pairs": len(trials),
               "metric": metric or "whole-process-wall-time", "median_reduction_percent": statistics.median(reductions),
               "min_reduction_percent": min(reductions), "max_reduction_percent": max(reductions),
               "recommendation": "candidate" if equivalent and min(reductions) > 0 else "retain-baseline",

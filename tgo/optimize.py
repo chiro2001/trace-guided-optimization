@@ -147,6 +147,8 @@ def optimize(args):
                 entry.unlink()
                 raise ValueError("candidate failed output/load validation; entry withdrawn")
     except BaseException as e:
+        if args.validate and result.get("entry"):
+            Path(result["entry"]).unlink(missing_ok=True)
         result.update(state="failed", error=str(e)); raise
     finally:
         write_json(out / "build.json", result)
