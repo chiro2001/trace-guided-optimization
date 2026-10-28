@@ -78,7 +78,7 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     def string(s):
         b = os.fsencode(s)
         return struct.pack("<I", len(b)) + b
-    payload = b''.join(string(s) for s in (executable, str(audit), str(mapfile), cwd or ""))
+    payload = b''.join(string(s) for s in (executable, str(audit) if images else "", str(mapfile), cwd or ""))
     payload += struct.pack("<I", len(command)) + b''.join(string(s) for s in command)
     payload += struct.pack("<I", len(env)) + b''.join(string(k) + string(v) for k, v in env.items())
     payload += struct.pack("<I", len(checks))

@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 import subprocess
 from .elf import ELF
-from .util import read_json, write_json
+from .util import read_json, write_json, tool_env
 
 
 def perf_profile(root, perf, pid=None):
@@ -19,7 +19,7 @@ def perf_profile(root, perf, pid=None):
                 f = line.split(None, 5)
                 if len(f) == 6 and "x" in f[1] and f[5].startswith("/"):
                     paths.add(f[5])
-    ids = subprocess.check_output([perf, "buildid-list", "-i", str(root / "perf.data")], text=True)
+    ids = subprocess.check_output([perf, "buildid-list", "-i", str(root / "perf.data")], text=True, env=tool_env())
     (root / "buildids.txt").write_text(ids)
     recorded_ids = {}
     for line in ids.splitlines():
@@ -31,7 +31,7 @@ def perf_profile(root, perf, pid=None):
             paths.add(parts[1]); recorded_ids[parts[1]] = parts[0]
     report = subprocess.run([perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
                              "--sort=dso", "--field-separator=\t", "--percent-limit=0", "--no-children"],
-                            capture_output=True, text=True)
+                            capture_output=True, text=True, env=tool_env())
     (root / "hotspots.txt").write_text(report.stdout + report.stderr)
     if report.returncode:
         raise ValueError("perf report failed; see hotspots.txt")

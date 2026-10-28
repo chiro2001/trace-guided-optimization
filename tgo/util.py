@@ -29,6 +29,7 @@ def read_json(path):
 def run(command, log, **kwargs):
     command = [str(x) for x in command]
     start = time.monotonic()
+    kwargs.setdefault("env", tool_env())
     with Path(log).open("w") as f:
         p = subprocess.run(command, stdout=f, stderr=subprocess.STDOUT, **kwargs)
     record = {"command": command, "returncode": p.returncode,
@@ -73,4 +74,13 @@ def workload_env():
                 env.pop(k, None)
             else:
                 env[k] = saved
+    return env
+
+
+def tool_env():
+    env = os.environ.copy()
+    for k in ("LD_PRELOAD", "LD_AUDIT", "PYTHONHOME", "PYTHONPATH", "PYTHONPLATLIBDIR"):
+        env.pop(k, None)
+    if env.get("TGO_PACKAGED"):
+        env.pop("LD_LIBRARY_PATH", None)
     return env

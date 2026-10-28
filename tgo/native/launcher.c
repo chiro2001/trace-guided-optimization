@@ -47,7 +47,7 @@ int main(int argc,char **argv) {
         }
     }
     if(cursor!=end) bad();
-    if(!disabled) {
+    if(!disabled && *audit) {
         const char *prior=getenv("LD_AUDIT");
         if(prior && *prior) { fputs("tgo: existing LD_AUDIT would conflict\n",stderr); return 125; }
         setenv("TGO_REDIRECT",map,1); setenv("LD_AUDIT",audit,1);

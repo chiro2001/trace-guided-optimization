@@ -7,7 +7,7 @@ import subprocess
 import time
 from .runtime import build_runtime
 from .profile import qemu_profile
-from .util import command_path, tool, write_json, workload_env
+from .util import command_path, tool, write_json, workload_env, tool_env
 
 
 def doctor():
@@ -15,7 +15,7 @@ def doctor():
     pmu = {p.name: (p / "type").read_text().strip() for p in Path("/sys/bus/event_source/devices").glob("*") if (p / "type").exists()}
     probe = None
     if perf:
-        r = subprocess.run([perf, "stat", "-e", "cycles:u", "--", "true"], capture_output=True, text=True)
+        r = subprocess.run([perf, "stat", "-e", "cycles:u", "--", "true"], capture_output=True, text=True, env=tool_env())
         probe = {"usable": r.returncode == 0, "diagnostic": r.stderr.strip()}
     return {"architecture": platform.machine(), "perf": perf, "pmu": pmu, "perf_probe": probe,
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
@@ -55,6 +55,11 @@ def record(args):
             "started_unix": time.time()}
     write_json(root / "run.json", meta)
     try:
+        exec_env = env.copy()
+        forwarded = {}
+        for key in ("LD_PRELOAD", "LD_AUDIT", "LD_LIBRARY_PATH", "PYTHONHOME", "PYTHONPATH", "PYTHONPLATLIBDIR"):
+            if key in exec_env:
+                forwarded[key] = exec_env.pop(key)
         if backend == "qemu":
             if args.roi == "window":
                 raise ValueError("QEMU uses whole or marker ROI; time windows/attach require perf")
@@ -65,6 +70,9 @@ def record(args):
             if "," in str(root):
                 raise ValueError("QEMU output directory cannot contain a comma")
             launch = [qemu, "-plugin", plugin]
+            for k, v in forwarded.items():
+                if k != "LD_AUDIT":
+                    launch += ["-E", f"{k}={v}"]
             for k in ("TGO_IMAGE_LOG", "TGO_ROI_LOG", "TGO_ROI_LIBRARY"):
                 launch += ["-E", f"{k}={env[k]}"]
             launch += ["-E", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
@@ -95,11 +103,12 @@ def record(args):
                 launch += ["-p", str(args.pid), "--", "sleep", str(args.delay + args.duration)]
             else:
                 # Only the workload gets LD_AUDIT; perf's own maps do not pollute discovery.
-                launch += ["--", "env", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
+                inherited = [f"{k}={v}" for k, v in forwarded.items() if k != "LD_AUDIT"]
+                launch += ["--", "env", *inherited, f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
         meta["collector_command"] = launch
         write_json(root / "run.json", meta)
         with (root / "stdout").open("wb") as stdout, (root / "stderr").open("wb") as stderr:
-            p = subprocess.Popen(launch, stdout=stdout, stderr=stderr, env=env, start_new_session=True)
+            p = subprocess.Popen(launch, stdout=stdout, stderr=stderr, env=exec_env, start_new_session=True)
             try:
                 code = p.wait(timeout=args.timeout)
             except (subprocess.TimeoutExpired, KeyboardInterrupt):
