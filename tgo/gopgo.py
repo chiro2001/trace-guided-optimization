@@ -8,7 +8,7 @@ import shlex
 import shutil
 import subprocess
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from .runtime import build_runtime, make_launcher
 from .util import command_path, read_json, write_json, sha256, tool, workload_env
 from .validate import execute_trial, validate
@@ -38,6 +38,37 @@ def profile_totals(text):
     if not count or not ns:
         raise ValueError("Go CPU profile has no usable samples; inspect profile.raw.txt")
     return {"samples": count, "cpu_nanoseconds": ns}
+
+
+def blend_preprocessed(target, default, output, target_fraction=0.25):
+    """Blend actual named-edge weights in Go's explicitly versioned format."""
+    def edges(path):
+        lines = Path(path).read_text().splitlines()
+        if not lines or lines[0] != "GO PREPROFILE V1" or (len(lines)-1) % 3:
+            raise ValueError("unsupported Go preprocessed profile format")
+        values = {}
+        for i in range(1, len(lines), 3):
+            offset, weight = map(int, lines[i+2].split())
+            if weight < 0:
+                raise ValueError("negative PGO edge weight")
+            key = (lines[i], lines[i+1], offset)
+            values[key] = values.get(key, 0) + weight
+        return values
+    merged = {}
+    for path, fraction in [(target, target_fraction), (default, 1-target_fraction)]:
+        data = edges(path); total = sum(data.values())
+        if not total:
+            raise ValueError("cannot blend an empty PGO graph")
+        for key, weight in data.items():
+            merged[key] = merged.get(key, 0) + round(weight/total*fraction*1_000_000_000)
+    with Path(output).open("w") as f:
+        f.write("GO PREPROFILE V1\n")
+        for (caller, callee, offset), weight in sorted(merged.items(), key=lambda x: (-x[1], x[0])):
+            if weight:
+                f.write(f"{caller}\n{callee}\n{offset} {weight}\n")
+    return {"format": "GO PREPROFILE V1", "target_fraction": target_fraction,
+            "sources": [{"path": str(p), "sha256": sha256(p)} for p in (target, default)],
+            "sha256": sha256(output), "edges": len(merged)}
 
 
 def go_command(args, go, env, root, log, timeout=1800, cwd=None):
@@ -254,11 +285,23 @@ def tune_go(args, root_exists=False):
                               merged, state, settings, args.timeout)
         choices = {"pgo": ("", ""), "compact": ("-d=pgoinlinebudget=256", ""),
                    "aligned": ("", "-funcalign=" + ("128" if info["GOHOSTARCH"] == "arm64" else "64"))}
+        default_profile = goroot / "src/cmd/compile/default.pgo"
+        if default_profile.exists():
+            choices["hybrid"] = ("", "")
         best = None
         for name in args.go_variant or choices:
             candidate = root / name
             try:
-                built, candidate_env, checks = build_candidate(ctx, candidate, *choices[name])
+                variant_ctx = ctx
+                if name == "hybrid":
+                    default_graph = capture / "default.preprocessed"
+                    go_command(["tool", "preprofile", "-i", default_profile, "-o", default_graph],
+                               go, base, capture, "default-preprofile", args.timeout)
+                    blended = capture / "hybrid.preprocessed"
+                    blend = blend_preprocessed(capture / "profile.preprocessed", default_graph, blended)
+                    write_json(capture / "hybrid.json", blend)
+                    variant_ctx = replace(ctx, profile=blended)
+                built, candidate_env, checks = build_candidate(variant_ctx, candidate, *choices[name])
                 screening = validate(candidate, args.search_pairs, args.timeout)
                 built["validation"] = screening
                 built["state"] = "validated" if screening["equivalent"] else "rejected"

@@ -67,7 +67,7 @@ def main(argv=None):
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
-    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned"], action="append")
+    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid"], action="append")
     t.add_argument("--go-warmups", type=int, default=2, help="unmeasured Go validation warmup pairs")
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
@@ -100,6 +100,8 @@ def main(argv=None):
         elif args.action == "tune":
             if args.top <= 0 or args.search_pairs <= 0 or args.validate <= 0:
                 p.error("top, search-pairs and validate must be >0")
+            if args.go_warmups < 0:
+                p.error("go-warmups must be >=0")
             reuse_go = args.run and read_json(Path(args.run) / "run.json").get("backend") == "go-cpu"
             if args.strategy == "go-compiler" or (args.strategy == "auto" and (reuse_go or (not args.run and args.command and Path(args.command[0]).name == "go"))):
                 from .gopgo import tune_go
