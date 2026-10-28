@@ -77,7 +77,7 @@ prefill 还是 decode；有语义边界的服务应采用显式 ROI adapter。
 | 后端 | 适合场景 | 实现与限制 |
 | --- | --- | --- |
 | perf | 原生低开销采样、长任务、编译器进程树、attach | 默认 cycles IP 样本；`--branch-stack` 可使用硬件分支栈；无分支栈采用 BOLT basic profile |
-| SPE | ARM 分支采样 | `--backend spe`，需要内核、PMU 和权限支持；事件可用 `--event` 覆盖 |
+| SPE | ARM 分支采样 | `--backend spe`，需要内核、PMU 和权限支持；内置已验证的 perf 分支样本转换桥，事件可用 `--event` 覆盖 |
 | QEMU | 无 PMU 权限、精确 ROI 路径 | TCG 插件汇总分支/连续落空路径，不把 QEMU wall time 当原生性能；native exec 子进程不在此画像范围 |
 
 `auto` 用 `perf stat cycles:u` 探测 PMU 权限，失败后选择 QEMU。它不会因负载执行
@@ -120,7 +120,9 @@ enabled/running，不能把复用计数当成无复用实测。
 `scripts/bootstrap.py` 将依赖放入 `deps/`，从锁定的官方源码归档构建 LLVM/BOLT、
 QEMU 和 patchelf，检查 SHA256，自动应用已复用的 AArch64 ADR/ADRP 修复。
 基础环境需要 C/C++ 编译器、Python 3.10+、make、patch、pkg-config 和可用网络。
-构建前端 cmake/ninja/meson 使用固定版本的 Python wheel；归档和工具身份写入清单。
+缺失的 zlib、libffi、GLib、libelf 会按依赖顺序构建到私有 prefix。构建前端
+cmake/ninja/meson 使用固定版本的 Python wheel；归档和工具身份写入清单。
+perf 的构建还需要基础开发环境中的 flex、bison、m4。
 
 ```sh
 python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8

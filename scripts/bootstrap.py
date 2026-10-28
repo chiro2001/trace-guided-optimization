@@ -74,7 +74,7 @@ def execute(command, cwd=None, env=None):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--prefix", type=Path, default=ROOT / "deps")
-    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf"])
+    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "libffi", "zlib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf", "python"])
     p.add_argument("--jobs", type=int, default=min(os.cpu_count() or 1, 8))
     p.add_argument("--download-only", action="store_true")
     a = p.parse_args()
@@ -103,6 +103,14 @@ def main():
     if "perf" in components and "elfutils" not in components:
         if subprocess.run(["pkg-config", "--exists", "libelf"], env=env).returncode:
             components = ["elfutils", *components]
+    if any(c in components for c in ("python", "glib")) and "libffi" not in components:
+        if subprocess.run(["pkg-config", "--exists", "libffi"], env=env).returncode:
+            components = ["libffi", *components]
+    if any(c in components for c in ("python", "glib", "elfutils", "perf")) and "zlib" not in components:
+        if subprocess.run(["pkg-config", "--exists", "zlib"], env=env).returncode:
+            components = ["zlib", *components]
+    order = {name: i for i, name in enumerate(("zlib", "libffi", "glib", "elfutils", "llvm", "qemu", "perf", "patchelf", "python", "appimagetool"))}
+    components = sorted(set(components), key=order.__getitem__)
     for component in components:
         if component == "appimagetool":
             import platform
@@ -132,6 +140,17 @@ def main():
             p2b = install / "bin/perf2bolt"
             if not p2b.exists():
                 p2b.symlink_to("llvm-bolt")
+        elif component == "zlib":
+            execute(["cmake", "-S", source, "-B", build, "-G", "Ninja",
+                     "-DCMAKE_INSTALL_PREFIX=" + str(install), "-DCMAKE_INSTALL_LIBDIR=lib",
+                     "-DZLIB_BUILD_EXAMPLES=OFF"], env=env)
+            execute(["cmake", "--build", build, "--target", "install", "-j", a.jobs], env=env)
+        elif component == "libffi":
+            build.mkdir(exist_ok=True)
+            execute([source / "configure", "--prefix=" + str(install), "--libdir=" + str(install / "lib"),
+                     "--disable-docs", "--disable-multi-os-directory"], cwd=build, env=env)
+            execute(["make", "-j", a.jobs], cwd=build, env=env)
+            execute(["make", "install"], cwd=build, env=env)
         elif component == "glib":
             if not (build / "build.ninja").exists():
                 execute(["meson", "setup", build, source, "--prefix=" + str(install), "--libdir=lib",

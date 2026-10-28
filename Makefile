@@ -12,4 +12,4 @@ bench:
 	$(PYTHON) scripts/build_bench.py
 
 appimage: deps
-	$(PYTHON) scripts/package_appimage.py --qemu-header deps/install/include/qemu-plugin.h
+	$(PYTHON) scripts/package_appimage.py --python deps/install/bin/python3.12 --qemu-header deps/install/include/qemu-plugin.h
