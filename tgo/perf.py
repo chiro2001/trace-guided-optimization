@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 import subprocess
 from .elf import ELF
-from .util import read_json, write_json, tool_env
+from .util import read_json, write_json, tool_env, sha256
 
 
 def perf_profile(root, perf, pid=None):
@@ -65,6 +65,7 @@ def perf_profile(root, perf, pid=None):
     if not rows:
         raise ValueError("no ELF images discovered in perf.data")
     result = {"schema": "tgo.profile.v1", "backend": state["backend"],
+              "raw_data": {"path": str(root / "perf.data"), "sha256": sha256(root / "perf.data")},
               "images": sorted(rows, key=lambda r: -r["sample_percent"]),
               "quality": {"kind": "hardware-sampling", "hardware_frontend_counters": False,
                           "hotspot_weight": "synthesized-branch-events" if state["backend"] == "spe" else "sample-period-share",

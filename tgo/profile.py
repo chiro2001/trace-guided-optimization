@@ -4,7 +4,7 @@ from bisect import bisect_right
 import hashlib
 from pathlib import Path
 from .elf import ELF
-from .util import write_json
+from .util import write_json, sha256
 
 
 def qemu_profile(root, allow_truncated=False):
@@ -12,6 +12,7 @@ def qemu_profile(root, allow_truncated=False):
     images, cache = {}, {}
     total, windows, truncated = 0, 0, False
     unmapped = 0
+    captures = []
     for trace in root.glob("capture.*.trace"):
         imagefile = trace.with_suffix(".images")
         if not imagefile.exists():
@@ -33,6 +34,8 @@ def qemu_profile(root, allow_truncated=False):
             base = int(bias, 16)
             if (base, path) not in [(b, p) for b, p, _ in loaded]:
                 loaded.append((base, path, elf))
+        captures.append({"trace": str(trace), "trace_sha256": sha256(trace),
+                         "maps": str(imagefile), "maps_sha256": sha256(imagefile)})
         intervals = sorted((lo + base, hi + base, path, base)
                            for base, path, elf in loaded
                            for lo, hi, _, flags, _ in elf.loads if flags & 1)
@@ -94,10 +97,12 @@ def qemu_profile(root, allow_truncated=False):
             for (kind, a, b), n in sorted(counts.items()):
                 f.write(f"{kind} {a:x} {b:x} {n}" + (" 0" if kind == "B" else "") + "\n")
         row["preaggregate"] = str(dest)
+        row["preaggregate_sha256"] = sha256(dest)
         rows.append(row)
     result = {"schema": "tgo.profile.v1", "backend": "qemu", "instructions": total,
               "unmapped_instructions": unmapped, "marker_windows": windows,
               "truncated": truncated, "images": sorted(rows, key=lambda x: -x["dynamic_instructions"]),
+              "captures": captures,
               "quality": {"kind": "dynamic-tb-counts", "hardware_frontend_counters": False,
                           "scope": "QEMU process and threads; native exec children excluded"}}
     write_json(root / "profile.json", result)

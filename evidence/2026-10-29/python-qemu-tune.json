@@ -1,0 +1,811 @@
+{
+  "schema": "tgo.tune.v1",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-qemu-r1",
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.8881470202468336,
+              "metric_seconds": 0.81208785,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 812083790,
+                  "time_running": 812083790,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2351529002,
+                    "instructions": 8246923884,
+                    "frontend_stall_cycles": 451324298,
+                    "l1i_read_misses": 11244669
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.7508594798855484,
+              "metric_seconds": 0.71060901,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 710496440,
+                  "time_running": 710496440,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2057761145,
+                    "instructions": 8198312376,
+                    "frontend_stall_cycles": 55782681,
+                    "l1i_read_misses": 361362
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 12.496042146179143
+          },
+          {
+            "candidate": {
+              "seconds": 0.7556103901006281,
+              "metric_seconds": 0.71635136,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 716325600,
+                  "time_running": 716325600,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2074634595,
+                    "instructions": 8202250428,
+                    "frontend_stall_cycles": 59779044,
+                    "l1i_read_misses": 402942
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.8522022501565516,
+              "metric_seconds": 0.81239098,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 812400120,
+                  "time_running": 812400120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2352728761,
+                    "instructions": 8247485615,
+                    "frontend_stall_cycles": 442800326,
+                    "l1i_read_misses": 11098479
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 11.821847160341436
+          },
+          {
+            "baseline": {
+              "seconds": 0.852204570081085,
+              "metric_seconds": 0.81259027,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 812567520,
+                  "time_running": 812567520,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2353224203,
+                    "instructions": 8245767303,
+                    "frontend_stall_cycles": 441447527,
+                    "l1i_read_misses": 11468353
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.7596116596832871,
+              "metric_seconds": 0.71981257,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 719783540,
+                  "time_running": 719783540,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2084486029,
+                    "instructions": 8203375477,
+                    "frontend_stall_cycles": 56142124,
+                    "l1i_read_misses": 361468
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 11.417525341522971
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 11.821847160341436,
+        "min_reduction_percent": 11.417525341522971,
+        "max_reduction_percent": 12.496042146179143,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "compact",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.8965431302785873,
+              "metric_seconds": 0.79999202,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 799992660,
+                  "time_running": 799992660,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2316909006,
+                    "instructions": 8237454431,
+                    "frontend_stall_cycles": 444758437,
+                    "l1i_read_misses": 11404155
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.754098130390048,
+              "metric_seconds": 0.7140769,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 714040920,
+                  "time_running": 714040920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2067783180,
+                    "instructions": 8206186245,
+                    "frontend_stall_cycles": 39978206,
+                    "l1i_read_misses": 481598
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/compact/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 10.739497126483833
+          },
+          {
+            "candidate": {
+              "seconds": 0.7481193202547729,
+              "metric_seconds": 0.70855054,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 708541490,
+                  "time_running": 708541490,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2051943537,
+                    "instructions": 8200000062,
+                    "frontend_stall_cycles": 40360900,
+                    "l1i_read_misses": 442162
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/compact/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.9058379996567965,
+              "metric_seconds": 0.86645238,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 866450860,
+                  "time_running": 866450860,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2509352470,
+                    "instructions": 8269176840,
+                    "frontend_stall_cycles": 502934214,
+                    "l1i_read_misses": 11359743
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 18.223949018410003
+          },
+          {
+            "baseline": {
+              "seconds": 0.8454183703288436,
+              "metric_seconds": 0.80623197,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 806225950,
+                  "time_running": 806225950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2334775461,
+                    "instructions": 8239673219,
+                    "frontend_stall_cycles": 445381217,
+                    "l1i_read_misses": 11175169
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.7513979496434331,
+              "metric_seconds": 0.7115933,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 711569920,
+                  "time_running": 711569920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2060733497,
+                    "instructions": 8201687118,
+                    "frontend_stall_cycles": 38455650,
+                    "l1i_read_misses": 387413
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/compact/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 11.73839211560911
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 11.73839211560911,
+        "min_reduction_percent": 10.739497126483833,
+        "max_reduction_percent": 18.223949018410003,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "aligned",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.8869793298654258,
+              "metric_seconds": 0.8042119,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 804228290,
+                  "time_running": 804228290,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2329020486,
+                    "instructions": 8243485403,
+                    "frontend_stall_cycles": 440887496,
+                    "l1i_read_misses": 11035387
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.7591983801685274,
+              "metric_seconds": 0.71914057,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 719145170,
+                  "time_running": 719145170,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2082713727,
+                    "instructions": 8211812436,
+                    "frontend_stall_cycles": 47934634,
+                    "l1i_read_misses": 470160
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/aligned/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 10.578223226987815
+          },
+          {
+            "candidate": {
+              "seconds": 0.7635616399347782,
+              "metric_seconds": 0.72421845,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 724186190,
+                  "time_running": 724186190,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2097244027,
+                    "instructions": 8212937208,
+                    "frontend_stall_cycles": 48342760,
+                    "l1i_read_misses": 538423
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/aligned/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.905427330173552,
+              "metric_seconds": 0.86601228,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 865997920,
+                  "time_running": 865997920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2508010496,
+                    "instructions": 8265332647,
+                    "frontend_stall_cycles": 469173228,
+                    "l1i_read_misses": 11100448
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 16.373189303966917
+          },
+          {
+            "baseline": {
+              "seconds": 0.838828669860959,
+              "metric_seconds": 0.79986762,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 799854350,
+                  "time_running": 799854350,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2316497458,
+                    "instructions": 8239110248,
+                    "frontend_stall_cycles": 439169647,
+                    "l1i_read_misses": 11843666
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.7508829203434289,
+              "metric_seconds": 0.71133056,
+              "returncode": 0,
+              "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 711337550,
+                  "time_running": 711337550,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 2059966671,
+                    "instructions": 8202811817,
+                    "frontend_stall_cycles": 44400807,
+                    "l1i_read_misses": 479442
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/aligned/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 11.068964136840552
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 11.068964136840552,
+        "min_reduction_percent": 10.578223226987815,
+        "max_reduction_percent": 16.373189303966917,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "selected": "ext-tsp",
+  "confirmation": {
+    "schema": "tgo.validation.v1",
+    "pairs": [
+      {
+        "baseline": {
+          "seconds": 0.905859449878335,
+          "metric_seconds": 0.866553,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 866532330,
+              "time_running": 866532330,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2509196577,
+                "instructions": 8265895856,
+                "frontend_stall_cycles": 503484122,
+                "l1i_read_misses": 11397261
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.7565910001285374,
+          "metric_seconds": 0.71705857,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 717036770,
+              "time_running": 717036770,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2076635945,
+                "instructions": 8207313104,
+                "frontend_stall_cycles": 52151055,
+                "l1i_read_misses": 421207
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+          ]
+        },
+        "reduction_percent": 17.25161992399773
+      },
+      {
+        "candidate": {
+          "seconds": 0.7751970398239791,
+          "metric_seconds": 0.73419166,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 734181830,
+              "time_running": 734181830,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2126152239,
+                "instructions": 8203937106,
+                "frontend_stall_cycles": 191167865,
+                "l1i_read_misses": 62418
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.8450746298767626,
+          "metric_seconds": 0.80564875,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 805638670,
+              "time_running": 805638670,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2333233930,
+                "instructions": 8241892098,
+                "frontend_stall_cycles": 440160033,
+                "l1i_read_misses": 11037014
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 8.86950919988394
+      },
+      {
+        "baseline": {
+          "seconds": 0.8361347601749003,
+          "metric_seconds": 0.79732255,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 797303690,
+              "time_running": 797303690,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2309056673,
+                "instructions": 8235798150,
+                "frontend_stall_cycles": 438536266,
+                "l1i_read_misses": 11903640
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.7566827600821853,
+          "metric_seconds": 0.71699426,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 717011260,
+              "time_running": 717011260,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2076144963,
+                "instructions": 8204500899,
+                "frontend_stall_cycles": 52536214,
+                "l1i_read_misses": 409494
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+          ]
+        },
+        "reduction_percent": 10.074754564510934
+      },
+      {
+        "candidate": {
+          "seconds": 0.7546075801365077,
+          "metric_seconds": 0.71535226,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 715322580,
+              "time_running": 715322580,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2071608638,
+                "instructions": 8206188096,
+                "frontend_stall_cycles": 52989707,
+                "l1i_read_misses": 356192
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.9057445102371275,
+          "metric_seconds": 0.86648797,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 866474030,
+              "time_running": 866474030,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2509430423,
+                "instructions": 8268208572,
+                "frontend_stall_cycles": 499318570,
+                "l1i_read_misses": 11697056
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 17.44233217686797
+      },
+      {
+        "baseline": {
+          "seconds": 0.8450386598706245,
+          "metric_seconds": 0.80628703,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 806270520,
+              "time_running": 806270520,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2335042176,
+                "instructions": 8225109070,
+                "frontend_stall_cycles": 460639817,
+                "l1i_read_misses": 11274238
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.7511741602793336,
+          "metric_seconds": 0.71183348,
+          "returncode": 0,
+          "stdout_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_sha256": "052248b61c66ba9f267fed5c7685d1e93d7f6f1560c2a3e450c61f6b5a87b9d6",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 711801580,
+              "time_running": 711801580,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 2061391549,
+                "instructions": 8198311981,
+                "frontend_stall_cycles": 54154405,
+                "l1i_read_misses": 611325
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+          ]
+        },
+        "reduction_percent": 11.7146309546862
+      }
+    ],
+    "equivalent": true,
+    "metric": "decode",
+    "median_reduction_percent": 11.7146309546862,
+    "min_reduction_percent": 8.86950919988394,
+    "max_reduction_percent": 17.44233217686797,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+  },
+  "entry_mode": "command",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/python-fresh-tune-r1/ext-tsp/images/6fe97dad98242b2a-e3e558b7/libpython3.12.so.1.0"
+  ]
+}

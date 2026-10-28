@@ -1,0 +1,171 @@
+{
+  "schema": "tgo.validation.v1",
+  "pairs": [
+    {
+      "baseline": {
+        "seconds": 0.12212482001632452,
+        "metric_seconds": 0.09061486,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 90568770,
+            "time_running": 90568770,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 262067607,
+              "instructions": 198527639,
+              "frontend_stall_cycles": 201561808,
+              "l1i_read_misses": 13495346
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 0.07151436014100909,
+        "metric_seconds": 0.03982544,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 39813280,
+            "time_running": 39813280,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 115086599,
+              "instructions": 198527681,
+              "frontend_stall_cycles": 56568190,
+              "l1i_read_misses": 1760
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/native-spe-bolt-r4/images/453fb977ff348011-4824407c/libfrontend.so"
+        ]
+      },
+      "reduction_percent": 56.04976932039625
+    },
+    {
+      "candidate": {
+        "seconds": 0.07027888996526599,
+        "metric_seconds": 0.03891631,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 38886040,
+            "time_running": 38886040,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 112452967,
+              "instructions": 198527627,
+              "frontend_stall_cycles": 53610110,
+              "l1i_read_misses": 1889
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/native-spe-bolt-r4/images/453fb977ff348011-4824407c/libfrontend.so"
+        ]
+      },
+      "baseline": {
+        "seconds": 0.12338687991723418,
+        "metric_seconds": 0.09367678,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 93659090,
+            "time_running": 93659090,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 271022982,
+              "instructions": 198527550,
+              "frontend_stall_cycles": 205466318,
+              "l1i_read_misses": 12612504
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": 58.456823558623604
+    },
+    {
+      "baseline": {
+        "seconds": 0.12256482010707259,
+        "metric_seconds": 0.09304134,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 93031690,
+            "time_running": 93031690,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 269208768,
+              "instructions": 198527575,
+              "frontend_stall_cycles": 202864959,
+              "l1i_read_misses": 13337985
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 0.06976157985627651,
+        "metric_seconds": 0.03879289,
+        "returncode": 0,
+        "stdout_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_sha256": "dd491b74c50029b258618ae55811d669ba68016d8761da1198428d6bcd14e1aa",
+        "correctness_source": "stdout",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 38784570,
+            "time_running": 38784570,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 112110287,
+              "instructions": 198527615,
+              "frontend_stall_cycles": 53209111,
+              "l1i_read_misses": 1773
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/native-spe-bolt-r4/images/453fb977ff348011-4824407c/libfrontend.so"
+        ]
+      },
+      "reduction_percent": 58.30574882090047
+    }
+  ],
+  "equivalent": true,
+  "metric": "decode",
+  "median_reduction_percent": 58.30574882090047,
+  "min_reduction_percent": 56.04976932039625,
+  "max_reduction_percent": 58.456823558623604,
+  "recommendation": "candidate",
+  "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+}

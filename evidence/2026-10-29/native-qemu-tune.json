@@ -1,0 +1,811 @@
+{
+  "schema": "tgo.tune.v1",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/native-qemu-r4",
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.3094786098226905,
+              "metric_seconds": 0.27821546,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 278112930,
+                  "time_running": 278112930,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 805552998,
+                    "instructions": 595513777,
+                    "frontend_stall_cycles": 613185137,
+                    "l1i_read_misses": 37735666
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.14792838040739298,
+              "metric_seconds": 0.11632057,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 116289880,
+                  "time_running": 116289880,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 336702600,
+                    "instructions": 595513501,
+                    "frontend_stall_cycles": 160168786,
+                    "l1i_read_misses": 1862
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/ext-tsp/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 58.1904722332828
+          },
+          {
+            "candidate": {
+              "seconds": 0.14776605973020196,
+              "metric_seconds": 0.11561683,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 115573120,
+                  "time_running": 115573120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 334707928,
+                    "instructions": 595513613,
+                    "frontend_stall_cycles": 157809933,
+                    "l1i_read_misses": 1917
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/ext-tsp/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.30134910997003317,
+              "metric_seconds": 0.27040842,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 270400210,
+                  "time_running": 270400210,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 783138934,
+                    "instructions": 595513669,
+                    "frontend_stall_cycles": 602811132,
+                    "l1i_read_misses": 38053592
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 57.24362799057809
+          },
+          {
+            "baseline": {
+              "seconds": 0.30405193008482456,
+              "metric_seconds": 0.27267739,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 272658830,
+                  "time_running": 272658830,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 789758026,
+                    "instructions": 595513740,
+                    "frontend_stall_cycles": 615802917,
+                    "l1i_read_misses": 38323690
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.14825316006317735,
+              "metric_seconds": 0.11674138,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 116683010,
+                  "time_running": 116683010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 338033573,
+                    "instructions": 595513521,
+                    "frontend_stall_cycles": 161598453,
+                    "l1i_read_misses": 1978
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/ext-tsp/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 57.186996692318345
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 57.24362799057809,
+        "min_reduction_percent": 57.186996692318345,
+        "max_reduction_percent": 58.1904722332828,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "compact",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.31045047007501125,
+              "metric_seconds": 0.27877465,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 278679320,
+                  "time_running": 278679320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 806970948,
+                    "instructions": 595513716,
+                    "frontend_stall_cycles": 611604348,
+                    "l1i_read_misses": 35840268
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.14746828004717827,
+              "metric_seconds": 0.11582825,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 115777070,
+                  "time_running": 115777070,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 335189333,
+                    "instructions": 595513655,
+                    "frontend_stall_cycles": 158197116,
+                    "l1i_read_misses": 2190
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/compact/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 58.45093877796995
+          },
+          {
+            "candidate": {
+              "seconds": 0.14739189017564058,
+              "metric_seconds": 0.11573057,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 115665700,
+                  "time_running": 115665700,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 334924801,
+                    "instructions": 595513456,
+                    "frontend_stall_cycles": 157963463,
+                    "l1i_read_misses": 2112
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/compact/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.3094414696097374,
+              "metric_seconds": 0.27887081,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 278809010,
+                  "time_running": 278809010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 807524121,
+                    "instructions": 595513647,
+                    "frontend_stall_cycles": 610899425,
+                    "l1i_read_misses": 37024068
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 58.500292662398046
+          },
+          {
+            "baseline": {
+              "seconds": 0.3035186496563256,
+              "metric_seconds": 0.2732945,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 273281150,
+                  "time_running": 273281150,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 791410122,
+                    "instructions": 595513823,
+                    "frontend_stall_cycles": 617465424,
+                    "l1i_read_misses": 37587929
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.15105364006012678,
+              "metric_seconds": 0.11887602,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 118825950,
+                  "time_running": 118825950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 344017809,
+                    "instructions": 595513634,
+                    "frontend_stall_cycles": 168439017,
+                    "l1i_read_misses": 2151
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/compact/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 56.50259335625123
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 58.45093877796995,
+        "min_reduction_percent": 56.50259335625123,
+        "max_reduction_percent": 58.500292662398046,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "aligned",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.3092246796004474,
+              "metric_seconds": 0.27777762,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 277686620,
+                  "time_running": 277686620,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 804219756,
+                    "instructions": 595513790,
+                    "frontend_stall_cycles": 611412537,
+                    "l1i_read_misses": 37085891
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.14724509045481682,
+              "metric_seconds": 0.11530275,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 115259410,
+                  "time_running": 115259410,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 333742036,
+                    "instructions": 595513519,
+                    "frontend_stall_cycles": 156718391,
+                    "l1i_read_misses": 2140
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 58.49098642288028
+          },
+          {
+            "candidate": {
+              "seconds": 0.1467539300210774,
+              "metric_seconds": 0.11465746,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 114626200,
+                  "time_running": 114626200,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 331753109,
+                    "instructions": 595513444,
+                    "frontend_stall_cycles": 154236743,
+                    "l1i_read_misses": 2403
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.30902835028246045,
+              "metric_seconds": 0.27844447,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 278397890,
+                  "time_running": 278397890,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 806444351,
+                    "instructions": 595513779,
+                    "frontend_stall_cycles": 613090409,
+                    "l1i_read_misses": 37039872
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 58.822145040266015
+          },
+          {
+            "baseline": {
+              "seconds": 0.30294468021020293,
+              "metric_seconds": 0.27246517,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 272454540,
+                  "time_running": 272454540,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 788994651,
+                    "instructions": 595513730,
+                    "frontend_stall_cycles": 615267949,
+                    "l1i_read_misses": 37437189
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.14671857003122568,
+              "metric_seconds": 0.1150684,
+              "returncode": 0,
+              "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 115025170,
+                  "time_running": 115025170,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 332989619,
+                    "instructions": 595513600,
+                    "frontend_stall_cycles": 155977204,
+                    "l1i_read_misses": 2181
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 57.76766623051306
+          }
+        ],
+        "equivalent": true,
+        "metric": "decode",
+        "median_reduction_percent": 58.49098642288028,
+        "min_reduction_percent": 57.76766623051306,
+        "max_reduction_percent": 58.822145040266015,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "selected": "aligned",
+  "confirmation": {
+    "schema": "tgo.validation.v1",
+    "pairs": [
+      {
+        "baseline": {
+          "seconds": 0.2945034997537732,
+          "metric_seconds": 0.26444091,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 264387870,
+              "time_running": 264387870,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 765840666,
+                "instructions": 595513807,
+                "frontend_stall_cycles": 588148068,
+                "l1i_read_misses": 38021408
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.1461502299644053,
+          "metric_seconds": 0.11493978,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 114871910,
+              "time_running": 114871910,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 332667427,
+                "instructions": 595513552,
+                "frontend_stall_cycles": 155548133,
+                "l1i_read_misses": 2012
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 56.534796374736416
+      },
+      {
+        "candidate": {
+          "seconds": 0.1461142203770578,
+          "metric_seconds": 0.11479105,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 114700860,
+              "time_running": 114700860,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 332151809,
+                "instructions": 595513730,
+                "frontend_stall_cycles": 154905066,
+                "l1i_read_misses": 2202
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.308942100033164,
+          "metric_seconds": 0.27854902,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 278506390,
+              "time_running": 278506390,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 806581453,
+                "instructions": 595513804,
+                "frontend_stall_cycles": 613150349,
+                "l1i_read_misses": 37778434
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 58.78964140674413
+      },
+      {
+        "baseline": {
+          "seconds": 0.29541392996907234,
+          "metric_seconds": 0.26474223,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 264692930,
+              "time_running": 264692930,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 766690588,
+                "instructions": 595513809,
+                "frontend_stall_cycles": 588665254,
+                "l1i_read_misses": 38004810
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.14680743031203747,
+          "metric_seconds": 0.11506127,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 115005640,
+              "time_running": 115005640,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 332958230,
+                "instructions": 595513578,
+                "frontend_stall_cycles": 155786964,
+                "l1i_read_misses": 2204
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 56.53837697144124
+      },
+      {
+        "candidate": {
+          "seconds": 0.14650135021656752,
+          "metric_seconds": 0.1146063,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 114568790,
+              "time_running": 114568790,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 331556529,
+                "instructions": 595513590,
+                "frontend_stall_cycles": 154112676,
+                "l1i_read_misses": 2328
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.33356792014092207,
+          "metric_seconds": 0.30284714,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 302814370,
+              "time_running": 302814370,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 877077747,
+                "instructions": 595513806,
+                "frontend_stall_cycles": 648090149,
+                "l1i_read_misses": 36557304
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 62.157047281344646
+      },
+      {
+        "baseline": {
+          "seconds": 0.30333812022581697,
+          "metric_seconds": 0.27268864,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 272648050,
+              "time_running": 272648050,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 789955140,
+                "instructions": 595513800,
+                "frontend_stall_cycles": 613280943,
+                "l1i_read_misses": 37139440
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.14624097011983395,
+          "metric_seconds": 0.11472105,
+          "returncode": 0,
+          "stdout_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_sha256": "0a031e1284f21cbe25a4785dd95d491fff93c4348aea7ffde94894839dc51f60",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 114661650,
+              "time_running": 114661650,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 332192272,
+                "instructions": 595513428,
+                "frontend_stall_cycles": 154886062,
+                "l1i_read_misses": 1960
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 57.92965559548061
+      }
+    ],
+    "equivalent": true,
+    "metric": "decode",
+    "median_reduction_percent": 57.92965559548061,
+    "min_reduction_percent": 56.534796374736416,
+    "max_reduction_percent": 62.157047281344646,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+  },
+  "entry_mode": "command",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/native-selfbuilt-r1/aligned/images/453fb977ff34801172cf/libfrontend.so"
+  ]
+}

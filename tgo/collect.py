@@ -138,7 +138,7 @@ def record(args):
             # perf2bolt consumes mmap/build-id records directly, including attach/child processes.
             from .perf import perf_profile
             perf_profile(root, perf, args.pid)
-        meta.update(state="recorded", finished_unix=time.time())
+        meta.update(state="recorded", phase="complete", finished_unix=time.time())
     except BaseException as e:
         if isinstance(e, subprocess.TimeoutExpired):
             message = f"workload exceeded --timeout ({args.timeout:g}s); capture preserved at {root}"

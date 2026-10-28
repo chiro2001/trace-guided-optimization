@@ -125,6 +125,7 @@ def main(argv=None):
                 result = perf_profile(root, tool("perf", args.perf), state.get("pid"))
             state["renormalized"] = {"unix": time.time(), "previous_state": state["state"], "previous_error": state.pop("error", None)}
             state["state"] = "recorded"
+            state["phase"] = "complete"
             write_json(root / "run.json", state)
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0

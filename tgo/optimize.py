@@ -49,8 +49,11 @@ def optimize(args):
             selected.append(row)
     result = {"schema": "tgo.build.v1", "source_run": str(source), "profile_sha256": sha256(source / "profile.json"),
               "bolt_sha256": sha256(bolt), "images": [], "skipped": skipped, "state": "building"}
+    result["workload"] = {k: state[k] for k in ("command", "cwd", "env")}
     write_json(out / "build.json", result)
     try:
+        if profile.get("raw_data") and sha256(profile["raw_data"]["path"]) != profile["raw_data"]["sha256"]:
+            raise ValueError("raw perf data changed since normalization")
         aggregate_env = tool_env()
         if profile["backend"] != "qemu":
             perf = tool("perf")
@@ -81,6 +84,8 @@ def optimize(args):
             fdata = image_dir / "profile.fdata"
             cmd = [p2b, original, "-o", fdata]
             if profile["backend"] == "qemu":
+                if row.get("preaggregate_sha256") and sha256(row["preaggregate"]) != row["preaggregate_sha256"]:
+                    raise ValueError("preaggregated profile changed since normalization")
                 cmd += ["-pa", "-p", row["preaggregate"]]
             else:
                 cmd += ["-p", row["perf_data"]]
@@ -115,7 +120,10 @@ def optimize(args):
             os.chmod(target, original.stat().st_mode & 0o777)
             result["images"].append({"original": str(original), "optimized": str(target),
                                      "input": row, "output": output_meta,
+                                     "fdata_sha256": sha256(fdata),
                                      "aggregation": aggregation, "optimization": optimization})
+            if profile["backend"] == "spe":
+                result["images"][-1]["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
             write_json(out / "build.json", result)
         if not result["images"]:
             raise ValueError("no eligible hot ELF images; see build.json skipped reasons")
