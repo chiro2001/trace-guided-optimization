@@ -22,6 +22,7 @@ def main(argv=None):
     r.add_argument("--frequency", type=int, default=999)
     r.add_argument("--event")
     r.add_argument("--branch-stack", action="store_true")
+    r.add_argument("--python-hook", metavar="MODULE:CLASS.METHOD")
     r.add_argument("--qemu", default=os.environ.get("TGO_QEMU"))
     r.add_argument("--perf", default=os.environ.get("TGO_PERF"))
     r.add_argument("--qemu-header", default=os.environ.get("TGO_QEMU_HEADER"))
@@ -43,6 +44,19 @@ def main(argv=None):
     o.add_argument("--validate", type=int, default=3, metavar="PAIRS")
     o.add_argument("--metric", help="named ROI metric emitted by tgo.roi.region")
     o.add_argument("--timeout", type=float, default=300)
+    t = sub.add_parser("tune", parents=[r], add_help=False,
+                       help="record, compare three layouts and publish a confirmed ELF entry")
+    t.add_argument("--run", help="reuse an existing capture instead of recording")
+    t.add_argument("--entry")
+    t.add_argument("--image", action="append", default=[])
+    t.add_argument("--top", type=int, default=3)
+    t.add_argument("--bolt")
+    t.add_argument("--perf2bolt")
+    t.add_argument("--bolt-arg", action="append", default=[])
+    t.add_argument("--search-pairs", type=int, default=3)
+    t.add_argument("--validate", type=int, default=5)
+    t.add_argument("--metric")
+    t.add_argument("--minimum-gain", type=float, default=0.5)
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
     v.add_argument("--pairs", type=int, default=5)
@@ -67,6 +81,11 @@ def main(argv=None):
             if args.top <= 0 or args.validate < 0:
                 p.error("top must be >0 and validate >=0")
             result = optimize(args)
+        elif args.action == "tune":
+            if args.top <= 0 or args.search_pairs <= 0 or args.validate <= 0:
+                p.error("top, search-pairs and validate must be >0")
+            from .tune import tune
+            result = tune(args)
         elif args.action == "validate":
             if args.pairs <= 0:
                 p.error("pairs must be >0")

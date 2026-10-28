@@ -49,5 +49,5 @@ class ELF:
         return {"path": str(self.path), "sha256": sha256(self.path), "build_id": self.build_id,
                 "machine": self.machine, "type": self.type, "bytes": st.st_size,
                 "relocations": any(n.startswith((".rela.text", ".rel.text")) for n in self.sections),
-                "symbols": ".symtab" in self.sections, "go": ".gopclntab" in self.sections,
+                "symbols": ".symtab" in self.sections, "go": any("gopclntab" in n or n == ".go.buildinfo" for n in self.sections),
                 "interpreter": self.interpreter}

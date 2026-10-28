@@ -10,7 +10,7 @@
 QEMU_PLUGIN_EXPORT int qemu_plugin_version = QEMU_PLUGIN_VERSION;
 typedef struct { uint64_t start,end; unsigned last_size,n; } Block;
 typedef struct { uint64_t a,b; char kind; } Key;
-typedef struct { Block prev; int valid,active; } CPU;
+typedef struct { Block prev; uint64_t run_start; int valid,active; } CPU;
 typedef struct Count { Key key; uint64_t value; struct Count *next; } Count;
 static Count *counts[65536];
 static pthread_mutex_t lock=PTHREAD_MUTEX_INITIALIZER;
@@ -33,11 +33,13 @@ static void exec_tb(unsigned int cpu,void *userdata) {
     if(cpu>=4096) return;
     Block *b=userdata; pthread_mutex_lock(&lock); CPU *c=&cpus[cpu];
     if(!(whole||c->active) || truncated) { c->valid=0; pthread_mutex_unlock(&lock); return; }
-    if(insns+b->n>limit) { truncated=1; c->valid=0; qemu_plugin_u64_set(active_entry,cpu,0); pthread_mutex_unlock(&lock); return; }
+    if(insns+b->n>limit) { truncated=1; if(c->valid) add('F',c->run_start,c->prev.end,1); c->valid=0; qemu_plugin_u64_set(active_entry,cpu,0); pthread_mutex_unlock(&lock); return; }
     insns+=b->n;
-    add('T',b->start,b->end,1);
     add('N',b->start,b->end,b->n);
-    if(c->valid && b->start!=c->prev.end+c->prev.last_size) add('B',c->prev.end,b->start,1);
+    if(c->valid && b->start!=c->prev.end+c->prev.last_size) {
+        add('F',c->run_start,c->prev.end,1);
+        add('B',c->prev.end,b->start,1); c->run_start=b->start;
+    } else if(!c->valid) c->run_start=b->start;
     c->prev=*b; c->valid=1;
     pthread_mutex_unlock(&lock);
 }
@@ -76,7 +78,10 @@ static void syscall_cb(
     if(num!=getpid_nr || cpu>=4096) return;
     pthread_mutex_lock(&lock);
     if(a1==UINT64_C(0x51554d4153544152)) { cpus[cpu].active=1; cpus[cpu].valid=0; windows++; qemu_plugin_u64_set(active_entry,cpu,1); }
-    if(a1==UINT64_C(0x51554d4153544f50)) { cpus[cpu].active=0; cpus[cpu].valid=0; qemu_plugin_u64_set(active_entry,cpu,0); }
+    if(a1==UINT64_C(0x51554d4153544f50)) {
+        if(cpus[cpu].valid) add('F',cpus[cpu].run_start,cpus[cpu].prev.end,1);
+        cpus[cpu].active=0; cpus[cpu].valid=0; qemu_plugin_u64_set(active_entry,cpu,0);
+    }
     pthread_mutex_unlock(&lock);
 }
 #if QEMU_PLUGIN_VERSION >= 7
@@ -88,6 +93,7 @@ static void finish(qemu_plugin_id_t id,void *userdata) {
 #endif
     char path[4096]; snprintf(path,sizeof(path),"%s.%ld.trace",output,(long)getpid());
     FILE *f=fopen(path,"w"); if(!f) { perror("tgo: trace output"); return; }
+    for(unsigned i=0;i<4096;i++) if(cpus[i].valid) add('F',cpus[i].run_start,cpus[i].prev.end,1);
     fprintf(f,"H\t%"PRIu64"\t%d\t%"PRIu64"\n",insns,truncated,windows);
     for(unsigned i=0;i<65536;i++) for(Count *c=counts[i];c;c=c->next) {
         Key *k=&c->key; fprintf(f,"%c\t%"PRIx64"\t%"PRIx64"\t%"PRIu64"\n",k->kind,k->a,k->b,c->value);

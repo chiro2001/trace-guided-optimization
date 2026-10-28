@@ -55,6 +55,23 @@ unsigned int la_objopen(struct link_map *map, Lmid_t ns, uintptr_t *cookie) {
         } else {
             if(realpath(name,path)) name=path;
         }
+        /* glibc can keep the pre-audit pathname in l_name for DT_NEEDED loads.
+         * The physical mapping is the evidence of what actually got loaded. */
+        FILE *maps=fopen("/proc/self/maps","r");
+        if(maps) {
+            char row[2*PATH_MAX]; unsigned long lo,hi; int n;
+            uintptr_t address=(uintptr_t)map->l_ld;
+            while(fgets(row,sizeof(row),maps)) {
+                n=0;
+                if(sscanf(row,"%lx-%lx %*s %*s %*s %*s %n",&lo,&hi,&n)==2 && n>0 &&
+                    address>=lo && address<hi && row[n]=='/') {
+                    row[strcspn(row,"\n")]=0;
+                    if(strlen(row+n)<sizeof(path)) { strcpy(path,row+n); name=path; }
+                    break;
+                }
+            }
+            fclose(maps);
+        }
         if (*name!='/') return 0;
         snprintf(file,sizeof(file),"%s.%ld.images",prefix,(long)getpid());
         int fd=open(file,O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC,0600);

@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import platform
 import signal
+import shutil
 import subprocess
 import time
 from .runtime import build_runtime
@@ -33,13 +34,23 @@ def record(args):
     if args.pid and backend == "qemu":
         raise ValueError("perf PMU access unavailable; attach requires perf permissions")
     runtime = build_runtime(root / "runtime", args.qemu_header if backend == "qemu" else None)
+    user_command = command[:]
+    if args.python_hook:
+        if args.pid:
+            raise ValueError("Python hooks require launch mode")
+        support = runtime / "support/tgo"
+        support.mkdir(parents=True)
+        for name in ("__init__.py", "roi.py", "python_entry.py"):
+            shutil.copy2(Path(__file__).parent / name, support / name)
+        command = [command[0], str(support / "python_entry.py"), "--hook", args.python_hook, "--", *command[1:]]
+        args.roi = "marker"
     env = workload_env()
     env.update(TGO_IMAGE_LOG=str(root / "capture"), TGO_ROI_LOG=str(root / "capture"),
                TGO_ROI_LIBRARY=str(runtime / "libtgo_roi.so"))
     # These are captured for replay; credentials and unrelated environment are never serialized.
     overrides = dict(item.split("=", 1) for item in args.env)
     env.update(overrides)
-    meta = {"schema": "tgo.run.v1", "command": command, "cwd": os.getcwd(), "env": overrides,
+    meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
             "started_unix": time.time()}
     write_json(root / "run.json", meta)
@@ -61,6 +72,8 @@ def record(args):
             perf = tool("perf", args.perf)
             event = args.event or ("arm_spe_0/branch_filter=1/" if backend == "spe" else "cycles:u")
             launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
+            if backend == "spe":
+                launch += ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
             if backend != "spe":
                 launch += ["-F", str(args.frequency)]
             if args.branch_stack:

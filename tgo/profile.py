@@ -51,7 +51,7 @@ def qemu_profile(root, allow_truncated=False):
                     image(src[0])["dynamic_instructions"] += n
                 else:
                     unmapped += n
-            elif kind == "T":
+            elif kind in ("T", "F"):
                 if src and dst and src[0] == dst[0]:
                     image(src[0])["counts"]["F", src[1], dst[1]] += n
             elif kind == "B":
