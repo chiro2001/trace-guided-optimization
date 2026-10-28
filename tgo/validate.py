@@ -22,6 +22,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             for old in bundle.glob(prefix.name + ".*"):
                 old.unlink()
             env["TGO_IMAGE_LOG"] = str(prefix)
+            env["TGO_RESULT_FILE"] = str(prefix) + ".result.json"
             if metric:
                 env["TGO_METRIC_FILE"] = str(prefix) + ".metrics"
             command = state["command"] if arm == "baseline" else [build["entry"]]
@@ -43,12 +44,19 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 if not values:
                     raise ValueError(f"ROI metric missing: {metric}, {prefix}")
                 measurement = statistics.median(values) / 1e9
+            result_file = Path(env["TGO_RESULT_FILE"])
+            correctness = p.stdout
+            if result_file.exists():
+                import json
+                correctness = json.dumps(json.loads(result_file.read_text()), sort_keys=True, allow_nan=False).encode()
             pair[arm] = {"seconds": elapsed, "metric_seconds": measurement, "returncode": p.returncode,
                          "stdout_sha256": hashlib.sha256(p.stdout).hexdigest(),
+                         "correctness_sha256": hashlib.sha256(correctness).hexdigest(),
+                         "correctness_source": "result-json" if result_file.exists() else "stdout",
                          "loaded_optimized": sorted(observed & expected)}
             if p.returncode or (arm == "candidate" and not expected <= observed):
                 equivalent = False
-        if pair["baseline"]["stdout_sha256"] != pair["candidate"]["stdout_sha256"]:
+        if pair["baseline"]["correctness_sha256"] != pair["candidate"]["correctness_sha256"] or pair["baseline"]["correctness_source"] != pair["candidate"]["correctness_source"]:
             equivalent = False
         pair["reduction_percent"] = (1 - pair["candidate"]["metric_seconds"] / pair["baseline"]["metric_seconds"]) * 100
         trials.append(pair)

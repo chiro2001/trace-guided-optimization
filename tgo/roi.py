@@ -58,3 +58,12 @@ def install_hook(spec):
         with region(spec):
             return original(*args, **kwargs)
     setattr(obj, name, wrapped)
+
+
+def emit_result(value):
+    """Write deterministic correctness evidence; logs may contain timings/PIDs."""
+    path = os.environ.get("TGO_RESULT_FILE")
+    if path:
+        import json
+        from pathlib import Path
+        Path(path).write_text(json.dumps(value, sort_keys=True, allow_nan=False) + "\n")
