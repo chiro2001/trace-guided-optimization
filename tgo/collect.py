@@ -7,7 +7,7 @@ import subprocess
 import time
 from .runtime import build_runtime
 from .profile import qemu_profile
-from .util import command_path, tool, write_json, workload_env, tool_env
+from .util import command_path, tool, write_json, workload_env, tool_env, sha256
 
 
 def doctor():
@@ -110,6 +110,8 @@ def record(args):
                 inherited = [f"{k}={v}" for k, v in forwarded.items() if k != "LD_AUDIT"]
                 launch += ["--", "env", *inherited, f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
         meta["collector_command"] = launch
+        meta["collector_sha256"] = sha256(launch[0])
+        meta["runtime_sha256"] = {p.name: sha256(p) for p in runtime.glob("*.so")}
         write_json(root / "run.json", meta)
         with (root / "stdout").open("wb") as stdout, (root / "stderr").open("wb") as stderr:
             p = subprocess.Popen(launch, stdout=stdout, stderr=stderr, env=exec_env, start_new_session=True)

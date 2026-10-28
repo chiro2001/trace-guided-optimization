@@ -3,9 +3,10 @@ from pathlib import Path
 import shutil
 import subprocess
 import hashlib
+import shlex
 from .elf import ELF
 from .runtime import build_runtime, make_launcher
-from .util import read_json, write_json, run, sha256, tool
+from .util import read_json, write_json, run, sha256, tool, tool_env
 
 
 def eligible(row):
@@ -50,6 +51,16 @@ def optimize(args):
               "bolt_sha256": sha256(bolt), "images": [], "skipped": skipped, "state": "building"}
     write_json(out / "build.json", result)
     try:
+        aggregate_env = tool_env()
+        if profile["backend"] != "qemu":
+            perf = tool("perf")
+            helper = out / "tools"
+            helper.mkdir()
+            shim = helper / "perf"
+            shim.write_text("#!/bin/sh\nexec " + shlex.quote(perf) + ' "$@"\n')
+            shim.chmod(0o755)
+            aggregate_env["PATH"] = str(helper) + os.pathsep + aggregate_env.get("PATH", "")
+            result["perf"] = {"path": perf, "sha256": sha256(perf)}
         for row in selected:
             original = Path(row["path"])
             if sha256(original) != row["sha256"]:
@@ -64,7 +75,7 @@ def optimize(args):
             else:
                 cmd += ["-p", row["perf_data"]]
                 cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
-            aggregation = run(cmd, image_dir / "aggregate.log")
+            aggregation = run(cmd, image_dir / "aggregate.log", env=aggregate_env)
             if not fdata.exists() or not fdata.stat().st_size:
                 raise ValueError(f"empty BOLT profile: {original}")
             target = image_dir / original.name
@@ -81,7 +92,7 @@ def optimize(args):
             # Preserve $ORIGIN search semantics after moving an image out of its original directory.
             origin = str(original.parent)
             if patchelf and (row["type"] == 3 or row["interpreter"]):
-                rpath = subprocess.check_output([patchelf, "--print-rpath", original], text=True).strip()
+                rpath = subprocess.check_output([patchelf, "--print-rpath", original], text=True, env=tool_env()).strip()
                 expanded = rpath.replace("${ORIGIN}", origin).replace("$ORIGIN", origin)
                 paths = ':'.join(p for p in (expanded, origin) if p)
                 preserve = ["--force-rpath"] if row.get("rpath_kind") == "rpath" else []

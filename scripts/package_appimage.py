@@ -41,6 +41,9 @@ def main():
             executables[n] = found
     executables["python3"] = str(Path(a.python).resolve())
     manifest = {"schema": "tgo.package.v1", "arch": platform.machine(), "tools": {}, "libraries": {}}
+    manifest["source_commit"] = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
+    manifest["source_dirty"] = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip())
+    manifest["dependency_lock_sha256"] = sha256(ROOT / "dependencies.lock.json")
     native = app / "usr/lib/tgo-runtime"
     build_runtime(native, a.qemu_header)
     if not (native / "libtgo_qemu.so").exists():
