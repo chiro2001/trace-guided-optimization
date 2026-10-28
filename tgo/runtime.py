@@ -17,17 +17,17 @@ def build_runtime(out, qemu_header=None):
         shutil.copy2(NATIVE.parent / name, support / name)
     shipped = os.environ.get("TGO_RUNTIME_DIR")
     if shipped:
-        for name in ("libtgo_audit.so", "libtgo_roi.so", "launcher", "libtgo_qemu.so"):
+        for name in ("libtgo_audit.so", "libtgo_roi.so", "libtgo_perf_spe.so", "launcher", "libtgo_qemu.so"):
             p = Path(shipped) / name
             if p.exists():
                 shutil.copy2(p, out / name)
         return out
     cc = tool("cc")
-    for name in ("audit", "roi"):
+    for name in ("audit", "roi", "perf_spe"):
         target = out / f"libtgo_{name}.so"
         source = NATIVE / f"{name}.c"
         if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
-            run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", source, "-o", target],
+            run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", "-I", NATIVE / "include", source, "-o", target],
                 out / f"{name}.build.log")
     launcher = out / "launcher"
     if not launcher.exists() or launcher.stat().st_mtime < (NATIVE / "launcher.c").stat().st_mtime:

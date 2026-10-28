@@ -57,7 +57,17 @@ def optimize(args):
             helper = out / "tools"
             helper.mkdir()
             shim = helper / "perf"
-            shim.write_text("#!/bin/sh\nexec " + shlex.quote(perf) + ' "$@"\n')
+            script = "#!/bin/sh\n"
+            if profile["backend"] == "spe":
+                bridge = out / "libtgo_perf_spe.so"
+                if not bridge.exists():
+                    raise ValueError("SPE compatibility bridge absent; rebuild the TGO package")
+                script += ('if [ "${1-}" = script ] && [ "${2-}" = -F ] && [ "${3-}" = pid,brstack ]; then\n'
+                           '  shift 3\n  case "${1-}" in --itrace=*) shift;; esac\n'
+                           '  exec ' + shlex.quote(perf) + ' script --itrace=b --dlfilter=' + shlex.quote(str(bridge)) + ' -F pid,ip,addr "$@"\nfi\n')
+                result["spe_bridge"] = {"path": str(bridge), "sha256": sha256(bridge),
+                                        "prediction": "unknown unless event explicitly denotes a miss"}
+            shim.write_text(script + "exec " + shlex.quote(perf) + ' "$@"\n')
             shim.chmod(0o755)
             aggregate_env["PATH"] = str(helper) + os.pathsep + aggregate_env.get("PATH", "")
             result["perf"] = {"path": perf, "sha256": sha256(perf)}
@@ -75,6 +85,7 @@ def optimize(args):
             else:
                 cmd += ["-p", row["perf_data"]]
                 cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
+            aggregate_env["TGO_SPE_STATS"] = str(image_dir / "spe-bridge.json")
             aggregation = run(cmd, image_dir / "aggregate.log", env=aggregate_env)
             if not fdata.exists() or not fdata.stat().st_size:
                 raise ValueError(f"empty BOLT profile: {original}")
