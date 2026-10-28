@@ -10,6 +10,8 @@ import subprocess
 import sys
 import tarfile
 import urllib.request
+import urllib.error
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -23,7 +25,15 @@ def fetch(name, prefix):
     if not dest.exists() or sha256(dest) != item["sha256"]:
         temp = dest.with_suffix(dest.suffix + ".part")
         print("download", item["url"], flush=True)
-        urllib.request.urlretrieve(item["url"], temp)
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(item["url"], timeout=60) as response, temp.open("wb") as output:
+                    shutil.copyfileobj(response, output, 1024 * 1024)
+                break
+            except (urllib.error.URLError, OSError):
+                if attempt == 2:
+                    raise
+                time.sleep(1 + attempt)
         if sha256(temp) != item["sha256"]:
             raise ValueError(f"SHA256 mismatch: {temp}")
         temp.replace(dest)

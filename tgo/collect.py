@@ -79,11 +79,13 @@ def record(args):
             launch += ["-E", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
         else:
             perf = tool("perf", args.perf)
-            event = args.event or ("arm_spe_0/branch_filter=1/" if backend == "spe" else "cycles:u")
+            event = args.event or ("arm_spe_0/ts_enable=1,branch_filter=1,jitter=1/u" if backend == "spe" else "cycles:u")
             launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
                 launch += ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
-            if backend != "spe":
+            if backend == "spe" or args.period:
+                launch += ["-c", str(args.period or 4096)]
+            else:
                 launch += ["-F", str(args.frequency)]
             if args.branch_stack:
                 launch += ["-j", "any,u"]
