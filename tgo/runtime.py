@@ -5,6 +5,7 @@ import shlex
 import subprocess
 import struct
 import shutil
+import tempfile
 from .util import run, tool
 
 NATIVE = Path(__file__).parent / "native"
@@ -85,13 +86,15 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
         st = Path(path).stat()
         payload += string(str(path)) + struct.pack("<qqqQQ", st.st_size,
             st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev)
-    tmp = out / "entry.tmp"
-    with tmp.open("wb") as f:
+    with tempfile.NamedTemporaryFile(dir=entry.parent, prefix=".tgo-entry-", delete=False) as f:
+        tmp = Path(f.name)
         f.write((out / "launcher").read_bytes())
         f.write(payload)
         f.write(struct.pack("<Q8s", len(payload), b"TGOCFG01"))
     tmp.chmod(0o755)
     # Atomic publication refuses overwrite, including races.
-    os.link(tmp, entry)
-    tmp.unlink()
+    try:
+        os.link(tmp, entry)
+    finally:
+        tmp.unlink()
     return str(entry)

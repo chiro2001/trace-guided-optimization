@@ -40,7 +40,7 @@ def record(args):
             raise ValueError("Python hooks require launch mode")
         support = runtime / "support/tgo"
         support.mkdir(parents=True)
-        for name in ("__init__.py", "roi.py", "python_entry.py"):
+        for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py"):
             shutil.copy2(Path(__file__).parent / name, support / name)
         command = [command[0], str(support / "python_entry.py"), "--hook", args.python_hook, "--", *command[1:]]
         args.roi = "marker"

@@ -25,6 +25,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             env["TGO_RESULT_FILE"] = str(prefix) + ".result.json"
             if metric:
                 env["TGO_METRIC_FILE"] = str(prefix) + ".metrics"
+                env["TGO_NATIVE_COUNTERS"] = "1"
             command = state["command"] if arm == "baseline" else [build["entry"]]
             t = time.perf_counter()
             p = subprocess.run(command, cwd=state["cwd"], env=env, capture_output=True, timeout=timeout)
@@ -36,6 +37,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 for line in f.read_text().splitlines():
                     observed.add(line.split("\t", 2)[-1])
             measurement = elapsed
+            pmu = []
             if metric:
                 import json
                 f = Path(str(prefix) + ".metrics")
@@ -44,6 +46,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 if not values:
                     raise ValueError(f"ROI metric missing: {metric}, {prefix}")
                 measurement = statistics.median(values) / 1e9
+                pmu = [r.get("pmu") for r in rows if r["region"] == metric]
             result_file = Path(env["TGO_RESULT_FILE"])
             correctness = p.stdout
             if result_file.exists():
@@ -53,6 +56,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                          "stdout_sha256": hashlib.sha256(p.stdout).hexdigest(),
                          "correctness_sha256": hashlib.sha256(correctness).hexdigest(),
                          "correctness_source": "result-json" if result_file.exists() else "stdout",
+                         "pmu": pmu,
                          "loaded_optimized": sorted(observed & expected)}
             if p.returncode or (arm == "candidate" and not expected <= observed):
                 equivalent = False

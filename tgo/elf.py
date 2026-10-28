@@ -14,6 +14,7 @@ class ELF:
         self.type, self.machine = h[1:3]
         self.loads = []
         self.interpreter = None
+        self.dynamic_tags = set()
         for i in range(h[10]):
             typ, flags, off, va, _, size, memsize, align = struct.unpack_from(
                 "<IIQQQQQQ", self.data, h[5] + i * h[9])
@@ -21,6 +22,12 @@ class ELF:
                 self.loads.append((va, va + memsize, off, flags, size))
             if typ == 3:
                 self.interpreter = self.data[off:off + size].rstrip(b"\0").decode()
+            if typ == 2:
+                for pos in range(off, off + size, 16):
+                    tag, value = struct.unpack_from("<qQ", self.data, pos)
+                    if tag == 0:
+                        break
+                    self.dynamic_tags.add(tag)
         sections = [struct.unpack_from("<IIQQQQIIQQ", self.data, h[6] + i * h[11])
                     for i in range(h[12])]
         if h[13] >= len(sections):
@@ -50,4 +57,5 @@ class ELF:
                 "machine": self.machine, "type": self.type, "bytes": st.st_size,
                 "relocations": any(n.startswith((".rela.text", ".rel.text")) for n in self.sections),
                 "symbols": ".symtab" in self.sections, "go": any("gopclntab" in n or n == ".go.buildinfo" for n in self.sections),
-                "interpreter": self.interpreter}
+                "interpreter": self.interpreter,
+                "rpath_kind": "rpath" if 15 in self.dynamic_tags else "runpath" if 29 in self.dynamic_tags else None}

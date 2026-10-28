@@ -78,11 +78,12 @@ def optimize(args):
             optimization = run([bolt, original, "-data=" + str(fdata), "-o", target, *flags], image_dir / "bolt.log")
             # Preserve $ORIGIN search semantics after moving an image out of its original directory.
             origin = str(original.parent)
-            if patchelf and row["interpreter"] is None and row["type"] == 3:
+            if patchelf and (row["type"] == 3 or row["interpreter"]):
                 rpath = subprocess.check_output([patchelf, "--print-rpath", original], text=True).strip()
                 expanded = rpath.replace("${ORIGIN}", origin).replace("$ORIGIN", origin)
                 paths = ':'.join(p for p in (expanded, origin) if p)
-                run([patchelf, "--set-rpath", paths, target], image_dir / "rpath.log")
+                preserve = ["--force-rpath"] if row.get("rpath_kind") == "rpath" else []
+                run([patchelf, *preserve, "--set-rpath", paths, target], image_dir / "rpath.log")
             elif row["interpreter"] is None and row["type"] == 3 and b"$ORIGIN" in ELF(original).data:
                 raise ValueError("DSO uses $ORIGIN; patchelf is required to preserve dependency search")
             # Reparse emitted ELF: an exit code alone is not an artifact check.

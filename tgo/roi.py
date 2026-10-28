@@ -27,17 +27,28 @@ def _marker(begin):
 @contextmanager
 def region(name="roi"):
     _marker(True)
+    pmu = None
+    if os.environ.get("TGO_NATIVE_COUNTERS") == "1":
+        from .pmu import Group
+        pmu = Group()
+        pmu.start()
     start = time.perf_counter_ns()
     try:
         yield
     finally:
         elapsed = time.perf_counter_ns() - start
+        counters = None
+        if pmu:
+            try:
+                counters = pmu.stop()
+            finally:
+                pmu.close()
         _marker(False)
         metric = os.environ.get("TGO_METRIC_FILE")
         if metric:
             import json
             with open(metric, "a") as f:
-                f.write(json.dumps({"region": name, "nanoseconds": elapsed, "pid": os.getpid()}) + "\n")
+                f.write(json.dumps({"region": name, "nanoseconds": elapsed, "pid": os.getpid(), "pmu": counters}) + "\n")
 
 
 def install_hook(spec):
