@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import hashlib
 import shlex
-from .elf import ELF, is_executable_image
+from .elf import ELF, is_executable_image, normalize_loads
 from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool, tool_env
 
@@ -119,6 +119,11 @@ def optimize(args):
                 flags += [*recovery, "-use-old-text=false"]
             flags += args.bolt_arg
             optimization = run([bolt, original, "-data=" + str(fdata), "-o", target, *flags], image_dir / "bolt.log")
+            normalization = None
+            if recover:
+                raw = target.with_name(target.name + ".raw")
+                target.rename(raw)
+                normalization = normalize_loads(raw, target)
             # Preserve $ORIGIN search semantics after moving an image out of its original directory.
             origin = str(original.parent)
             if patchelf and (row["type"] == 3 or row["interpreter"]):
@@ -136,6 +141,7 @@ def optimize(args):
                                      "input": row, "output": output_meta,
                                      "fdata_sha256": sha256(fdata),
                                      "recovered_relocations": recover,
+                                     "load_order_normalization": normalization,
                                      "aggregation": aggregation, "optimization": optimization})
             if profile["backend"] == "spe":
                 result["images"][-1]["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
