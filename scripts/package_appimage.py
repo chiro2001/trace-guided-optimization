@@ -62,6 +62,16 @@ def main():
     def closure(label, primary, library_dir, extras=()):
         copied, queue, all_elfs = {}, [], []
         library_dir.mkdir(parents=True, exist_ok=True)
+        resolve_env = os.environ.copy()
+        search = [str(library_dir)]
+        for source, _ in primary.values():
+            rpath = subprocess.check_output([patch, "--print-rpath", source], text=True).strip()
+            origin = str(Path(source).parent)
+            search += [p.replace("${ORIGIN}", origin).replace("$ORIGIN", origin)
+                       for p in rpath.split(":") if p]
+        if resolve_env.get("LD_LIBRARY_PATH"):
+            search.append(resolve_env["LD_LIBRARY_PATH"])
+        resolve_env["LD_LIBRARY_PATH"] = ':'.join(search)
         for name, (source, target) in primary.items():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
@@ -73,7 +83,10 @@ def main():
         queue += list(extras)
         while queue:
             binary = queue.pop(); all_elfs.append(binary)
-            r = subprocess.run(["ldd", str(binary)], capture_output=True, text=True)
+            # Resolve an extension/dependency in its executable's search context.
+            # ldd on a lone libcrypto, for example, otherwise loses Python's
+            # private zlib path and reports a conflicting system build.
+            r = subprocess.run(["ldd", str(binary)], capture_output=True, text=True, env=resolve_env)
             if "not found" in r.stdout:
                 raise ValueError(f"unresolved dependency in {binary}:\n{r.stdout}")
             for line in r.stdout.splitlines():
