@@ -27,6 +27,8 @@ def eligible(row):
 def optimize(args):
     source = Path(args.run).resolve()
     state, profile = read_json(source / "run.json"), read_json(source / "profile.json")
+    if state.get("backend") == "go-cpu":
+        raise ValueError("Go CPU profiles require tune --strategy go-compiler")
     if state["state"] != "recorded":
         raise ValueError("only successfully recorded runs can be optimized")
     if not state["command"]:

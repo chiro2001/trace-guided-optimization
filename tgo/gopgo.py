@@ -196,6 +196,8 @@ def build_candidate(ctx, candidate, extra_gc="", extra_ld=""):
 def tune_go(args, root_exists=False):
     root = Path(args.output).absolute()
     root.mkdir(parents=True, exist_ok=root_exists)
+    if args.pid or args.roi != "whole" or args.python_hook:
+        raise ValueError("Go compiler PGO records compiler-process CPU profiles; PID/time/marker ROI requires a sampling strategy")
     previous = Path(args.run).resolve() if args.run else None
     prior_state = read_json(previous / "run.json") if previous else None
     prior_profile = read_json(previous / "profile.json") if previous else None
@@ -292,6 +294,8 @@ def tune_go(args, root_exists=False):
         for name in args.go_variant or choices:
             candidate = root / name
             try:
+                if name not in choices:
+                    raise ValueError(f"Go toolchain does not provide the profile required by variant {name}")
                 variant_ctx = ctx
                 if name == "hybrid":
                     default_graph = capture / "default.preprocessed"
@@ -302,7 +306,7 @@ def tune_go(args, root_exists=False):
                     write_json(capture / "hybrid.json", blend)
                     variant_ctx = replace(ctx, profile=blended)
                 built, candidate_env, checks = build_candidate(variant_ctx, candidate, *choices[name])
-                screening = validate(candidate, args.search_pairs, args.timeout)
+                screening = validate(candidate, args.search_pairs, args.timeout, args.metric)
                 built["validation"] = screening
                 built["state"] = "validated" if screening["equivalent"] else "rejected"
                 write_json(candidate / "build.json", built)
@@ -323,7 +327,7 @@ def tune_go(args, root_exists=False):
             write_json(root / "tune.json", result)
         selected = False
         if best:
-            confirmation = validate(best["path"], args.validate, args.timeout)
+            confirmation = validate(best["path"], args.validate, args.timeout, args.metric)
             result["confirmation"] = confirmation
             selected = confirmation["equivalent"] and confirmation["min_reduction_percent"] > args.minimum_gain
             record = read_json(best["path"] / "build.json"); record["validation"] = confirmation
