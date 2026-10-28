@@ -36,6 +36,17 @@ int main(int argc,char **argv) {
     for(int i=1;i<argc;i++) args[n+(size_t)i-1]=argv[i];
     size_t ne=(size_t)number(4); if(ne>65536) bad();
     for(size_t i=0;i<ne;i++) { char *key=string(),*value=string(); if(setenv(key,value,1)) bad(); }
+    const char *go_tool=getenv("TGO_GO_TOOLEXEC");
+    if(go_tool && *go_tool) {
+        const char *old=getenv("GOFLAGS");
+        if(old && strstr(old,"-toolexec")) { fputs("tgo: existing -toolexec conflicts with compiler adapter\n",stderr); return 125; }
+        size_t size=(old?strlen(old):0)+strlen(go_tool)+16;
+        char *flags=malloc(size); if(!flags) bad();
+        snprintf(flags,size,"%s%s-toolexec=%s",old?old:"",old&&*old?" ":"",go_tool);
+        if(setenv("GOFLAGS",flags,1)) bad(); free(flags);
+    }
+    const char *validation_cache=getenv("TGO_VALIDATION_GOCACHE");
+    if(validation_cache && *validation_cache && setenv("GOCACHE",validation_cache,1)) bad();
     const char *support=getenv("TGO_PYTHON_SUPPORT");
     if(support && *support) {
         const char *old=getenv("PYTHONPATH");

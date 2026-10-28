@@ -1,4 +1,14 @@
 {
+  "golang-aarch64": {
+    "version": "1.27.3",
+    "url": "https://go.dev/dl/go1.27.3.linux-arm64.tar.gz",
+    "sha256": "a06e99309dbcbdca1a8ccd2282c3ee146e55930886e26b4f1193269587165f49"
+  },
+  "golang-x86_64": {
+    "version": "1.27.3",
+    "url": "https://go.dev/dl/go1.27.3.linux-amd64.tar.gz",
+    "sha256": "65efbc80fdc1fa2cd2631cad5b481777a68e8725f34e89f50fc6ac714e379b40"
+  },
   "llvm": {
     "version": "22.1.0",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.0/llvm-project-22.1.0.src.tar.xz",

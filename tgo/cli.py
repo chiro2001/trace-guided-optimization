@@ -62,6 +62,9 @@ def main(argv=None):
     t.add_argument("--validate", type=int, default=5)
     t.add_argument("--metric")
     t.add_argument("--minimum-gain", type=float, default=0.5)
+    t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
+    t.add_argument("--go", help="Go toolchain used by the compilation workload")
+    t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
     v.add_argument("--pairs", type=int, default=5)
@@ -93,8 +96,12 @@ def main(argv=None):
         elif args.action == "tune":
             if args.top <= 0 or args.search_pairs <= 0 or args.validate <= 0:
                 p.error("top, search-pairs and validate must be >0")
-            from .tune import tune
-            result = tune(args)
+            if args.strategy == "go-compiler" or (args.strategy == "auto" and not args.run and args.command and Path(args.command[0]).name == "go"):
+                from .gopgo import tune_go
+                result = tune_go(args)
+            else:
+                from .tune import tune
+                result = tune(args)
         elif args.action == "validate":
             if args.pairs <= 0:
                 p.error("pairs must be >0")

@@ -7,6 +7,7 @@ import time
 import signal
 import math
 import threading
+import shutil
 from .util import read_json, write_json, workload_env, sha256
 from .elf import is_executable_image
 
@@ -64,9 +65,20 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             env = workload_env(); env.update(state["env"])
             prefix = bundle / f"validation-{i}-{arm}"
             for old in bundle.glob(prefix.name + ".*"):
-                old.unlink()
+                if old.is_dir():
+                    shutil.rmtree(old)
+                else:
+                    old.unlink()
             env["TGO_IMAGE_LOG"] = str(prefix)
             env["TGO_RESULT_FILE"] = str(prefix) + ".result.json"
+            go_cache = None
+            if state.get("validation", {}).get("go_cache") == "cold":
+                go_cache = Path(str(prefix) + ".cache")
+                go_cache.mkdir()
+                env["GOCACHE"] = str(go_cache)
+                env["TGO_VALIDATION_GOCACHE"] = str(go_cache)
+            if build.get("go_compiler"):
+                env["TGO_GO_EXEC_LOG"] = str(prefix) + ".tools"
             if metric:
                 env["TGO_METRIC_FILE"] = str(prefix) + ".metrics"
                 env["TGO_NATIVE_COUNTERS"] = "1"
@@ -76,7 +88,11 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             if "baseline" in pair:
                 baseline_times.append(pair["baseline"]["seconds"])
             limit = min(timeout, max(5, statistics.median(baseline_times) * 3 + 2)) if arm == "candidate" and baseline_times else timeout
-            code, elapsed, timed_out, stdout_sha = execute_trial(command, prefix, env, state["cwd"], limit)
+            try:
+                code, elapsed, timed_out, stdout_sha = execute_trial(command, prefix, env, state["cwd"], limit)
+            finally:
+                if go_cache:
+                    shutil.rmtree(go_cache, ignore_errors=True)
             observed = set()
             for f in bundle.glob(prefix.name + ".*.images"):
                 for line in f.read_text().splitlines():
@@ -97,6 +113,13 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                     measurement = statistics.median(values) / 1e9
                 pmu = [r.get("pmu") for r in rows if r["region"] == metric]
             result_file = Path(env["TGO_RESULT_FILE"])
+            executed_compilers = []
+            if build.get("go_compiler"):
+                tool_log = Path(env["TGO_GO_EXEC_LOG"])
+                if tool_log.exists():
+                    executed_compilers = [line.split("\t")[2] for line in tool_log.read_text().splitlines() if len(line.split("\t")) == 3]
+                if arm == "candidate" and build["go_compiler"]["optimized"] not in executed_compilers:
+                    equivalent = False
             correctness_sha = stdout_sha
             if result_file.exists():
                 import json
@@ -108,6 +131,8 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                          "correctness_source": "result-json" if result_file.exists() else "stdout",
                          "pmu": pmu,
                          "loaded_optimized": sorted(observed & expected)}
+            if build.get("go_compiler"):
+                pair[arm]["executed_compilers"] = sorted(set(executed_compilers))
             if code or timed_out or missing_metric or (arm == "candidate" and not expected <= observed):
                 equivalent = False
         if pair["baseline"]["correctness_sha256"] != pair["candidate"]["correctness_sha256"] or pair["baseline"]["correctness_source"] != pair["candidate"]["correctness_source"]:

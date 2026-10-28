@@ -13,4 +13,4 @@ dependencies = []
 tgo = "tgo.cli:main"
 
 [tool.setuptools.package-data]
-tgo = ["native/*.c", "native/include/*.h"]
+tgo = ["native/*.c", "native/include/*.h", "fixtures/*.go"]

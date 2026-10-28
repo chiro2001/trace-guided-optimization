@@ -1,0 +1,57 @@
+from pathlib import Path
+import os
+import shutil
+import subprocess
+import tempfile
+import unittest
+from tgo.gopgo import adapter_env, profile_totals
+from tgo.runtime import build_runtime, make_launcher
+
+
+@unittest.skipUnless(shutil.which("go"), "Go SDK unavailable")
+class GoToolAdapter(unittest.TestCase):
+    def test_cache_identity_replaces_compiler_and_disable_uses_original(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d); build_runtime(root)
+            go = shutil.which("go")
+            tool_dir = subprocess.check_output([go, "env", "GOTOOLDIR"], text=True).strip()
+            original = str(Path(tool_dir) / "compile")
+            optimized = root / "compile-copy"; shutil.copy2(original, optimized)
+            version = subprocess.check_output([original, "-V=full"], text=True).strip()
+            env = os.environ.copy(); env["GOCACHE"] = str(root / "cache")
+            source = root / "package.go"; source.write_text("package fixture\nfunc Add(a,b int) int{return a+b}\n")
+            command = [go, "build", "-o", str(root / "fixture.a"), str(source)]
+            subprocess.run(command, env=env, check=True, capture_output=True)
+            adapted = adapter_env({}, root, original, version, "test-cache-id", optimized)
+            adapted.pop("GOFLAGS")
+            adapted["TGO_GO_TOOLEXEC"] = str(root / "go-tool")
+            entry = root / "go.tgo"
+            make_launcher(root, entry, [go], [], adapted)
+            env["TGO_GO_EXEC_LOG"] = str(root / "executed.tsv")
+            subprocess.run([entry, *command[1:]], env=env, check=True, capture_output=True)
+            self.assertIn(str(optimized), (root / "executed.tsv").read_text())
+            probe = adapter_env(env, root, original, version, "test-cache-id", optimized)
+            line = subprocess.check_output([root / "go-tool", original, "-V=full"], env=probe, text=True)
+            self.assertIn("tgo=test-cache-id", line)
+            probe["TGO_DISABLE"] = "1"
+            self.assertEqual(subprocess.check_output([root / "go-tool", original, "-V=full"], env=probe, text=True).strip(), version)
+
+    def test_actual_compiler_cpu_profiles_are_readable(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); build_runtime(root)
+            go=shutil.which("go")
+            original=str(Path(subprocess.check_output([go,"env","GOTOOLDIR"],text=True).strip())/"compile")
+            version=subprocess.check_output([original,"-V=full"],text=True).strip()
+            source=root/"large.go"
+            source.write_text("package fixture\n" + ''.join(f"func F{i}(x int) int {{ for j:=0;j<50;j++{{x=(x*33+j)^(x>>3)}};return x+{i} }}\n" for i in range(4000)))
+            profiles=root/"profiles"; profiles.mkdir()
+            env=adapter_env(os.environ,root,original,version,"profile-test")
+            env["TGO_GO_PROFILE_DIR"]=str(profiles)
+            subprocess.run([root/"go-tool",original,"-p","fixture","-o",root/"fixture.a",source],env=env,check=True,capture_output=True)
+            profile=next(profiles.glob("*.pprof"))
+            raw=subprocess.check_output([go,"tool","pprof","-raw",profile],text=True,stderr=subprocess.DEVNULL)
+            self.assertGreater(profile_totals(raw)["samples"],0)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -12,6 +12,7 @@ import tarfile
 import urllib.request
 import urllib.error
 import time
+import platform
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -74,7 +75,7 @@ def execute(command, cwd=None, env=None):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--prefix", type=Path, default=ROOT / "deps")
-    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "libffi", "zlib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf", "python"])
+    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "go", "glib", "libffi", "zlib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf", "python"])
     p.add_argument("--jobs", type=int, default=min(os.cpu_count() or 1, 8))
     p.add_argument("--download-only", action="store_true")
     a = p.parse_args()
@@ -83,8 +84,8 @@ def main():
     components = a.components
     if a.download_only:
         for c in components:
-            import platform
-            fetch("appimagetool-" + platform.machine() if c == "appimagetool" else c, a.prefix)
+            key = "appimagetool-" + platform.machine() if c == "appimagetool" else "golang-" + platform.machine() if c == "go" else c
+            fetch(key, a.prefix)
         return
     buildenv = a.prefix / "build-venv"
     if not buildenv.exists():
@@ -109,13 +110,28 @@ def main():
     if any(c in components for c in ("python", "glib", "elfutils", "perf")) and "zlib" not in components:
         if subprocess.run(["pkg-config", "--exists", "zlib"], env=env).returncode:
             components = ["zlib", *components]
-    order = {name: i for i, name in enumerate(("zlib", "libffi", "glib", "elfutils", "llvm", "qemu", "perf", "patchelf", "python", "appimagetool"))}
+    order = {name: i for i, name in enumerate(("zlib", "libffi", "glib", "elfutils", "llvm", "qemu", "perf", "patchelf", "python", "go", "appimagetool"))}
     components = sorted(set(components), key=order.__getitem__)
     for component in components:
         if component == "appimagetool":
-            import platform
             path = fetch("appimagetool-" + platform.machine(), a.prefix)
             target = install / "bin/appimagetool"; shutil.copy2(path, target); target.chmod(0o755)
+            continue
+        if component == "go":
+            key = "golang-" + platform.machine()
+            version = json.loads((ROOT / "dependencies.lock.json").read_text())[key]["version"]
+            source = unpack(key, a.prefix)
+            if not (source / "VERSION").read_text().startswith("go" + version + "\n"):
+                raise ValueError("Go SDK source cache differs from lock; use a fresh prefix")
+            target = install / ("go-" + version)
+            if not target.exists():
+                shutil.copytree(source, target, symlinks=True)
+            binary = install / "bin/go"
+            if binary.is_symlink():
+                binary.unlink()
+            elif binary.exists():
+                raise ValueError("private Go entry already exists and is not a managed symlink")
+            binary.symlink_to(Path("..") / target.name / "bin/go")
             continue
         source = unpack(component, a.prefix)
         build = a.prefix / "build" / component

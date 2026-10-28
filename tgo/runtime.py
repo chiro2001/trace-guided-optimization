@@ -17,7 +17,7 @@ def build_runtime(out, qemu_header=None):
         shutil.copy2(NATIVE.parent / name, support / name)
     shipped = os.environ.get("TGO_RUNTIME_DIR")
     if shipped:
-        for name in ("libtgo_audit.so", "libtgo_roi.so", "libtgo_perf_spe.so", "launcher", "libtgo_qemu.so"):
+        for name in ("libtgo_audit.so", "libtgo_roi.so", "libtgo_perf_spe.so", "launcher", "go-tool", "libtgo_qemu.so"):
             p = Path(shipped) / name
             if p.exists():
                 shutil.copy2(p, out / name)
@@ -33,6 +33,9 @@ def build_runtime(out, qemu_header=None):
     if not launcher.exists() or launcher.stat().st_mtime < (NATIVE / "launcher.c").stat().st_mtime:
         run([cc, "-O2", "-Wall", "-Wextra", NATIVE / "launcher.c", "-o", launcher],
             out / "launcher.build.log")
+    go_tool = out / "go-tool"
+    if not go_tool.exists() or go_tool.stat().st_mtime < (NATIVE / "go_tool.c").stat().st_mtime:
+        run([cc, "-O2", "-Wall", "-Wextra", NATIVE / "go_tool.c", "-o", go_tool], out / "go-tool.build.log")
     if qemu_header:
         source = NATIVE / "qemu.c"
         target = out / "libtgo_qemu.so"
@@ -49,7 +52,7 @@ def build_runtime(out, qemu_header=None):
     return out
 
 
-def make_launcher(out, entry, command, images, env=None, cwd=None):
+def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=()):
     """Immutable native launcher. Command and mapping are compiled into it."""
     out, entry = Path(out).resolve(), Path(entry).absolute()
     if entry.exists():
@@ -64,7 +67,7 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     executable = next((r["optimized"] for r in images
                        if Path(r["original"]).resolve() == Path(command[0]).resolve()), command[0])
     needs_audit = any(Path(r["original"]).resolve() != Path(command[0]).resolve() for r in images)
-    checks = [p for r in images for p in (r["original"], r["optimized"])]
+    checks = list(dict.fromkeys([p for r in images for p in (r["original"], r["optimized"])] + list(map(str, check_paths))))
     command = list(command)
     if len(command) > 3 and Path(command[1]).name == "python_entry.py" and command[2] == "--hook":
         # A published entry must not depend on the capture directory's hook copy.
