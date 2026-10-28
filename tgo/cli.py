@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import time
 from .collect import doctor, record
 from .optimize import optimize
 from .util import read_json, write_json, command_path
@@ -71,6 +72,10 @@ def main(argv=None):
     b = sub.add_parser("bind", help="associate an attached profile with its replay command")
     b.add_argument("run")
     b.add_argument("command", nargs=argparse.REMAINDER)
+    n = sub.add_parser("normalize", help="reprocess a completed raw capture without rerunning the workload")
+    n.add_argument("run")
+    n.add_argument("--perf")
+    n.add_argument("--allow-truncated", action="store_true")
     args = p.parse_args(argv)
     try:
         if hasattr(args, "command") and args.command[:1] == ["--"]:
@@ -106,6 +111,21 @@ def main(argv=None):
             result.setdefault("training_command", result["command"])
             result["command"] = command_path(args.command)
             write_json(path, result)
+        elif args.action == "normalize":
+            from .util import tool
+            root = Path(args.run).resolve()
+            state = read_json(root / "run.json")
+            if state.get("returncode") != 0:
+                raise ValueError("raw workload did not finish successfully")
+            if state["backend"] == "qemu":
+                from .profile import qemu_profile
+                result = qemu_profile(root, args.allow_truncated)
+            else:
+                from .perf import perf_profile
+                result = perf_profile(root, tool("perf", args.perf), state.get("pid"))
+            state["renormalized"] = {"unix": time.time(), "previous_state": state["state"], "previous_error": state.pop("error", None)}
+            state["state"] = "recorded"
+            write_json(root / "run.json", state)
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0
     except (RuntimeError, ValueError, OSError) as e:

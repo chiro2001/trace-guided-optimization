@@ -33,7 +33,9 @@ def perf_profile(root, perf, pid=None):
     report_args = [perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
                    "--sort=dso", "--field-separator=\t", "--percent-limit=0", "--no-children"]
     if state["backend"] == "spe":
-        report_args += ["--itrace=i"]
+        # ARM SPE branch-filtered traces do not synthesize instruction events
+        # on all perf versions. Branch synthesis exposes usable hotspot shares.
+        report_args += ["--itrace=b"]
     report = subprocess.run(report_args,
                             capture_output=True, text=True, env=tool_env())
     (root / "hotspots.txt").write_text(report.stdout + report.stderr)
@@ -65,6 +67,7 @@ def perf_profile(root, perf, pid=None):
     result = {"schema": "tgo.profile.v1", "backend": state["backend"],
               "images": sorted(rows, key=lambda r: -r["sample_percent"]),
               "quality": {"kind": "hardware-sampling", "hardware_frontend_counters": False,
+                          "hotspot_weight": "synthesized-branch-events" if state["backend"] == "spe" else "sample-period-share",
                           "scope": "perf inherited task samples; attach covers selected PID and inherited tasks"}}
     write_json(root / "profile.json", result)
     return result
