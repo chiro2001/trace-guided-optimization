@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 import shlex
 import subprocess
+import struct
+import shutil
 from .util import run, tool
 
 NATIVE = Path(__file__).parent / "native"
@@ -11,6 +13,13 @@ NATIVE = Path(__file__).parent / "native"
 def build_runtime(out, qemu_header=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
+    shipped = os.environ.get("TGO_RUNTIME_DIR")
+    if shipped:
+        for name in ("libtgo_audit.so", "libtgo_roi.so", "launcher", "libtgo_qemu.so"):
+            p = Path(shipped) / name
+            if p.exists():
+                shutil.copy2(p, out / name)
+        return out
     cc = tool("cc")
     for name in ("audit", "roi"):
         target = out / f"libtgo_{name}.so"
@@ -18,6 +27,10 @@ def build_runtime(out, qemu_header=None):
         if not target.exists() or target.stat().st_mtime < source.stat().st_mtime:
             run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", source, "-o", target],
                 out / f"{name}.build.log")
+    launcher = out / "launcher"
+    if not launcher.exists() or launcher.stat().st_mtime < (NATIVE / "launcher.c").stat().st_mtime:
+        run([cc, "-O2", "-Wall", "-Wextra", NATIVE / "launcher.c", "-o", launcher],
+            out / "launcher.build.log")
     if qemu_header:
         source = NATIVE / "qemu.c"
         target = out / "libtgo_qemu.so"
@@ -52,22 +65,25 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     mapfile.write_text(''.join(f"{r['original']}\t{r['optimized']}\n" for r in images))
     executable = next((r["optimized"] for r in images
                        if Path(r["original"]).resolve() == Path(command[0]).resolve()), command[0])
-    header = out / "launcher_config.h"
     checks = [p for r in images for p in (r["original"], r["optimized"])]
-    fixed = command
     env = env or {}
-    header.write_text(
-        f"static const char *target = {cstr(executable)};\n" +
-        "static const char *fixed[] = {" + ','.join(cstr(x) for x in fixed) + ",NULL};\n" +
-        f"static const char *audit_path = {cstr(str(audit))};\n" +
-        f"static const char *map_path = {cstr(str(mapfile))};\n" +
-        f"static const char *workdir = {cstr(cwd) if cwd else 'NULL'};\n" +
-        "static const struct check checks[] = {" + ','.join(stamp(p) for p in checks) + "};\n" +
-        "static const char *env_keys[] = {" + ','.join(cstr(k) for k in env) + ("," if env else "") + "NULL};\n" +
-        "static const char *env_values[] = {" + ','.join(cstr(v) for v in env.values()) + ("," if env else "") + "NULL};\n")
+    def string(s):
+        b = os.fsencode(s)
+        return struct.pack("<I", len(b)) + b
+    payload = b''.join(string(s) for s in (executable, str(audit), str(mapfile), cwd or ""))
+    payload += struct.pack("<I", len(command)) + b''.join(string(s) for s in command)
+    payload += struct.pack("<I", len(env)) + b''.join(string(k) + string(v) for k, v in env.items())
+    payload += struct.pack("<I", len(checks))
+    for path in checks:
+        st = Path(path).stat()
+        payload += string(str(path)) + struct.pack("<qqqQQ", st.st_size,
+            st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev)
     tmp = out / "entry.tmp"
-    run([tool("cc"), "-O2", "-Wall", "-Wextra", "-I", out, NATIVE / "launcher.c", "-o", tmp],
-        out / "launcher.build.log")
+    with tmp.open("wb") as f:
+        f.write((out / "launcher").read_bytes())
+        f.write(payload)
+        f.write(struct.pack("<Q8s", len(payload), b"TGOCFG01"))
+    tmp.chmod(0o755)
     # Atomic publication refuses overwrite, including races.
     os.link(tmp, entry)
     tmp.unlink()

@@ -77,7 +77,7 @@ def record(args):
             elif args.roi == "window":
                 if args.duration is None:
                     raise ValueError("--roi window requires --duration")
-                launch += [f"--delay={int(args.delay * 1000)},{int((args.delay + args.duration) * 1000)}"]
+                launch += [f"--delay={int(args.delay * 1000)}-{int((args.delay + args.duration) * 1000)}"]
             if args.pid:
                 if args.duration is None:
                     raise ValueError("attach requires --duration")
