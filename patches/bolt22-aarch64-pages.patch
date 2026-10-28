@@ -1,0 +1,64 @@
+--- a/bolt/lib/Passes/AArch64RelaxationPass.cpp
++++ b/bolt/lib/Passes/AArch64RelaxationPass.cpp
+@@ -24,6 +24,10 @@
+     "aarch64-relaxation",
+     cl::desc("Replace ARM non-local ADR/LDR instructions with ADRP"),
+     cl::init(true), cl::cat(BoltCategory), cl::ReallyHidden);
++cl::opt<bool> AArch64NonRelocOpt(
++    "aarch64-relaxation-non-reloc",
++    cl::desc("Relax ADR/LDR in simple functions without retained relocations"),
++    cl::init(false), cl::cat(BoltCategory), cl::Hidden);
+ } // namespace opts
+ 
+ namespace llvm {
+@@ -104,10 +108,15 @@
+ }
+ 
+ Error AArch64RelaxationPass::runOnFunctions(BinaryContext &BC) {
+-  if (!opts::AArch64PassOpt || !BC.HasRelocations)
++  if (!opts::AArch64PassOpt ||
++      (!BC.HasRelocations && !opts::AArch64NonRelocOpt))
+     return Error::success();
+ 
+   ParallelUtilities::WorkFuncTy WorkFun = [&](BinaryFunction &BF) {
++    // Non-relocation mode only emits simple functions. Growing an instruction
++    // in a non-simple function could invalidate an unrecognized jump table.
++    if (!BC.HasRelocations && !BF.isSimple())
++      return;
+     runOnFunction(BF);
+   };
+ 
+--- a/bolt/lib/Target/AArch64/AArch64MCSymbolizer.cpp
++++ b/bolt/lib/Target/AArch64/AArch64MCSymbolizer.cpp
+@@ -13,6 +13,11 @@
+ #include "bolt/Core/Relocation.h"
+ #include "llvm/MC/MCInst.h"
+ #include "llvm/Support/Debug.h"
++#include "llvm/Support/CommandLine.h"
++
++namespace opts {
++extern llvm::cl::opt<bool> AArch64NonRelocOpt;
++}
+ 
+ #define DEBUG_TYPE "bolt-symbolizer"
+ 
+@@ -56,6 +61,19 @@
+                       << Twine::utohexstr(InstAddress) << '\n');
+   }
+ 
++  // In non-relocation mode data and original function entry addresses stay
++  // fixed, but cold fragments may move by multiple pages. Leaving ADRP's
++  // encoded page delta unchanged then silently changes its absolute target.
++  // Reconstruct that original page, without pretending that it identifies the
++  // full symbol referenced by the following ADD or load/store.
++  if (!BC.HasRelocations && opts::AArch64NonRelocOpt && BC.MIB->isADRP(Inst)) {
++    const uint64_t Page = (InstAddress & ~0xfffULL) + Value * 4096;
++    const MCSymbol *PageSymbol =
++        BC.getOrCreateGlobalSymbol(Page, "__PGO128_PAGEat");
++    addOperand(PageSymbol, 0, ELF::R_AARCH64_ADR_PREL_PG_HI21);
++    return true;
++  }
++
+   if (!BC.MIB->hasPCRelOperand(Inst))
+     return false;
+ 
