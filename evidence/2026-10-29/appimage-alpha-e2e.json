@@ -1,0 +1,875 @@
+{
+  "schema": "tgo.tune.v1",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/capture",
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.22701297979801893,
+              "metric_seconds": 0.02351441,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 23586620,
+                  "time_running": 23586620,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 68085643,
+                    "instructions": 39719974,
+                    "frontend_stall_cycles": 9145773,
+                    "l1i_read_misses": 2382333
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.07938924990594387,
+              "metric_seconds": 0.00964094,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 9711680,
+                  "time_running": 9711680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 28015031,
+                    "instructions": 39720246,
+                    "frontend_stall_cycles": 2859070,
+                    "l1i_read_misses": 2532
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 58.99986433850562
+          },
+          {
+            "candidate": {
+              "seconds": 0.07879801001399755,
+              "metric_seconds": 0.00954919,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 9633000,
+                  "time_running": 9633000,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 27461638,
+                    "instructions": 39720195,
+                    "frontend_stall_cycles": 2354168,
+                    "l1i_read_misses": 2441
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.08688899036496878,
+              "metric_seconds": 0.02315242,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 22635920,
+                  "time_running": 22635920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 65120443,
+                    "instructions": 39720003,
+                    "frontend_stall_cycles": 7516695,
+                    "l1i_read_misses": 2304070
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 58.75511069685155
+          },
+          {
+            "baseline": {
+              "seconds": 0.08721320005133748,
+              "metric_seconds": 0.02131522,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 21381400,
+                  "time_running": 21381400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 61675658,
+                    "instructions": 39719947,
+                    "frontend_stall_cycles": 8008749,
+                    "l1i_read_misses": 2366372
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.0797329400666058,
+              "metric_seconds": 0.00939586,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 9462540,
+                  "time_running": 9462540,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 27209432,
+                    "instructions": 39720296,
+                    "frontend_stall_cycles": 2459637,
+                    "l1i_read_misses": 2591
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 55.91947913275115
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "metric": "decode",
+        "median_reduction_percent": 58.75511069685155,
+        "min_reduction_percent": 55.91947913275115,
+        "max_reduction_percent": 58.99986433850562,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "compact",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.09637924004346132,
+              "metric_seconds": 0.02405962,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 24172650,
+                  "time_running": 24172650,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 69347624,
+                    "instructions": 39720098,
+                    "frontend_stall_cycles": 11649001,
+                    "l1i_read_misses": 2661920
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.08544836984947324,
+              "metric_seconds": 0.00998834,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 10056260,
+                  "time_running": 10056260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 28905400,
+                    "instructions": 39720340,
+                    "frontend_stall_cycles": 4154344,
+                    "l1i_read_misses": 3298
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 58.48504672974886
+          },
+          {
+            "candidate": {
+              "seconds": 0.08353060996159911,
+              "metric_seconds": 0.00908663,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 9159290,
+                  "time_running": 9159290,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 26370755,
+                    "instructions": 39720298,
+                    "frontend_stall_cycles": 1835210,
+                    "l1i_read_misses": 2632
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.09059617994353175,
+              "metric_seconds": 0.02303162,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 23081180,
+                  "time_running": 23081180,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 64803983,
+                    "instructions": 39719955,
+                    "frontend_stall_cycles": 4040687,
+                    "l1i_read_misses": 2167133
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 60.547152132589886
+          },
+          {
+            "baseline": {
+              "seconds": 0.2285640500485897,
+              "metric_seconds": 0.02268346,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 22759660,
+                  "time_running": 22759660,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 65630859,
+                    "instructions": 39720034,
+                    "frontend_stall_cycles": 5489972,
+                    "l1i_read_misses": 2244806
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.08380392007529736,
+              "metric_seconds": 0.0097801,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 9847870,
+                  "time_running": 9847870,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 28399320,
+                    "instructions": 39720240,
+                    "frontend_stall_cycles": 2163998,
+                    "l1i_read_misses": 2430
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 56.884443554907406
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "metric": "decode",
+        "median_reduction_percent": 58.48504672974886,
+        "min_reduction_percent": 56.884443554907406,
+        "max_reduction_percent": 60.547152132589886,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "aligned",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.09052722994238138,
+              "metric_seconds": 0.02390451,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 23799020,
+                  "time_running": 23799020,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 66607906,
+                    "instructions": 39720012,
+                    "frontend_stall_cycles": 22653388,
+                    "l1i_read_misses": 2999549
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.08331889985129237,
+              "metric_seconds": 0.01033081,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 10399130,
+                  "time_running": 10399130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 30004955,
+                    "instructions": 39720233,
+                    "frontend_stall_cycles": 8279940,
+                    "l1i_read_misses": 3515
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/aligned/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 56.7830087293151
+          },
+          {
+            "candidate": {
+              "seconds": 0.08480426017194986,
+              "metric_seconds": 0.01007577,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 10145220,
+                  "time_running": 10145220,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 29237097,
+                    "instructions": 39720265,
+                    "frontend_stall_cycles": 6531578,
+                    "l1i_read_misses": 3098
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/aligned/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.09548155032098293,
+              "metric_seconds": 0.02242728,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 22497420,
+                  "time_running": 22497420,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 64800784,
+                    "instructions": 39719853,
+                    "frontend_stall_cycles": 24041750,
+                    "l1i_read_misses": 3254759
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 55.07359786831039
+          },
+          {
+            "baseline": {
+              "seconds": 0.0953223998658359,
+              "metric_seconds": 0.02373973,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 23712810,
+                  "time_running": 23712810,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 67722700,
+                    "instructions": 39719951,
+                    "frontend_stall_cycles": 23249323,
+                    "l1i_read_misses": 3196822
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.08232195023447275,
+              "metric_seconds": 0.01024018,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 10306070,
+                  "time_running": 10306070,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 29727458,
+                    "instructions": 39720198,
+                    "frontend_stall_cycles": 7210270,
+                    "l1i_read_misses": 4169
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/aligned/images/453fb977ff348011-4824407c/libfrontend.so"
+              ]
+            },
+            "reduction_percent": 56.86480006301673
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "metric": "decode",
+        "median_reduction_percent": 56.7830087293151,
+        "min_reduction_percent": 55.07359786831039,
+        "max_reduction_percent": 56.86480006301673,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "selected": "ext-tsp",
+  "confirmation": {
+    "schema": "tgo.validation.v1",
+    "pairs": [
+      {
+        "baseline": {
+          "seconds": 0.09182641981169581,
+          "metric_seconds": 0.02335032,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 23349030,
+              "time_running": 23349030,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 66474395,
+                "instructions": 39720026,
+                "frontend_stall_cycles": 26038498,
+                "l1i_read_misses": 3110369
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.08384806988760829,
+          "metric_seconds": 0.01089865,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 10908380,
+              "time_running": 10908380,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 29671584,
+                "instructions": 39720188,
+                "frontend_stall_cycles": 8302984,
+                "l1i_read_misses": 4031
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 53.32547905125069
+      },
+      {
+        "candidate": {
+          "seconds": 0.21746443957090378,
+          "metric_seconds": 0.00969405,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 9759100,
+              "time_running": 9759100,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 27883573,
+                "instructions": 39720182,
+                "frontend_stall_cycles": 5393229,
+                "l1i_read_misses": 3256
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.08614883990958333,
+          "metric_seconds": 0.02270017,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 22766190,
+              "time_running": 22766190,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 65660340,
+                "instructions": 39719995,
+                "frontend_stall_cycles": 20469158,
+                "l1i_read_misses": 2821759
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 57.29525373598523
+      },
+      {
+        "baseline": {
+          "seconds": 0.08628181973472238,
+          "metric_seconds": 0.02258494,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 22652430,
+              "time_running": 22652430,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 63606226,
+                "instructions": 39719913,
+                "frontend_stall_cycles": 20672287,
+                "l1i_read_misses": 2885326
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.07596781989559531,
+          "metric_seconds": 0.00959671,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 9657990,
+              "time_running": 9657990,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 27851086,
+                "instructions": 39720342,
+                "frontend_stall_cycles": 5753719,
+                "l1i_read_misses": 3473
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 57.5083661944641
+      },
+      {
+        "candidate": {
+          "seconds": 0.07190795009955764,
+          "metric_seconds": 0.01019601,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 10216320,
+              "time_running": 10216320,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 29299213,
+                "instructions": 39720239,
+                "frontend_stall_cycles": 3916462,
+                "l1i_read_misses": 1892
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.07799544977024198,
+          "metric_seconds": 0.02168179,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 21692450,
+              "time_running": 21692450,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 61980262,
+                "instructions": 39719954,
+                "frontend_stall_cycles": 8269411,
+                "l1i_read_misses": 2311871
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 52.974316234960305
+      },
+      {
+        "baseline": {
+          "seconds": 0.08484390005469322,
+          "metric_seconds": 0.0233486,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 23359940,
+              "time_running": 23359940,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 66751778,
+                "instructions": 39720001,
+                "frontend_stall_cycles": 20032196,
+                "l1i_read_misses": 2846850
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.07815170008689165,
+          "metric_seconds": 0.01071377,
+          "returncode": 0,
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 10752460,
+              "time_running": 10752460,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 30438759,
+                "instructions": 39720307,
+                "frontend_stall_cycles": 7866196,
+                "l1i_read_misses": 3450
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 54.11386549943038
+      }
+    ],
+    "equivalent": true,
+    "requested_pairs": 5,
+    "completed_pairs": 5,
+    "metric": "decode",
+    "median_reduction_percent": 54.11386549943038,
+    "min_reduction_percent": 52.974316234960305,
+    "max_reduction_percent": 57.5083661944641,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+  },
+  "entry_mode": "executable",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/build/appimage-venv/bin/python3.alpha",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-alpha-r1/ext-tsp/images/453fb977ff348011-4824407c/libfrontend.so"
+  ]
+}

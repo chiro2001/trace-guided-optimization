@@ -6,6 +6,8 @@
 目前实现 Linux AArch64 / x86-64、glibc、LLVM BOLT。Go 原生代码的重排尚不支持，
 会明确列出原因。不能保证所有二进制都可改写，也不能保证所有负载都有收益。
 
+当前进展见 [状态](docs/STATUS.md) 和 [实测记录](docs/RESULTS-20261029.md)。
+
 ```sh
 python3 scripts/bootstrap.py --jobs 8
 python3 -m tgo doctor

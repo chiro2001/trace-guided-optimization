@@ -1,0 +1,1341 @@
+{
+  "schema": "tgo.validation.v1",
+  "pairs": [
+    {
+      "baseline": {
+        "seconds": 98.00842435983941,
+        "metric_seconds": 0.137223855,
+        "returncode": 0,
+        "stdout_sha256": "96510ee3d609fc1e3e6ff37ff76b82263f20021d1656548f8c7a0316784cd50f",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 139075700,
+            "time_running": 139075700,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 384850206,
+              "instructions": 354586809,
+              "frontend_stall_cycles": 226755287,
+              "l1i_read_misses": 25061134
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 142252470,
+            "time_running": 142252470,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 397705473,
+              "instructions": 365086777,
+              "frontend_stall_cycles": 229673231,
+              "l1i_read_misses": 25219597
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138451160,
+            "time_running": 138451160,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388645762,
+              "instructions": 355920511,
+              "frontend_stall_cycles": 226674008,
+              "l1i_read_misses": 25178497
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138149390,
+            "time_running": 138149390,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387868687,
+              "instructions": 355313369,
+              "frontend_stall_cycles": 226344412,
+              "l1i_read_misses": 25133673
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137818070,
+            "time_running": 137818070,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 386869108,
+              "instructions": 355740277,
+              "frontend_stall_cycles": 226175387,
+              "l1i_read_misses": 25126875
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137501270,
+            "time_running": 137501270,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 386145017,
+              "instructions": 355351427,
+              "frontend_stall_cycles": 225753622,
+              "l1i_read_misses": 25096858
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137244930,
+            "time_running": 137244930,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 385474511,
+              "instructions": 355524185,
+              "frontend_stall_cycles": 225498677,
+              "l1i_read_misses": 25066199
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135926230,
+            "time_running": 135926230,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 381665800,
+              "instructions": 355329750,
+              "frontend_stall_cycles": 224765447,
+              "l1i_read_misses": 24965205
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135560540,
+            "time_running": 135560540,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 380508269,
+              "instructions": 355568239,
+              "frontend_stall_cycles": 224496429,
+              "l1i_read_misses": 24984901
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 134518330,
+            "time_running": 134518330,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 377579787,
+              "instructions": 355340876,
+              "frontend_stall_cycles": 223758835,
+              "l1i_read_misses": 24920481
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135362090,
+            "time_running": 135362090,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 380055810,
+              "instructions": 355689440,
+              "frontend_stall_cycles": 224367140,
+              "l1i_read_misses": 24991266
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135681830,
+            "time_running": 135681830,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 380960798,
+              "instructions": 355359951,
+              "frontend_stall_cycles": 224531680,
+              "l1i_read_misses": 24995753
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135857210,
+            "time_running": 135857210,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 381391099,
+              "instructions": 355601284,
+              "frontend_stall_cycles": 224567879,
+              "l1i_read_misses": 25006571
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 136177730,
+            "time_running": 136177730,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 382026675,
+              "instructions": 355317939,
+              "frontend_stall_cycles": 224678652,
+              "l1i_read_misses": 25004295
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 136612750,
+            "time_running": 136612750,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 383252623,
+              "instructions": 355480838,
+              "frontend_stall_cycles": 225008157,
+              "l1i_read_misses": 25007195
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137789980,
+            "time_running": 137789980,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 386263116,
+              "instructions": 355248256,
+              "frontend_stall_cycles": 226005353,
+              "l1i_read_misses": 25105530
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 35.40973859000951,
+        "metric_seconds": 0.141985495,
+        "returncode": 0,
+        "stdout_sha256": "0d4a9e5554d00c08bec007407e8f77cbeb1acc4d6a20cf5218e2a8fde185aa3d",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140469740,
+            "time_running": 140469740,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394225489,
+              "instructions": 357832367,
+              "frontend_stall_cycles": 233400024,
+              "l1i_read_misses": 28792217
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 144450910,
+            "time_running": 144450910,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 403914635,
+              "instructions": 368622776,
+              "frontend_stall_cycles": 235846059,
+              "l1i_read_misses": 28967643
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141871190,
+            "time_running": 141871190,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398154542,
+              "instructions": 359351881,
+              "frontend_stall_cycles": 234751446,
+              "l1i_read_misses": 28912035
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141717690,
+            "time_running": 141717690,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 397859008,
+              "instructions": 358875183,
+              "frontend_stall_cycles": 234405506,
+              "l1i_read_misses": 28927418
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141961010,
+            "time_running": 141961010,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398483831,
+              "instructions": 359141903,
+              "frontend_stall_cycles": 234756095,
+              "l1i_read_misses": 28921992
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141795060,
+            "time_running": 141795060,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 397994981,
+              "instructions": 358919591,
+              "frontend_stall_cycles": 234489025,
+              "l1i_read_misses": 28899269
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141922400,
+            "time_running": 141922400,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398395450,
+              "instructions": 359062114,
+              "frontend_stall_cycles": 234547746,
+              "l1i_read_misses": 28940791
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141802480,
+            "time_running": 141802480,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398043728,
+              "instructions": 358877124,
+              "frontend_stall_cycles": 234245489,
+              "l1i_read_misses": 28891285
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141953210,
+            "time_running": 141953210,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398457074,
+              "instructions": 358998425,
+              "frontend_stall_cycles": 234652975,
+              "l1i_read_misses": 28938198
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141820910,
+            "time_running": 141820910,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398035160,
+              "instructions": 358836200,
+              "frontend_stall_cycles": 234361162,
+              "l1i_read_misses": 28905601
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140789280,
+            "time_running": 140789280,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395143874,
+              "instructions": 358985447,
+              "frontend_stall_cycles": 233639856,
+              "l1i_read_misses": 28813451
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137714000,
+            "time_running": 137714000,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 386466128,
+              "instructions": 358863854,
+              "frontend_stall_cycles": 231093606,
+              "l1i_read_misses": 28571743
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138331520,
+            "time_running": 138331520,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388244606,
+              "instructions": 359043828,
+              "frontend_stall_cycles": 231500438,
+              "l1i_read_misses": 28612665
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138701220,
+            "time_running": 138701220,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 389354374,
+              "instructions": 358989939,
+              "frontend_stall_cycles": 231889198,
+              "l1i_read_misses": 28644296
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 142824850,
+            "time_running": 142824850,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 400620783,
+              "instructions": 372062678,
+              "frontend_stall_cycles": 233806840,
+              "l1i_read_misses": 28766652
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140544980,
+            "time_running": 140544980,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394379278,
+              "instructions": 358948857,
+              "frontend_stall_cycles": 233409886,
+              "l1i_read_misses": 28790398
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-bolt-r1/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+        ]
+      },
+      "reduction_percent": -3.4699797640869168
+    },
+    {
+      "candidate": {
+        "seconds": 35.79635454993695,
+        "metric_seconds": 0.143387835,
+        "returncode": 0,
+        "stdout_sha256": "d0353fd36b7e94734b9e01c06d39bd5d556005949b2fa25d74a2b4dd8a966a33",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 141635450,
+            "time_running": 141635450,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 397401780,
+              "instructions": 358292479,
+              "frontend_stall_cycles": 235795844,
+              "l1i_read_misses": 28908938
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 147474110,
+            "time_running": 147474110,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 406152435,
+              "instructions": 368855635,
+              "frontend_stall_cycles": 238201127,
+              "l1i_read_misses": 29111438
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143132900,
+            "time_running": 143132900,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401620714,
+              "instructions": 359731682,
+              "frontend_stall_cycles": 236782929,
+              "l1i_read_misses": 29055368
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143036910,
+            "time_running": 143036910,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401341162,
+              "instructions": 359396015,
+              "frontend_stall_cycles": 236281917,
+              "l1i_read_misses": 29031745
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143129030,
+            "time_running": 143129030,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401637714,
+              "instructions": 359465073,
+              "frontend_stall_cycles": 236569898,
+              "l1i_read_misses": 29060484
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 142959360,
+            "time_running": 142959360,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401146715,
+              "instructions": 359394666,
+              "frontend_stall_cycles": 236219927,
+              "l1i_read_misses": 29038190
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143216190,
+            "time_running": 143216190,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401794983,
+              "instructions": 359340479,
+              "frontend_stall_cycles": 236813664,
+              "l1i_read_misses": 29052532
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 144132150,
+            "time_running": 144132150,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 404325458,
+              "instructions": 359260606,
+              "frontend_stall_cycles": 237168210,
+              "l1i_read_misses": 29077296
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143358410,
+            "time_running": 143358410,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 402276135,
+              "instructions": 359466713,
+              "frontend_stall_cycles": 236027987,
+              "l1i_read_misses": 29022594
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143214470,
+            "time_running": 143214470,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401817701,
+              "instructions": 359180207,
+              "frontend_stall_cycles": 235892878,
+              "l1i_read_misses": 29066271
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143164150,
+            "time_running": 143164150,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401736911,
+              "instructions": 359318346,
+              "frontend_stall_cycles": 236006129,
+              "l1i_read_misses": 29044024
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143260270,
+            "time_running": 143260270,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 402051793,
+              "instructions": 359232677,
+              "frontend_stall_cycles": 236083030,
+              "l1i_read_misses": 29067537
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143308150,
+            "time_running": 143308150,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 402149368,
+              "instructions": 359386106,
+              "frontend_stall_cycles": 236116870,
+              "l1i_read_misses": 29045716
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143200900,
+            "time_running": 143200900,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401841350,
+              "instructions": 359149455,
+              "frontend_stall_cycles": 235894362,
+              "l1i_read_misses": 29034471
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143118310,
+            "time_running": 143118310,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401627312,
+              "instructions": 359388473,
+              "frontend_stall_cycles": 235805510,
+              "l1i_read_misses": 29001645
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 143032930,
+            "time_running": 143032930,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 401302658,
+              "instructions": 359363775,
+              "frontend_stall_cycles": 235757253,
+              "l1i_read_misses": 28996311
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-bolt-r1/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+        ]
+      },
+      "baseline": {
+        "seconds": 34.65478027006611,
+        "metric_seconds": 0.140835605,
+        "returncode": 0,
+        "stdout_sha256": "7a5bfc2bc712d81ddabae8887880c5046860597d3f376997fe960aced2ebcebd",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 139228190,
+            "time_running": 139228190,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 391250376,
+              "instructions": 353938255,
+              "frontend_stall_cycles": 228118353,
+              "l1i_read_misses": 25331867
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 142497350,
+            "time_running": 142497350,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 398988545,
+              "instructions": 364536903,
+              "frontend_stall_cycles": 229957587,
+              "l1i_read_misses": 25454745
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140259790,
+            "time_running": 140259790,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 393938312,
+              "instructions": 355427311,
+              "frontend_stall_cycles": 228539545,
+              "l1i_read_misses": 25415829
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140086990,
+            "time_running": 140086990,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 393540432,
+              "instructions": 354904764,
+              "frontend_stall_cycles": 228231104,
+              "l1i_read_misses": 25372567
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140457280,
+            "time_running": 140457280,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394773643,
+              "instructions": 355229854,
+              "frontend_stall_cycles": 228736955,
+              "l1i_read_misses": 25426991
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140351450,
+            "time_running": 140351450,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394470562,
+              "instructions": 354866392,
+              "frontend_stall_cycles": 228450753,
+              "l1i_read_misses": 25408774
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140396610,
+            "time_running": 140396610,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394607508,
+              "instructions": 354992350,
+              "frontend_stall_cycles": 228555968,
+              "l1i_read_misses": 25389893
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140471110,
+            "time_running": 140471110,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 394734078,
+              "instructions": 354866405,
+              "frontend_stall_cycles": 228664120,
+              "l1i_read_misses": 25396952
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140826160,
+            "time_running": 140826160,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395675466,
+              "instructions": 355062006,
+              "frontend_stall_cycles": 228898121,
+              "l1i_read_misses": 25416586
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140723230,
+            "time_running": 140723230,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395407833,
+              "instructions": 354923203,
+              "frontend_stall_cycles": 228838889,
+              "l1i_read_misses": 25408580
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140745810,
+            "time_running": 140745810,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395508117,
+              "instructions": 355212562,
+              "frontend_stall_cycles": 228773228,
+              "l1i_read_misses": 25400968
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140698860,
+            "time_running": 140698860,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395384779,
+              "instructions": 354840946,
+              "frontend_stall_cycles": 228837677,
+              "l1i_read_misses": 25393612
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140640530,
+            "time_running": 140640530,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395282342,
+              "instructions": 355105056,
+              "frontend_stall_cycles": 228764100,
+              "l1i_read_misses": 25405209
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140760440,
+            "time_running": 140760440,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395512942,
+              "instructions": 355018557,
+              "frontend_stall_cycles": 228991276,
+              "l1i_read_misses": 25411257
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140745470,
+            "time_running": 140745470,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395452395,
+              "instructions": 354999060,
+              "frontend_stall_cycles": 229126683,
+              "l1i_read_misses": 25447558
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 140681480,
+            "time_running": 140681480,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 395403486,
+              "instructions": 355057575,
+              "frontend_stall_cycles": 228901664,
+              "l1i_read_misses": 25424964
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": -1.8122050883368601
+    },
+    {
+      "baseline": {
+        "seconds": 34.6367783700116,
+        "metric_seconds": 0.138329615,
+        "returncode": 0,
+        "stdout_sha256": "92663f889dc5d5ef5dcb8fa19397aa2ab19bdd31cfb09776aaec37c3543932a2",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 135918890,
+            "time_running": 135918890,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 381689842,
+              "instructions": 353629805,
+              "frontend_stall_cycles": 225036132,
+              "l1i_read_misses": 24933659
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 139647090,
+            "time_running": 139647090,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 390808145,
+              "instructions": 364309820,
+              "frontend_stall_cycles": 227021842,
+              "l1i_read_misses": 25063485
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138215500,
+            "time_running": 138215500,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387788286,
+              "instructions": 355142494,
+              "frontend_stall_cycles": 226612064,
+              "l1i_read_misses": 25125108
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137664500,
+            "time_running": 137664500,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 386614730,
+              "instructions": 354463678,
+              "frontend_stall_cycles": 225744138,
+              "l1i_read_misses": 25083974
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137886970,
+            "time_running": 137886970,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387280801,
+              "instructions": 354642358,
+              "frontend_stall_cycles": 224500277,
+              "l1i_read_misses": 25051404
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137789150,
+            "time_running": 137789150,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387071453,
+              "instructions": 354365480,
+              "frontend_stall_cycles": 225914316,
+              "l1i_read_misses": 25068748
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137857750,
+            "time_running": 137857750,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387283436,
+              "instructions": 354560894,
+              "frontend_stall_cycles": 225980838,
+              "l1i_read_misses": 25063166
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137828460,
+            "time_running": 137828460,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387224781,
+              "instructions": 354540686,
+              "frontend_stall_cycles": 225712913,
+              "l1i_read_misses": 25073768
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 137935940,
+            "time_running": 137935940,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387520596,
+              "instructions": 354632533,
+              "frontend_stall_cycles": 225796396,
+              "l1i_read_misses": 25070276
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 139447220,
+            "time_running": 139447220,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 391520277,
+              "instructions": 354606201,
+              "frontend_stall_cycles": 228503608,
+              "l1i_read_misses": 25072248
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138777710,
+            "time_running": 138777710,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 389762125,
+              "instructions": 354570988,
+              "frontend_stall_cycles": 227001994,
+              "l1i_read_misses": 25090582
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138347080,
+            "time_running": 138347080,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388573276,
+              "instructions": 354557675,
+              "frontend_stall_cycles": 226436131,
+              "l1i_read_misses": 25110659
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138376090,
+            "time_running": 138376090,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388714556,
+              "instructions": 354686597,
+              "frontend_stall_cycles": 226417662,
+              "l1i_read_misses": 25114602
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138080070,
+            "time_running": 138080070,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 387944658,
+              "instructions": 354331509,
+              "frontend_stall_cycles": 226084964,
+              "l1i_read_misses": 25095954
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138295810,
+            "time_running": 138295810,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388362056,
+              "instructions": 354667200,
+              "frontend_stall_cycles": 226260073,
+              "l1i_read_misses": 25116427
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 138308520,
+            "time_running": 138308520,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 388445244,
+              "instructions": 354386032,
+              "frontend_stall_cycles": 226423547,
+              "l1i_read_misses": 25107414
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 38.46768228011206,
+        "metric_seconds": 0.145746435,
+        "returncode": 0,
+        "stdout_sha256": "f0bca0dc605afa5ee6d1d5043a0442d0c2383ffee859eb8e5d7977b0ac558b48",
+        "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145370700,
+            "time_running": 145370700,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 408398223,
+              "instructions": 357392470,
+              "frontend_stall_cycles": 249319018,
+              "l1i_read_misses": 29889453
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 148694290,
+            "time_running": 148694290,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 416436001,
+              "instructions": 368127288,
+              "frontend_stall_cycles": 253089349,
+              "l1i_read_misses": 30082534
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 144064730,
+            "time_running": 144064730,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 404772480,
+              "instructions": 358862666,
+              "frontend_stall_cycles": 250499058,
+              "l1i_read_misses": 29902137
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 144613070,
+            "time_running": 144613070,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 406430179,
+              "instructions": 358431999,
+              "frontend_stall_cycles": 250681862,
+              "l1i_read_misses": 29937520
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145218880,
+            "time_running": 145218880,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 408234647,
+              "instructions": 358731626,
+              "frontend_stall_cycles": 251092038,
+              "l1i_read_misses": 30006104
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145204800,
+            "time_running": 145204800,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 408037461,
+              "instructions": 358420668,
+              "frontend_stall_cycles": 251177877,
+              "l1i_read_misses": 30026355
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145191010,
+            "time_running": 145191010,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 408074402,
+              "instructions": 358475845,
+              "frontend_stall_cycles": 250784397,
+              "l1i_read_misses": 29974269
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145081190,
+            "time_running": 145081190,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 407767402,
+              "instructions": 358401757,
+              "frontend_stall_cycles": 250727989,
+              "l1i_read_misses": 30016386
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145607000,
+            "time_running": 145607000,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 409224264,
+              "instructions": 358658584,
+              "frontend_stall_cycles": 251239827,
+              "l1i_read_misses": 30049949
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145377580,
+            "time_running": 145377580,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 408600701,
+              "instructions": 358409632,
+              "frontend_stall_cycles": 251068211,
+              "l1i_read_misses": 30010830
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145984350,
+            "time_running": 145984350,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 409823459,
+              "instructions": 358517588,
+              "frontend_stall_cycles": 251417095,
+              "l1i_read_misses": 30041835
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145983530,
+            "time_running": 145983530,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 410297701,
+              "instructions": 358406292,
+              "frontend_stall_cycles": 251401022,
+              "l1i_read_misses": 30007885
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 145946980,
+            "time_running": 145946980,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 410238048,
+              "instructions": 358546958,
+              "frontend_stall_cycles": 251402180,
+              "l1i_read_misses": 30026148
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 146034420,
+            "time_running": 146034420,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 410434060,
+              "instructions": 358401848,
+              "frontend_stall_cycles": 251506934,
+              "l1i_read_misses": 30004739
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 146075090,
+            "time_running": 146075090,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 410550801,
+              "instructions": 358611969,
+              "frontend_stall_cycles": 251420354,
+              "l1i_read_misses": 30019694
+            }
+          },
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 146066550,
+            "time_running": 146066550,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 410528945,
+              "instructions": 358467306,
+              "frontend_stall_cycles": 251367719,
+              "l1i_read_misses": 29995209
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-bolt-r1/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+        ]
+      },
+      "reduction_percent": -5.361700746438158
+    }
+  ],
+  "equivalent": true,
+  "metric": "decode",
+  "median_reduction_percent": -3.4699797640869168,
+  "min_reduction_percent": -5.361700746438158,
+  "max_reduction_percent": -1.8122050883368601,
+  "recommendation": "retain-baseline",
+  "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+}
