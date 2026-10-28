@@ -6,6 +6,7 @@ from .util import read_json, write_json, tool_env
 
 
 def perf_profile(root, perf, pid=None):
+    state = read_json(root / "run.json")
     paths = set()
     for f in root.glob("capture.*.images"):
         for line in f.read_text().splitlines():
@@ -29,8 +30,11 @@ def perf_profile(root, perf, pid=None):
             continue
         if len(parts) == 2 and parts[1].startswith("/"):
             paths.add(parts[1]); recorded_ids[parts[1]] = parts[0]
-    report = subprocess.run([perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
-                             "--sort=dso", "--field-separator=\t", "--percent-limit=0", "--no-children"],
+    report_args = [perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
+                   "--sort=dso", "--field-separator=\t", "--percent-limit=0", "--no-children"]
+    if state["backend"] == "spe":
+        report_args += ["--itrace=i"]
+    report = subprocess.run(report_args,
                             capture_output=True, text=True, env=tool_env())
     (root / "hotspots.txt").write_text(report.stdout + report.stderr)
     if report.returncode:
@@ -38,11 +42,13 @@ def perf_profile(root, perf, pid=None):
     weights = {}
     for line in report.stdout.splitlines():
         f = line.strip().split("\t")
-        if f and re.match(r"^[0-9.]+%$", f[0].strip()):
+        if f and re.match(r"^[0-9.]+%?$", f[0].strip()):
             for field in f[1:]:
                 if field.strip().startswith("/"):
                     weights[field.strip()] = float(f[0].strip().rstrip("%"))
     paths.update(weights)
+    if not weights or sum(weights.values()) == 0:
+        raise ValueError("no sampled ELF instructions in ROI; check ROI control, event support and capture scope (hotspots.txt)")
     rows = []
     for path in sorted(paths):
         try:
@@ -56,7 +62,6 @@ def perf_profile(root, perf, pid=None):
         rows.append(row)
     if not rows:
         raise ValueError("no ELF images discovered in perf.data")
-    state = read_json(root / "run.json")
     result = {"schema": "tgo.profile.v1", "backend": state["backend"],
               "images": sorted(rows, key=lambda r: -r["sample_percent"]),
               "quality": {"kind": "hardware-sampling", "hardware_frontend_counters": False,

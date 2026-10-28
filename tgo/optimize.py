@@ -61,7 +61,7 @@ def optimize(args):
                 cmd += ["-pa", "-p", row["preaggregate"]]
             else:
                 cmd += ["-p", row["perf_data"]]
-                cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack else ["-nl"])
+                cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
             aggregation = run(cmd, image_dir / "aggregate.log")
             if not fdata.exists() or not fdata.stat().st_size:
                 raise ValueError(f"empty BOLT profile: {original}")

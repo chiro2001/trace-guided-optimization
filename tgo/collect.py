@@ -52,6 +52,7 @@ def record(args):
     env.update(overrides)
     meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
+            "branch_stack": args.branch_stack,
             "started_unix": time.time()}
     write_json(root / "run.json", meta)
     try:
@@ -93,6 +94,7 @@ def record(args):
                 os.mkfifo(ctl); os.mkfifo(ack)
                 launch += ["--delay=-1", "--control=fifo:" + str(ctl) + "," + str(ack)]
                 env.update(TGO_PERF_CONTROL=str(ctl), TGO_PERF_ACK=str(ack))
+                exec_env.update(TGO_PERF_CONTROL=str(ctl), TGO_PERF_ACK=str(ack))
             elif args.roi == "window":
                 if args.duration is None:
                     raise ValueError("--roi window requires --duration")
