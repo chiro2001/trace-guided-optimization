@@ -6,6 +6,7 @@ import subprocess
 import time
 import signal
 import math
+import threading
 from .util import read_json, write_json, workload_env, sha256
 from .elf import is_executable_image
 
@@ -16,21 +17,37 @@ def execute_trial(command, prefix, env, cwd, timeout):
     start = time.perf_counter()
     with stdout.open("wb") as out, stderr.open("wb") as err:
         p = subprocess.Popen(command, cwd=cwd, env=env, stdout=out, stderr=err, start_new_session=True)
+        finished = threading.Event()
+        wait_errors = []
+        def reap():
+            try:
+                p.wait()
+            except BaseException as error:
+                wait_errors.append(error)
+            finally:
+                finished.set()
+        waiter = threading.Thread(target=reap, daemon=True)
+        waiter.start()
         try:
-            p.wait(timeout=timeout)
+            # Popen.wait(timeout) polls with exponential sleeps (up to 50ms),
+            # which quantizes short whole-process benchmarks. Wait in a thread
+            # using blocking waitpid and let Event enforce the deadline.
+            if not finished.wait(timeout):
+                raise subprocess.TimeoutExpired(command, timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as failure:
             timed_out = isinstance(failure, subprocess.TimeoutExpired)
             try:
                 os.killpg(p.pid, signal.SIGTERM)
             except ProcessLookupError:
                 pass
-            try:
-                p.wait(timeout=5)
-            except subprocess.TimeoutExpired:
+            if not finished.wait(5):
                 os.killpg(p.pid, signal.SIGKILL)
-                p.wait()
+                finished.wait()
             if not timed_out:
                 raise
+        waiter.join()
+        if wait_errors:
+            raise RuntimeError("could not reap validation workload") from wait_errors[0]
     return p.returncode, time.perf_counter() - start, timed_out, sha256(stdout)
 
 
