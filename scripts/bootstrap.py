@@ -165,14 +165,15 @@ def main():
             perfenv = env.copy()
             # perf's feature probes use LDFLAGS before EXTRA_LDFLAGS is merged.
             # This variable also reaches raw `ld -r` sub-builds, so compiler-only
-            # -Wl options belong in EXTRA_LDFLAGS below, not here.
+            # -Wl options cannot be used in the shared link flags.
             perfenv["LDFLAGS"] = "-L" + str(install / "lib")
+            perfenv["LD_RUN_PATH"] = str(install / "lib")
             flags = ["NO_LIBPERL=1", "NO_LIBPYTHON=1", "NO_SLANG=1", "NO_GTK2=1",
                      "NO_LIBUNWIND=1", "NO_LIBDW_DWARF_UNWIND=1", "NO_DWARF=1",
                      "NO_LIBBPF=1", "NO_LIBTRACEEVENT=1", "NO_LIBNUMA=1", "NO_LIBCAP=1",
                      "NO_LIBCRYPTO=1", "NO_LIBZSTD=1", "NO_LIBBFD=1", "NO_JVMTI=1",
                      "NO_LIBPFM4=1", "WERROR=0", "EXTRA_CFLAGS=-I" + str(install / "include"),
-                     "EXTRA_LDFLAGS=-L" + str(install / "lib") + " -Wl,-rpath," + str(install / "lib")]
+                     "EXTRA_LDFLAGS=-L" + str(install / "lib")]
             execute(["make", "-C", source / "tools/perf", "O=" + str(build) + "/", "JOBS=" + str(a.jobs), "-j", a.jobs, *flags], env=perfenv)
             shutil.copy2(build / "perf", install / "bin/perf")
         elif component == "patchelf":
