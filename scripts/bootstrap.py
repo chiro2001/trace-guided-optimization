@@ -94,7 +94,7 @@ def main():
     execute([buildenv / "bin/pip", "install", "cmake==3.31.6", "ninja==1.11.1.3", "meson==1.7.2"])
     env = os.environ.copy()
     env["PATH"] = str(buildenv / "bin") + os.pathsep + str(install / "bin") + os.pathsep + env["PATH"]
-    env["PKG_CONFIG_PATH"] = str(install / "lib/pkgconfig") + ':' + str(install / "lib64/pkgconfig") + ':' + env.get("PKG_CONFIG_PATH", "")
+    env["PKG_CONFIG_PATH"] = ':'.join(str(install / p) for p in ("lib/pkgconfig", "lib64/pkgconfig", "share/pkgconfig")) + ':' + env.get("PKG_CONFIG_PATH", "")
     env["LD_LIBRARY_PATH"] = str(install / "lib") + ':' + str(install / "lib64") + ':' + env.get("LD_LIBRARY_PATH", "")
     if "qemu" in components and "glib" not in components:
         have_glib = subprocess.run(["pkg-config", "--exists", "glib-2.0>=2.66"], env=env).returncode == 0
