@@ -1,5 +1,7 @@
 """Normalize QEMU observations with loader-provided load biases and exact ELF identities."""
 from collections import Counter
+from bisect import bisect_right
+import hashlib
 from pathlib import Path
 from .elf import ELF
 from .util import write_json
@@ -31,16 +33,35 @@ def qemu_profile(root, allow_truncated=False):
             base = int(bias, 16)
             if (base, path) not in [(b, p) for b, p, _ in loaded]:
                 loaded.append((base, path, elf))
+        intervals = sorted((lo + base, hi + base, path, base)
+                           for base, path, elf in loaded
+                           for lo, hi, _, flags, _ in elf.loads if flags & 1)
+        starts = [r[0] for r in intervals]
+        prefix_end = []
+        maximum = 0
+        for lo, hi, path, base in intervals:
+            maximum = max(maximum, hi); prefix_end.append(maximum)
+        locations = {}
         def locate(pc):
-            matches = [(path, pc - base) for base, path, elf in loaded if elf.contains(pc - base)]
+            if pc in locations:
+                return locations[pc]
+            i = bisect_right(starts, pc) - 1
+            matches = set()
+            while i >= 0 and prefix_end[i] > pc:
+                lo, hi, path, base = intervals[i]
+                if lo <= pc < hi:
+                    matches.add((path, pc - base))
+                i -= 1
             if len(matches) > 1:
                 raise ValueError("overlapping image lifetimes: use perf or shorter ROI")
-            return matches[0] if matches else None
+            result = next(iter(matches)) if matches else None
+            locations[pc] = result
+            return result
         def image(path):
             if path not in images:
                 images[path] = {**cache[path].metadata(), "counts": Counter(), "dynamic_instructions": 0}
             return images[path]
-        for line in trace.read_text().splitlines():
+        for line in trace.open():
             f = line.split("\t")
             if f[0] == "H":
                 total += int(f[1]); truncated |= bool(int(f[2])); windows += int(f[3]); continue
@@ -66,7 +87,8 @@ def qemu_profile(root, allow_truncated=False):
     rows = []
     for path, row in images.items():
         counts = row.pop("counts")
-        dest = root / (row["sha256"][:20] + ".pa")
+        row["image_id"] = row["sha256"][:16] + "-" + hashlib.sha256(path.encode()).hexdigest()[:8]
+        dest = root / (row["image_id"] + ".pa")
         with dest.open("w") as f:
             for (kind, a, b), n in sorted(counts.items()):
                 f.write(f"{kind} {a:x} {b:x} {n}" + (" 0" if kind == "B" else "") + "\n")

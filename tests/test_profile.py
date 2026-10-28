@@ -2,11 +2,33 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import shutil
 from tgo.elf import ELF
 from tgo.profile import qemu_profile
 
 
 class ProfileTests(unittest.TestCase):
+    def test_identical_dsos_at_different_paths_keep_separate_profiles(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = root / "lib.c"; c.write_text("int f(int x) { return x+1; }")
+            a, b = root / "a.so", root / "b.so"
+            subprocess.run(["cc", "-shared", "-fPIC", c, "-o", a], check=True)
+            shutil.copy2(a, b)
+            lo = next(v[0] for v in ELF(a).loads if v[3] & 1)
+            base1, base2 = 0x70000000, 0x80000000
+            maps = root / "capture.1.images"
+            maps.write_text(f"M\t{base1:x}\t{a}\nM\t{base2:x}\t{b}\n")
+            (root / "capture.1.trace").write_text("H\t30\t0\t1\n" + ''.join(
+                f"N\t{base+lo:x}\t{base+lo+4:x}\t{n}\nF\t{base+lo:x}\t{base+lo+4:x}\t{n//2}\n"
+                for base, n in [(base1, 10), (base2, 20)]))
+            result = qemu_profile(root)
+            self.assertEqual(len(result["images"]), 2)
+            self.assertEqual(len({r["preaggregate"] for r in result["images"]}), 2)
+            maps.write_text(f"M\t{base1:x}\t{a}\nM\t{base1:x}\t{b}\n")
+            with self.assertRaisesRegex(ValueError, "overlapping image lifetimes"):
+                qemu_profile(root)
+
     def test_load_bias_and_truncation(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

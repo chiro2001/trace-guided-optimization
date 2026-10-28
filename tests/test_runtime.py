@@ -3,10 +3,22 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import venv
 from tgo.runtime import build_runtime, make_launcher
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_virtualenv_executable_keeps_its_prefix(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            prefix = root / "venv"
+            venv.EnvBuilder(with_pip=False, symlinks=True).create(prefix)
+            build_runtime(root)
+            entry = prefix / "bin/python.tgo"
+            make_launcher(root, entry, [str(prefix / "bin/python")], [])
+            output = subprocess.check_output([entry, "-c", "import sys;print(sys.prefix)"], text=True)
+            self.assertEqual(output.strip(), str(prefix))
+
     def test_absolute_dlopen_and_collision_and_origin(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

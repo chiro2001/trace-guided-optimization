@@ -125,6 +125,8 @@ def record(args):
         meta["returncode"] = code
         if code:
             raise RuntimeError(f"collector/workload failed ({code}); see {root / 'stderr'}")
+        meta["phase"] = "normalizing"
+        write_json(root / "run.json", meta)
         if backend == "qemu":
             profile = qemu_profile(root, args.allow_truncated)
             if args.roi == "marker" and not profile["marker_windows"]:
@@ -135,6 +137,10 @@ def record(args):
             perf_profile(root, perf, args.pid)
         meta.update(state="recorded", finished_unix=time.time())
     except BaseException as e:
+        if isinstance(e, subprocess.TimeoutExpired):
+            message = f"workload exceeded --timeout ({args.timeout:g}s); capture preserved at {root}"
+            meta.update(state="failed", error=message)
+            raise RuntimeError(message) from e
         meta.update(state="failed", error=str(e)); raise
     finally:
         write_json(root / "run.json", meta)

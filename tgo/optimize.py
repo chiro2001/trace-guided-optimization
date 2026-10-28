@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import hashlib
 from .elf import ELF
 from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool
@@ -53,7 +54,8 @@ def optimize(args):
             original = Path(row["path"])
             if sha256(original) != row["sha256"]:
                 raise ValueError(f"source changed since capture: {original}")
-            image_dir = out / "images" / row["sha256"][:20]
+            image_id = row.get("image_id") or row["sha256"][:16] + "-" + hashlib.sha256(row["path"].encode()).hexdigest()[:8]
+            image_dir = out / "images" / image_id
             image_dir.mkdir(parents=True)
             fdata = image_dir / "profile.fdata"
             cmd = [p2b, original, "-o", fdata]

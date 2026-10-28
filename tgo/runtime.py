@@ -1,8 +1,5 @@
-import json
 import os
 from pathlib import Path
-import shlex
-import subprocess
 import struct
 import shutil
 import tempfile
@@ -46,17 +43,6 @@ def build_runtime(out, qemu_header=None):
         run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", "-pthread", "-I", include,
              source, "-o", target], out / "qemu.build.log")
     return out
-
-
-def cstr(s):
-    # JSON's ASCII escaping is not C's universal-character grammar; emit UTF-8 octets.
-    return '"' + ''.join(chr(c) if 32 <= c < 127 and c not in (34, 92)
-                         else f"\\{c:03o}" for c in os.fsencode(s)) + '"'
-
-
-def stamp(path):
-    st = Path(path).stat()
-    return f"{{{cstr(str(path))}, {st.st_size}LL, {st.st_mtime_ns // 10**9}LL, {st.st_mtime_ns % 10**9}L, {st.st_ino}ULL, {st.st_dev}ULL}}"
 
 
 def make_launcher(out, entry, command, images, env=None, cwd=None):
