@@ -208,7 +208,7 @@ def tune_go(args, root_exists=False):
         profiles = capture / "profiles"; profiles.mkdir()
         state = {"schema": "tgo.run.v1", "strategy": "go-compiler-pgo", "backend": "go-cpu",
                  "command": command, "cwd": os.getcwd(), "env": overrides, "state": "recording",
-                 "validation": {"go_cache": args.go_cache}, "toolchain": info}
+                 "validation": {"go_cache": args.go_cache, "warmup_pairs": args.go_warmups}, "toolchain": info}
         write_json(capture / "run.json", state)
         if previous:
             if prior_profile["compiler_sha256"] != original_sha:

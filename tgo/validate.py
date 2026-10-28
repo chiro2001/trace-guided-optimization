@@ -57,13 +57,16 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
     build = read_json(bundle / "build.json")
     state = read_json(Path(build["source_run"]) / "run.json")
     trials = []
+    warmup_trials = []
+    warmup_count = state.get("validation", {}).get("warmup_pairs", 0)
     expected = {r["optimized"] for r in build["images"] if not is_executable_image(r["input"])}
     equivalent = True
-    for i in range(pairs):
+    for i in range(-warmup_count, pairs):
         pair = {}
         for arm in (["baseline", "candidate"] if i % 2 == 0 else ["candidate", "baseline"]):
             env = workload_env(); env.update(state["env"])
-            prefix = bundle / f"validation-{i}-{arm}"
+            label = f"warmup-{i + warmup_count}" if i < 0 else f"validation-{i}"
+            prefix = bundle / f"{label}-{arm}"
             for old in bundle.glob(prefix.name + ".*"):
                 if old.is_dir():
                     shutil.rmtree(old)
@@ -84,7 +87,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 env["TGO_NATIVE_COUNTERS"] = "1"
             tail = state["command"][1:] if build.get("entry_mode") == "executable" else []
             command = state["command"] if arm == "baseline" else [build["entry"], *tail]
-            baseline_times = [p["baseline"]["seconds"] for p in trials]
+            baseline_times = [p["baseline"]["seconds"] for p in [*warmup_trials, *trials]]
             if "baseline" in pair:
                 baseline_times.append(pair["baseline"]["seconds"])
             limit = min(timeout, max(5, statistics.median(baseline_times) * 3 + 2)) if arm == "candidate" and baseline_times else timeout
@@ -138,12 +141,16 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
         if pair["baseline"]["correctness_sha256"] != pair["candidate"]["correctness_sha256"] or pair["baseline"]["correctness_source"] != pair["candidate"]["correctness_source"]:
             equivalent = False
         pair["reduction_percent"] = (1 - pair["candidate"]["metric_seconds"] / pair["baseline"]["metric_seconds"]) * 100
-        trials.append(pair)
+        if i < 0:
+            warmup_trials.append(pair)
+        else:
+            trials.append(pair)
         if not equivalent:
             break
-    reductions = [p["reduction_percent"] for p in trials]
+    reductions = [p["reduction_percent"] for p in trials] or [0]
     result = {"schema": "tgo.validation.v1", "pairs": trials, "equivalent": equivalent,
               "requested_pairs": pairs, "completed_pairs": len(trials),
+              "warmup_pairs": warmup_trials,
               "metric": metric or "whole-process-wall-time", "median_reduction_percent": statistics.median(reductions),
               "min_reduction_percent": min(reductions), "max_reduction_percent": max(reductions),
               "recommendation": "candidate" if equivalent and min(reductions) > 0 else "retain-baseline",
