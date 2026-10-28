@@ -59,7 +59,7 @@ def execute(command, cwd=None, env=None):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--prefix", type=Path, default=ROOT / "deps")
-    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "appimagetool"], default=["llvm", "qemu"])
+    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "patchelf", "appimagetool"], default=["llvm", "qemu", "patchelf"])
     p.add_argument("--jobs", type=int, default=min(os.cpu_count() or 1, 8))
     p.add_argument("--download-only", action="store_true")
     a = p.parse_args()
@@ -132,6 +132,11 @@ def main():
                 shutil.copy2(build / name, install / "bin" / name)
             (install / "include").mkdir(exist_ok=True)
             shutil.copy2(source / "include/qemu/qemu-plugin.h", install / "include/qemu-plugin.h")
+        elif component == "patchelf":
+            build.mkdir(exist_ok=True)
+            execute([source / "configure", "--prefix=" + str(install)], cwd=build, env=env)
+            execute(["make", "-j", a.jobs], cwd=build, env=env)
+            execute(["make", "install"], cwd=build, env=env)
         elif component == "python":
             build.mkdir(exist_ok=True)
             execute([source / "configure", "--prefix=" + str(install), "--enable-shared", "--without-ensurepip",

@@ -4,7 +4,7 @@ from pathlib import Path
 import statistics
 import subprocess
 import time
-from .util import read_json, write_json
+from .util import read_json, write_json, workload_env
 
 
 def validate(bundle, pairs=5, timeout=300, metric=None):
@@ -17,8 +17,10 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
     for i in range(pairs):
         pair = {}
         for arm in (["baseline", "candidate"] if i % 2 == 0 else ["candidate", "baseline"]):
-            env = os.environ.copy(); env.update(state["env"])
+            env = workload_env(); env.update(state["env"])
             prefix = bundle / f"validation-{i}-{arm}"
+            for old in bundle.glob(prefix.name + ".*"):
+                old.unlink()
             env["TGO_IMAGE_LOG"] = str(prefix)
             if metric:
                 env["TGO_METRIC_FILE"] = str(prefix) + ".metrics"

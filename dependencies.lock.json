@@ -14,10 +14,25 @@
     "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tar.xz",
     "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
   },
+  "patchelf": {
+    "version": "0.18.0",
+    "url": "https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.bz2",
+    "sha256": "1952b2a782ba576279c211ee942e341748fdb44997f704dd53def46cd055470b"
+  },
   "glib": {
     "version": "2.84.1",
     "url": "https://download.gnome.org/sources/glib/2.84/glib-2.84.1.tar.xz",
     "sha256": "2b4bc2ec49611a5fc35f86aca855f2ed0196e69e53092bab6bb73396bf30789a"
+  },
+  "runtime-aarch64": {
+    "version": "snapshot-2026-10-29",
+    "url": "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-aarch64",
+    "sha256": "9a72a744d221576c9347ec074243acc5c3c7568896b12714e0e82e9f0bf47900"
+  },
+  "runtime-x86_64": {
+    "version": "snapshot-2026-10-29",
+    "url": "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64",
+    "sha256": "617aa77314d57c8b8e4fae9c3f0b35af7b30d5529cb69e98f64f92510ed98a46"
   },
   "appimagetool-aarch64": {
     "version": "1.9.0",

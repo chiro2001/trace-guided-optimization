@@ -54,8 +54,20 @@ def tool(name, override=None, required=True):
 def command_path(command):
     if not command:
         raise ValueError("provide a workload after --")
-    binary = shutil.which(command[0])
+    binary = shutil.which(command[0], path=workload_env().get("PATH"))
     if not binary:
         raise ValueError(f"executable not found: {command[0]}")
     # Preserve the symlink spelling: Python virtualenv and multicall argv[0] depend on it.
     return [str(Path(binary).absolute()), *command[1:]]
+
+
+def workload_env():
+    env = os.environ.copy()
+    if env.get("TGO_PACKAGED"):
+        for k in ("PYTHONHOME", "PYTHONPATH", "PATH"):
+            saved = env.pop("TGO_SAVED_" + k, "__UNSET__")
+            if saved == "__UNSET__":
+                env.pop(k, None)
+            else:
+                env[k] = saved
+    return env

@@ -6,7 +6,7 @@ import subprocess
 import time
 from .runtime import build_runtime
 from .profile import qemu_profile
-from .util import command_path, tool, write_json
+from .util import command_path, tool, write_json, workload_env
 
 
 def doctor():
@@ -33,7 +33,7 @@ def record(args):
     if args.pid and backend == "qemu":
         raise ValueError("perf PMU access unavailable; attach requires perf permissions")
     runtime = build_runtime(root / "runtime", args.qemu_header if backend == "qemu" else None)
-    env = os.environ.copy()
+    env = workload_env()
     env.update(TGO_IMAGE_LOG=str(root / "capture"), TGO_ROI_LOG=str(root / "capture"),
                TGO_ROI_LIBRARY=str(runtime / "libtgo_roi.so"))
     # These are captured for replay; credentials and unrelated environment are never serialized.
@@ -47,10 +47,8 @@ def record(args):
         if backend == "qemu":
             if args.roi == "window":
                 raise ValueError("QEMU uses whole or marker ROI; time windows/attach require perf")
-            if not args.qemu_header:
-                raise ValueError("QEMU plugin header required: --qemu-header or TGO_QEMU_HEADER; bootstrap downloads it")
             if not (runtime / "libtgo_qemu.so").exists():
-                raise ValueError("QEMU plugin was not built")
+                raise ValueError("QEMU plugin header required: --qemu-header or TGO_QEMU_HEADER; bootstrap downloads it")
             qemu = tool("qemu-" + platform.machine(), args.qemu)
             plugin = f"{runtime / 'libtgo_qemu.so'},out={root / 'capture'},roi={args.roi},limit={args.max_insns}"
             if "," in str(root):

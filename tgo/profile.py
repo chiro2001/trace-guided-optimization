@@ -13,7 +13,13 @@ def qemu_profile(root, allow_truncated=False):
     for trace in root.glob("capture.*.trace"):
         imagefile = trace.with_suffix(".images")
         if not imagefile.exists():
-            raise ValueError(f"loader map missing: {imagefile}")
+            from .util import read_json
+            command = read_json(root / "run.json")["command"]
+            binary = ELF(command[0])
+            if binary.type == 2 and binary.interpreter is None:
+                imagefile.write_text(f"M\t0\t{binary.path}\n")
+            else:
+                raise ValueError(f"loader map missing: {imagefile}; static PIE requires load-bias support")
         loaded = []
         for line in imagefile.read_text().splitlines():
             kind, bias, path = line.split("\t", 2)
