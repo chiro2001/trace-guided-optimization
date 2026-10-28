@@ -140,9 +140,27 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
         tool_dir.mkdir(exist_ok=True)
         subprocess.run([image_tool.resolve(), "--appimage-extract"], cwd=tool_dir, check=True, stdout=subprocess.DEVNULL)
         image = dest / ("tgo-0.1.0-" + platform.machine() + ".AppImage")
-        env = os.environ.copy(); env["ARCH"] = platform.machine()
         runtime = fetch("runtime-" + platform.machine(), ROOT / "deps")
-        subprocess.run([tool_dir / "squashfs-root/AppRun", "--no-appstream", "--runtime-file", runtime, app, image], env=env, check=True)
+        runtime.chmod(0o755)
+        offset = int(subprocess.check_output([runtime, "--appimage-offset"], text=True).strip())
+        if offset < runtime.stat().st_size:
+            raise ValueError("runtime ELF offset is shorter than its file")
+        squash = shutil.which("mksquashfs")
+        if not squash:
+            squash = next(iter((tool_dir / "squashfs-root").rglob("mksquashfs")), None)
+        if not squash:
+            raise ValueError("mksquashfs missing from system and extracted build tool")
+        filesystem = dest / "tgo.squashfs"
+        env = os.environ.copy()
+        subprocess.run([str(squash), str(app), str(filesystem), "-noappend", "-all-root", "-processors", "8"], env=env, check=True)
+        with image.open("wb") as output:
+            with runtime.open("rb") as stream:
+                shutil.copyfileobj(stream, output)
+            output.write(b"\0" * (offset - runtime.stat().st_size))
+            with filesystem.open("rb") as stream:
+                shutil.copyfileobj(stream, output)
+        image.chmod(0o755)
+        subprocess.run([image, "--appimage-extract-and-run", "--help"], check=True)
         write_json(image.with_suffix(".sha256.json"), {"file": image.name, "sha256": sha256(image)})
         print(image)
 

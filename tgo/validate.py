@@ -26,7 +26,8 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             if metric:
                 env["TGO_METRIC_FILE"] = str(prefix) + ".metrics"
                 env["TGO_NATIVE_COUNTERS"] = "1"
-            command = state["command"] if arm == "baseline" else [build["entry"]]
+            tail = state["command"][1:] if build.get("entry_mode") == "executable" else []
+            command = state["command"] if arm == "baseline" else [build["entry"], *tail]
             t = time.perf_counter()
             p = subprocess.run(command, cwd=state["cwd"], env=env, capture_output=True, timeout=timeout)
             elapsed = time.perf_counter() - t

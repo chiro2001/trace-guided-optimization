@@ -98,7 +98,10 @@ def optimize(args):
         entry = Path(args.entry).absolute() if args.entry else out / "run"
         command = state["command"]
         # Moving the main ELF changes $ORIGIN too. Keep a sibling copy only on explicit entry install.
-        result["entry"] = make_launcher(out, entry, command, result["images"], state["env"], state["cwd"])
+        result["entry_mode"] = args.entry_mode
+        deployed = command[:1] if args.entry_mode == "executable" else command
+        result["entry"] = make_launcher(out, entry, deployed, result["images"], state["env"],
+                                         None if args.entry_mode == "executable" else state["cwd"])
         result["state"] = "candidate"
         write_json(out / "build.json", result)
         if args.validate:

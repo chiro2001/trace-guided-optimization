@@ -35,6 +35,7 @@ def main(argv=None):
     o.add_argument("--run", required=True)
     o.add_argument("-o", "--output", required=True)
     o.add_argument("--entry", help="new ELF path, e.g. /path/to/python3.tgo; never overwrites")
+    o.add_argument("--entry-mode", choices=["command", "executable"], default="command")
     o.add_argument("--image", action="append", default=[])
     o.add_argument("--top", type=int, default=3)
     o.add_argument("--bolt")
@@ -48,6 +49,7 @@ def main(argv=None):
                        help="record, compare three layouts and publish a confirmed ELF entry")
     t.add_argument("--run", help="reuse an existing capture instead of recording")
     t.add_argument("--entry")
+    t.add_argument("--entry-mode", choices=["command", "executable"], default="command")
     t.add_argument("--image", action="append", default=[])
     t.add_argument("--top", type=int, default=3)
     t.add_argument("--bolt")
@@ -99,6 +101,7 @@ def main(argv=None):
         elif args.action == "bind":
             path = Path(args.run) / "run.json"
             result = read_json(path)
+            result.setdefault("training_command", result["command"])
             result["command"] = command_path(args.command)
             write_json(path, result)
         print(json.dumps(result, indent=2, ensure_ascii=False))

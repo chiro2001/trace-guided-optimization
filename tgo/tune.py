@@ -26,6 +26,7 @@ def tune(args):
         candidate = deepcopy(args)
         candidate.run = str(capture); candidate.output = str(root / name)
         candidate.entry = None; candidate.bolt_arg = flags + args.bolt_arg
+        candidate.entry_mode = "command"
         candidate.validate = args.search_pairs
         try:
             built = optimize(candidate)
@@ -48,7 +49,10 @@ def tune(args):
             write_json(best / "build.json", chosen)
             images = chosen["images"]
     build_runtime(root)
-    result["entry"] = make_launcher(root, args.entry or root / "run", state["command"], images, state["env"], state["cwd"])
+    result["entry_mode"] = args.entry_mode
+    deployed = state["command"][:1] if args.entry_mode == "executable" else state["command"]
+    result["entry"] = make_launcher(root, args.entry or root / "run", deployed, images, state["env"],
+                                     None if args.entry_mode == "executable" else state["cwd"])
     result["optimized_images"] = [r["optimized"] for r in images]
     write_json(root / "tune.json", result)
     return result

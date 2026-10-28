@@ -92,11 +92,15 @@ cwd 和指定环境。虚拟环境的入口路径不会提前解析为其底层 
 ## 入口与验证
 
 ```sh
-python3 -m tgo tune -o runs/demo --entry /writable/venv/bin/python3.tgo -- python app.py
-TGO_DISABLE=1 /writable/venv/bin/python3.tgo
+python3 -m tgo tune -o runs/demo --entry /writable/venv/bin/python3.tgo \
+  --entry-mode executable -- python app.py
+/writable/venv/bin/python3.tgo app.py
+TGO_DISABLE=1 /writable/venv/bin/python3.tgo app.py
 ```
 
-相邻入口是新的原生 ELF，使用 exec 保留退出码和信号行为。它携带二进制配置，
+默认 command 模式保存完整负载命令；executable 模式仅替换可执行入口，参数和当前
+工作目录由调用者提供，可像原 Python 解释器一样运行。相邻入口是新的原生 ELF，
+使用 exec 保留退出码和信号行为。它携带二进制配置，
 不依赖 Python 来启动原负载。glibc audit 按完整真实路径重定向依赖，包括绝对路径
 dlopen；同名但不同路径的库不会混用。每库独立目录，保留原 `$ORIGIN` 搜索语义。
 DSO 本身需要兼容原 ABI；不会将任意 ET_EXEC 硬转换成 DSO。
