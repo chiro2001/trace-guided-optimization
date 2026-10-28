@@ -42,6 +42,9 @@ def run(command, log, **kwargs):
 def tool(name, override=None, required=True):
     candidates = [override, os.environ.get("TGO_" + name.upper().replace("-", "_"))]
     root = Path(__file__).resolve().parents[1]
+    if os.environ.get("TGO_TOOL_ROOT"):
+        private = "llvm-bolt" if name == "perf2bolt" else name
+        candidates += [Path(os.environ["TGO_TOOL_ROOT"]) / private / "bin" / name]
     candidates += [root / "deps/install/bin" / name, shutil.which(name)]
     for p in candidates:
         if p and Path(p).is_file() and os.access(p, os.X_OK):

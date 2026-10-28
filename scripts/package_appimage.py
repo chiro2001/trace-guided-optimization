@@ -53,49 +53,58 @@ def main():
         "site-packages", "dist-packages", "test", "tests", "__pycache__", "*.pyc", "idlelib", "tkinter", "ensurepip"))
     if info["dynload"] and Path(info["dynload"]).is_dir() and not (pylib / "lib-dynload").exists():
         shutil.copytree(info["dynload"], pylib / "lib-dynload")
-    copied = {}
-    queue = []
-    for name, src in executables.items():
-        target = binpath / name
-        shutil.copy2(src, target)
-        if target.read_bytes()[:4] != b"\x7fELF":
-            raise ValueError(f"packaging requires the real executable, not a shell wrapper: {src}")
-        manifest["tools"][name] = {"source": src, "sha256": sha256(src)}
-        queue.append(target)
-    (binpath / "perf2bolt").symlink_to("llvm-bolt")
-    queue += list(pylib.rglob("*.so")) + list(native.glob("*.so")) + [native / "launcher"]
-    # The loader and libc stay host supplied. The build host sets the glibc floor;
-    # every other ldd dependency is copied and given a relative runtime search path.
+    # Each tool has a private dependency closure. QEMU and perf may carry
+    # different builds of the same SONAME; they must not contaminate each other.
     base = re.compile(r"^(libc\.so|libm\.so|libpthread\.so|libdl\.so|librt\.so|ld-linux|linux-vdso|libresolv\.so)")
-    all_elfs = []
-    while queue:
-        binary = queue.pop()
-        all_elfs.append(binary)
-        r = subprocess.run(["ldd", str(binary)], capture_output=True, text=True)
-        if "not found" in r.stdout:
-            raise ValueError(f"unresolved shared library in {binary}:\n{r.stdout}")
-        for line in r.stdout.splitlines():
-            match = re.search(r"^\s*(\S+)\s+=>\s+(/\S+)", line)
-            if not match:
-                continue
-            soname, source = match.groups()
-            if base.match(soname):
-                continue
-            digest = sha256(source)
-            if soname in copied:
-                if copied[soname] != digest:
-                    raise ValueError(f"conflicting bundled soname: {soname}")
-                continue
-            target = libpath / soname
+    def closure(label, primary, library_dir, extras=()):
+        copied, queue, all_elfs = {}, [], []
+        library_dir.mkdir(parents=True, exist_ok=True)
+        for name, (source, target) in primary.items():
+            target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
-            copied[soname] = digest
-            manifest["libraries"][soname] = {"source": source, "sha256": digest}
+            if target.read_bytes()[:4] != b"\x7fELF":
+                raise ValueError(f"requires a real executable rather than a shell wrapper: {source}")
+            manifest["tools"][name] = {"source": source, "sha256": sha256(source),
+                                      "packaged": str(target.relative_to(app))}
             queue.append(target)
-    for binary in all_elfs:
-        r = subprocess.run([patch, "--print-rpath", str(binary)], capture_output=True)
-        if r.returncode == 0:
-            relative = os.path.relpath(libpath, binary.parent)
-            subprocess.run([patch, "--set-rpath", "$ORIGIN/" + relative, str(binary)], check=True)
+        queue += list(extras)
+        while queue:
+            binary = queue.pop(); all_elfs.append(binary)
+            r = subprocess.run(["ldd", str(binary)], capture_output=True, text=True)
+            if "not found" in r.stdout:
+                raise ValueError(f"unresolved dependency in {binary}:\n{r.stdout}")
+            for line in r.stdout.splitlines():
+                match = re.search(r"^\s*(\S+)\s+=>\s+(/\S+)", line)
+                if not match:
+                    continue
+                soname, source = match.groups()
+                if base.match(soname):
+                    continue
+                digest = sha256(source)
+                if soname in copied:
+                    if copied[soname] != digest:
+                        raise ValueError(f"conflicting SONAME within {label}: {soname}")
+                    continue
+                target = library_dir / soname
+                shutil.copy2(source, target); copied[soname] = digest
+                manifest["libraries"][label + "/" + soname] = {"source": source, "sha256": digest}
+                queue.append(target)
+        for binary in all_elfs:
+            r = subprocess.run([patch, "--print-rpath", str(binary)], capture_output=True)
+            if r.returncode == 0:
+                relative = os.path.relpath(library_dir, binary.parent)
+                subprocess.run([patch, "--set-rpath", "$ORIGIN/" + relative, str(binary)], check=True)
+    closure("python", {"python3": (executables.pop("python3"), binpath / "python3")}, libpath,
+            list(pylib.rglob("*.so")) + list(native.glob("*.so")) + [native / "launcher"])
+    for name, source in executables.items():
+        private = app / "usr/tools" / name
+        closure(name, {name: (source, private / "bin" / name)}, private / "lib")
+        wrapper = binpath / name
+        wrapper.write_text('#!/bin/sh\nTGO_TOOL_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/../tools/' + name + '/bin" && pwd)\nexec "$TGO_TOOL_DIR/' + name + '" "$@"\n')
+        wrapper.chmod(0o755)
+    (app / "usr/tools/llvm-bolt/bin/perf2bolt").symlink_to("llvm-bolt")
+    (binpath / "perf2bolt").write_text('#!/bin/sh\nTGO_TOOL_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/../tools/llvm-bolt/bin" && pwd)\nexec "$TGO_TOOL_DIR/perf2bolt" "$@"\n')
+    (binpath / "perf2bolt").chmod(0o755)
     # Audit/ROI helpers copied into workload bundles must load against host libc.
     # QEMU's plugin is libc-only too; it needs no application-private libraries.
     apprun = app / "AppRun"
@@ -112,6 +121,7 @@ export PYTHONHOME="$TGO_APPDIR/usr"
 export PYTHONPATH="$TGO_APPDIR/usr"
 export PYTHONPLATLIBDIR=lib
 export TGO_RUNTIME_DIR="$TGO_APPDIR/usr/lib/tgo-runtime"
+export TGO_TOOL_ROOT="$TGO_APPDIR/usr/tools"
 exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
 ''')
     apprun.chmod(0o755)
