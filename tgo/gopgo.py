@@ -83,12 +83,17 @@ def correctness_fixture(go, env, root, timeout):
 def tune_go(args, root_exists=False):
     root = Path(args.output).absolute()
     root.mkdir(parents=True, exist_ok=root_exists)
-    if args.run:
-        raise ValueError("Go PGO training requires a workload command; perf.data is not a Go CPU profile")
-    command = command_path(args.command)
-    overrides = dict(item.split("=", 1) for item in args.env)
+    previous = Path(args.run).resolve() if args.run else None
+    prior_state = read_json(previous / "run.json") if previous else None
+    prior_profile = read_json(previous / "profile.json") if previous else None
+    if prior_state and (prior_state.get("backend") != "go-cpu" or prior_state.get("state") != "recorded"):
+        raise ValueError("Go PGO reuse requires a completed go-cpu capture")
+    command = command_path(args.command or (prior_state["command"] if prior_state else []))
+    overrides = dict(prior_state["env"]) if prior_state else {}
+    overrides.update(dict(item.split("=", 1) for item in args.env))
     base = workload_env(); base.update(overrides)
-    go = tool("go", args.go)
+    prior_go = str(Path(prior_state["toolchain"]["GOROOT"]) / "bin/go") if prior_state else None
+    go = tool("go", args.go or prior_go)
     if Path(command[0]).name == "go":
         if args.go:
             command[0] = go
@@ -119,29 +124,43 @@ def tune_go(args, root_exists=False):
             raise ValueError("Go tool adapter absent from this package; rebuild TGO")
         capture = root / "capture"; capture.mkdir()
         profiles = capture / "profiles"; profiles.mkdir()
-        training = adapter_env(base, runtime, compiler, version, "profile-" + original_sha[:16])
-        training.update(TGO_GO_PROFILE_DIR=str(profiles), TGO_GO_EXEC_LOG=str(capture / "tools.tsv"),
-                        GOCACHE=str(capture / "cache"))
         state = {"schema": "tgo.run.v1", "strategy": "go-compiler-pgo", "backend": "go-cpu",
                  "command": command, "cwd": os.getcwd(), "env": overrides, "state": "recording",
                  "validation": {"go_cache": args.go_cache}, "toolchain": info}
         write_json(capture / "run.json", state)
-        code, seconds, timed_out, digest = execute_trial(command, capture / "workload", training, state["cwd"], args.timeout)
-        state.update(returncode=code, seconds=seconds, timed_out=timed_out, stdout_sha256=digest)
-        if code or timed_out:
-            raise ValueError(f"Go profiling workload failed; inspect {capture / 'workload.stderr'}")
+        if previous:
+            if prior_profile["compiler_sha256"] != original_sha:
+                raise ValueError("Go CPU profiles belong to a different compiler")
+            for item in prior_profile["profiles"]:
+                path = Path(item["path"])
+                if sha256(path) != item["sha256"]:
+                    raise ValueError("raw Go CPU profile changed")
+                shutil.copy2(path, profiles / path.name)
+            state.update(returncode=0, training_origin=str(previous),
+                         training_manifest_sha256=sha256(previous / "profile.json"))
+        else:
+            training = adapter_env(base, runtime, compiler, version, "profile-" + original_sha[:16])
+            training.update(TGO_GO_PROFILE_DIR=str(profiles), TGO_GO_EXEC_LOG=str(capture / "tools.tsv"),
+                            GOCACHE=str(capture / "cache"))
+            code, seconds, timed_out, digest = execute_trial(command, capture / "workload", training, state["cwd"], args.timeout)
+            state.update(returncode=code, seconds=seconds, timed_out=timed_out, stdout_sha256=digest)
+            if code or timed_out:
+                raise ValueError(f"Go profiling workload failed; inspect {capture / 'workload.stderr'}")
         files = sorted(p for p in profiles.glob("*.pprof") if p.stat().st_size)
         if not files:
             raise ValueError("no compiler profiles produced; check selected --go and workload cache behavior")
         merged = capture / "merged.pprof"
-        merge = go_command(["tool", "pprof", "-proto", "-output", merged, *files], go, base, capture, "merge", args.timeout)
-        raw = go_command(["tool", "pprof", "-raw", merged], go, base, capture, "profile", args.timeout)
+        merge = go_command(["tool", "pprof", "-proto", "-symbolize=none", "-output", merged, *files], go, base, capture, "merge", args.timeout)
+        raw = go_command(["tool", "pprof", "-raw", "-symbolize=none", merged], go, base, capture, "profile", args.timeout)
         totals = profile_totals(Path(raw["stdout"]).read_text())
+        preprocessed = go_command(["tool", "preprofile", "-i", merged, "-o", capture / "profile.preprocessed"],
+                                 go, base, capture, "preprofile-check", args.timeout)
         if sha256(compiler) != original_sha:
             raise ValueError("original compiler changed during training")
         write_json(capture / "profile.json", {"schema": "tgo.go-profile.v1", "compiler_sha256": original_sha,
                    "profile": str(merged), "sha256": sha256(merged), "totals": totals,
-                   "profiles": [{"path": str(p), "sha256": sha256(p)} for p in files], "merge": merge})
+                   "profiles": [{"path": str(p), "sha256": sha256(p)} for p in files], "merge": merge,
+                   "metadata_validation": preprocessed})
         state.update(state="recorded", phase="complete")
         write_json(capture / "run.json", state)
         shutil.rmtree(capture / "cache", ignore_errors=True)

@@ -96,7 +96,8 @@ def main(argv=None):
         elif args.action == "tune":
             if args.top <= 0 or args.search_pairs <= 0 or args.validate <= 0:
                 p.error("top, search-pairs and validate must be >0")
-            if args.strategy == "go-compiler" or (args.strategy == "auto" and not args.run and args.command and Path(args.command[0]).name == "go"):
+            reuse_go = args.run and read_json(Path(args.run) / "run.json").get("backend") == "go-cpu"
+            if args.strategy == "go-compiler" or (args.strategy == "auto" and (reuse_go or (not args.run and args.command and Path(args.command[0]).name == "go"))):
                 from .gopgo import tune_go
                 result = tune_go(args)
             else:
