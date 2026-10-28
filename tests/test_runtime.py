@@ -8,6 +8,14 @@ from tgo.runtime import build_runtime, make_launcher
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_entry_carries_its_python_roi_helper(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d); build_runtime(root)
+            entry = root / "entry"
+            make_launcher(root, entry, ["/usr/bin/python3"], [], cwd=str(root))
+            output = subprocess.check_output([entry, "-c", "import tgo.roi;print(tgo.roi.__file__)"], text=True)
+            self.assertEqual(Path(output.strip()), root / "support/tgo/roi.py")
+
     def test_virtualenv_executable_keeps_its_prefix(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

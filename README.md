@@ -42,7 +42,7 @@ python3 -m tgo bind runs/attach -- ./server --same-arguments
 时间单位为秒。attach 使用 perf；QEMU 必须从启动时运行，不能事后 attach。
 使用 argv 启动，不隐式执行 shell。管道或重定向可显式传 `sh -c '...'`。
 
-Python 中可直接标记任意区间，导入模块需要已安装 TGO 或将项目加入 `PYTHONPATH`：
+Python 中可直接标记任意区间；采集和生成的入口会自动提供轻量 ROI helper：
 
 ```python
 from tgo.roi import region, emit_result

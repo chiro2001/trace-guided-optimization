@@ -16,6 +16,10 @@ def main():
     command = a.command[1:] if a.command[:1] == ["--"] else a.command
     if not command:
         p.error("Python script, -m module or -c code required")
+    if command[0] not in ("-m", "-c"):
+        sys.path.insert(0, str(Path(command[0]).resolve().parent))
+    else:
+        sys.path.insert(0, str(Path.cwd()))
     install_hook(a.hook)
     if command[0] == "-m":
         sys.argv = [command[1], *command[2:]]

@@ -11,6 +11,10 @@ NATIVE = Path(__file__).parent / "native"
 def build_runtime(out, qemu_header=None):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
+    support = out / "support/tgo"
+    support.mkdir(parents=True, exist_ok=True)
+    for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py"):
+        shutil.copy2(NATIVE.parent / name, support / name)
     shipped = os.environ.get("TGO_RUNTIME_DIR")
     if shipped:
         for name in ("libtgo_audit.so", "libtgo_roi.so", "launcher", "libtgo_qemu.so"):
@@ -60,7 +64,14 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     executable = next((r["optimized"] for r in images
                        if Path(r["original"]).resolve() == Path(command[0]).resolve()), command[0])
     checks = [p for r in images for p in (r["original"], r["optimized"])]
-    env = env or {}
+    command = list(command)
+    if len(command) > 3 and Path(command[1]).name == "python_entry.py" and command[2] == "--hook":
+        # A published entry must not depend on the capture directory's hook copy.
+        for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py"):
+            shutil.copy2(Path(command[1]).parent / name, out / "support/tgo" / name)
+        command[1] = str(out / "support/tgo/python_entry.py")
+    env = dict(env or {})
+    env["TGO_PYTHON_SUPPORT"] = str(out / "support")
     def string(s):
         b = os.fsencode(s)
         return struct.pack("<I", len(b)) + b

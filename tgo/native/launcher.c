@@ -36,6 +36,14 @@ int main(int argc,char **argv) {
     for(int i=1;i<argc;i++) args[n+(size_t)i-1]=argv[i];
     size_t ne=(size_t)number(4); if(ne>65536) bad();
     for(size_t i=0;i<ne;i++) { char *key=string(),*value=string(); if(setenv(key,value,1)) bad(); }
+    const char *support=getenv("TGO_PYTHON_SUPPORT");
+    if(support && *support) {
+        const char *old=getenv("PYTHONPATH");
+        size_t size=strlen(support)+(old?strlen(old):0)+2;
+        char *path=malloc(size); if(!path) bad();
+        snprintf(path,size,"%s%s%s",support,old&&*old?":":"",old?old:"");
+        if(setenv("PYTHONPATH",path,1)) bad(); free(path);
+    }
     int disabled=getenv("TGO_DISABLE") && !strcmp(getenv("TGO_DISABLE"),"1");
     size_t nc=(size_t)number(4); if(nc>1024) bad();
     for(size_t i=0;i<nc;i++) {

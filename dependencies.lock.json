@@ -12,7 +12,7 @@
   "python": {
     "version": "3.12.13",
     "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tar.xz",
-    "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
+    "sha256": "c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684"
   },
   "elfutils": {
     "version": "0.193",

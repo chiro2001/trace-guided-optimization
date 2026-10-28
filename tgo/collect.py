@@ -39,7 +39,7 @@ def record(args):
         if args.pid:
             raise ValueError("Python hooks require launch mode")
         support = runtime / "support/tgo"
-        support.mkdir(parents=True)
+        support.mkdir(parents=True, exist_ok=True)
         for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py"):
             shutil.copy2(Path(__file__).parent / name, support / name)
         command = [command[0], str(support / "python_entry.py"), "--hook", args.python_hook, "--", *command[1:]]
@@ -50,6 +50,7 @@ def record(args):
     # These are captured for replay; credentials and unrelated environment are never serialized.
     overrides = dict(item.split("=", 1) for item in args.env)
     env.update(overrides)
+    env["PYTHONPATH"] = str(runtime / "support") + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
     meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
             "branch_stack": args.branch_stack,
