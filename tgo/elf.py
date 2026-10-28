@@ -12,6 +12,7 @@ class ELF:
             raise ValueError(f"requires little-endian ELF64: {path}")
         h = struct.unpack_from("<16sHHIQQQIHHHHHH", self.data)
         self.type, self.machine = h[1:3]
+        self.entry = h[4]
         self.loads = []
         self.interpreter = None
         self.dynamic_tags = set()
@@ -58,4 +59,9 @@ class ELF:
                 "relocations": any(n.startswith((".rela.text", ".rel.text")) for n in self.sections),
                 "symbols": ".symtab" in self.sections, "go": any("gopclntab" in n or n == ".go.buildinfo" for n in self.sections),
                 "interpreter": self.interpreter,
+                "entry": self.entry,
                 "rpath_kind": "rpath" if 15 in self.dynamic_tags else "runpath" if 29 in self.dynamic_tags else None}
+
+
+def is_executable_image(row):
+    return bool(row["type"] == 2 or row["interpreter"] or row.get("entry", 0))

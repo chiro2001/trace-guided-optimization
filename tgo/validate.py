@@ -5,6 +5,7 @@ import statistics
 import subprocess
 import time
 from .util import read_json, write_json, workload_env
+from .elf import is_executable_image
 
 
 def validate(bundle, pairs=5, timeout=300, metric=None):
@@ -12,7 +13,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
     build = read_json(bundle / "build.json")
     state = read_json(Path(build["source_run"]) / "run.json")
     trials = []
-    expected = {r["optimized"] for r in build["images"] if r["input"]["interpreter"] is None}
+    expected = {r["optimized"] for r in build["images"] if not is_executable_image(r["input"])}
     equivalent = True
     for i in range(pairs):
         pair = {}

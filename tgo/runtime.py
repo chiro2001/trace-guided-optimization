@@ -63,6 +63,7 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     mapfile.write_text(''.join(f"{r['original']}\t{r['optimized']}\n" for r in images))
     executable = next((r["optimized"] for r in images
                        if Path(r["original"]).resolve() == Path(command[0]).resolve()), command[0])
+    needs_audit = any(Path(r["original"]).resolve() != Path(command[0]).resolve() for r in images)
     checks = [p for r in images for p in (r["original"], r["optimized"])]
     command = list(command)
     if len(command) > 3 and Path(command[1]).name == "python_entry.py" and command[2] == "--hook":
@@ -75,7 +76,7 @@ def make_launcher(out, entry, command, images, env=None, cwd=None):
     def string(s):
         b = os.fsencode(s)
         return struct.pack("<I", len(b)) + b
-    payload = b''.join(string(s) for s in (executable, str(audit) if images else "", str(mapfile), cwd or ""))
+    payload = b''.join(string(s) for s in (executable, str(audit) if needs_audit else "", str(mapfile), cwd or ""))
     payload += struct.pack("<I", len(command)) + b''.join(string(s) for s in command)
     payload += struct.pack("<I", len(env)) + b''.join(string(k) + string(v) for k, v in env.items())
     payload += struct.pack("<I", len(checks))

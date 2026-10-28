@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import hashlib
 import shlex
-from .elf import ELF
+from .elf import ELF, is_executable_image
 from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool, tool_env
 
@@ -43,6 +43,8 @@ def optimize(args):
         if args.image and not any(x == row["path"] or x == Path(row["path"]).name for x in args.image):
             continue
         reason = eligible(row)
+        if not reason and is_executable_image(row) and Path(row["path"]).resolve() != Path(state["command"][0]).resolve():
+            reason = "child executable needs an exec/toolchain adapter; loader redirection only applies to DSOs"
         if reason:
             skipped.append({"path": row["path"], "reason": reason})
         elif len(selected) < args.top:
