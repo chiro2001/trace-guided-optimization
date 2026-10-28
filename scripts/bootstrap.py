@@ -48,6 +48,7 @@ def unpack(name, prefix):
         dest = sources / top
         if not dest.exists():
             # Do not allow archive entries or symlinks to escape the source root.
+            members = []
             for m in tar.getmembers():
                 target = (sources / m.name).resolve()
                 if sources not in target.parents:
@@ -56,8 +57,12 @@ def unpack(name, prefix):
                     parent = target.parent if m.issym() else sources
                     linked = (parent / m.linkname).resolve()
                     if sources not in linked.parents:
+                        if name == "qemu" and m.name.endswith("roms/edk2/EmulatorPkg/Unix/Host/X11IncludeHack") and m.linkname == "/opt/X11/include":
+                            print("omit unused Darwin edk2 SDK symlink:", m.name, flush=True)
+                            continue
                         raise ValueError("unsafe source archive link")
-            tar.extractall(sources)
+                members.append(m)
+            tar.extractall(sources, members=members)
     return dest
 
 
@@ -69,7 +74,7 @@ def execute(command, cwd=None, env=None):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--prefix", type=Path, default=ROOT / "deps")
-    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "patchelf", "appimagetool"], default=["llvm", "qemu", "patchelf"])
+    p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "glib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf"])
     p.add_argument("--jobs", type=int, default=min(os.cpu_count() or 1, 8))
     p.add_argument("--download-only", action="store_true")
     a = p.parse_args()
@@ -95,6 +100,9 @@ def main():
         have_glib = subprocess.run(["pkg-config", "--exists", "glib-2.0>=2.66"], env=env).returncode == 0
         if not have_glib:
             components = ["glib", *components]
+    if "perf" in components and "elfutils" not in components:
+        if subprocess.run(["pkg-config", "--exists", "libelf"], env=env).returncode:
+            components = ["elfutils", *components]
     for component in components:
         if component == "appimagetool":
             import platform
@@ -142,6 +150,26 @@ def main():
                 shutil.copy2(build / name, install / "bin" / name)
             (install / "include").mkdir(exist_ok=True)
             shutil.copy2(source / "include/qemu/qemu-plugin.h", install / "include/qemu-plugin.h")
+        elif component == "elfutils":
+            build.mkdir(exist_ok=True)
+            elfenv = env.copy()
+            elfenv["CPPFLAGS"] = "-I" + str(install / "include")
+            elfenv["LDFLAGS"] = "-L" + str(install / "lib") + " -Wl,-rpath," + str(install / "lib")
+            execute([source / "configure", "--prefix=" + str(install), "--libdir=" + str(install / "lib"),
+                     "--disable-debuginfod", "--disable-libdebuginfod", "--disable-nls",
+                     "--without-bzlib", "--without-lzma", "--without-zstd"], cwd=build, env=elfenv)
+            execute(["make", "-j", a.jobs], cwd=build, env=elfenv)
+            execute(["make", "install"], cwd=build, env=elfenv)
+        elif component == "perf":
+            build.mkdir(exist_ok=True)
+            flags = ["NO_LIBPERL=1", "NO_LIBPYTHON=1", "NO_SLANG=1", "NO_GTK2=1",
+                     "NO_LIBUNWIND=1", "NO_LIBDW_DWARF_UNWIND=1", "NO_DWARF=1",
+                     "NO_LIBBPF=1", "NO_LIBTRACEEVENT=1", "NO_LIBNUMA=1", "NO_LIBCAP=1",
+                     "NO_LIBCRYPTO=1", "NO_LIBZSTD=1", "NO_LIBBFD=1", "NO_JVMTI=1",
+                     "NO_LIBPFM4=1", "WERROR=0", "EXTRA_CFLAGS=-I" + str(install / "include"),
+                     "EXTRA_LDFLAGS=-L" + str(install / "lib") + " -Wl,-rpath," + str(install / "lib")]
+            execute(["make", "-C", source / "tools/perf", "O=" + str(build) + "/", "-j", a.jobs, *flags], env=env)
+            shutil.copy2(build / "perf", install / "bin/perf")
         elif component == "patchelf":
             build.mkdir(exist_ok=True)
             execute([source / "configure", "--prefix=" + str(install)], cwd=build, env=env)

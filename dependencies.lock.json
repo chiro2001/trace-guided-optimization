@@ -14,6 +14,16 @@
     "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tar.xz",
     "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
   },
+  "elfutils": {
+    "version": "0.193",
+    "url": "https://sourceware.org/elfutils/ftp/0.193/elfutils-0.193.tar.bz2",
+    "sha256": "7857f44b624f4d8d421df851aaae7b1402cfe6bcdd2d8049f15fc07d3dde7635"
+  },
+  "perf": {
+    "version": "6.14",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.tar.xz",
+    "sha256": "a294b683e7b161bb0517bb32ec7ed1d2ea7603dfbabad135170ed12d00c47670"
+  },
   "patchelf": {
     "version": "0.18.0",
     "url": "https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.bz2",
