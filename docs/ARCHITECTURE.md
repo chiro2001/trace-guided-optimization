@@ -49,6 +49,12 @@ perf 原始文件保留 mmap/build-id 生命周期信息，由 perf2bolt 聚合�
 loader、perf buildid-list/report，attach 可补充 `/proc/PID/maps`。ELF 身份不符拒绝。
 SPE 和采样画像是统计数据，不宣称具有完整动态路径或无丢样的精度。
 
+SPE 另有 `perf --dlfilter` 兼容桥：使用 perf 的 mmap 生命周期和 object-code API，
+按真实 PC 校验 AArch64 分支指令，将已解码的源/目标转为单条 brstack。它不把采样
+点挪到附近分支，统计无法读取和不支持的指令。未提供的预测位保持未知，不伪造
+已预测/误预测计数；BOLT 日志也会提示缺少该位。端到端结果与转换覆盖率单独验证，
+不单凭 perf 的版本号判断兼容性。公开 dlfilter API 头文件取自锁定的 Linux 6.14。
+
 ## 优化政策
 
 有重定位时启用函数重排；没有重定位时默认保留函数位置，仅在 BOLT 支持的范围

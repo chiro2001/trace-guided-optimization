@@ -131,6 +131,26 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
     (app / "tgo.desktop").write_text("[Desktop Entry]\nType=Application\nName=TGO\nExec=AppRun\nIcon=tgo\nCategories=Development;\nTerminal=true\n")
     (app / "tgo.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><rect width="128" height="128" rx="24" fill="#15394a"/><path d="M20 85L50 55 72 70 108 30" fill="none" stroke="#64ddad" stroke-width="12"/></svg>')
     shutil.copy2(ROOT / "dependencies.lock.json", app / "dependencies.lock.json")
+    notices = app / "usr/share/doc/tgo/licenses"
+    notices.mkdir(parents=True)
+    source_root = ROOT / "deps/sources"
+    source_dirs = list(source_root.iterdir()) if source_root.exists() else []
+    for tree in list(source_dirs):
+        sub = tree / "subprojects"
+        if sub.is_dir():
+            source_dirs += [p for p in sub.iterdir() if p.is_dir() and p.name.startswith(("pcre2", "libffi", "zlib"))]
+    manifest["license_files"] = []
+    for tree in source_dirs:
+        files = {f for pattern in ("LICENSE*", "LICENCE*", "COPYING*", "COPYRIGHT*") for f in tree.glob(pattern) if f.is_file()}
+        if tree.name.startswith("zlib") and (tree / "README").exists():
+            files.add(tree / "README")
+        if tree.name.startswith("linux-"):
+            files.update(f for f in (tree / "LICENSES/preferred").glob("GPL-2.0") if f.is_file())
+        for f in files:
+            target = notices / tree.name / f.name
+            target.parent.mkdir(exist_ok=True)
+            shutil.copy2(f, target)
+            manifest["license_files"].append(str(target.relative_to(app)))
     if (ROOT / "docs/THIRD_PARTY.md").exists():
         shutil.copy2(ROOT / "docs/THIRD_PARTY.md", app / "THIRD_PARTY.md")
     manifest["glibc_build_host"] = subprocess.check_output(["ldd", "--version"], text=True).splitlines()[0]

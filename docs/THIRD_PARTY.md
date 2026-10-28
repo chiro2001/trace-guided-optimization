@@ -11,7 +11,8 @@
 | GLib（QEMU 构建依赖） | GNOME | LGPL-2.1-or-later |
 | patchelf | NixOS/patchelf | GPL-3.0-or-later |
 | AppImage 工具/runtime | AppImage | 以所选 release 的许可文件为准 |
-| perf（可选） | Linux kernel tools/perf | 以对应 Linux 源码目录许可为准 |
+| perf / dlfilter 公共 API | Linux kernel tools/perf | GPL-2.0，保留 API 头部版权与许可 |
+| libffi / PCRE2 / zlib / elfutils | 各上游及 GLib wrap | 对应许可文件随源码构建和打包保留 |
 
 AppImage 构建清单记录每个实际 ELF 依赖的来源路径和 SHA；系统 glibc 不捆绑。
 重新分发时应附带所采用的 GPL/LGPL 对应源码、补丁和构建说明，不能仅根据本表
