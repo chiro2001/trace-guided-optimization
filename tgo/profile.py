@@ -61,25 +61,26 @@ def qemu_profile(root, allow_truncated=False):
             if path not in images:
                 images[path] = {**cache[path].metadata(), "counts": Counter(), "dynamic_instructions": 0}
             return images[path]
-        for line in trace.open():
-            f = line.split("\t")
-            if f[0] == "H":
-                total += int(f[1]); truncated |= bool(int(f[2])); windows += int(f[3]); continue
-            kind, a, b, n = f[0], int(f[1], 16), int(f[2], 16), int(f[3])
-            src, dst = locate(a), locate(b)
-            if kind == "N":
-                if src:
-                    image(src[0])["dynamic_instructions"] += n
-                else:
-                    unmapped += n
-            elif kind in ("T", "F"):
-                if src and dst and src[0] == dst[0]:
-                    image(src[0])["counts"]["F", src[1], dst[1]] += n
-            elif kind == "B":
-                if src:
-                    image(src[0])["counts"]["B", src[1], dst[1] if dst and dst[0] == src[0] else 0] += n
-                if dst and (not src or src[0] != dst[0]):
-                    image(dst[0])["counts"]["B", 0, dst[1]] += n
+        with trace.open() as handle:
+            for line in handle:
+                f = line.split("\t")
+                if f[0] == "H":
+                    total += int(f[1]); truncated |= bool(int(f[2])); windows += int(f[3]); continue
+                kind, a, b, n = f[0], int(f[1], 16), int(f[2], 16), int(f[3])
+                src, dst = locate(a), locate(b)
+                if kind == "N":
+                    if src:
+                        image(src[0])["dynamic_instructions"] += n
+                    else:
+                        unmapped += n
+                elif kind in ("T", "F"):
+                    if src and dst and src[0] == dst[0]:
+                        image(src[0])["counts"]["F", src[1], dst[1]] += n
+                elif kind == "B":
+                    if src:
+                        image(src[0])["counts"]["B", src[1], dst[1] if dst and dst[0] == src[0] else 0] += n
+                    if dst and (not src or src[0] != dst[0]):
+                        image(dst[0])["counts"]["B", 0, dst[1]] += n
     if not total:
         raise ValueError("no instructions recorded; check ROI markers and QEMU logs")
     if truncated and not allow_truncated:
