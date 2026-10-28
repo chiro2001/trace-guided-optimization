@@ -24,6 +24,9 @@ def perf_profile(root, perf, pid=None):
     recorded_ids = {}
     for line in ids.splitlines():
         parts = line.split(None, 1)
+        if line.strip().startswith("/"):
+            paths.add(line.strip())
+            continue
         if len(parts) == 2 and parts[1].startswith("/"):
             paths.add(parts[1]); recorded_ids[parts[1]] = parts[0]
     report = subprocess.run([perf, "report", "-v", "-i", str(root / "perf.data"), "--stdio",
@@ -39,6 +42,7 @@ def perf_profile(root, perf, pid=None):
             for field in f[1:]:
                 if field.strip().startswith("/"):
                     weights[field.strip()] = float(f[0].strip().rstrip("%"))
+    paths.update(weights)
     rows = []
     for path in sorted(paths):
         try:

@@ -106,9 +106,11 @@ export TGO_PACKAGED=1
 export TGO_SAVED_PATH="${PATH-__UNSET__}"
 export TGO_SAVED_PYTHONHOME="${PYTHONHOME-__UNSET__}"
 export TGO_SAVED_PYTHONPATH="${PYTHONPATH-__UNSET__}"
+export TGO_SAVED_PYTHONPLATLIBDIR="${PYTHONPLATLIBDIR-__UNSET__}"
 export PATH="$TGO_APPDIR/usr/bin:${PATH-}"
 export PYTHONHOME="$TGO_APPDIR/usr"
 export PYTHONPATH="$TGO_APPDIR/usr"
+export PYTHONPLATLIBDIR=lib
 export TGO_RUNTIME_DIR="$TGO_APPDIR/usr/lib/tgo-runtime"
 exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
 ''')

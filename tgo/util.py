@@ -64,7 +64,7 @@ def command_path(command):
 def workload_env():
     env = os.environ.copy()
     if env.get("TGO_PACKAGED"):
-        for k in ("PYTHONHOME", "PYTHONPATH", "PATH"):
+        for k in ("PYTHONHOME", "PYTHONPATH", "PYTHONPLATLIBDIR", "PATH"):
             saved = env.pop("TGO_SAVED_" + k, "__UNSET__")
             if saved == "__UNSET__":
                 env.pop(k, None)
