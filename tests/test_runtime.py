@@ -6,9 +6,22 @@ import unittest
 import venv
 import shutil
 from tgo.runtime import build_runtime, make_launcher
+from tgo.util import sha256
 
 
 class RuntimeTests(unittest.TestCase):
+    def test_entry_rejects_stale_image_identity_before_publication(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);build_runtime(root)
+            original=root/"original";optimized=root/"optimized"
+            original.write_bytes(b"original");optimized.write_bytes(b"optimized")
+            image={"original":str(original),"optimized":str(optimized),
+                   "input":{"sha256":sha256(original)},"output":{"sha256":sha256(optimized)}}
+            original.write_bytes(b"new original")
+            with self.assertRaisesRegex(ValueError,"before entry publication"):
+                make_launcher(root,root/"entry",["/usr/bin/true"],[image])
+            self.assertFalse((root/"entry").exists())
+
     def test_entry_carries_its_python_roi_helper(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d); build_runtime(root)

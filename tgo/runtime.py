@@ -86,11 +86,19 @@ def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=(
     payload += struct.pack("<I", len(command)) + b''.join(string(s) for s in command)
     payload += struct.pack("<I", len(env)) + b''.join(string(k) + string(v) for k, v in env.items())
     payload += struct.pack("<I", len(checks))
+    expected = {}
+    for row in images:
+        for path_key, metadata_key in (("original", "input"), ("optimized", "output")):
+            if row.get(metadata_key, {}).get("sha256"):
+                expected[row[path_key]] = row[metadata_key]["sha256"]
     for path in checks:
         st = Path(path).stat()
+        digest = sha256(path)
+        if path in expected and digest != expected[path]:
+            raise ValueError(f"ELF changed before entry publication: {path}")
         payload += string(str(path)) + struct.pack("<qqqQQ", st.st_size,
             st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev)
-        payload += bytes.fromhex(sha256(path))
+        payload += bytes.fromhex(digest)
     template = (out / "launcher").read_bytes()
     if b"TGO_LAUNCHER_ABI_2\0" not in template:
         raise ValueError("runtime launcher ABI mismatch; rebuild TGO and unset an older TGO_RUNTIME_DIR")
