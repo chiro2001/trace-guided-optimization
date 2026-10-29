@@ -193,6 +193,8 @@ def build_candidate(ctx, candidate, extra_gc="", extra_ld="", layout=False, layo
         nm = go_command(["tool", "nm", "-size", "-sort", "address", optimized],
                         ctx.go, ctx.base, candidate, "layout-addresses", ctx.timeout)
         layout_info["verification"] = layout_report(candidate / "layout.tsv", heat, Path(nm["stdout"]).read_text())
+        if layout_runtime and any(name.startswith("runtime.") for name in heat) and not layout_info["verification"]["packages"].get("runtime"):
+            raise ValueError("runtime layout requested but no profiled runtime functions matched the final ELF")
         write_json(candidate / "layout.json", layout_info)
     actual_version = subprocess.check_output([optimized, "-V=full"], env=ctx.base, text=True).strip()
     if actual_version != ctx.version:

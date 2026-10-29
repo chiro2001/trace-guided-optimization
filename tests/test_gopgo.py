@@ -40,6 +40,8 @@ class GoToolAdapter(unittest.TestCase):
                     self.assertEqual(report["matched_symbols"], 4 if runtime == "1" else 2)
                     self.assertEqual(report["final_address_order_inversions"], 0)
                     self.assertGreater(report["moved_symbols"], 0)
+                    if runtime == "1":
+                        self.assertGreater(report["runtime_moved_symbols"], 0)
 
     def test_cache_identity_replaces_compiler_and_disable_uses_original(self):
         with tempfile.TemporaryDirectory() as d:

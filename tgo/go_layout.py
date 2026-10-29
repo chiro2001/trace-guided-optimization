@@ -60,17 +60,13 @@ func (l *Loader) tgoOrderPackageText(libs []*sym.Library) {
         runtimePkg := lib.Pkg == "runtime" || strings.HasPrefix(lib.Pkg, "internal/runtime/")
         if (runtimePkg && os.Getenv("TGO_GO_LAYOUT_RUNTIME") != "1") ||
             strings.HasPrefix(lib.Pkg, "crypto/internal/fips140") { continue }
-        ordinary := true
-        for _, s := range lib.Textp {
-            if l.SymType(s) != sym.STEXT { ordinary = false; break }
-        }
-        if !ordinary { continue }
         original := make(map[Sym]int, len(lib.Textp))
         for i, s := range lib.Textp { original[s] = i }
         var slots []int
         var ordered []Sym
         for i, s := range lib.Textp {
-            if strings.HasPrefix(l.SymName(s), lib.Pkg+".") && (!runtimePkg || !l.IsFromAssembly(s)) {
+            if l.SymType(s) == sym.STEXT && strings.HasPrefix(l.SymName(s), lib.Pkg+".") &&
+                (!runtimePkg || !l.IsFromAssembly(s)) {
                 slots = append(slots, i)
                 ordered = append(ordered, s)
             }
@@ -130,6 +126,7 @@ def layout_report(path, heat, nm_text):
                      for group in packages.values() for a, b in zip(group, group[1:]))
     result = {"eligible_symbols": len(rows), "profile_symbols": len(heat), "matched_symbols": len(matched),
         "moved_symbols": sum(r["before"] != r["after"] for r in rows),
+        "runtime_moved_symbols": sum(r["before"] != r["after"] and r["package"] == "runtime" for r in rows),
         "ambiguous_profile_names": sorted(ambiguous),
         "matched_edge_endpoint_weight": sum(heat[r["name"]] for r in matched),
         "total_edge_endpoint_weight": sum(heat.values()), "final_address_order_inversions": inversions,
