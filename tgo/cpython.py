@@ -44,8 +44,20 @@ def source_archive(version,args):
 
 def extract(archive,directory):
     directory.mkdir()
-    with tarfile.open(archive) as handle:
-        handle.extractall(directory,filter='data')
+    # The locked archive was verified before this call. Minimal packaged
+    # Python builds need not include _lzma; use the build host's tar/xz tools
+    # in that case, alongside its already-required GCC and make.
+    try:
+        import lzma
+        python_xz = True
+    except ImportError:
+        python_xz = False
+    if python_xz:
+        with tarfile.open(archive) as handle:
+            handle.extractall(directory,filter='data')
+    else:
+        subprocess.run([tool('tar'),'--extract','--file',str(archive),'--directory',str(directory),
+                        '--no-same-owner','--no-same-permissions'],env=tool_env(),check=True,timeout=120)
     roots=list(directory.iterdir())
     if len(roots)!=1 or not (roots[0]/'configure').is_file():raise ValueError('unexpected CPython source archive')
     return roots[0]
