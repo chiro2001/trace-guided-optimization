@@ -22,6 +22,30 @@ def runtime_archive():
     return next((Path(p).resolve() for p in candidates if p and Path(p).is_file()), None)
 
 
+def archive_member(path, name):
+    data=Path(path).read_bytes()
+    if not data.startswith(b'!<arch>\n'):
+        raise ValueError('not a static archive')
+    position=8;strings=b'';matches=[]
+    while position<len(data):
+        header=data[position:position+60]
+        if len(header)!=60 or header[58:60]!=b'`\n':raise ValueError('truncated archive header')
+        size=int(header[48:58]);label=header[:16].decode().strip()
+        content=data[position+60:position+60+size]
+        if len(content)!=size:raise ValueError('truncated archive member')
+        if label=='//':strings=content
+        elif label not in ('/','/SYM64/'):
+            if label.startswith('#1/'):
+                length=int(label[3:]);label=content[:length].decode().rstrip('\0');content=content[length:]
+            elif label.startswith('/') and label[1:].isdigit():
+                label=strings[int(label[1:]):].split(b'/\n',1)[0].decode()
+            else:label=label.rstrip('/')
+            if label==name:matches.append(content)
+        position+=60+size+(size%2)
+    if len(matches)!=1:raise ValueError('missing or duplicate archive member: '+name)
+    return matches[0]
+
+
 def runtime_hooks(object_path, library):
     obj, linked = ELF(object_path), ELF(library)
     if obj.machine != 183 or linked.machine != 183:
@@ -77,7 +101,7 @@ def profile_python(args, image, state, directory):
     if not binary.metadata()['relocations']:
         raise ValueError('native instrumentation requires retained relocations')
     runtime_object=directory/'instr.cpp.o'
-    runtime_object.write_bytes(subprocess.check_output([tool('ar'),'p',str(archive),'instr.cpp.o'],env=tool_env()))
+    runtime_object.write_bytes(archive_member(archive,'instr.cpp.o'))
     raw=directory/'instrumented.raw.so';instrumented=directory/source.name
     command=[tool('llvm-bolt'),source,'-instrument','-instrumentation-file='+str(directory/'excluded-process-exit.fdata'),
              '-runtime-instrumentation-lib='+str(archive),'-o',raw,'-thread-count=4']

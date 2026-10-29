@@ -33,6 +33,8 @@ optimize|tune)
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_TRAIN_RUNS-}" ]; then set -- --train-runs "$TGO_TRAIN_RUNS" "$@"; fi
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_STRATEGY-}" ]; then set -- --strategy "$TGO_STRATEGY" "$@"; fi
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_BUILD_JOBS-}" ]; then set -- --build-jobs "$TGO_BUILD_JOBS" "$@"; fi
+    if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_PYTHON_BUILD-}" ]; then set -- --python-build "$TGO_PYTHON_BUILD" "$@"; fi
+    if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_LIBRARY_CAPTURE-}" ]; then set -- --library-capture "$TGO_LIBRARY_CAPTURE" "$@"; fi
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_IMAGE_SEARCH-}" ]; then set -- --image-search "$TGO_IMAGE_SEARCH" "$@"; fi
     if [ -n "${TGO_IMAGE_FILTER-}" ]; then
         TGO_PREVIOUS_IFS=$IFS

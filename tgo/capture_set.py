@@ -37,7 +37,7 @@ def workload_contract(state):
         if window is None:
             raise ValueError("time-window capture lacks recorded ROI bounds")
     return {"command": command, "cwd": state["cwd"], "env": state["env"], "roi": roi, "roi_window": window,
-            "python_hook": hook,
+            "python_hook": hook, "roi_window_limit": state.get("roi_window_limit", 0),
             "training_images": [{"original": r["original"], "optimized": r["optimized"],
                 "input_sha256": r["input"]["sha256"], "output_sha256": r["output"]["sha256"]}
                 for r in state.get("training_images", [])]}

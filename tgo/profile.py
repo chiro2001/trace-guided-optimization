@@ -4,7 +4,7 @@ from bisect import bisect_right
 import hashlib
 from pathlib import Path
 from .elf import ELF
-from .util import write_json, sha256
+from .util import write_json, sha256, read_json
 
 
 def qemu_profile(root, allow_truncated=False):
@@ -29,7 +29,6 @@ def qemu_profile(root, allow_truncated=False):
                 captures.append(empty)
                 continue
         if not imagefile.exists():
-            from .util import read_json
             command = read_json(root / "run.json")["command"]
             binary = ELF(command[0])
             if binary.type == 2 and binary.interpreter is None:
@@ -118,5 +117,7 @@ def qemu_profile(root, allow_truncated=False):
               "captures": captures,
               "quality": {"kind": "dynamic-tb-counts", "hardware_frontend_counters": False,
                           "scope": "QEMU process and threads; native exec children excluded"}}
+    if (root / "run.json").exists():
+        result["quality"]["roi_window_limit"] = read_json(root / "run.json").get("roi_window_limit", 0)
     write_json(root / "profile.json", result)
     return result

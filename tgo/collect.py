@@ -72,6 +72,8 @@ def record(args, training_images=()):
                      "perf_probe": d["perf_probe"], "spe_probe": d["spe_probe"]}
     if args.pid and backend == "qemu":
         raise ValueError("perf PMU access unavailable; attach requires perf permissions")
+    if getattr(args, "max_roi_windows", 0) and backend != "qemu":
+        raise ValueError("max-roi-windows currently applies to QEMU marker recording")
     runtime = build_runtime(root / "runtime", args.qemu_header if backend == "qemu" else None)
     user_command = command[:]
     if args.python_hook:
@@ -104,6 +106,7 @@ def record(args, training_images=()):
             "branch_stack": args.branch_stack,
             "automatic_backend": automatic,
             "started_unix": time.time()}
+    meta["roi_window_limit"] = getattr(args, "max_roi_windows", 0)
     if training_images:
         meta["training_images"] = list(training_images)
     write_json(root / "run.json", meta)
@@ -120,6 +123,10 @@ def record(args, training_images=()):
                 raise ValueError("QEMU plugin header required: --qemu-header or TGO_QEMU_HEADER; bootstrap downloads it")
             qemu = tool("qemu-" + platform.machine(), args.qemu)
             plugin = f"{runtime / 'libtgo_qemu.so'},out={root / 'capture'},roi={args.roi},limit={args.max_insns}"
+            if getattr(args, "max_roi_windows", 0):
+                if args.roi != "marker":
+                    raise ValueError("limited QEMU ROI windows require marker mode")
+                plugin += f",windows={args.max_roi_windows}"
             if "," in str(root):
                 raise ValueError("QEMU output directory cannot contain a comma")
             launch = [qemu, "-plugin", plugin]

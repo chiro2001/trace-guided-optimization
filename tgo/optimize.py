@@ -19,6 +19,8 @@ def eligible(row, allow_stripped=False):
     name = Path(row["path"]).name
     if row["go"]:
         return "Go pclntab/stack maps require a Go-aware rewriter; layout rewrite disabled"
+    if row.get("profile_unavailable"):
+        return "no compatible object profile in this hybrid training set"
     if name.startswith(("ld-linux", "ld-musl", "libc.so", "libpthread.so", "libdl.so", "libtgo_")):
         return "loader/runtime support image excluded"
     if not row["symbols"] and not allow_stripped:
@@ -97,7 +99,7 @@ def image_policy(args, row, capabilities):
 
 def aggregate_environment(out, profile, result):
     env = tool_env()
-    if profile["backend"] == "qemu":
+    if profile["backend"] in ("qemu", "hybrid"):
         return env
     perf = tool("perf")
     helper = out / "tools"; helper.mkdir()
@@ -151,6 +153,13 @@ def aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env)
         shutil.copy2(row["native_fdata"], fdata)
         return fdata, {"strategy": "native-bolt-roi-edges", "manifest": row["native_profile"],
                        "manifest_sha256": row["native_profile_sha256"], "sha256": sha256(fdata)}
+    if row.get("profile_backend") == "qemu":
+        verify_identity(row["preaggregate"], row["preaggregate_sha256"])
+        fdata, record = aggregate_observation(args, row, state, "qemu", image_dir, policy, aggregate_env)
+        if not fdata.exists() or not fdata.stat().st_size:
+            raise ValueError("QEMU object profile emitted no BOLT counts")
+        return fdata, {"strategy": "independent-qemu-object-profile", "source_run": row["profile_source_run"],
+                       "preaggregate_sha256": row["preaggregate_sha256"], "aggregation": record}
     inputs = observations(profile, row)
     if not inputs:
         raise ValueError(f"no positive observations for {row['path']}")
@@ -242,7 +251,7 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
               "policy": {**policy, "bolt_sha256": sha256(policy["bolt"]), "perf2bolt_sha256": sha256(policy["perf2bolt"])}}
     if binding:
         result.update(binding=binding, recipe="eager-v12", full_function_scope=True)
-    if profile["backend"] == "spe" and not row.get("native_fdata"):
+    if profile["backend"] == "spe" and not row.get("native_fdata") and row.get("profile_backend") != "qemu":
         result["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
     return result
 
@@ -267,8 +276,13 @@ def optimize(args):
               "workload": {k: state[k] for k in ("command", "cwd", "env")}}
     write_json(out / "build.json", result)
     try:
+        if profile.get("baseline_capture_ref"):
+            from .hybrid import verify_reference
+            verify_reference(profile["baseline_capture_ref"])
         if profile.get("schema") == CAPTURE_SET:
             verified_sources(profile)
+        if profile.get("library_capture_ref"):
+            verified_sources({"sources": [profile["library_capture_ref"]]})
         if profile.get("raw_data"):
             verify_identity(profile["raw_data"]["path"], profile["raw_data"]["sha256"])
         for row in selected:
@@ -307,6 +321,10 @@ def optimize(args):
                 verify_identity(row["native_profile"], row["native_profile_sha256"])
         if profile.get("schema") == CAPTURE_SET:
             verified_sources(profile)
+        if profile.get("library_capture_ref"):
+            verified_sources({"sources": [profile["library_capture_ref"]]})
+        if profile.get("baseline_capture_ref"):
+            verify_reference(profile["baseline_capture_ref"])
         if not result["images"]:
             raise ValueError("no hot ELF images were rewritten; see build.json skipped and failed_images")
         verify_images(result["images"])

@@ -16,6 +16,7 @@ static Count *counts[65536];
 static pthread_mutex_t lock=PTHREAD_MUTEX_INITIALIZER;
 static CPU cpus[4096];
 static uint64_t insns,limit=1000000000,windows;
+static uint64_t window_limit;
 static int whole=1,truncated;
 static const char *output;
 static int getpid_nr;
@@ -77,7 +78,12 @@ static void syscall_cb(
 #endif
     if(num!=getpid_nr || cpu>=4096) return;
     pthread_mutex_lock(&lock);
-    if(a1==UINT64_C(0x51554d4153544152)) { cpus[cpu].active=1; cpus[cpu].valid=0; windows++; qemu_plugin_u64_set(active_entry,cpu,1); }
+    if(a1==UINT64_C(0x51554d4153544152)) {
+        int collect=!window_limit || windows<window_limit;
+        cpus[cpu].active=collect; cpus[cpu].valid=0;
+        if(collect) windows++;
+        qemu_plugin_u64_set(active_entry,cpu,collect);
+    }
     if(a1==UINT64_C(0x51554d4153544f50)) {
         if(cpus[cpu].valid) add('F',cpus[cpu].run_start,cpus[cpu].prev.end,1);
         cpus[cpu].active=0; cpus[cpu].valid=0; qemu_plugin_u64_set(active_entry,cpu,0);
@@ -106,6 +112,7 @@ QEMU_PLUGIN_EXPORT int qemu_plugin_install(qemu_plugin_id_t id,const qemu_info_t
         if(!strncmp(argv[i],"out=",4)) output=strdup(argv[i]+4);
         else if(!strcmp(argv[i],"roi=marker")) whole=0;
         else if(!strncmp(argv[i],"limit=",6)) limit=strtoull(argv[i]+6,NULL,10);
+        else if(!strncmp(argv[i],"windows=",8)) window_limit=strtoull(argv[i]+8,NULL,10);
         else return -1;
     }
     active_score=qemu_plugin_scoreboard_new(sizeof(uint64_t));

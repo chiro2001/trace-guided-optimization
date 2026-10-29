@@ -55,6 +55,25 @@ def main():
     manifest["source_dirty"] = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip())
     manifest["build_input_sha256"] = snapshot
     manifest["dependency_lock_sha256"] = sha256(ROOT / "dependencies.lock.json")
+    # Optional compiler adapters use the same pinned public sources offline.
+    # The adapter still checks for its target GCC/make prerequisites.
+    source_archive = fetch("python-gzip", ROOT / "deps")
+    source_dir = app / "usr/share/tgo/sources"
+    source_dir.mkdir(parents=True)
+    packaged_source = source_dir / source_archive.name
+    shutil.copy2(source_archive, packaged_source)
+    source_lock = json.loads((ROOT / "dependencies.lock.json").read_text())["python-gzip"]
+    if sha256(packaged_source) != source_lock["sha256"]:
+        raise ValueError("packaged CPython source changed during copy")
+    from tgo.instrument import runtime_archive
+    archive = runtime_archive()
+    if archive is None:
+        raise ValueError("native BOLT profiling runtime missing; rebuild the LLVM SDK")
+    runtime_dir = app / "usr/lib/tgo-bolt"; runtime_dir.mkdir(parents=True)
+    shutil.copy2(archive, runtime_dir / archive.name)
+    manifest["compiler_inputs"] = {
+        "python_source": {"packaged": str(packaged_source.relative_to(app)), "sha256": sha256(packaged_source)},
+        "bolt_runtime": {"packaged": str((runtime_dir / archive.name).relative_to(app)), "sha256": sha256(archive)}}
     native = app / "usr/lib/tgo-runtime"
     build_runtime(native, a.qemu_header)
     if not (native / "libtgo_qemu.so").exists():

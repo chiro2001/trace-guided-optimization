@@ -164,6 +164,10 @@ def main():
             p2b = target_bin / "perf2bolt"
             if not p2b.exists():
                 p2b.symlink_to("llvm-bolt")
+            runtime = build / "lib/libbolt_rt_instr.a"
+            if runtime.exists() and not recovery:
+                (install / "lib").mkdir(exist_ok=True)
+                shutil.copy2(runtime, install / "lib/libbolt_rt_instr.a")
         elif component == "zlib":
             execute(["cmake", "-S", source, "-B", build, "-G", "Ninja",
                      "-DCMAKE_INSTALL_PREFIX=" + str(install), "-DCMAKE_INSTALL_LIBDIR=lib",

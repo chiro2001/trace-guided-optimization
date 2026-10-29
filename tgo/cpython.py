@@ -28,7 +28,9 @@ def source_archive(version,args):
     name=locked['url'].rsplit('/',1)[-1]
     explicit=getattr(args,'python_source',None)
     cached=project/'deps/downloads'/name
+    packaged=lock_root/'usr/share/tgo/sources'/name
     if explicit:path=Path(explicit).resolve()
+    elif packaged.exists():path=packaged
     elif cached.exists():path=cached
     else:
         cache=Path(os.environ.get('TGO_SOURCE_CACHE',str(Path.home()/'.cache/tgo/sources')))
@@ -147,6 +149,10 @@ def tune_cpython(args,source):
     candidates=[r for r in profile['images'] if Path(r['path']).name.startswith('libpython')]
     if len(candidates)!=1:raise ValueError('CPython adapter needs exactly one identified libpython')
     original=candidates[0]['path']
+    from .hybrid import reference,verify_reference
+    from .optimize import verify_identity
+    verify_reference(reference(source))
+    verify_identity(original,candidates[0]['sha256'])
     root=Path(args.output).absolute();root.mkdir(parents=True,exist_ok=False)
     result={'schema':'tgo.tune.v1','strategy':'cpython-pgo-lto','state':'building','selected':'baseline','baseline_capture':str(source)}
     write_json(root/'tune.json',result)
@@ -156,15 +162,16 @@ def tune_cpython(args,source):
             build_path=Path(prior).resolve()/'build.json'
             compiler=read_json(build_path)
             image=compiler['output']
-            if compiler['state']!='complete' or compiler['contract']!=workload_contract(state):
+            expected_contract=dict(compiler['contract']);expected_contract.setdefault('roi_window_limit',0)
+            if compiler['state']!='complete' or expected_contract!=workload_contract(state):
                 raise ValueError('reused CPython build does not match the workload contract')
             from .optimize import verify_images
             verify_images([image])
             if sha256(original)!=compiler['original']['sha256']:
                 raise IdentityError('reused compiler belongs to a different baseline Python')
             base=Path(prior).resolve()/'instrumentation-source'/('Python-'+compiler['interpreter']['version'])
-            for profile in compiler['profiles']:
-                if sha256(base/profile['path'])!=profile['sha256']:
+            for gcc_profile in compiler['profiles']:
+                if sha256(base/gcc_profile['path'])!=gcc_profile['sha256']:
                     raise IdentityError('GCC training profiles changed since the build')
         else:
             image,compiler=build_cpython(args,original,state,root/'compiler')
@@ -174,16 +181,36 @@ def tune_cpython(args,source):
         kind=getattr(args,'python_profile','auto')
         if kind=='native' or (kind=='auto' and image['output']['machine']==183 and runtime_archive()):
             native=profile_python(args,image,state,root/'native-python')
+        from .recipes import resolve_recipe
+        recipe=resolve_recipe(args,state,profile)
+        library_capture=getattr(args,'library_capture',None)
+        use_qemu=bool(native and (library_capture or getattr(args,'library_backend','auto')=='qemu' or (
+            getattr(args,'library_backend','auto')=='auto' and recipe)))
         captures=[];sampler=None
-        for index in range(getattr(args,'train_runs',3)):
+        if use_qemu:
+            if not library_capture:
+                recording=deepcopy(args);recording.command=state['command']
+                recording.env=[f'{k}={v}' for k,v in state['env'].items()]
+                recording.output=str(root/'library-capture');recording.backend='qemu';recording.event=None
+                recording.max_roi_windows=1;recording.timeout=max(args.timeout,getattr(args,'build_timeout',3600))
+                record(recording)
+                library_capture=recording.output
+            from .hybrid import compose_profiles
+            merged=root/'capture';compose_profiles(source,library_capture,image,native,merged,
+                recipe['images'] if recipe else ())
+            result.update(state='optimizing',training_phases={'compiler':compiler['training_runs_completed'],
+                'native_python':len(native['trials']),'qemu_libraries':1})
+            write_json(root/'tune.json',result)
+        for index in range(0 if use_qemu else getattr(args,'train_runs',3)):
             recording=deepcopy(args);recording.command=state['command'];recording.env=[f'{k}={v}' for k,v in state['env'].items()]
             recording.output=str(root/f'training/capture-{index:03d}')
             if sampler:recording.backend=sampler['backend'];recording.event=sampler['event']
             record(recording,[image]);captures.append(Path(recording.output))
             sampler=fingerprint(read_json(captures[-1]/'run.json'))
             result['training_runs_completed']=len(captures);write_json(root/'tune.json',result)
-        merged=root/'capture';merge_captures(captures,merged)
-        if native:
+        if not use_qemu:
+            merged=root/'capture';merge_captures(captures,merged)
+        if native and not use_qemu:
             merged_profile=read_json(merged/'profile.json')
             row=next(r for r in merged_profile['images'] if r['path']==image['optimized'])
             row.update(native_fdata=native['profile'],native_fdata_sha256=native['sha256'],
@@ -196,7 +223,11 @@ def tune_cpython(args,source):
         result=tune(optimize)
         result.update(strategy='cpython-pgo-lto',cpython_build=str(build_path),
                       cpython_build_sha256=sha256(build_path),baseline_capture=str(source),
-                      python_profile='native-edges' if native else 'sampling')
+                      python_profile='native-edges' if native else 'sampling',
+                      library_profile='qemu' if use_qemu else 'sampling',
+                      training_phases={'compiler':compiler['training_runs_completed'],
+                        'native_python':len(native['trials']) if native else 0,
+                        'qemu_libraries':1 if use_qemu else 0,'sampling':len(captures)})
         build_runtime(root)
         write_json(root/'build.json',read_json(root/'layouts/build.json'))
     except BaseException as error:

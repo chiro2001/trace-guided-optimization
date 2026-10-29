@@ -32,6 +32,7 @@ def main(argv=None):
     cached_header = Path(__file__).resolve().parents[1] / "deps/install/include/qemu-plugin.h"
     r.add_argument("--qemu-header", default=os.environ.get("TGO_QEMU_HEADER") or (str(cached_header) if cached_header.exists() else None))
     r.add_argument("--max-insns", type=int, default=1000000000)
+    r.add_argument("--max-roi-windows", type=int, default=0, help="QEMU marker windows to record; 0 records all, workload still executes completely")
     r.add_argument("--allow-truncated", action="store_true")
     r.add_argument("--timeout", type=float, default=600)
     r.add_argument("--env", action="append", default=[], metavar="KEY=VALUE")
@@ -78,6 +79,8 @@ def main(argv=None):
     t.add_argument("--python-source", help="matching CPython source archive, verified against the source lock")
     t.add_argument("--python-build", help="reuse a verified completed CPython build for the identical workload")
     t.add_argument("--python-profile", choices=["auto", "native", "sample"], default="auto")
+    t.add_argument("--library-capture", help="reuse a verified QEMU capture for matching non-Python DSOs")
+    t.add_argument("--library-backend", choices=["auto", "spe", "qemu"], default="auto")
     t.add_argument("--build-jobs", type=int, default=8)
     t.add_argument("--build-timeout", type=float, default=3600)
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
@@ -106,6 +109,8 @@ def main(argv=None):
     try:
         if hasattr(args, "command") and args.command[:1] == ["--"]:
             args.command = args.command[1:]
+        if hasattr(args, "max_roi_windows") and args.max_roi_windows < 0:
+            p.error("max-roi-windows must be >=0")
         if args.action == "doctor":
             result = doctor()
         elif args.action == "record":
