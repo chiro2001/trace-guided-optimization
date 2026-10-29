@@ -4,12 +4,11 @@ from pathlib import Path
 import statistics
 import subprocess
 import time
-import signal
 import math
 import threading
 import shutil
 import uuid
-from .util import read_json, write_json, workload_env, sha256
+from .util import read_json, write_json, workload_env, sha256, terminate_process_group
 from .elf import is_executable_image
 
 
@@ -38,13 +37,7 @@ def execute_trial(command, prefix, env, cwd, timeout):
                 raise subprocess.TimeoutExpired(command, timeout)
         except (subprocess.TimeoutExpired, KeyboardInterrupt) as failure:
             timed_out = isinstance(failure, subprocess.TimeoutExpired)
-            try:
-                os.killpg(p.pid, signal.SIGTERM)
-            except ProcessLookupError:
-                pass
-            if not finished.wait(5):
-                os.killpg(p.pid, signal.SIGKILL)
-                finished.wait()
+            terminate_process_group(p)
             if not timed_out:
                 raise
         waiter.join()

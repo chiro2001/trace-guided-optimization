@@ -1,23 +1,45 @@
 import os
 from pathlib import Path
 import platform
-import signal
 import shutil
 import subprocess
 import time
+import tempfile
 from .runtime import build_runtime
 from .profile import qemu_profile
-from .util import command_path, tool, write_json, workload_env, tool_env, sha256
+from .util import command_path, tool, write_json, workload_env, tool_env, sha256, terminate_process_group
+from .validate import execute_trial
+
+SPE_FILTER = "/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u"
+
+
+def probe_command(command):
+    with tempfile.TemporaryDirectory(prefix="tgo-probe-") as directory:
+        prefix = Path(directory) / "probe"
+        try:
+            code, _, timed_out, _ = execute_trial(command, prefix, tool_env(), "/", 10)
+            diagnostic = Path(str(prefix) + ".stderr").read_text(errors="replace")
+            return {"usable": code == 0 and not timed_out, "timed_out": timed_out,
+                    "diagnostic": diagnostic.strip()}
+        except OSError as error:
+            return {"usable": False, "diagnostic": str(error)}
 
 
 def doctor():
     perf = tool("perf", required=False)
     pmu = {p.name: (p / "type").read_text().strip() for p in Path("/sys/bus/event_source/devices").glob("*") if (p / "type").exists()}
-    probe = None
+    probe, spe_probe = None, None
     if perf:
-        r = subprocess.run([perf, "stat", "-e", "cycles:u", "--", "true"], capture_output=True, text=True, env=tool_env())
-        probe = {"usable": r.returncode == 0, "diagnostic": r.stderr.strip()}
+        probe = probe_command([perf, "stat", "-e", "cycles:u", "--", "/bin/true"])
+        spe_name = next((name for name in sorted(pmu) if name.startswith("arm_spe_")), None)
+        if spe_name:
+            event = spe_name + SPE_FILTER
+            with tempfile.TemporaryDirectory(prefix="tgo-spe-probe-") as directory:
+                spe_probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
+                    "-e", event, "-c", "4096", "--", "/bin/true"])
+            spe_probe.update(event=event, scope="event-open probe; workload sampling coverage is checked after recording")
     return {"architecture": platform.machine(), "perf": perf, "pmu": pmu, "perf_probe": probe,
+            "spe_probe": spe_probe,
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
 
 
@@ -28,9 +50,22 @@ def record(args):
     if args.pid and args.backend == "qemu":
         raise ValueError("QEMU cannot attach; use perf/spe for an existing process")
     backend = args.backend
+    automatic = None
+    event_override = args.event
     if backend == "auto":
         d = doctor()
-        backend = "perf" if d["perf_probe"] and d["perf_probe"]["usable"] else "qemu"
+        if args.event:
+            backend = "spe" if args.event.startswith("arm_spe_") else "perf"
+            reason = "explicit sampling event"
+        elif d["spe_probe"] and d["spe_probe"]["usable"]:
+            backend, event_override = "spe", d["spe_probe"]["event"]
+            reason = "retired branch SPE event opened successfully"
+        elif d["perf_probe"] and d["perf_probe"]["usable"]:
+            backend, reason = "perf", "cycles event opened successfully"
+        else:
+            backend, reason = "qemu", "hardware sampling probes unavailable"
+        automatic = {"selected": backend, "reason": reason,
+                     "perf_probe": d["perf_probe"], "spe_probe": d["spe_probe"]}
     if args.pid and backend == "qemu":
         raise ValueError("perf PMU access unavailable; attach requires perf permissions")
     runtime = build_runtime(root / "runtime", args.qemu_header if backend == "qemu" else None)
@@ -54,6 +89,7 @@ def record(args):
     meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
             "branch_stack": args.branch_stack,
+            "automatic_backend": automatic,
             "started_unix": time.time()}
     write_json(root / "run.json", meta)
     try:
@@ -80,7 +116,7 @@ def record(args):
             launch += ["-E", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
         else:
             perf = tool("perf", args.perf)
-            event = args.event or ("arm_spe_0/ts_enable=1,branch_filter=1,jitter=1/u" if backend == "spe" else "cycles:u")
+            event = event_override or ("arm_spe_0" + SPE_FILTER if backend == "spe" else "cycles:u")
             launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
                 launch += ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
@@ -119,11 +155,7 @@ def record(args):
             try:
                 code = p.wait(timeout=args.timeout)
             except (subprocess.TimeoutExpired, KeyboardInterrupt):
-                os.killpg(p.pid, signal.SIGTERM)
-                try:
-                    p.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    os.killpg(p.pid, signal.SIGKILL); p.wait()
+                terminate_process_group(p)
                 raise
         meta["returncode"] = code
         if code:

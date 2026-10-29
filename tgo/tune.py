@@ -100,6 +100,7 @@ def tune(args):
                 return discovery
         result.update(state="screening", automatic_images=not bool(args.image), bolt_policy=args.bolt_mode,
                       image_search=args.image_search)
+        write_json(root / "tune.json", result)
         pool = []
         for name in args.layout or LAYOUTS:
             base = root / name

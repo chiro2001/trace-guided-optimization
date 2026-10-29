@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import time
+import signal
 
 
 def sha256(path):
@@ -26,12 +27,36 @@ def read_json(path):
     return json.loads(Path(path).read_text())
 
 
+def terminate_process_group(process):
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    try:
+        process.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        pass
+    # The parent may exit on TERM while a descendant ignores it. Always clean
+    # the remaining group, even when wait() has already reaped the parent.
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    process.wait()
+
+
 def run(command, log, **kwargs):
     command = [str(x) for x in command]
     start = time.monotonic()
     kwargs.setdefault("env", tool_env())
+    timeout = kwargs.pop("timeout", None)
     with Path(log).open("w") as f:
-        p = subprocess.run(command, stdout=f, stderr=subprocess.STDOUT, **kwargs)
+        p = subprocess.Popen(command, stdout=f, stderr=subprocess.STDOUT, start_new_session=True, **kwargs)
+        try:
+            p.wait(timeout=timeout)
+        except (subprocess.TimeoutExpired, KeyboardInterrupt):
+            terminate_process_group(p)
+            raise
     record = {"command": command, "returncode": p.returncode,
               "seconds": time.monotonic() - start, "log": str(log)}
     if p.returncode:
