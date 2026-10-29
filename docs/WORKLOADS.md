@@ -61,3 +61,20 @@ stub，再调用本 adapter。应在容器内部执行 TGO，挂载工具、输�
 CPU-stub 的收益仅解释为主机侧 decode 路径，不能外推为真实 NPU 吞吐、数值精度
 或端到端延迟。正式测量还需固定 CPU、NUMA、镜像、模型配置、软件/DSO 身份与输出，
 且应与其他实验串行，避免共享 CPU 干扰。原有 a3 上任务和环境无需修改。
+
+仓库提供固定镜像的复现入口，在 920B-47 的工作区执行：
+
+```sh
+python3 scripts/reproduce_vllm.py --sudo --cpu 240 \
+  --cpus 240,242,244,246,248,250,252,254 -o runs/vllm-fresh
+```
+
+默认使用源码与私有 SDK，不传缓存参数即从发现热点开始，自动进行 CPython ROI
+PGO/LTO、Python 原生 BOLT 和七库 QEMU 训练，再构建八库并独立确认。源码源包可从
+已核对的下载缓存取得；网络关闭的容器中需预先运行 bootstrap/打包准备依赖。
+`--tool /absolute/path/tgo.AppImage` 用相同条件验证分发文件，模型路径可由
+`--models` 指定。CPU 和内存节点应按主机资源调整，避免与其他性能测试共用。
+
+开发中可添加 `--run DISCOVERY --python-build BUILD --library-capture QEMU_CAPTURE`
+复用已核验的本轮证据。脚本会打印实际 Docker 命令；复用模式与从头模式应分别报告。
+实际结果以 `tune.json` 的独立确认和 `build.json` 的八库身份为准。
