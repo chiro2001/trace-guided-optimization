@@ -12,6 +12,7 @@ from .validate import execute_trial
 
 SPE_FILTER = "/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u"
 SPE_RECORD_OPTIONS = ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
+PERF_RECORD_OPTIONS = ["--mmap-pages=128"]
 
 
 def probe_command(command):
@@ -33,7 +34,7 @@ def doctor():
     if perf:
         with tempfile.TemporaryDirectory(prefix="tgo-perf-probe-") as directory:
             probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
-                "--no-buildid-cache", "-e", "cycles:u", "-F", "999", "--", "/bin/true"])
+                "--no-buildid-cache", *PERF_RECORD_OPTIONS, "-e", "cycles:u", "-F", "999", "--", "/bin/true"])
         spe_name = next((name for name in sorted(pmu) if name.startswith("arm_spe_")), None)
         if spe_name:
             event = spe_name + SPE_FILTER
@@ -132,6 +133,8 @@ def record(args):
             launch = [perf, "record", "--no-buildid-cache", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
                 launch += SPE_RECORD_OPTIONS
+            else:
+                launch += PERF_RECORD_OPTIONS
             if backend == "spe" or args.period:
                 launch += ["-c", str(args.period or 4096)]
             else:
