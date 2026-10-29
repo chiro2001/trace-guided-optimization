@@ -78,3 +78,14 @@ PGO/LTO、Python 原生 BOLT 和七库 QEMU 训练，再构建八库并独立确
 开发中可添加 `--run DISCOVERY --python-build BUILD --library-capture QEMU_CAPTURE`
 复用已核验的本轮证据。脚本会打印实际 Docker 命令；复用模式与从头模式应分别报告。
 实际结果以 `tune.json` 的独立确认和 `build.json` 的八库身份为准。
+
+确认后的解释器入口还可在新容器验证，无须挂载工具或项目源码：
+
+```sh
+python3 scripts/smoke_vllm_entry.py runs/vllm-auto-hybrid-r1 --sudo \
+  --cpu 208 --cpus 208,210,212,214 -o runs/vllm-entry-check
+```
+
+检查只读 bundle、原 Python 旁的 `python3.tgo`、`/tmp` 工作目录、bundle 内 ROI helper、
+八库实际映射、原生运算及 token 输出，并验证 `TGO_DISABLE=1` 恢复原库。
+它是入口功能检查，不替代五对性能确认；保持 bundle 原有绝对路径。

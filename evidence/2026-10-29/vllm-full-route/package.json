@@ -1,0 +1,68 @@
+{
+  "version": "0.5.0",
+  "arch": "aarch64",
+  "source_commit": "6b890bb267e9d7abc8b48580e50c40deba8e974b",
+  "source_dirty": false,
+  "dependency_lock_sha256": "0d7be66fd95ae85b9bd610f5616b1d6b9642651866c8bbef9db086624ab2edfd",
+  "compiler_inputs": {
+    "python_source": {
+      "packaged": "usr/share/tgo/sources/Python-3.12.13.tgz",
+      "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
+    },
+    "bolt_runtime": {
+      "packaged": "usr/lib/tgo-bolt/libbolt_rt_instr.a",
+      "sha256": "ec24c24b6ca604a4f1b2255866a00947c811be39e367e0089eafc7c102990eb5"
+    }
+  },
+  "glibc_build_host": "ldd (GNU libc) 2.38",
+  "tools": {
+    "python3": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/python3.12",
+      "sha256": "1d2dad4314062999f3626cdb89eb8369a5ffd7f4f1d5da50623d5754c986b900",
+      "packaged": "usr/bin/python3"
+    },
+    "llvm-bolt": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/llvm-bolt",
+      "sha256": "5a390fbd11b4c4eb833607f909eee3db46d15fb7286e6de77be76f3d2dd77778",
+      "packaged": "usr/tools/llvm-bolt/bin/llvm-bolt"
+    },
+    "merge-fdata": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/merge-fdata",
+      "sha256": "5661afc0631089c3bec1b3d7c0f20f7611068d03b8f335a7d028d880e58ce88a",
+      "packaged": "usr/tools/merge-fdata/bin/merge-fdata"
+    },
+    "qemu-aarch64": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/qemu-aarch64",
+      "sha256": "83a3c4942058a8a88fc046cede63833d75fe75b6a1e89d43604e3e86836a7a95",
+      "packaged": "usr/tools/qemu-aarch64/bin/qemu-aarch64"
+    },
+    "patchelf": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/patchelf",
+      "sha256": "1989d6e6d2b4272342ea9ae2829879eed481877151b9c7dfb99ed95bcb2ad593",
+      "packaged": "usr/tools/patchelf/bin/patchelf"
+    },
+    "perf": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/perf",
+      "sha256": "cae100e08976c3868efbb78322e5544bb12b471730ef649c018056df9ac30156",
+      "packaged": "usr/tools/perf/bin/perf"
+    },
+    "llvm-bolt-recover": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+      "sha256": "f4cf78f563bf28f8b32355e94b50dc828ea123e191e09eacf31e3d99ebed4120",
+      "packaged": "usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover"
+    }
+  },
+  "schema": "tgo.vllm-package-evidence.v1",
+  "appimage": "/home/l00886679/projects/trace-guided-optimization/dist/0.5.0/tgo-0.5.0-aarch64.AppImage",
+  "bytes": 147569160,
+  "sha256": "21719e548822588e6d99d3f346072df66c8d8a5c47fd58a4494b3ac6d447cce0",
+  "manifest_sha256": "222494e4015c74967af3a311a5924fc8c6e57e581fd88baef237c6e19b96ba03",
+  "failed_first_build": {
+    "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r1",
+    "state": "failed",
+    "error": "[Errno 2] No such file or directory: '/tmp/appimage_extracted_75a06749dd282840161c60e2dceaeb35/usr/dependencies.lock.json'",
+    "appimage_sha256": "a0d49e4dea1e69afb27c578b30506d70f2990c49c38127bf4d8212c1ea76ef2a",
+    "retained": "/home/l00886679/projects/trace-guided-optimization/dist/0.5.0-asset-export-failed",
+    "fix": "6b890bb"
+  }
+}

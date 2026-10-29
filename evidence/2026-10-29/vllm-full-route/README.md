@@ -17,6 +17,9 @@
 
 - `intermediate.json`：对照路线、逐对 PMU 中位数、完整八库加载补核、QEMU 身份。
 - `hybrid.json`：混合路线的来源、工具命令、输入/输出 SHA、27 份 ROI 与独立确认。
+- `hybrid-entry.json`：新容器只读 bundle、相邻 Python ELF、无项目源码/工具挂载，
+  从 `/tmp` 运行，八库全部加载、关闭优化恢复原库、输出一致。
+- `package.json`：0.5.0 AppImage 身份、包内编译输入、源码提交与首版资源导出失败记录。
 
 复用模式没有导入先前冻结的优化库，但不等同于同一次从头编译/采集。
 从头 AppImage 路线及独立新容器入口验证仍在推进，未计为完成。
