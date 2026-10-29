@@ -4,13 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trace-guided-optimization"
-version = "0.1.0"
+dynamic = ["version"]
 description = "ROI-driven native code layout optimization"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
 tgo = "tgo.cli:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "tgo.__version__"}
 
 [tool.setuptools.package-data]
 tgo = ["native/*.c", "native/include/*.h", "fixtures/*.go"]

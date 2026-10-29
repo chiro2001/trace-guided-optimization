@@ -13,6 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tgo.runtime import build_runtime
+from tgo import __version__
 from tgo.util import sha256, write_json, tool
 from bootstrap import fetch
 
@@ -40,7 +41,7 @@ def main():
         if found:
             executables[n] = found
     executables["python3"] = str(Path(a.python).resolve())
-    manifest = {"schema": "tgo.package.v1", "arch": platform.machine(), "tools": {}, "libraries": {}}
+    manifest = {"schema": "tgo.package.v1", "version": __version__, "arch": platform.machine(), "tools": {}, "libraries": {}}
     manifest["source_commit"] = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     manifest["source_dirty"] = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip())
     manifest["dependency_lock_sha256"] = sha256(ROOT / "dependencies.lock.json")
@@ -111,7 +112,7 @@ def main():
                 relative = os.path.relpath(library_dir, binary.parent)
                 subprocess.run([patch, "--set-rpath", "$ORIGIN/" + relative, str(binary)], check=True)
     closure("python", {"python3": (executables.pop("python3"), binpath / "python3")}, libpath,
-            list(pylib.rglob("*.so")) + list(native.glob("*.so")) + [native / "launcher"])
+            list(pylib.rglob("*.so")) + list(native.glob("*.so")) + [native / "launcher", native / "go-tool"])
     for name, source in executables.items():
         private = app / "usr/tools" / name
         closure(name, {name: (source, private / "bin" / name)}, private / "lib")
@@ -175,7 +176,7 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
         tool_dir = dest / "appimagetool-extracted"
         tool_dir.mkdir(exist_ok=True)
         subprocess.run([image_tool.resolve(), "--appimage-extract"], cwd=tool_dir, check=True, stdout=subprocess.DEVNULL)
-        image = dest / ("tgo-0.1.0-" + platform.machine() + ".AppImage")
+        image = dest / ("tgo-" + __version__ + "-" + platform.machine() + ".AppImage")
         runtime = fetch("runtime-" + platform.machine(), ROOT / "deps")
         runtime.chmod(0o755)
         offset = int(subprocess.check_output([runtime, "--appimage-offset"], text=True).strip())

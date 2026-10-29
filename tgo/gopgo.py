@@ -12,6 +12,7 @@ from dataclasses import dataclass, replace
 from .runtime import build_runtime, make_launcher
 from .util import command_path, read_json, write_json, sha256, tool, workload_env
 from .validate import execute_trial, validate
+from .go_layout import profile_order, linker_overlay, layout_report
 
 
 def file_stamp(path):
@@ -137,7 +138,7 @@ class CompilerContext:
     timeout: float
 
 
-def build_candidate(ctx, candidate, extra_gc="", extra_ld=""):
+def build_candidate(ctx, candidate, extra_gc="", extra_ld="", layout=False):
     candidate.mkdir()
     build_runtime(candidate)
     optimized = candidate / "compile"
@@ -158,8 +159,38 @@ def build_candidate(ctx, candidate, extra_gc="", extra_ld=""):
     ld = (ctx.settings.get("-ldflags", "") + " " + extra_ld).strip()
     if ld:
         flags.append("-ldflags=" + ld)
+    layout_info = None
+    if layout:
+        order, heat = profile_order(ctx.capture / "profile.preprocessed")
+        order_path = candidate / "function-order.txt"
+        order_path.write_text("\n".join(order) + "\n")
+        source, overlay = linker_overlay(ctx.info["GOROOT"], candidate / "private-link")
+        source_sha = sha256(source)
+        linker = candidate / "private-link/link"
+        linker_build = go_command(["build", "-trimpath", "-pgo=off", "-overlay=" + str(overlay),
+                                   "-o", linker, "cmd/link"], ctx.go, env, candidate, "linker-build", ctx.timeout)
+        original_link = str((Path(ctx.info["GOTOOLDIR"]) / "link").resolve())
+        link_version = subprocess.check_output([original_link, "-V=full"], env=env, text=True).strip()
+        if subprocess.check_output([linker, "-V=full"], env=env, text=True).strip() != link_version:
+            raise ValueError("rebuilt layout linker version differs from original")
+        env = adapter_env(env, ctx.runtime, original_link, link_version, sha256(linker), linker)
+        env.update(TGO_GO_LAYOUT_ORDER=str(order_path), TGO_GO_LAYOUT_REPORT=str(candidate / "layout.tsv"),
+                   TGO_GO_EXEC_LOG=str(candidate / "linker-tools.tsv"))
+        layout_info = {"source": str(source), "source_sha256": source_sha,
+            "overlay_sha256": sha256(overlay.parent / "loader.go"), "linker_build": linker_build,
+            "linker_sha256": sha256(linker), "order_sha256": sha256(order_path),
+            "scope": "ordinary package-local STEXT; runtime, internal/runtime, FIPS and duplicate symbols preserved"}
     compilation = go_command(["build", "-pgo=" + str(ctx.profile), *flags, "-o", optimized, "cmd/compile"],
                              ctx.go, env, candidate, "compiler-build", ctx.timeout)
+    if layout_info is not None:
+        if sha256(source) != source_sha:
+            raise ValueError("Go linker source changed during the overlay build")
+        if str(linker) not in (candidate / "linker-tools.tsv").read_text():
+            raise ValueError("compiler build did not execute the layout linker")
+        nm = go_command(["tool", "nm", "-size", "-sort", "address", optimized],
+                        ctx.go, ctx.base, candidate, "layout-addresses", ctx.timeout)
+        layout_info["verification"] = layout_report(candidate / "layout.tsv", heat, Path(nm["stdout"]).read_text())
+        write_json(candidate / "layout.json", layout_info)
     actual_version = subprocess.check_output([optimized, "-V=full"], env=ctx.base, text=True).strip()
     if actual_version != ctx.version:
         raise ValueError(f"rebuilt compiler version differs: {actual_version!r} != {ctx.version!r}")
@@ -185,6 +216,8 @@ def build_candidate(ctx, candidate, extra_gc="", extra_ld=""):
              "go_compiler": {"original": ctx.compiler, "optimized": str(optimized), "sha256": digest,
                              "build": compilation, "fixture": fixture, "build_settings": build_settings(ctx.go, optimized, ctx.base)},
              "profile_sha256": sha256(ctx.profile)}
+    if layout_info is not None:
+        built["go_compiler"]["layout"] = layout_info
     write_json(candidate / "build.json", built)
     return built, deployed, checks
 
@@ -286,6 +319,7 @@ def tune_go(args, root_exists=False):
         default_profile = goroot / "src/cmd/compile/default.pgo"
         if default_profile.exists():
             choices["hybrid"] = ("", "")
+            choices["layout"] = ("", "")
         best = None
         for name in args.go_variant or choices:
             candidate = root / name
@@ -297,7 +331,11 @@ def tune_go(args, root_exists=False):
                     blended, blend = blend_profiles(go, merged, default_profile, capture, base, args.timeout)
                     write_json(capture / "hybrid.json", blend)
                     variant_ctx = replace(ctx, profile=blended)
-                built, candidate_env, checks = build_candidate(variant_ctx, candidate, *choices[name])
+                if name == "layout":
+                    # Isolate layout from inlining changes: retain the SDK's
+                    # original compiler profile, order functions by this ROI.
+                    variant_ctx = replace(ctx, profile=default_profile)
+                built, candidate_env, checks = build_candidate(variant_ctx, candidate, *choices[name], layout=name == "layout")
                 screening = validate(candidate, args.search_pairs, args.timeout, args.metric)
                 built["validation"] = screening
                 built["state"] = "validated" if screening["equivalent"] else "rejected"

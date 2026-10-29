@@ -4,12 +4,38 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from tgo.gopgo import adapter_env, profile_totals, blend_profiles
+from tgo.gopgo import adapter_env, profile_totals, blend_profiles, correctness_fixture
+from tgo.go_layout import linker_overlay, layout_report
 from tgo.runtime import build_runtime, make_launcher
 
 
 @unittest.skipUnless(shutil.which("go"), "Go SDK unavailable")
 class GoToolAdapter(unittest.TestCase):
+    def test_private_linker_reorders_final_elf_and_preserves_runtime_metadata(self):
+        go = shutil.which("go")
+        goroot = subprocess.check_output([go, "env", "GOROOT"], text=True).strip()
+        if not (Path(goroot) / "src/cmd/link/internal/loader/loader.go").exists():
+            self.skipTest("Go linker source unavailable")
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d); build_runtime(root)
+            _, overlay = linker_overlay(goroot, root / "overlay")
+            linker = root / "link"
+            env = os.environ.copy(); env["GOFLAGS"] = ""
+            subprocess.run([go, "build", "-pgo=off", "-overlay="+str(overlay), "-o", linker, "cmd/link"],
+                           env=env, check=True, capture_output=True)
+            tool_dir = subprocess.check_output([go, "env", "GOTOOLDIR"], text=True).strip()
+            original = str(Path(tool_dir) / "link")
+            version = subprocess.check_output([original, "-V=full"], text=True).strip()
+            order = root / "order.txt"; order.write_text("main.main\nmain.recoverCheck\n")
+            env = adapter_env(env, root, original, version, "layout-test", linker)
+            env.update(TGO_GO_LAYOUT_ORDER=str(order), TGO_GO_LAYOUT_REPORT=str(root / "layout.tsv"))
+            correctness_fixture(go, env, root, 180)
+            nm = subprocess.check_output([go, "tool", "nm", "-size", "-sort", "address", root / "correctness-program"], text=True)
+            report = layout_report(root / "layout.tsv", {"main.main": 10, "main.recoverCheck": 5}, nm)
+            self.assertEqual(report["matched_symbols"], 2)
+            self.assertEqual(report["final_address_order_inversions"], 0)
+            self.assertGreater(report["moved_symbols"], 0)
+
     def test_cache_identity_replaces_compiler_and_disable_uses_original(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d); build_runtime(root)

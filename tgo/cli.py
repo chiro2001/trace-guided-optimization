@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import sys
 import time
+from . import __version__
 from .collect import doctor, record
 from .optimize import optimize
 from .util import read_json, write_json, command_path
@@ -11,6 +12,7 @@ from .util import read_json, write_json, command_path
 
 def main(argv=None):
     p = argparse.ArgumentParser(prog="tgo", description="ROI-driven native code layout optimization")
+    p.add_argument("--version", action="version", version=__version__)
     sub = p.add_subparsers(dest="action", required=True)
     sub.add_parser("doctor", help="probe tools and PMU access")
     r = sub.add_parser("record", help="record a workload or attach to a PID")
@@ -67,7 +69,7 @@ def main(argv=None):
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
-    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid"], action="append")
+    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid", "layout"], action="append")
     t.add_argument("--go-warmups", type=int, default=2, help="unmeasured Go validation warmup pairs")
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
