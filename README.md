@@ -106,7 +106,7 @@ prefill 还是 decode；有语义边界的服务应采用显式 ROI adapter。
 | QEMU | 无 PMU 权限、精确 ROI 路径 | TCG 插件汇总分支/连续落空路径，不把 QEMU wall time 当原生性能；native exec 子进程不在此画像范围 |
 
 `auto` 实际探测事件权限：优先选择可打开的 retired-branch SPE，其次使用 cycles
-采样，硬件采样不可用时选择 QEMU。探测只验证事件可打开，实际采样覆盖由记录阶段
+采样，硬件采样不可用时选择 QEMU。探测验证 recorder 和对应缓冲可打开，实际采样覆盖由记录阶段
 检查。它不会因负载执行失败而自动重跑负载。`--qemu-header` 必须与 QEMU 插件 ABI 匹配；bootstrap 下载的
 头文件可通过 `TGO_QEMU_HEADER=.../deps/install/include/qemu-plugin.h` 指定。
 AppImage 已内置编译好的插件和匹配 QEMU，不要求目标机安装开发头文件或编译器。

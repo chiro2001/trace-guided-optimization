@@ -34,8 +34,10 @@ Go CPU profile 使用其专用策略合并，不接受通用 merge。合并的�
 
 ## 后端与对象选择
 
-`--backend auto` 使用短暂的 `/bin/true` 探测：若 SPE retired-branch 事件能打开，
-优先使用 SPE；否则使用可打开的 cycles 采样；再否则使用 QEMU。短探测不证明
+`--backend auto` 使用短暂的 `/bin/true` 探测：若 SPE retired-branch 事件和实际采集
+所需的 AUX 缓冲能打开，优先使用 SPE；否则使用可打开的 cycles recorder；再否则
+使用 QEMU。探测使用与实际采集相同的 SPE 缓冲配置，避免小缓冲成功却在负载启动前
+因 mlock 权限失败。短探测不证明
 采样覆盖，真实 ROI 的原始数据和归一化仍会检查。显式 `--event` 按给定事件选择
 perf/SPE，不悄悄更换事件，也不因真实负载失败而重跑负载。
 

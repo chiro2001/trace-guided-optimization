@@ -11,6 +11,7 @@ from .util import command_path, tool, write_json, workload_env, tool_env, sha256
 from .validate import execute_trial
 
 SPE_FILTER = "/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u"
+SPE_RECORD_OPTIONS = ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
 
 
 def probe_command(command):
@@ -30,14 +31,16 @@ def doctor():
     pmu = {p.name: (p / "type").read_text().strip() for p in Path("/sys/bus/event_source/devices").glob("*") if (p / "type").exists()}
     probe, spe_probe = None, None
     if perf:
-        probe = probe_command([perf, "stat", "-e", "cycles:u", "--", "/bin/true"])
+        with tempfile.TemporaryDirectory(prefix="tgo-perf-probe-") as directory:
+            probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
+                "-e", "cycles:u", "-F", "999", "--", "/bin/true"])
         spe_name = next((name for name in sorted(pmu) if name.startswith("arm_spe_")), None)
         if spe_name:
             event = spe_name + SPE_FILTER
             with tempfile.TemporaryDirectory(prefix="tgo-spe-probe-") as directory:
                 spe_probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
-                    "-e", event, "-c", "4096", "--", "/bin/true"])
-            spe_probe.update(event=event, scope="event-open probe; workload sampling coverage is checked after recording")
+                    "-e", event, *SPE_RECORD_OPTIONS, "-c", "4096", "--", "/bin/true"])
+            spe_probe.update(event=event, scope="configured recorder/buffer permission probe; workload sampling coverage is checked after recording")
     return {"architecture": platform.machine(), "perf": perf, "pmu": pmu, "perf_probe": probe,
             "spe_probe": spe_probe,
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
@@ -59,9 +62,9 @@ def record(args):
             reason = "explicit sampling event"
         elif d["spe_probe"] and d["spe_probe"]["usable"]:
             backend, event_override = "spe", d["spe_probe"]["event"]
-            reason = "retired branch SPE event opened successfully"
+            reason = "retired branch SPE recorder and buffers opened successfully"
         elif d["perf_probe"] and d["perf_probe"]["usable"]:
-            backend, reason = "perf", "cycles event opened successfully"
+            backend, reason = "perf", "cycles recorder opened successfully"
         else:
             backend, reason = "qemu", "hardware sampling probes unavailable"
         automatic = {"selected": backend, "reason": reason,
@@ -125,7 +128,7 @@ def record(args):
                 "branch_stack": bool(args.branch_stack)}
             launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
-                launch += ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
+                launch += SPE_RECORD_OPTIONS
             if backend == "spe" or args.period:
                 launch += ["-c", str(args.period or 4096)]
             else:
