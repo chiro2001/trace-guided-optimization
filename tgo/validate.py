@@ -8,6 +8,7 @@ import signal
 import math
 import threading
 import shutil
+import uuid
 from .util import read_json, write_json, workload_env, sha256
 from .elf import is_executable_image
 
@@ -53,7 +54,11 @@ def execute_trial(command, prefix, env, cwd, timeout):
 
 
 def validate(bundle, pairs=5, timeout=300, metric=None):
-    bundle = Path(bundle)
+    bundle = Path(bundle).resolve()
+    # Every invocation keeps its own evidence, including probe, screening and
+    # confirmation rounds. Never overwrite the earlier round's raw counters.
+    evidence = bundle / "validations" / uuid.uuid4().hex
+    evidence.mkdir(parents=True)
     build = read_json(bundle / "build.json")
     state = read_json(Path(build["source_run"]) / "run.json")
     trials = []
@@ -66,12 +71,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
         for arm in (["baseline", "candidate"] if i % 2 == 0 else ["candidate", "baseline"]):
             env = workload_env(); env.update(state["env"])
             label = f"warmup-{i + warmup_count}" if i < 0 else f"validation-{i}"
-            prefix = bundle / f"{label}-{arm}"
-            for old in bundle.glob(prefix.name + ".*"):
-                if old.is_dir():
-                    shutil.rmtree(old)
-                else:
-                    old.unlink()
+            prefix = evidence / f"{label}-{arm}"
             env["TGO_IMAGE_LOG"] = str(prefix)
             env["TGO_RESULT_FILE"] = str(prefix) + ".result.json"
             go_cache = None
@@ -97,7 +97,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 if go_cache:
                     shutil.rmtree(go_cache, ignore_errors=True)
             observed = set()
-            for f in bundle.glob(prefix.name + ".*.images"):
+            for f in evidence.glob(prefix.name + ".*.images"):
                 for line in f.read_text().splitlines():
                     observed.add(line.split("\t", 2)[-1])
             measurement = elapsed
@@ -128,6 +128,7 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
                 import json
                 correctness_sha = hashlib.sha256(json.dumps(json.loads(result_file.read_text()), sort_keys=True, allow_nan=False).encode()).hexdigest()
             pair[arm] = {"seconds": elapsed, "metric_seconds": measurement, "returncode": code,
+                         "evidence_prefix": str(prefix),
                          "timed_out": timed_out, "metric_missing": missing_metric,
                          "stdout_sha256": stdout_sha,
                          "correctness_sha256": correctness_sha,
@@ -149,11 +150,13 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
             break
     reductions = [p["reduction_percent"] for p in trials] or [0]
     result = {"schema": "tgo.validation.v1", "pairs": trials, "equivalent": equivalent,
+              "evidence_directory": str(evidence),
               "requested_pairs": pairs, "completed_pairs": len(trials),
               "warmup_pairs": warmup_trials,
               "metric": metric or "whole-process-wall-time", "median_reduction_percent": statistics.median(reductions),
               "min_reduction_percent": min(reductions), "max_reduction_percent": max(reductions),
               "recommendation": "candidate" if equivalent and min(reductions) > 0 else "retain-baseline",
               "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"}
+    write_json(evidence / "validation.json", result)
     write_json(bundle / "validation.json", result)
     return result

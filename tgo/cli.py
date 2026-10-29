@@ -46,7 +46,7 @@ def main(argv=None):
     o.add_argument("--bolt")
     o.add_argument("--perf2bolt")
     o.add_argument("--bolt-arg", action="append", default=[])
-    o.add_argument("--bolt-mode", choices=["standard", "recover"], default="standard")
+    o.add_argument("--bolt-mode", choices=["auto", "standard", "recover"], default="auto")
     o.add_argument("--allow-stripped", action="store_true", help="permit BOLT to recover functions from a stripped ELF")
     o.add_argument("--branch-stack", action="store_true")
     o.add_argument("--validate", type=int, default=3, metavar="PAIRS")
@@ -62,12 +62,15 @@ def main(argv=None):
     t.add_argument("--bolt")
     t.add_argument("--perf2bolt")
     t.add_argument("--bolt-arg", action="append", default=[])
-    t.add_argument("--bolt-mode", choices=["standard", "recover"], default="standard")
+    t.add_argument("--bolt-mode", choices=["auto", "standard", "recover"], default="auto")
     t.add_argument("--allow-stripped", action="store_true", help="permit BOLT to recover functions from a stripped ELF")
     t.add_argument("--search-pairs", type=int, default=3)
     t.add_argument("--validate", type=int, default=5)
     t.add_argument("--metric")
     t.add_argument("--minimum-gain", type=float, default=0.5)
+    t.add_argument("--layout", choices=["ext-tsp", "compact", "aligned"], action="append")
+    t.add_argument("--image-search", choices=["adaptive", "joint", "all"], default="adaptive")
+    t.add_argument("--confirm-candidates", type=int, default=2, help="maximum independently confirmed candidates")
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
@@ -106,6 +109,10 @@ def main(argv=None):
                 p.error("top, search-pairs and validate must be >0")
             if args.go_warmups < 0:
                 p.error("go-warmups must be >=0")
+            if args.confirm_candidates <= 0:
+                p.error("confirm-candidates must be >0")
+            if args.image_search == "all" and args.top > 4:
+                p.error("image-search all requires top <=4")
             reuse_go = args.run and read_json(Path(args.run) / "run.json").get("backend") == "go-cpu"
             if args.strategy == "go-compiler" or (args.strategy == "auto" and (reuse_go or (not args.run and args.command and Path(args.command[0]).name == "go"))):
                 from .gopgo import tune_go

@@ -13,6 +13,7 @@ from .runtime import build_runtime, make_launcher
 from .util import command_path, read_json, write_json, sha256, tool, workload_env
 from .validate import execute_trial, validate
 from .go_layout import profile_order, linker_overlay, layout_report
+from .selection import screening_score, confirmed
 
 
 def file_stamp(path):
@@ -326,7 +327,7 @@ def tune_go(args, root_exists=False):
             choices["hybrid"] = ("", "")
             choices["layout"] = ("", "")
             choices["layout-runtime"] = ("", "")
-        best = None
+        candidates = []
         for name in args.go_variant or choices:
             candidate = root / name
             try:
@@ -349,10 +350,10 @@ def tune_go(args, root_exists=False):
                 built["state"] = "validated" if screening["equivalent"] else "rejected"
                 write_json(candidate / "build.json", built)
                 result["candidates"].append({"name": name, "validation": screening})
-                if screening["equivalent"] and screening["min_reduction_percent"] > args.minimum_gain:
-                    if best is None or screening["median_reduction_percent"] > best["gain"]:
-                        best = {"name": name, "path": candidate, "env": candidate_env, "checks": checks,
-                                "compiler": built["go_compiler"]["optimized"], "gain": screening["median_reduction_percent"]}
+                score = screening_score(screening, args.minimum_gain)
+                if score is not None:
+                    candidates.append({"name": name, "path": candidate, "env": candidate_env, "checks": checks,
+                                       "compiler": built["go_compiler"]["optimized"], "gain": score})
                 if not screening["equivalent"]:
                     Path(built["entry"]).unlink(missing_ok=True)
             except (ValueError, RuntimeError, OSError) as error:
@@ -364,13 +365,27 @@ def tune_go(args, root_exists=False):
                     record.update(state="failed", error=str(error)); write_json(failed, record)
             write_json(root / "tune.json", result)
         selected = False
-        if best:
+        best = None
+        result["confirmations"] = []
+        for candidate in sorted(candidates, key=lambda row: row["gain"], reverse=True)[:args.confirm_candidates]:
+            best = candidate
             confirmation = validate(best["path"], args.validate, args.timeout, args.metric)
+            result["confirmations"].append({"name": best["name"], "validation": confirmation})
             result["confirmation"] = confirmation
-            selected = confirmation["equivalent"] and confirmation["min_reduction_percent"] > args.minimum_gain
+            selected = confirmed(confirmation, args.minimum_gain)
             record = read_json(best["path"] / "build.json"); record["validation"] = confirmation
+            record["state"] = "validated" if confirmation["equivalent"] else "rejected"
+            if not confirmation["equivalent"]:
+                Path(record["entry"]).unlink(missing_ok=True)
             write_json(best["path"] / "build.json", record)
+            if selected:
+                break
         if selected:
+            if sha256(compiler) != original_sha or sha256(go) != result["go"]["sha256"]:
+                raise ValueError("Go toolchain changed during candidate validation")
+            selected_build = read_json(best["path"] / "build.json")
+            if sha256(best["compiler"]) != selected_build["go_compiler"]["sha256"]:
+                raise ValueError("Go candidate changed during validation")
             result["selected"] = best["name"]
             deployed_env, checks = best["env"], best["checks"]
         else:
