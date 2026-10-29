@@ -76,8 +76,9 @@ stripped 输入中 BOLT 能识别的函数，不声称完整恢复任意剥离�
 以静态布局好看作为收益。用户可传递 `--bolt-arg=-option=value` 作受控实验。
 `--bolt-mode recover` 使用另行构建的 AArch64 recovery variant，恢复可识别的代码
 引用，保留旧入口 trampoline，重排后校正 PT_LOAD 顺序。构建路径、补丁和能力检查
-均独立于默认工具；没有启用假定所有代码页安全的选项。当前仅对 AArch64 DSO
-验证，不把缺符号、间接分支和未解析引用默认为可移动。仍需逐负载验证实际输出。
+均独立于默认工具。通用策略不启用假定代码页安全的选项；完整 eager 配方仅对
+已核实的七库原始 SHA256 启用对应恢复假设。当前仅对 AArch64 DSO 验证，版本
+变化不会沿用该假设，仍需逐负载验证实际输出。
 
 对象重写相互独立：单库失败保留原版，成功库进入组合验证；身份变化直接失败。
 整组无收益或不正确时，用同一批对象生成子集入口，先探测再完整初筛。初筛按中位数
@@ -91,6 +92,37 @@ Go compiler 独立使用源码 PGO 与私有 linker overlay；由 Go 正常生�
 未来可加入画像驱动 ICP、更多内联策略、BAT 迭代和更多布局搜索；每项都需独立
 能力检查、目标 ISA 回归、正确性和原生确认，不能直接默认打开旧实验的激进选项。
 
+## 编译训练与逐对象混合画像
+
+CPython adapter 将编译器训练、原生 BOLT 训练和库画像分开。原始解释器只作为
+ABI/前缀基线，GCC 插桩库与 PGO/LTO 库都在私有目录生成，经审计映射用于训练。
+GCC 仅在显式 ROI 内 reset/dump，清除构建过程的遗留 gcda，保留关键解释器画像及
+全部 SHA256。复用构建需匹配原始库、输出库、负载 contract 与每份 gcda。
+
+```mermaid
+flowchart LR
+  A[基线 discovery] --> B[私有 CPython ROI PGO/LTO]
+  B --> C[原生 BOLT ROI 边计数]
+  A --> D[原始七库 QEMU 完整 ROI]
+  C --> E[逐对象绑定输入 SHA256]
+  D --> E
+  E --> F[标准 Python BOLT / 七库 recovery]
+  F --> G[八库组合与三对初筛]
+  G --> H[另外五对独立确认]
+  H --> I[新 ELF 入口或原版回退]
+```
+
+Python 的 BOLT runtime hook 从实际 archive 对象与链接后 DSO 推导，核验非重定位
+指令、加载 bias 和执行权限；逐 ROI 独立 fdata 后合并。最终库不带训练插桩。
+`tgo.hybrid-profile.v1` 引用基线、QEMU 原始证据和 native manifest 的 SHA256。
+选库份额统一来自基线 discovery，Python 使用其 native edge fdata，七库按完全
+相同的 ELF 内容使用各自 QEMU PA；不同单位不相加，不借用其他版本的画像。
+
+QEMU 的单窗口限制只关闭后续记录，不裁剪实际负载命令或正确性输出。完整已知
+配方绑定八库指纹，支持 BIND_NOW、全函数恢复、4B 布局、清理及 PLT 优化。
+`artifact.stage_image` 修正依赖搜索时检查所有可执行节字节、地址与大小不变。
+非零 e_entry 不足以认定 ELF 是主程序，还需 PT_INTERP、DF_1_PIE 等角色信息。
+
 ## 部署与分发
 
 入口模板是 ELF + 长度编码配置 + footer，不执行 shell，不依赖目标 Python 包。
@@ -100,7 +132,9 @@ Go compiler 独立使用源码 PGO 与私有 linker overlay；由 Go 正常生�
 
 AppImage 与被优化负载的部署包是两种产物。前者可以分发；后者默认绑定原机的 ELF
 与路径。AppImage 的 Python/PATH 环境只用于控制工具，不会泄漏到负载解释器。
-运行所需原生 helper 已预构建，生成入口仅追加配置，所以不需要在分发机安装 CC。
+二进制策略的原生 helper 已预构建，生成入口仅追加配置，不需要目标机安装 CC。
+CPython 源码策略仍需目标环境提供 GCC/g++/make；锁定源码和 BOLT runtime archive
+随 AppImage 携带，AppRun 导出应用根目录，打包后通过实际 doctor 检查资源路径与 SHA。
 入口使用带 SHA256 的 TGOCFG02 配置：stat 相同时快速通过，元数据变化时校验内容。
 因此同一镜像的新容器不会仅因 overlay 设备号/inode 改变而误报 ELF 漂移。SHA256
 实现随原生入口携带，不依赖外部命令或动态加密库。Go helper 同样校验内容，入口
