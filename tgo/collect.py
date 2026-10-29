@@ -47,7 +47,7 @@ def doctor():
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
 
 
-def record(args, training_images=()):
+def record(args, training_images=(), *, cwd=None):
     root = Path(args.output).absolute()
     root.mkdir(parents=True, exist_ok=False)
     command = command_path(args.command) if not args.pid else args.command
@@ -101,7 +101,7 @@ def record(args, training_images=()):
         mapping.write_text(''.join(f"{r['original']}\t{r['optimized']}\n" for r in training_images))
         env["TGO_REDIRECT"] = str(mapping)
     env["PYTHONPATH"] = str(runtime / "support") + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
-    meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
+    meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": str(Path(cwd).resolve()) if cwd else os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
             "branch_stack": args.branch_stack,
             "automatic_backend": automatic,
@@ -187,7 +187,7 @@ def record(args, training_images=()):
         meta["runtime_sha256"] = {p.name: sha256(p) for p in runtime.glob("*.so")}
         write_json(root / "run.json", meta)
         with (root / "stdout").open("wb") as stdout, (root / "stderr").open("wb") as stderr:
-            p = subprocess.Popen(launch, stdout=stdout, stderr=stderr, env=exec_env, start_new_session=True)
+            p = subprocess.Popen(launch, stdout=stdout, stderr=stderr, env=exec_env, cwd=meta["cwd"], start_new_session=True)
             try:
                 code = p.wait(timeout=args.timeout)
             except (subprocess.TimeoutExpired, KeyboardInterrupt):

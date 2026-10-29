@@ -3,11 +3,27 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from tgo.collect import doctor
+from types import SimpleNamespace
+from tgo.collect import doctor,record
 from tgo.util import read_json
 
 
 class HardwareROI(unittest.TestCase):
+    def test_adapter_recording_uses_original_working_directory(self):
+        d=doctor()
+        if not d['perf_probe'] or not d['perf_probe']['usable']:
+            self.skipTest('PMU sampling permission unavailable')
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);work=root/'work';work.mkdir()
+            code='from pathlib import Path\nfrom tgo.roi import region\nPath("proof").write_text(str(Path.cwd()))\nwith region():\n sum(i*i for i in range(1000000))\n'
+            args=SimpleNamespace(output=str(root/'capture'),command=[sys.executable,'-c',code],
+                pid=None,backend='perf',event=None,roi='marker',python_hook=None,env=[],
+                branch_stack=False,perf=None,period=None,frequency=999,timeout=30,
+                qemu_header=None,allow_truncated=False)
+            record(args,cwd=work)
+            self.assertEqual((work/'proof').read_text(),str(work))
+            self.assertEqual(read_json(root/'capture/run.json')['cwd'],str(work))
+
     def test_marker_capture_contains_real_samples(self):
         d = doctor()
         if not d["perf_probe"] or not d["perf_probe"]["usable"]:

@@ -193,7 +193,7 @@ def tune_cpython(args,source):
                 recording.env=[f'{k}={v}' for k,v in state['env'].items()]
                 recording.output=str(root/'library-capture');recording.backend='qemu';recording.event=None
                 recording.max_roi_windows=1;recording.timeout=max(args.timeout,getattr(args,'build_timeout',3600))
-                record(recording)
+                record(recording,cwd=state['cwd'])
                 library_capture=recording.output
             from .hybrid import compose_profiles
             merged=root/'capture';compose_profiles(source,library_capture,image,native,merged,
@@ -205,7 +205,7 @@ def tune_cpython(args,source):
             recording=deepcopy(args);recording.command=state['command'];recording.env=[f'{k}={v}' for k,v in state['env'].items()]
             recording.output=str(root/f'training/capture-{index:03d}')
             if sampler:recording.backend=sampler['backend'];recording.event=sampler['event']
-            record(recording,[image]);captures.append(Path(recording.output))
+            record(recording,[image],cwd=state['cwd']);captures.append(Path(recording.output))
             sampler=fingerprint(read_json(captures[-1]/'run.json'))
             result['training_runs_completed']=len(captures);write_json(root/'tune.json',result)
         if not use_qemu:
