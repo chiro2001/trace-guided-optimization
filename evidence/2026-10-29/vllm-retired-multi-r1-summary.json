@@ -1,0 +1,97 @@
+{
+  "schema": "tgo.result-summary.v1",
+  "host": "920B-47",
+  "workload": "vLLM CPU-stub eager decode: four steps plus synchronization, 16 requests, one warmup request",
+  "capture": "runs/vllm-spe-retired-r1",
+  "bundle": "runs/vllm-spe-retired-multi-r1",
+  "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+  "scope": "three DSO recovery with allow-stripped, no assume-code-pages-safe",
+  "screening_pairs": 3,
+  "confirmation_pairs": 5,
+  "images": [
+    {
+      "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-retired-multi-r1/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+      "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+      "output_sha256": "b561f81d52c156c634c177c005bed79cf4ff671dc600a925a9b1d9f5420087fa"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-retired-multi-r1/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+      "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+      "output_sha256": "d42702ca960806b1a902e180a0ca3744564b86a7af666e52734d546bf768c320"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-retired-multi-r1/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+      "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+      "output_sha256": "7a1a1ed895e33c21981d90c5e0d31c280b33ca8c233a13855141ee812490c5a0"
+    }
+  ],
+  "equivalent": true,
+  "roi_median_reduction_percent": 3.675349103869474,
+  "roi_paired_reduction_percent": [
+    5.714330469972506,
+    2.5041705332238595,
+    6.413731816890578,
+    3.675349103869474,
+    3.6084300385207158
+  ],
+  "pmu": {
+    "cycles": {
+      "paired_reduction_percent": [
+        5.74297807706956,
+        2.860004988319176,
+        6.7575808235900485,
+        4.03173632194187,
+        3.9415900729150244
+      ],
+      "median_reduction_percent": 4.03173632194187,
+      "min_reduction_percent": 2.860004988319176,
+      "max_reduction_percent": 6.7575808235900485
+    },
+    "instructions": {
+      "paired_reduction_percent": [
+        -1.0796229836665727,
+        -0.9542820054629475,
+        -1.4059248321442563,
+        -1.315666745337829,
+        -1.216733347415766
+      ],
+      "median_reduction_percent": -1.216733347415766,
+      "min_reduction_percent": -1.4059248321442563,
+      "max_reduction_percent": -0.9542820054629475
+    },
+    "frontend_stall_cycles": {
+      "paired_reduction_percent": [
+        11.40229937506546,
+        9.779752705925693,
+        10.847927052833262,
+        10.575560422727104,
+        11.146883850389532
+      ],
+      "median_reduction_percent": 10.847927052833262,
+      "min_reduction_percent": 9.779752705925693,
+      "max_reduction_percent": 11.40229937506546
+    },
+    "l1i_read_misses": {
+      "paired_reduction_percent": [
+        -6.822519659709125,
+        -8.009615231675138,
+        -9.09688388036416,
+        -9.039159734921665,
+        -7.50526362752868
+      ],
+      "median_reduction_percent": -8.009615231675138,
+      "min_reduction_percent": -9.09688388036416,
+      "max_reduction_percent": -6.822519659709125
+    }
+  },
+  "aggregation": "per-process median across request ROI counters, then median of five paired reductions; all counters un-multiplexed",
+  "sources": {
+    "vllm-retired-multi-r1-build.json": "8e1b6357350fd4d3f4d89cc7c34ed4f8e5b955bc0064607e2e6a1c014c8c9346",
+    "vllm-retired-multi-r1-confirmation.json": "5af6d17da1bce743672ab8bd144aee918e6a1beafd8253c28d26506c8ff174f3",
+    "vllm-retired-multi-r1-confirmed-build.json": "76c71a12344370e9e58f89229edf9d6487c56f0ecfcbe8a86557b8fd26358b1a"
+  },
+  "limits": "CPU-stub host-side decode only; no claim for NPU throughput, real-device numerical accuracy, or all cache metrics"
+}

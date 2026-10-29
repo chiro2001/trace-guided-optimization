@@ -1,0 +1,36 @@
+{
+  "schema": "tgo.release-verification.v1",
+  "version": "0.2.0",
+  "runtime_commit": "99399c9492933979d48a740c4c9fdc8f1b7e2023",
+  "appimage_sha256": "90277f8188a7a35f7550bf1eef8cb8230b69a1464e7ce46403635305b6f7d20a",
+  "tests": {
+    "local_amd64": {
+      "tests": 11,
+      "result": "passed",
+      "log": "build/tests-0.2.0-runtime-fixed.log",
+      "sha256": "8e822aa8c48f4ed17af3801e71a16246a8601a5526b7ef28ecb4a7cb157eb294"
+    },
+    "remote_aarch64": {
+      "tests": 11,
+      "result": "passed",
+      "log": ".tgo-cache/tests-0.2.0-runtime-fixed.log"
+    }
+  },
+  "go_no_cc_smoke": {
+    "file": "appimage-go-smoke-0.2.0.json",
+    "sha256": "a2c7090193ea239ea866b8024eaa36a3f3616362f345c129317d441083162fe2"
+  },
+  "vllm_confirmation": {
+    "pairs": 5,
+    "equivalent": true,
+    "roi_median_reduction_percent": 3.675349103869474,
+    "min_reduction_percent": 2.5041705332238595,
+    "max_reduction_percent": 6.413731816890578
+  },
+  "limits": [
+    "AArch64 AppImage; runtime glibc baseline is the build host",
+    "Go compiler layout functional but no confirmed stable speedup",
+    "vLLM result applies to the CPU-stub eager decode workload",
+    "goal remains active for automatic multi-image selection and broader gains"
+  ]
+}

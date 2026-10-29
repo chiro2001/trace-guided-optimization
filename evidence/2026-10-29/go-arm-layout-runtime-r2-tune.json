@@ -1,0 +1,221 @@
+{
+  "schema": "tgo.tune.v1",
+  "strategy": "go-compiler-pgo",
+  "selected": "baseline",
+  "toolchain": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "arm64",
+    "GOEXPERIMENT": "",
+    "GOHOSTARCH": "arm64",
+    "GOHOSTOS": "linux",
+    "GOOS": "linux",
+    "GOROOT": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3",
+    "GOTOOLDIR": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/pkg/tool/linux_arm64",
+    "GOVERSION": "go1.27.3"
+  },
+  "go": {
+    "path": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/bin/go",
+    "sha256": "d487fddb6939f3e78f7293fcbdeae610ba8ceae966d3faa4b2094a5688559230"
+  },
+  "compiler": {
+    "path": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/pkg/tool/linux_arm64/compile",
+    "sha256": "35ce75b8723ca02313089c8d307a11d2a3b07bfb0a64561bdabc67d6ed516246",
+    "version": "compile version go1.27.3",
+    "build_settings": {
+      "-buildmode": "exe",
+      "-compiler": "gc",
+      "-gcflags": "cmd/...=-dwarf=false",
+      "-pgo": "default.pgo",
+      "-trimpath": "true",
+      "CGO_ENABLED": "0",
+      "GOARCH": "arm64",
+      "GOARM64": "v8.0",
+      "GOOS": "linux"
+    }
+  },
+  "candidates": [
+    {
+      "name": "layout-runtime",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 37.340972980018705,
+              "metric_seconds": 37.340972980018705,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 37.92789789987728,
+              "metric_seconds": 37.92789789987728,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": -1.571798678552483
+          },
+          {
+            "candidate": {
+              "seconds": 37.65380318975076,
+              "metric_seconds": 37.65380318975076,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/layout-runtime/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 37.41943765990436,
+              "metric_seconds": 37.41943765990436,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": -0.626320288339155
+          },
+          {
+            "baseline": {
+              "seconds": 37.47203555004671,
+              "metric_seconds": 37.47203555004671,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 37.86356810014695,
+              "metric_seconds": 37.86356810014695,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": -1.0448659763287127
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [
+          {
+            "baseline": {
+              "seconds": 37.46171300020069,
+              "metric_seconds": 37.46171300020069,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 37.5482305502519,
+              "metric_seconds": 37.5482305502519,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": -0.23094926292011042
+          },
+          {
+            "candidate": {
+              "seconds": 37.55161013035104,
+              "metric_seconds": 37.55161013035104,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/layout-runtime/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 37.385854210238904,
+              "metric_seconds": 37.385854210238904,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": -0.44336534128659455
+          }
+        ],
+        "metric": "whole-process-wall-time",
+        "median_reduction_percent": -1.0448659763287127,
+        "min_reduction_percent": -1.571798678552483,
+        "max_reduction_percent": -0.626320288339155,
+        "recommendation": "retain-baseline",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "state": "complete",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/capture",
+  "training": {
+    "samples": 12482,
+    "cpu_nanoseconds": 124820000000
+  },
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/go-compiler-arm-layout-runtime-r2/run",
+  "entry_mode": "command",
+  "optimized_compiler": null
+}

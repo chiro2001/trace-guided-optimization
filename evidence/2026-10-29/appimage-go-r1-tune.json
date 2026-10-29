@@ -1,0 +1,221 @@
+{
+  "schema": "tgo.tune.v1",
+  "strategy": "go-compiler-pgo",
+  "selected": "baseline",
+  "toolchain": {
+    "CGO_ENABLED": "0",
+    "GOARCH": "arm64",
+    "GOEXPERIMENT": "",
+    "GOHOSTARCH": "arm64",
+    "GOHOSTOS": "linux",
+    "GOOS": "linux",
+    "GOROOT": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3",
+    "GOTOOLDIR": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/pkg/tool/linux_arm64",
+    "GOVERSION": "go1.27.3"
+  },
+  "go": {
+    "path": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/go",
+    "sha256": "d487fddb6939f3e78f7293fcbdeae610ba8ceae966d3faa4b2094a5688559230"
+  },
+  "compiler": {
+    "path": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/pkg/tool/linux_arm64/compile",
+    "sha256": "35ce75b8723ca02313089c8d307a11d2a3b07bfb0a64561bdabc67d6ed516246",
+    "version": "compile version go1.27.3",
+    "build_settings": {
+      "-buildmode": "exe",
+      "-compiler": "gc",
+      "-gcflags": "cmd/...=-dwarf=false",
+      "-pgo": "default.pgo",
+      "-trimpath": "true",
+      "CGO_ENABLED": "0",
+      "GOARCH": "arm64",
+      "GOARM64": "v8.0",
+      "GOOS": "linux"
+    }
+  },
+  "candidates": [
+    {
+      "name": "layout-runtime",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 1.2438770402222872,
+              "metric_seconds": 1.2438770402222872,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 1.220415280200541,
+              "metric_seconds": 1.220415280200541,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": 1.8861800051839017
+          },
+          {
+            "candidate": {
+              "seconds": 1.2353765200823545,
+              "metric_seconds": 1.2353765200823545,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/layout-runtime/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 1.2547266399487853,
+              "metric_seconds": 1.2547266399487853,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": 1.5421781326983353
+          },
+          {
+            "baseline": {
+              "seconds": 1.2501348899677396,
+              "metric_seconds": 1.2501348899677396,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 1.2454574601724744,
+              "metric_seconds": 1.2454574601724744,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": 0.3741540079235661
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [
+          {
+            "baseline": {
+              "seconds": 1.2546259802766144,
+              "metric_seconds": 1.2546259802766144,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 1.2447370695881546,
+              "metric_seconds": 1.2447370695881546,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/layout-runtime/compile"
+              ]
+            },
+            "reduction_percent": 0.7881959120820681
+          },
+          {
+            "candidate": {
+              "seconds": 1.2343308902345598,
+              "metric_seconds": 1.2343308902345598,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/layout-runtime/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 1.236580040305853,
+              "metric_seconds": 1.236580040305853,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": 0.1818847141295321
+          }
+        ],
+        "metric": "whole-process-wall-time",
+        "median_reduction_percent": 1.5421781326983353,
+        "min_reduction_percent": 0.3741540079235661,
+        "max_reduction_percent": 1.8861800051839017,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "state": "complete",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/capture",
+  "training": {
+    "samples": 275,
+    "cpu_nanoseconds": 2750000000
+  },
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-r1/run",
+  "entry_mode": "command",
+  "optimized_compiler": null
+}
