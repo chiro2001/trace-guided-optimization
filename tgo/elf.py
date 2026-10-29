@@ -18,6 +18,7 @@ class ELF:
         self.loads = []
         self.interpreter = None
         self.dynamic_tags = set()
+        self.dynamic_values = {}
         for i in range(h[10]):
             typ, flags, off, va, _, size, memsize, align = struct.unpack_from(
                 "<IIQQQQQQ", self.data, h[5] + i * h[9])
@@ -31,6 +32,7 @@ class ELF:
                     if tag == 0:
                         break
                     self.dynamic_tags.add(tag)
+                    self.dynamic_values[tag] = value
         sections = [struct.unpack_from("<IIQQQQIIQQ", self.data, h[6] + i * h[11])
                     for i in range(h[12])]
         if h[13] >= len(sections):
@@ -62,11 +64,23 @@ class ELF:
                 "symbols": ".symtab" in self.sections, "go": any("gopclntab" in n or n == ".go.buildinfo" for n in self.sections),
                 "interpreter": self.interpreter,
                 "entry": self.entry,
+                "pie": bool(self.dynamic_values.get(0x6ffffffb, 0) & 0x08000000),
                 "rpath_kind": "rpath" if 15 in self.dynamic_tags else "runpath" if 29 in self.dynamic_tags else None}
 
 
 def is_executable_image(row):
-    return bool(row["type"] == 2 or row["interpreter"] or row.get("entry", 0))
+    if row["type"] == 2 or row["interpreter"]:
+        return True
+    if "pie" in row:
+        return row["pie"]
+    if row.get("entry", 0):
+        # Older captures did not record DF_1_PIE. A nonzero e_entry is also
+        # valid for dlopen-able DSOs (including NumPy's core extension).
+        try:
+            return bool(ELF(row["path"]).dynamic_values.get(0x6ffffffb, 0) & 0x08000000)
+        except (OSError, ValueError, KeyError):
+            return True
+    return False
 
 
 def payload_hash(path,table_start,table_end):

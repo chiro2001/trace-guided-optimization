@@ -21,7 +21,8 @@ from .validate import execute_trial
 def source_archive(version,args):
     project=Path(__file__).resolve().parents[1]
     lock_root=Path(os.environ['TGO_APPDIR']) if os.environ.get('TGO_APPDIR') else project
-    locked=read_json(lock_root/'dependencies.lock.json')['python']
+    source_kind = 'python' if getattr(args,'python_source',None) and str(args.python_source).endswith('.xz') else 'python-gzip'
+    locked=read_json(lock_root/'dependencies.lock.json')[source_kind]
     if locked['version']!=version:
         raise ValueError(f'CPython {version} is not in the source lock; do not substitute a different version')
     name=locked['url'].rsplit('/',1)[-1]
@@ -52,7 +53,7 @@ def extract(archive,directory):
         python_xz = True
     except ImportError:
         python_xz = False
-    if python_xz:
+    if python_xz or not str(archive).endswith('.xz'):
         with tarfile.open(archive) as handle:
             handle.extractall(directory,filter='data')
     else:
