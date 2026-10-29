@@ -19,6 +19,9 @@ def main():
     p.add_argument("--warmup-requests", type=int, default=1)
     p.add_argument("--decode-steps", type=int, default=4)
     p.add_argument("--roi-cpu", type=int)
+    p.add_argument("--max-tokens", type=int)
+    p.add_argument("--no-detokenize", action="store_true")
+    p.add_argument("--check-native-ops", action="store_true")
     a = p.parse_args()
     import torch
     import torch_npu
@@ -38,7 +41,8 @@ def main():
     results = []
     for i in range(a.warmup_requests + a.requests):
         name = f"tgo-{i}"
-        params = SamplingParams(temperature=0, max_tokens=a.decode_steps + 10, ignore_eos=True)
+        params = SamplingParams(temperature=0, max_tokens=a.max_tokens or a.decode_steps + 10,
+                                ignore_eos=True, detokenize=not a.no_detokenize)
         engine.add_request(name, {"prompt_token_ids": [9707]}, params)
         engine.step()  # Prefill, deliberately outside decode ROI.
         torch.npu.synchronize()
@@ -59,6 +63,20 @@ def main():
             results.append(tokens)
         if engine.has_unfinished_requests():
             engine.abort_request(name)
+    if a.check_native_ops:
+        import numpy as np
+        x = np.arange(64, dtype=np.int64)
+        assert int(x.sum()) == 2016 and int(x @ x) == 85344
+        assert np.array_equal(np.argsort(x[::-1]), np.arange(63, -1, -1))
+        t = torch.arange(64, dtype=torch.int64, device="cpu")
+        assert t.sum().item() == 2016 and (t @ t).item() == 85344
+        exceptions = 0
+        for operation in (lambda: torch.empty((-1,), device="cpu"), lambda: x.reshape(3, 3)):
+            try:
+                operation()
+            except (RuntimeError, ValueError):
+                exceptions += 1
+        assert exceptions == 2
     emit_result({"decode_steps": a.decode_steps, "outputs": results})
     print("TGO_DECODE_COMPLETE", a.requests, a.decode_steps)
 
