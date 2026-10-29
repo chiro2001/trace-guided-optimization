@@ -18,6 +18,14 @@ from tgo.util import sha256, write_json, tool
 from bootstrap import fetch
 
 
+def source_snapshot():
+    files = [ROOT / p for p in ("dependencies.lock.json", "pyproject.toml",
+        "scripts/package_appimage.py", "scripts/bootstrap.py", "docs/THIRD_PARTY.md")]
+    for tree in (ROOT / "tgo", ROOT / "patches"):
+        files += [p for p in tree.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"]
+    return {str(p.relative_to(ROOT)): sha256(p) for p in sorted(files)}
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, default=ROOT / "dist")
@@ -27,6 +35,7 @@ def main():
     p.add_argument("--appimagetool")
     p.add_argument("--appdir-only", action="store_true")
     a = p.parse_args()
+    snapshot = source_snapshot()
     dest = a.output.resolve(); dest.mkdir(parents=True, exist_ok=True)
     app = dest / "TGO.AppDir"
     app.mkdir(exist_ok=False)
@@ -44,6 +53,7 @@ def main():
     manifest = {"schema": "tgo.package.v1", "version": __version__, "arch": platform.machine(), "tools": {}, "libraries": {}}
     manifest["source_commit"] = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     manifest["source_dirty"] = bool(subprocess.check_output(["git", "-C", str(ROOT), "status", "--porcelain"], text=True).strip())
+    manifest["build_input_sha256"] = snapshot
     manifest["dependency_lock_sha256"] = sha256(ROOT / "dependencies.lock.json")
     native = app / "usr/lib/tgo-runtime"
     build_runtime(native, a.qemu_header)
@@ -174,6 +184,9 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
         shutil.copy2(ROOT / "docs/THIRD_PARTY.md", app / "THIRD_PARTY.md")
     shutil.copytree(ROOT / "patches", app / "usr/share/doc/tgo/patches")
     manifest["glibc_build_host"] = subprocess.check_output(["ldd", "--version"], text=True).splitlines()[0]
+    final_commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
+    if final_commit != manifest["source_commit"] or source_snapshot() != snapshot:
+        raise RuntimeError("source changed during packaging; preserve this AppDir for inspection and rebuild in a fresh output directory")
     write_json(app / "package-manifest.json", manifest)
     subprocess.run([apprun, "--help"], check=True)
     if not a.appdir_only:
