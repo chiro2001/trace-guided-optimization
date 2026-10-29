@@ -4,6 +4,34 @@
 对象重写、组合验证和独立确认，最后生成原生 ELF 入口。当前没有常驻后台服务，
 不会把新代码热补丁写进正在执行的进程；attach 的画像用于后续启动的入口。
 
+## 多轮训练和画像合并
+
+新鲜训练默认 `--train-runs 3`。第一轮实际探测后端，后续锁定同一后端和事件。
+原始记录分别放在 `training/capture-000` 等目录，合并结果位于 `capture/`。
+`--train-runs 1` 保持单轮流程；`--run` 不增加采集次数。Go 策略分别记录三轮实际
+compiler CPU profile，使用独立冷 cache，再通过 Go pprof 合并。自动发现 Go compiler
+后立即转入专用策略，不继续执行多余的硬件采集。
+
+`tgo merge -o SET CAPTURE...` 创建引用不可变源证据的画像集合。QEMU 按每轮独立
+load bias 转为 ELF 地址；perf/SPE 为每份原始数据独立调用 perf2bolt，再通过
+merge-fdata 累加计数，不拼接不同 ASLR 空间中的地址。热点选择中，QEMU 指令计数
+相加，perf/SPE 采用每轮采样份额的均值，未出现的库按零计算。BOLT 的画像权重为
+计数之和，因此更长或命中更多样本的 ROI 贡献更多。
+
+默认要求相同的运行命令、工作目录、显式环境、ROI 模式/时间边界及 Python hook。
+hook 的辅助脚本目录可随训练轮次改变。不同参数的有意训练变体需显式
+`--allow-workload-variation`，差异字段和所有源目录记入 profile.json；该选项仍不允许
+混合采样事件、周期、频率、branch-stack 模式或同路径的不同 ELF 内容。
+集合再合并时展开至叶子，拒绝重复输入，防止隐式重复计数。
+
+源 run.json、profile.json、perf.data 或 QEMU trace/maps/预聚合文件均绑定 SHA256，
+重写前后校验；漂移会终止调优，不能作为单库失败忽略。需保留被引用的源目录。
+Go CPU profile 使用其专用策略合并，不接受通用 merge。合并的命令入口采用第一份
+记录的 replay 命令与环境，允许变体时应明确选择第一份来源。
+
+多轮训练与独立性能确认是不同阶段。增加训练覆盖不意味着放宽逐对收益门槛，也
+不能把训练时长、画像计数或初筛当成已确认的性能收益。
+
 ## 后端与对象选择
 
 `--backend auto` 使用短暂的 `/bin/true` 探测：若 SPE retired-branch 事件能打开，

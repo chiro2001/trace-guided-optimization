@@ -55,6 +55,7 @@ def main(argv=None):
     t = sub.add_parser("tune", parents=[r], add_help=False,
                        help="record, compare three layouts and publish a confirmed ELF entry")
     t.add_argument("--run", help="reuse an existing capture instead of recording")
+    t.add_argument("--train-runs", type=int, default=3, help="fresh training repetitions; existing --run captures are reused unchanged")
     t.add_argument("--entry")
     t.add_argument("--entry-mode", choices=["command", "executable"], default="command")
     t.add_argument("--image", action="append", default=[])
@@ -90,6 +91,10 @@ def main(argv=None):
     n.add_argument("run")
     n.add_argument("--perf")
     n.add_argument("--allow-truncated", action="store_true")
+    m = sub.add_parser("merge", help="combine independently normalized compatible captures")
+    m.add_argument("-o", "--output", required=True)
+    m.add_argument("--allow-workload-variation", action="store_true")
+    m.add_argument("runs", nargs="+")
     args = p.parse_args(argv)
     try:
         if hasattr(args, "command") and args.command[:1] == ["--"]:
@@ -109,6 +114,8 @@ def main(argv=None):
                 p.error("top, search-pairs and validate must be >0")
             if args.go_warmups < 0:
                 p.error("go-warmups must be >=0")
+            if args.train_runs <= 0:
+                p.error("train-runs must be >0")
             if args.confirm_candidates <= 0:
                 p.error("confirm-candidates must be >0")
             if args.image_search == "all" and args.top > 4:
@@ -140,6 +147,8 @@ def main(argv=None):
             from .util import tool
             root = Path(args.run).resolve()
             state = read_json(root / "run.json")
+            if state.get("aggregate"):
+                raise ValueError("capture sets reference immutable source runs; use merge to create a refreshed set")
             if state.get("returncode") != 0:
                 raise ValueError("raw workload did not finish successfully")
             if state["backend"] == "qemu":
@@ -152,6 +161,9 @@ def main(argv=None):
             state["state"] = "recorded"
             state["phase"] = "complete"
             write_json(root / "run.json", state)
+        elif args.action == "merge":
+            from .capture_set import merge_captures
+            result = merge_captures(args.runs, args.output, args.allow_workload_variation)
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0
     except (RuntimeError, ValueError, OSError) as e:

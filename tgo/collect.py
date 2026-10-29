@@ -114,9 +114,15 @@ def record(args):
             for k in ("TGO_IMAGE_LOG", "TGO_ROI_LOG", "TGO_ROI_LIBRARY"):
                 launch += ["-E", f"{k}={env[k]}"]
             launch += ["-E", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
+            meta["sampling"] = {"backend": "qemu", "event": None, "period": None,
+                                "frequency": None, "branch_stack": bool(args.branch_stack)}
         else:
             perf = tool("perf", args.perf)
             event = event_override or ("arm_spe_0" + SPE_FILTER if backend == "spe" else "cycles:u")
+            meta["sampling"] = {"backend": backend, "event": event,
+                "period": (args.period or 4096) if backend == "spe" or args.period else None,
+                "frequency": args.frequency if backend != "spe" and not args.period else None,
+                "branch_stack": bool(args.branch_stack)}
             launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
                 launch += ["--switch-events", "--sample-cpu", "--mmap-pages=1024,16384"]
@@ -138,6 +144,7 @@ def record(args):
                 if args.duration is None:
                     raise ValueError("--roi window requires --duration")
                 launch += [f"--delay={int(args.delay * 1000)}-{int((args.delay + args.duration) * 1000)}"]
+                meta["roi_window"] = f"{int(args.delay * 1000)}-{int((args.delay + args.duration) * 1000)}"
             if args.pid:
                 if args.duration is None:
                     raise ValueError("attach requires --duration")

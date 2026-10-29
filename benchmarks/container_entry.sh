@@ -30,6 +30,7 @@ optimize|tune)
         exit 2
     fi
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_LAYOUT-}" ]; then set -- --layout "$TGO_LAYOUT" "$@"; fi
+    if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_TRAIN_RUNS-}" ]; then set -- --train-runs "$TGO_TRAIN_RUNS" "$@"; fi
     if [ "$TGO_ACTION" = tune ] && [ -n "${TGO_IMAGE_SEARCH-}" ]; then set -- --image-search "$TGO_IMAGE_SEARCH" "$@"; fi
     if [ -n "${TGO_IMAGE_FILTER-}" ]; then
         TGO_PREVIOUS_IFS=$IFS

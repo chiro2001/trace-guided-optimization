@@ -8,6 +8,10 @@ import time
 import signal
 
 
+class IdentityError(ValueError):
+    pass
+
+
 def sha256(path):
     h = hashlib.sha256()
     with open(path, "rb") as f:

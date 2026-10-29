@@ -15,7 +15,8 @@ python3 -m tgo tune -o runs/my-app --backend auto -- /path/to/python app.py
 runs/my-app/run
 ```
 
-`tune` 自动选择采集后端、热点库及每库 BOLT 策略，再执行三种布局初筛、独立 AB/BA
+`tune` 默认独立采集三轮训练 ROI，逐轮归一化并合并画像，自动选择采集后端、热点库
+及每库 BOLT 策略，再执行三种布局初筛、独立 AB/BA
 确认和入口生成。仅在每一对确认
 运行都正确且收益超过阈值时选择候选；否则生成调用原版的入口。`tune.json` 记录
 实际选择，不能仅凭生成了一个 ELF 就判断优化有效。
@@ -28,6 +29,18 @@ python3 -m tgo inspect runs/train
 python3 -m tgo optimize --run runs/train -o runs/candidate --image libpython3.12.so.1.0
 python3 -m tgo validate runs/candidate --pairs 5
 ```
+
+`--train-runs 1` 可减少新训练次数；`--run` 始终直接复用已有画像。可手动合并多份
+已完成且采样设置、负载和 ROI 相同的记录，再搜索布局：
+
+```sh
+python3 -m tgo merge -o runs/combined runs/train-a runs/train-b runs/train-c
+python3 -m tgo tune --run runs/combined -o runs/tuned
+```
+
+合并目录通过 SHA256 引用原始记录，需保留源目录。不同事件、周期或 ELF 内容不能
+合并；有意混合不同负载参数时需显式 `--allow-workload-variation`，差异会写入画像。
+多轮训练提高画像覆盖，但不能保证收益，最终仍须独立确认。
 
 `optimize` 输出未经收益筛选的候选，默认做三对正确性/加载验证。性能建议保存在
 `validation.json`。`tune` 才会根据收益选择最终入口。
@@ -172,9 +185,9 @@ python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8
 python3 scripts/bootstrap.py --components llvm --llvm-variant recover --jobs 8
 export TGO_QEMU_HEADER="$PWD/deps/install/include/qemu-plugin.h"
 python3 scripts/package_appimage.py --python deps/install/bin/python3.12
-dist/tgo-0.3.0-aarch64.AppImage doctor
+dist/tgo-0.4.0-aarch64.AppImage doctor
 # 无 FUSE 环境
-APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.3.0-aarch64.AppImage doctor
+APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.4.0-aarch64.AppImage doctor
 ```
 
 每个 ISA 单独打包。AppImage 携带工具、Python 标准库及非 glibc 动态依赖；最低 glibc

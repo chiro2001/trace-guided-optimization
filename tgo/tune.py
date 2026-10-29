@@ -8,6 +8,7 @@ from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, sha256
 from .validate import validate
 from .selection import screening_score, confirmed
+from .capture_set import merge_captures, fingerprint
 
 LAYOUTS = {
     "ext-tsp": [],
@@ -90,14 +91,40 @@ def tune(args):
     write_json(root / "tune.json", result)
     try:
         if not args.run:
-            recording = deepcopy(args); recording.output = str(capture)
+            repetitions = getattr(args, "train_runs", 1)
+            first = capture if repetitions == 1 else root / "training/capture-000"
+            recording = deepcopy(args); recording.output = str(first)
             record(recording)
+            first_state, first_profile = read_json(first / "run.json"), read_json(first / "profile.json")
+            if args.strategy == "auto":
+                discovery = discover_go(args, root, first, first_state, first_profile)
+                if discovery:
+                    result = discovery
+                    return result
+            captures = [first]
+            result["training_runs_completed"] = 1
+            write_json(root / "tune.json", result)
+            sampler = fingerprint(first_state)
+            for index in range(1, repetitions):
+                recording = deepcopy(args)
+                recording.output = str(root / f"training/capture-{index:03d}")
+                recording.backend = first_state["backend"]
+                recording.event = sampler["event"]
+                record(recording)
+                captures.append(Path(recording.output))
+                result["training_runs_completed"] = len(captures)
+                write_json(root / "tune.json", result)
+            if repetitions > 1:
+                merge_captures(captures, capture)
+            result["training_runs_completed"] = repetitions
         state = read_json(capture / "run.json")
         profile = read_json(capture / "profile.json")
+        result["training_runs_completed"] = state.get("source_runs", 1)
         if args.strategy == "auto":
             discovery = discover_go(args, root, capture, state, profile)
             if discovery:
-                return discovery
+                result = discovery
+                return result
         result.update(state="screening", automatic_images=not bool(args.image), bolt_policy=args.bolt_mode,
                       image_search=args.image_search)
         write_json(root / "tune.json", result)

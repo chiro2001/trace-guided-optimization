@@ -283,22 +283,31 @@ def tune_go(args, root_exists=False):
         if previous:
             if prior_profile["compiler_sha256"] != original_sha:
                 raise ValueError("Go CPU profiles belong to a different compiler")
-            for item in prior_profile["profiles"]:
+            for index, item in enumerate(prior_profile["profiles"]):
                 path = Path(item["path"])
                 if sha256(path) != item["sha256"]:
                     raise ValueError("raw Go CPU profile changed")
-                shutil.copy2(path, profiles / path.name)
+                shutil.copy2(path, profiles / f"{index:06d}-{path.name}")
             state.update(returncode=0, training_origin=str(previous),
-                         training_manifest_sha256=sha256(previous / "profile.json"))
+                         training_manifest_sha256=sha256(previous / "profile.json"),
+                         training_runs_completed=prior_state.get("training_runs_completed", 1))
         else:
-            training = adapter_env(base, runtime, compiler, version, "profile-" + original_sha[:16])
-            training.update(TGO_GO_PROFILE_DIR=str(profiles), TGO_GO_EXEC_LOG=str(capture / "tools.tsv"),
-                            GOCACHE=str(capture / "cache"))
-            code, seconds, timed_out, digest = execute_trial(command, capture / "workload", training, state["cwd"], args.timeout)
-            state.update(returncode=code, seconds=seconds, timed_out=timed_out, stdout_sha256=digest)
-            if code or timed_out:
-                raise ValueError(f"Go profiling workload failed; inspect {capture / 'workload.stderr'}")
-        files = sorted(p for p in profiles.glob("*.pprof") if p.stat().st_size)
+            state["training_trials"] = []
+            for index in range(getattr(args, "train_runs", 1)):
+                trial_profiles = profiles / f"round-{index:03d}"; trial_profiles.mkdir()
+                training = adapter_env(base, runtime, compiler, version, "profile-" + original_sha[:16])
+                cache = capture / f"cache-{index}"
+                training.update(TGO_GO_PROFILE_DIR=str(trial_profiles), TGO_GO_EXEC_LOG=str(capture / "tools.tsv"), GOCACHE=str(cache))
+                prefix = capture / f"workload-{index}"
+                code, seconds, timed_out, digest = execute_trial(command, prefix, training, state["cwd"], args.timeout)
+                state["training_trials"].append({"returncode": code, "seconds": seconds, "timed_out": timed_out,
+                    "stdout_sha256": digest, "profiles": str(trial_profiles), "evidence_prefix": str(prefix)})
+                state.update(returncode=code, training_runs_completed=index+1)
+                write_json(capture / "run.json", state)
+                if code or timed_out:
+                    raise ValueError(f"Go profiling workload failed; inspect {prefix}.stderr")
+                shutil.rmtree(cache, ignore_errors=True)
+        files = sorted(p for p in profiles.rglob("*.pprof") if p.stat().st_size)
         if not files:
             raise ValueError("no compiler profiles produced; check selected --go and workload cache behavior")
         merged = capture / "merged.pprof"
@@ -316,7 +325,8 @@ def tune_go(args, root_exists=False):
         state.update(state="recorded", phase="complete")
         write_json(capture / "run.json", state)
         shutil.rmtree(capture / "cache", ignore_errors=True)
-        result.update(capture=str(capture), training=totals, state="building")
+        result.update(capture=str(capture), training=totals,
+                      training_runs_completed=state["training_runs_completed"], state="building")
         write_json(root / "tune.json", result)
         settings = build_settings(go, compiler, base)
         result["compiler"]["build_settings"] = settings

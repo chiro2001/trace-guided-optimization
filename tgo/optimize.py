@@ -5,14 +5,11 @@ import hashlib
 import shlex
 from .elf import ELF, is_executable_image, normalize_loads
 from .runtime import build_runtime, make_launcher
-from .util import read_json, write_json, run, sha256, tool, tool_env
+from .util import read_json, write_json, run, sha256, tool, tool_env, IdentityError
+from .capture_set import SCHEMA as CAPTURE_SET, verified_sources, observations
 
 RECOVERY = ["-relocs", "-force-patch", "-pgo128-trampoline-mode", "-pgo128-recover-code-relocs",
             "-aarch64-relaxation-non-reloc"]
-
-
-class IdentityError(ValueError):
-    pass
 
 
 def eligible(row, allow_stripped=False):
@@ -115,24 +112,65 @@ def aggregate_environment(out, profile, result):
     return env
 
 
+def aggregate_observation(args, row, state, backend, directory, policy, aggregate_env):
+    original = Path(row["path"])
+    recover = policy["mode"] == "recover"
+    recovery = RECOVERY if recover else []
+    fdata = directory / "profile.fdata"
+    cmd = [policy["perf2bolt"], original, "-o", fdata]
+    if backend == "qemu":
+        cmd += ["-pa", "-p", row["preaggregate"]]
+    else:
+        cmd += ["-p", row["perf_data"]]
+        cmd += ["-spe"] if backend == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
+    cmd += recovery
+    if policy["allow_stripped"]:
+        cmd += ["-allow-stripped"]
+    aggregate_env = dict(aggregate_env); aggregate_env["TGO_SPE_STATS"] = str(directory / "spe-bridge.json")
+    aggregation = run(cmd, directory / "aggregate.log", env=aggregate_env, timeout=args.timeout)
+    return fdata, aggregation
+
+
+def aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env):
+    inputs = observations(profile, row)
+    if not inputs:
+        raise ValueError(f"no positive observations for {row['path']}")
+    if profile.get("schema") != CAPTURE_SET:
+        fdata, record = aggregate_observation(args, row, state, profile["backend"], image_dir, policy, aggregate_env)
+        if not fdata.exists() or not fdata.stat().st_size:
+            raise ValueError(f"empty BOLT profile: {row['path']}")
+        return fdata, record
+    records, paths, stats = [], [], []
+    for index, original in enumerate(inputs):
+        directory = image_dir / "observations" / str(index); directory.mkdir(parents=True)
+        fdata, record = aggregate_observation(args, original, state, profile["backend"], directory, policy, aggregate_env)
+        used = fdata.exists() and fdata.stat().st_size > 0
+        records.append({"path": str(fdata), "sha256": sha256(fdata) if fdata.exists() else None,
+                        "used": used, "aggregation": record})
+        if used:
+            paths.append(fdata)
+        if profile["backend"] == "spe":
+            stats.append(read_json(directory / "spe-bridge.json"))
+    if not paths:
+        raise ValueError(f"no usable BOLT counts across captures: {row['path']}")
+    merged = image_dir / "profile.fdata"
+    merger = tool("merge-fdata")
+    merging = run([merger, "-q", "-o", merged, *paths], image_dir / "merge.log", timeout=args.timeout)
+    if not merged.exists() or not merged.stat().st_size:
+        raise ValueError("merge-fdata emitted an empty profile")
+    if stats:
+        summary = {key: sum(s[key] for s in stats) for key in ("branch_samples", "emitted", "unavailable_code", "unsupported_opcode")}
+        summary.update(prediction="unknown except named miss events", input_captures=len(stats), inputs=stats)
+        write_json(image_dir / "spe-bridge.json", summary)
+    return merged, {"strategy": "independent-ELF-normalization-and-count-merge", "inputs": records,
+                    "merge": merging, "merge_tool_sha256": sha256(merger)}
+
+
 def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, patchelf):
     original = Path(row["path"])
     recover = policy["mode"] == "recover"
     recovery = RECOVERY if recover else []
-    fdata = image_dir / "profile.fdata"
-    cmd = [policy["perf2bolt"], original, "-o", fdata]
-    if profile["backend"] == "qemu":
-        cmd += ["-pa", "-p", row["preaggregate"]]
-    else:
-        cmd += ["-p", row["perf_data"]]
-        cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
-    cmd += recovery
-    if policy["allow_stripped"]:
-        cmd += ["-allow-stripped"]
-    aggregate_env = dict(aggregate_env); aggregate_env["TGO_SPE_STATS"] = str(image_dir / "spe-bridge.json")
-    aggregation = run(cmd, image_dir / "aggregate.log", env=aggregate_env, timeout=args.timeout)
-    if not fdata.exists() or not fdata.stat().st_size:
-        raise ValueError(f"empty BOLT profile: {original}")
+    fdata, aggregation = aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env)
     target = image_dir / original.name
     flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] or recover else "none"),
              "-split-functions", "-split-all-cold", "-split-strategy=profile2", "-dyno-stats",
@@ -190,6 +228,8 @@ def optimize(args):
               "workload": {k: state[k] for k in ("command", "cwd", "env")}}
     write_json(out / "build.json", result)
     try:
+        if profile.get("schema") == CAPTURE_SET:
+            verified_sources(profile)
         if profile.get("raw_data"):
             verify_identity(profile["raw_data"]["path"], profile["raw_data"]["sha256"])
         for row in selected:
@@ -214,6 +254,8 @@ def optimize(args):
             write_json(out / "build.json", result)
         for row in selected:
             verify_identity(row["path"], row["sha256"])
+        if profile.get("schema") == CAPTURE_SET:
+            verified_sources(profile)
         if not result["images"]:
             raise ValueError("no hot ELF images were rewritten; see build.json skipped and failed_images")
         verify_images(result["images"])

@@ -43,9 +43,9 @@ def main():
     binpath.mkdir(parents=True); libpath.mkdir()
     patch = tool("patchelf")
     explicit = dict(s.split("=", 1) for s in a.tool)
-    required = ("llvm-bolt", "qemu-" + platform.machine(), "patchelf")
+    required = ("llvm-bolt", "merge-fdata", "qemu-" + platform.machine(), "patchelf")
     executables = {n: tool(n, explicit.get(n)) for n in required}
-    for n in ("perf", "merge-fdata", "llvm-bolt-recover"):
+    for n in ("perf", "llvm-bolt-recover"):
         found = tool(n, explicit.get(n), required=False)
         if found:
             executables[n] = found
