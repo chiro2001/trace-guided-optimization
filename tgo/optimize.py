@@ -3,6 +3,7 @@ from pathlib import Path
 import subprocess
 import hashlib
 import shlex
+import shutil
 from .elf import ELF, is_executable_image, normalize_loads
 from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool, tool_env, IdentityError
@@ -140,6 +141,16 @@ def aggregate_observation(args, row, state, backend, directory, policy, aggregat
 
 
 def aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env):
+    if row.get("native_fdata"):
+        verify_identity(row["native_fdata"], row["native_fdata_sha256"])
+        verify_identity(row["native_profile"], row["native_profile_sha256"])
+        native = read_json(row["native_profile"])
+        if native["source_sha256"] != row["sha256"]:
+            raise IdentityError("native edge profile belongs to a different rewrite input")
+        fdata = image_dir / "profile.fdata"
+        shutil.copy2(row["native_fdata"], fdata)
+        return fdata, {"strategy": "native-bolt-roi-edges", "manifest": row["native_profile"],
+                       "manifest_sha256": row["native_profile_sha256"], "sha256": sha256(fdata)}
     inputs = observations(profile, row)
     if not inputs:
         raise ValueError(f"no positive observations for {row['path']}")
@@ -192,6 +203,8 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
     flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] or recover else "none"),
              "-split-functions", "-split-all-cold", "-split-strategy=profile2", "-dyno-stats",
              "-align-functions=4", "-align-functions-max-bytes=4", "-enable-bat", "-thread-count=4"]
+    if getattr(args, "_recipe_plan", None):
+        flags += ["-cold-threshold=0"]
     if row["machine"] == 183:
         flags += ["-group-stubs=false"]
         if not row["relocations"] and not recover:
@@ -201,7 +214,7 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
         if not full:
             flags += ["-lite", "-lite-threshold-count=1"]
     if full:
-        flags += ["-cold-threshold=0", "-eliminate-unreachable", "-peepholes=all",
+        flags += ["-eliminate-unreachable", "-peepholes=all",
                   "-simplify-conditional-tail-calls", "-sctc-mode=always", "-split-eh", "-plt=all"]
     if policy["allow_stripped"]:
         flags += ["-allow-stripped"]
@@ -229,7 +242,7 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
               "policy": {**policy, "bolt_sha256": sha256(policy["bolt"]), "perf2bolt_sha256": sha256(policy["perf2bolt"])}}
     if binding:
         result.update(binding=binding, recipe="eager-v12", full_function_scope=True)
-    if profile["backend"] == "spe":
+    if profile["backend"] == "spe" and not row.get("native_fdata"):
         result["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
     return result
 
@@ -260,6 +273,9 @@ def optimize(args):
             verify_identity(profile["raw_data"]["path"], profile["raw_data"]["sha256"])
         for row in selected:
             verify_identity(row["path"], row["sha256"])
+            if row.get("native_fdata"):
+                verify_identity(row["native_fdata"], row["native_fdata_sha256"])
+                verify_identity(row["native_profile"], row["native_profile_sha256"])
             if row.get("preaggregate_sha256"):
                 verify_identity(row["preaggregate"], row["preaggregate_sha256"])
         build_runtime(out)
@@ -286,6 +302,9 @@ def optimize(args):
             write_json(out / "build.json", result)
         for row in selected:
             verify_identity(row["path"], row["sha256"])
+            if row.get("native_fdata"):
+                verify_identity(row["native_fdata"], row["native_fdata_sha256"])
+                verify_identity(row["native_profile"], row["native_profile_sha256"])
         if profile.get("schema") == CAPTURE_SET:
             verified_sources(profile)
         if not result["images"]:

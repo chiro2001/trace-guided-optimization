@@ -151,7 +151,29 @@ def tune_cpython(args,source):
     result={'schema':'tgo.tune.v1','strategy':'cpython-pgo-lto','state':'building','selected':'baseline','baseline_capture':str(source)}
     write_json(root/'tune.json',result)
     try:
-        image,compiler=build_cpython(args,original,state,root/'compiler')
+        prior=getattr(args,'python_build',None)
+        if prior:
+            build_path=Path(prior).resolve()/'build.json'
+            compiler=read_json(build_path)
+            image=compiler['output']
+            if compiler['state']!='complete' or compiler['contract']!=workload_contract(state):
+                raise ValueError('reused CPython build does not match the workload contract')
+            from .optimize import verify_images
+            verify_images([image])
+            if sha256(original)!=compiler['original']['sha256']:
+                raise IdentityError('reused compiler belongs to a different baseline Python')
+            base=Path(prior).resolve()/'instrumentation-source'/('Python-'+compiler['interpreter']['version'])
+            for profile in compiler['profiles']:
+                if sha256(base/profile['path'])!=profile['sha256']:
+                    raise IdentityError('GCC training profiles changed since the build')
+        else:
+            image,compiler=build_cpython(args,original,state,root/'compiler')
+            build_path=root/'compiler/build.json'
+        from .instrument import profile_python,runtime_archive
+        native=None
+        kind=getattr(args,'python_profile','auto')
+        if kind=='native' or (kind=='auto' and image['output']['machine']==183 and runtime_archive()):
+            native=profile_python(args,image,state,root/'native-python')
         captures=[];sampler=None
         for index in range(getattr(args,'train_runs',3)):
             recording=deepcopy(args);recording.command=state['command'];recording.env=[f'{k}={v}' for k,v in state['env'].items()]
@@ -161,12 +183,20 @@ def tune_cpython(args,source):
             sampler=fingerprint(read_json(captures[-1]/'run.json'))
             result['training_runs_completed']=len(captures);write_json(root/'tune.json',result)
         merged=root/'capture';merge_captures(captures,merged)
+        if native:
+            merged_profile=read_json(merged/'profile.json')
+            row=next(r for r in merged_profile['images'] if r['path']==image['optimized'])
+            row.update(native_fdata=native['profile'],native_fdata_sha256=native['sha256'],
+                       native_profile=str(root/'native-python/profile.json'),
+                       native_profile_sha256=sha256(root/'native-python/profile.json'))
+            write_json(merged/'profile.json',merged_profile)
         optimize=deepcopy(args);optimize.run=str(merged);optimize.output=str(root/'layouts');optimize.strategy='bolt'
         optimize.entry=args.entry or str(root/'run')
         from .tune import tune
         result=tune(optimize)
-        result.update(strategy='cpython-pgo-lto',cpython_build=str(root/'compiler/build.json'),
-                      cpython_build_sha256=sha256(root/'compiler/build.json'),baseline_capture=str(source))
+        result.update(strategy='cpython-pgo-lto',cpython_build=str(build_path),
+                      cpython_build_sha256=sha256(build_path),baseline_capture=str(source),
+                      python_profile='native-edges' if native else 'sampling')
         build_runtime(root)
         write_json(root/'build.json',read_json(root/'layouts/build.json'))
     except BaseException as error:

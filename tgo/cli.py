@@ -76,6 +76,8 @@ def main(argv=None):
     t.add_argument("--confirm-candidates", type=int, default=2, help="maximum independently confirmed candidates")
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler", "cpython"], default="auto")
     t.add_argument("--python-source", help="matching CPython source archive, verified against the source lock")
+    t.add_argument("--python-build", help="reuse a verified completed CPython build for the identical workload")
+    t.add_argument("--python-profile", choices=["auto", "native", "sample"], default="auto")
     t.add_argument("--build-jobs", type=int, default=8)
     t.add_argument("--build-timeout", type=float, default=3600)
     t.add_argument("--go", help="Go toolchain used by the compilation workload")

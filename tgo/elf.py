@@ -13,6 +13,7 @@ class ELF:
         if self.data[:6] != b"\x7fELF\x02\x01":
             raise ValueError(f"requires little-endian ELF64: {path}")
         h = struct.unpack_from("<16sHHIQQQIHHHHHH", self.data)
+        self.header = h
         self.type, self.machine = h[1:3]
         self.entry = h[4]
         self.loads = []
@@ -35,6 +36,7 @@ class ELF:
                     self.dynamic_values[tag] = value
         sections = [struct.unpack_from("<IIQQQQIIQQ", self.data, h[6] + i * h[11])
                     for i in range(h[12])]
+        self.section_entries = sections
         if h[13] >= len(sections):
             raise ValueError("ELF section name table missing")
         s = sections[h[13]]
@@ -55,6 +57,22 @@ class ELF:
 
     def contains(self, va):
         return any(lo <= va < hi and flags & 1 for lo, hi, _, flags, _ in self.loads)
+
+    def symbol(self, name):
+        matches = set()
+        for section in self.section_entries:
+            if section[1] not in (2, 11):
+                continue
+            strings = self.section_entries[section[6]]
+            table = self.data[strings[4]:strings[4]+strings[5]]
+            for offset in range(section[4], section[4]+section[5], section[9]):
+                item = struct.unpack_from('<IBBHQQ', self.data, offset)
+                label = table[item[0]:].split(b'\0', 1)[0].decode(errors='replace')
+                if label == name and item[3] != 0:
+                    matches.add((item[3], item[4], item[5]))
+        if len(matches) != 1:
+            raise ValueError(f'missing or ambiguous ELF symbol: {name}')
+        return matches.pop()
 
     def metadata(self):
         st = self.path.stat()
