@@ -13,7 +13,7 @@ def build_runtime(out, qemu_header=None):
     out.mkdir(parents=True, exist_ok=True)
     support = out / "support/tgo"
     support.mkdir(parents=True, exist_ok=True)
-    for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py"):
+    for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py", "training.py", "util.py"):
         shutil.copy2(NATIVE.parent / name, support / name)
     shipped = os.environ.get("TGO_RUNTIME_DIR")
     if shipped:

@@ -7,6 +7,8 @@ from .elf import ELF, is_executable_image, normalize_loads
 from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool, tool_env, IdentityError
 from .capture_set import SCHEMA as CAPTURE_SET, verified_sources, observations
+from .recipes import resolve_recipe, recovered_policy
+from .binding import bind_now
 
 RECOVERY = ["-relocs", "-force-patch", "-pgo128-trampoline-mode", "-pgo128-recover-code-relocs",
             "-aarch64-relaxation-non-reloc"]
@@ -32,6 +34,9 @@ def select_images(args, state, profile):
     automatic = args.bolt_mode == "auto"
     ranked = sorted(profile["images"], key=lambda row: row.get("dynamic_instructions", row.get("sample_percent", 0)), reverse=True)
     for row in ranked:
+        recipe = getattr(args, "_recipe_plan", None)
+        if recipe and Path(row["path"]).name not in recipe["images"]:
+            continue
         if args.image and not any(x == row["path"] or x == Path(row["path"]).name for x in args.image):
             continue
         reason = eligible(row, args.allow_stripped or automatic)
@@ -41,7 +46,7 @@ def select_images(args, state, profile):
             reason = "recovery policy requires an AArch64 shared object"
         if reason:
             skipped.append({"path": row["path"], "reason": reason})
-        elif len(selected) < args.top:
+        elif len(selected) < (len(recipe["images"]) if recipe else args.top):
             selected.append(row)
     return selected, skipped
 
@@ -116,6 +121,9 @@ def aggregate_observation(args, row, state, backend, directory, policy, aggregat
     original = Path(row["path"])
     recover = policy["mode"] == "recover"
     recovery = RECOVERY if recover else []
+    full = recovered_policy(args, row)
+    if full:
+        recovery = [*recovery, "-pgo128-assume-code-pages-safe"]
     fdata = directory / "profile.fdata"
     cmd = [policy["perf2bolt"], original, "-o", fdata]
     if backend == "qemu":
@@ -170,6 +178,15 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
     original = Path(row["path"])
     recover = policy["mode"] == "recover"
     recovery = RECOVERY if recover else []
+    full = recovered_policy(args, row)
+    binding = None
+    rewritten_input = original
+    if full:
+        if not recover:
+            raise ValueError("eager-v12 seven-library policy requires recovery BOLT")
+        rewritten_input = image_dir / (original.name + ".bind-now")
+        binding = bind_now(original, rewritten_input)
+        recovery = [*recovery, "-pgo128-assume-code-pages-safe"]
     fdata, aggregation = aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env)
     target = image_dir / original.name
     flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] or recover else "none"),
@@ -180,11 +197,16 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
         if not row["relocations"] and not recover:
             flags += ["-aarch64-relaxation-non-reloc"]
     if recover:
-        flags += [*recovery, "-use-old-text=false", "-lite", "-lite-threshold-count=1"]
+        flags += [*recovery, "-use-old-text=false"]
+        if not full:
+            flags += ["-lite", "-lite-threshold-count=1"]
+    if full:
+        flags += ["-cold-threshold=0", "-eliminate-unreachable", "-peepholes=all",
+                  "-simplify-conditional-tail-calls", "-sctc-mode=always", "-split-eh", "-plt=all"]
     if policy["allow_stripped"]:
         flags += ["-allow-stripped"]
     flags += args.bolt_arg
-    optimization = run([policy["bolt"], original, "-data=" + str(fdata), "-o", target, *flags],
+    optimization = run([policy["bolt"], rewritten_input, "-data=" + str(fdata), "-o", target, *flags],
                        image_dir / "bolt.log", timeout=args.timeout)
     normalization = None
     if recover:
@@ -205,6 +227,8 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
               "fdata_sha256": sha256(fdata), "recovered_relocations": recover,
               "load_order_normalization": normalization, "aggregation": aggregation, "optimization": optimization,
               "policy": {**policy, "bolt_sha256": sha256(policy["bolt"]), "perf2bolt_sha256": sha256(policy["perf2bolt"])}}
+    if binding:
+        result.update(binding=binding, recipe="eager-v12", full_function_scope=True)
     if profile["backend"] == "spe":
         result["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
     return result
@@ -213,6 +237,7 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
 def optimize(args):
     source = Path(args.run).resolve()
     state, profile = read_json(source / "run.json"), read_json(source / "profile.json")
+    args._recipe_plan = resolve_recipe(args, state, profile)
     if state.get("backend") == "go-cpu":
         raise ValueError("Go CPU profiles require tune --strategy go-compiler")
     if state["state"] != "recorded":
@@ -224,6 +249,7 @@ def optimize(args):
     result = {"schema": "tgo.build.v1", "source_run": str(source), "profile_sha256": sha256(source / "profile.json"),
               "images": [], "skipped": skipped, "failed_images": [], "state": "building",
               "automatic_images": not bool(args.image), "bolt_policy": args.bolt_mode,
+              "recipe": args._recipe_plan,
               "selected_inputs": [row["path"] for row in selected],
               "workload": {k: state[k] for k in ("command", "cwd", "env")}}
     write_json(out / "build.json", result)
@@ -246,6 +272,12 @@ def optimize(args):
             try:
                 policy = image_policy(args, row, capabilities)
                 image = rewrite_image(args, row, state, profile, image_dir, policy, env, patchelf)
+                replacement = next((r for r in state.get("training_images", []) if r["optimized"] == row["path"]), None)
+                if replacement:
+                    image["rewrite_input"] = image["input"]
+                    image["original"] = replacement["original"]
+                    image["input"] = replacement["input"]
+                    image["training_replacement"] = replacement
                 result["images"].append(image)
             except IdentityError:
                 raise

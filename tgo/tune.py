@@ -9,6 +9,8 @@ from .util import read_json, write_json, sha256
 from .validate import validate
 from .selection import screening_score, confirmed
 from .capture_set import merge_captures, fingerprint
+from .recipes import resolve_recipe
+from .util import tool
 
 LAYOUTS = {
     "ext-tsp": [],
@@ -83,6 +85,29 @@ def discover_go(args, root, capture, state, profile):
     return result
 
 
+def discover_cpython(args, root, capture, state, profile):
+    if state.get("training_images"):
+        return None
+    explicit = args.strategy == "cpython"
+    if not explicit and (not resolve_recipe(args, state, profile) or not tool("gcc", required=False)):
+        return None
+    if args.pid or state.get("roi") != "marker":
+        if explicit:
+            raise ValueError("CPython compiler training currently requires launch mode and an explicit marker ROI")
+        return None
+    from .cpython import tune_cpython
+    adapter = deepcopy(args)
+    adapter.roi = state["roi"]
+    adapter.python_hook = None
+    adapter.output = str(root / "cpython")
+    adapter.entry = args.entry or str(root / "run")
+    result = tune_cpython(adapter, capture)
+    result["discovery"] = {"capture": str(capture), "adapter": "CPython ROI PGO/LTO"}
+    build_runtime(root)
+    write_json(root / "build.json", read_json(Path(adapter.output) / "build.json"))
+    return result
+
+
 def tune(args):
     root = Path(args.output).absolute(); root.mkdir(parents=True, exist_ok=False)
     capture = Path(args.run).resolve() if args.run else root / "capture"
@@ -98,6 +123,11 @@ def tune(args):
             first_state, first_profile = read_json(first / "run.json"), read_json(first / "profile.json")
             if args.strategy == "auto":
                 discovery = discover_go(args, root, first, first_state, first_profile)
+                if discovery:
+                    result = discovery
+                    return result
+            if args.strategy in ("auto", "cpython"):
+                discovery = discover_cpython(args, root, first, first_state, first_profile)
                 if discovery:
                     result = discovery
                     return result
@@ -122,6 +152,11 @@ def tune(args):
         result["training_runs_completed"] = state.get("source_runs", 1)
         if args.strategy == "auto":
             discovery = discover_go(args, root, capture, state, profile)
+            if discovery:
+                result = discovery
+                return result
+        if args.strategy in ("auto", "cpython"):
+            discovery = discover_cpython(args, root, capture, state, profile)
             if discovery:
                 result = discovery
                 return result

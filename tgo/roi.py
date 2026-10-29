@@ -26,6 +26,10 @@ def _marker(begin):
 
 @contextmanager
 def region(name="roi"):
+    training = None
+    if os.environ.get("TGO_TRAINING_HOOKS"):
+        from . import training
+        training.begin()
     _marker(True)
     pmu = None
     if os.environ.get("TGO_NATIVE_COUNTERS") == "1":
@@ -44,6 +48,8 @@ def region(name="roi"):
             finally:
                 pmu.close()
         _marker(False)
+        if training:
+            training.end()
         metric = os.environ.get("TGO_METRIC_FILE")
         if metric:
             import json

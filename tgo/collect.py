@@ -47,7 +47,7 @@ def doctor():
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
 
 
-def record(args):
+def record(args, training_images=()):
     root = Path(args.output).absolute()
     root.mkdir(parents=True, exist_ok=False)
     command = command_path(args.command) if not args.pid else args.command
@@ -85,16 +85,27 @@ def record(args):
         args.roi = "marker"
     env = workload_env()
     env.update(TGO_IMAGE_LOG=str(root / "capture"), TGO_ROI_LOG=str(root / "capture"),
-               TGO_ROI_LIBRARY=str(runtime / "libtgo_roi.so"))
+               TGO_ROI_LIBRARY=str(runtime / "libtgo_roi.so"), TGO_RESULT_FILE=str(root / "capture.result.json"))
     # These are captured for replay; credentials and unrelated environment are never serialized.
     overrides = dict(item.split("=", 1) for item in args.env)
     env.update(overrides)
+    if training_images:
+        from .optimize import verify_images
+        verify_images(training_images)
+        mapping = root / "training-redirect.tsv"
+        for row in training_images:
+            if any(c in row[key] for c in "\t\n" for key in ("original", "optimized")):
+                raise ValueError("training DSO paths cannot contain tabs/newlines")
+        mapping.write_text(''.join(f"{r['original']}\t{r['optimized']}\n" for r in training_images))
+        env["TGO_REDIRECT"] = str(mapping)
     env["PYTHONPATH"] = str(runtime / "support") + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
     meta = {"schema": "tgo.run.v1", "command": command, "user_command": user_command, "cwd": os.getcwd(), "env": overrides,
             "backend": backend, "roi": args.roi, "pid": args.pid, "state": "recording",
             "branch_stack": args.branch_stack,
             "automatic_backend": automatic,
             "started_unix": time.time()}
+    if training_images:
+        meta["training_images"] = list(training_images)
     write_json(root / "run.json", meta)
     try:
         exec_env = env.copy()
@@ -117,6 +128,8 @@ def record(args):
                     launch += ["-E", f"{k}={v}"]
             for k in ("TGO_IMAGE_LOG", "TGO_ROI_LOG", "TGO_ROI_LIBRARY"):
                 launch += ["-E", f"{k}={env[k]}"]
+            if training_images:
+                launch += ["-E", f"TGO_REDIRECT={env['TGO_REDIRECT']}"]
             launch += ["-E", f"LD_AUDIT={runtime / 'libtgo_audit.so'}", *command]
             meta["sampling"] = {"backend": "qemu", "event": None, "period": None,
                                 "frequency": None, "branch_stack": bool(args.branch_stack)}
@@ -187,6 +200,13 @@ def record(args):
             from .perf import perf_profile
             perf_profile(root, perf, args.pid)
         meta.update(state="recorded", phase="complete", finished_unix=time.time())
+        if (root / "capture.result.json").exists():
+            import hashlib, json
+            from .util import read_json
+            meta["correctness_sha256"] = hashlib.sha256(json.dumps(read_json(root / "capture.result.json"),
+                sort_keys=True, allow_nan=False).encode()).hexdigest()
+        if training_images:
+            verify_images(training_images)
     except BaseException as e:
         if isinstance(e, subprocess.TimeoutExpired):
             message = f"workload exceeded --timeout ({args.timeout:g}s); capture preserved at {root}"

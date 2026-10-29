@@ -43,6 +43,7 @@ def main(argv=None):
     o.add_argument("--entry-mode", choices=["command", "executable"], default="command")
     o.add_argument("--image", action="append", default=[])
     o.add_argument("--top", type=int, default=3)
+    o.add_argument("--recipe", choices=["auto", "standard", "eager-v12"], default="auto")
     o.add_argument("--bolt")
     o.add_argument("--perf2bolt")
     o.add_argument("--bolt-arg", action="append", default=[])
@@ -60,6 +61,7 @@ def main(argv=None):
     t.add_argument("--entry-mode", choices=["command", "executable"], default="command")
     t.add_argument("--image", action="append", default=[])
     t.add_argument("--top", type=int, default=3)
+    t.add_argument("--recipe", choices=["auto", "standard", "eager-v12"], default="auto")
     t.add_argument("--bolt")
     t.add_argument("--perf2bolt")
     t.add_argument("--bolt-arg", action="append", default=[])
@@ -72,7 +74,10 @@ def main(argv=None):
     t.add_argument("--layout", choices=["ext-tsp", "compact", "aligned"], action="append")
     t.add_argument("--image-search", choices=["adaptive", "joint", "all"], default="adaptive")
     t.add_argument("--confirm-candidates", type=int, default=2, help="maximum independently confirmed candidates")
-    t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
+    t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler", "cpython"], default="auto")
+    t.add_argument("--python-source", help="matching CPython source archive, verified against the source lock")
+    t.add_argument("--build-jobs", type=int, default=8)
+    t.add_argument("--build-timeout", type=float, default=3600)
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
     t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid", "layout", "layout-runtime"], action="append")
@@ -116,6 +121,8 @@ def main(argv=None):
                 p.error("go-warmups must be >=0")
             if args.train_runs <= 0:
                 p.error("train-runs must be >0")
+            if args.build_jobs <= 0 or args.build_timeout <= 0:
+                p.error("build-jobs and build-timeout must be >0")
             if args.confirm_candidates <= 0:
                 p.error("confirm-candidates must be >0")
             if args.image_search == "all" and args.top > 4:
