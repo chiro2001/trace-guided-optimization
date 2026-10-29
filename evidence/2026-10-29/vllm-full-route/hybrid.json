@@ -1,0 +1,955 @@
+{
+  "state": "complete",
+  "selected": "ext-tsp",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/run",
+  "python_profile": "native-edges",
+  "library_profile": "qemu",
+  "training_phases": {
+    "compiler": 3,
+    "native_python": 3,
+    "qemu_libraries": 1,
+    "sampling": 0
+  },
+  "cpython_build": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/compiler/build.json",
+  "cpython_build_sha256": "723858e8f4676b3e3df50ce87633b337082cbaff469685edb94a80a92dd97cf8",
+  "schema": "tgo.vllm-hybrid-evidence.v1",
+  "scope": "cached new compiler build and new QEMU evidence; no legacy optimized libraries",
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1",
+  "tune_sha256": "3b4c892b615c2e7c9c2cbad0e8caeaac2902df135a9f3dc8bfee73e848378376",
+  "build_sha256": "32409e8863bad76f8d52380bd0ea8ef3de86b4169d408f09ada2986cf2b666f7",
+  "provenance": {
+    "baseline": {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r1/training/capture-000",
+      "run_sha256": "6c0c4e93261f598d1e350b6c97bbb9cd648fd97948233c40cd2a48134562f6c9",
+      "profile_sha256": "8032d223025519c314689dd1fdaa1c486423b20a808826126d0f5f3df1e8bdf8"
+    },
+    "library_capture": {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+      "run_sha256": "33f35178abd3277547dfa4b34e1ddbd8311735408b281b94b3d8f1954a06e906",
+      "profile_sha256": "72a65eaeef4b23b1ca90340ae66ef5c5d6b71d2f3984ac73bcc2f7d8dfd232ff"
+    },
+    "native_profile_manifest_sha256": "682abaa8bd112952f43124cb1fb288fcc3451ff6cfb48e33489d1b22550267c8",
+    "native_source_sha256": "3bd1082e170c2433848387d69ee68b1a9ee1b2706a9a894716cfa35a5ef34e07",
+    "native_fdata_sha256": "b2bd888f48d0cc35d06dbc97d927df66c33dedebf6ba0b26f523492847a1595b",
+    "roi_profiles": [
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0001.fdata",
+        "sha256": "f22ded50170cbd235ade5620be60963388e1e2a8e1185e023eaa1f92d385fa2c"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0002.fdata",
+        "sha256": "4e6a2b2580966ae767e8df38327b35d45a6ff6ad5e803e489dac66a1f8435ad1"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0003.fdata",
+        "sha256": "2e78636cba6f873ea7775621c12a9763f745c0bfb8b6e8e860b00223fc1cfa70"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0004.fdata",
+        "sha256": "a5c570f7692d1864bd4354474bfe5cd86ea866eb10299287a5c4f553214b1c82"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0005.fdata",
+        "sha256": "ea6089c20d390170f32992b7726bf5443fa7e487c9443526fe9e65d4d254d841"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0006.fdata",
+        "sha256": "e5f323c3d04621fd7291e0cd77fb80fe3dc2eed1ac5309f7f7f0e089edc2130d"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0007.fdata",
+        "sha256": "1b6ecfb35fd2392b64611ca732c252124596d0238147b191052240c941ee1e99"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0008.fdata",
+        "sha256": "f4d91e6adbb6c8ac883e403b00a880945a198d6dfcb02f31ced313ed7d303ff7"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2010627-0009.fdata",
+        "sha256": "8c31ecf450f6b670122f81c5312e75a21ce27930d46e6d9c57a778ee1517bd5e"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0001.fdata",
+        "sha256": "9bb4ea9bf218350155e208cc2b44acefb94d6dc1adca2f08cccea293ee2851c2"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0002.fdata",
+        "sha256": "2ac17ddee7d5f9ff0eb76ebe7b2aecb4ca7f9ed884ab0efc7a8cd04ec6fc5a8f"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0003.fdata",
+        "sha256": "8623f166ea0fda7db8c4c04bab40241f0112f60508406bd61192c8295937ebf6"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0004.fdata",
+        "sha256": "d3335a332cc39053a2c3eb20f0e3deadfc76f0acd3260744a32f6c609e0e5d78"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0005.fdata",
+        "sha256": "d1ee4b448ab562cdaa880d34e0692f5e34550705fd8efb6835f1cd52e72b93f9"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0006.fdata",
+        "sha256": "6af12d0599e1842d20ea5f3abc78ee3bdfaa8f0fab480c491c26d3f1a5665317"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0007.fdata",
+        "sha256": "1989c629044f79a5d86d192267c171857d87ecaa09ad0452d0d25e7730ffecf9"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0008.fdata",
+        "sha256": "acacdd293d0166d58ca0e158795c51d36fcf77b35e15d897728ed7355765a940"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2016862-0009.fdata",
+        "sha256": "c291873c67087935cb976813f9ba1f20fef9829069861b2fd9b96a89d9adcc21"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0001.fdata",
+        "sha256": "63ccaccd785d51c56bb435b3a3bc66135627f6d59292825b83521eb5a3109dc5"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0002.fdata",
+        "sha256": "6462bbfcd20b0a09bf830f56892d187b48e4c02be042bfc3bcffcb6f900266b9"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0003.fdata",
+        "sha256": "a8e3a24dd1c1a5bd13f76fa030906f9a5d18298e5eaa75ba4e65dc21269c26ea"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0004.fdata",
+        "sha256": "e685c53ed20d2bbdada661aa44cc1736cb51a36fdc14cf3bac1ae80854647f14"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0005.fdata",
+        "sha256": "d872deafa72cfb02301c61b5933b3038a6de794b9c765a802912073b69473004"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0006.fdata",
+        "sha256": "ed6606a27edc40b2dac5e41796fa7aedcb9fb13506fc62f6b0f4a30651e685bd"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0007.fdata",
+        "sha256": "2cf3bd7267828762d7f057ed74eeeab26b1a92b38f8a8eba762df9f2dbed8293"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0008.fdata",
+        "sha256": "30c02536a447e3df6def00bcd1589317151536062beaadb3e93e9e0c4e53ef19"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profiles/profile-2019712-0009.fdata",
+        "sha256": "8e6ed5c60b946cc4af528b705eb1bb14da18e35ec8a157d30ff82c57db3f215c"
+      }
+    ],
+    "runtime_archive_sha256": "ec24c24b6ca604a4f1b2255866a00947c811be39e367e0089eafc7c102990eb5"
+  },
+  "images": [
+    {
+      "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+      "aggregation": {
+        "strategy": "native-bolt-roi-edges",
+        "manifest": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/native-python/profile.json",
+        "manifest_sha256": "682abaa8bd112952f43124cb1fb288fcc3451ff6cfb48e33489d1b22550267c8",
+        "sha256": "b2bd888f48d0cc35d06dbc97d927df66c33dedebf6ba0b26f523492847a1595b"
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/compiler/optimized-image/libpython3.12.so.1.0",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.3173473002389073,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/bolt.log"
+      },
+      "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+      "output_sha256": "5846aea84d6f84c0c470932f3eb68f11962b84c56688dd15e1d0f17c34871d19",
+      "rewrite_input_sha256": "3bd1082e170c2433848387d69ee68b1a9ee1b2706a9a894716cfa35a5ef34e07"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "070508241122aaf7800491ec7232d2d3140066859eda84f678a1a89312b5b497",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/83fb9a0eb249aef6-797bc1b1.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 14.291845659725368,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 56.18410228006542,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/bolt.log"
+      },
+      "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+      "output_sha256": "3961f8ab249e2b425f6d80d4c52cb404d14ecf4ca123ca949685636b32a49635",
+      "rewrite_input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "d36dd83a3c677c45d10c67dc42b194809ad2678765069c00e3b5b4ec113ca612",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/6b2c97897785c9d4-afbafea7.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 3.5717287701554596,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 14.832795700058341,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/bolt.log"
+      },
+      "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+      "output_sha256": "358ee6ae3cec7a863cbd605ea491d72f3236b67d593e6fc5ed8b4bb26b572afb",
+      "rewrite_input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577"
+    },
+    {
+      "original": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "4a575078289ba777af9402f03196f9efee46576124ab2e074701a1d3d515a902",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/308dda461704a6e5-0b1a0265.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.7156176399439573,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.6178451697342098,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/bolt.log"
+      },
+      "input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+      "output_sha256": "83998a9f23484dd34bd4c8f4f319580063b423e3eb1f7ef739ce79bfae04c93f",
+      "rewrite_input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "5d1cf11a751e8c417ee5d80fc00bf9857fb19377deb0b4515c575d3c9461b7ab",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/d9529119ac18ba15-39832c46.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 37.11723424028605,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 134.13562616007403,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/bolt.log"
+      },
+      "input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+      "output_sha256": "c1c2eec01353d456bdc627d752d227d7ed6b1351f15ebb634e0992ce4fe76057",
+      "rewrite_input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "6f27ce16ea81a2672fcd2a4fb41f0f9a78004c75be87a63f8c5512728d0f0333",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/6af47532fcb08495-5c6014ee.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.21699184039607644,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 0.7175662899389863,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/bolt.log"
+      },
+      "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "output_sha256": "700f652f290f6ac8736aa80181b8231b814a964457cef99f83e2c86e117b3006",
+      "rewrite_input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "429ec732dc8e1c0a6ea76f618ca287ffa93dfb12ed2d593cdc5ac1fde68dd0f9",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/fb1837bd38404656-9223dbba.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.6656126901507378,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.818075709976256,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/bolt.log"
+      },
+      "input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+      "output_sha256": "9e583c8749fd2de5d96d7a7dc1b8519dfca8eb208d9006a65becaab6b21586e4",
+      "rewrite_input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0"
+    },
+    {
+      "original": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+        "preaggregate_sha256": "86cc11425687e0047b98f8533536e3999ce58f94d8c480ca4340cc906e1e3e0f",
+        "aggregation": {
+          "command": [
+            "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/perf2bolt",
+            "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/3f5758ed76ce537f-19fff49f.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 4.424202000256628,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 15.534304779954255,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/bolt.log"
+      },
+      "input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+      "output_sha256": "459e5b3d24320ee35c3f2bd9eb91d1bb5d2ae5447dd77b83d76e377ee021fbf9",
+      "rewrite_input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b"
+    }
+  ],
+  "validation": {
+    "schema": "tgo.validation.v1",
+    "equivalent": true,
+    "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591",
+    "requested_pairs": 5,
+    "completed_pairs": 5,
+    "warmup_pairs": [],
+    "metric": "decode",
+    "median_reduction_percent": 39.28990622091775,
+    "min_reduction_percent": 36.415961791207906,
+    "max_reduction_percent": 40.78005343694582,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional",
+    "pairs": [
+      {
+        "reduction_percent": 40.78005343694582,
+        "baseline": {
+          "seconds": 33.66274804994464,
+          "metric_seconds": 0.14034859,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-0-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "8c512beedc68460d1023f1300244b486e37ef1d393fa0358ad09fed1498c708d",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 391716525,
+            "instructions": 345740842,
+            "frontend_stall_cycles": 226469701,
+            "l1i_read_misses": 24318687
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.349963310174644,
+          "metric_seconds": 0.08311436,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-0-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "14e941fff4270bd065d1fb10124f8bab481f44efb9f4b65a66f55f9f7293bfa6",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 227573923,
+            "instructions": 300173645,
+            "frontend_stall_cycles": 82591449,
+            "l1i_read_misses": 11792737
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 39.28990622091775,
+        "baseline": {
+          "seconds": 33.66878606006503,
+          "metric_seconds": 0.13969,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-1-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "10792840420bebc0e27e6c01ba3b0d45c07b9bf548ea9cd78f5e175de89a8b85",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 391716566,
+            "instructions": 346500809,
+            "frontend_stall_cycles": 226604451,
+            "l1i_read_misses": 25371454
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.53339615976438,
+          "metric_seconds": 0.08480593,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-1-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "3c355405ced80a839fce8b730cf9854e99a95a94664153c8e1582f1a6869f373",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 232459151,
+            "instructions": 301243673,
+            "frontend_stall_cycles": 81816209,
+            "l1i_read_misses": 11567927
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 39.528809606229586,
+        "baseline": {
+          "seconds": 33.47268925001845,
+          "metric_seconds": 0.14004912,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-2-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "606dbee657573107122504fc12d162f3b1aa5d50b12bb96337ec9e884263c25a",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 391370785,
+            "instructions": 346613533,
+            "frontend_stall_cycles": 224341990,
+            "l1i_read_misses": 24665463
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.350398629903793,
+          "metric_seconds": 0.08468937,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-2-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "35154ef91c4d708263cfed80efb0a7a4041c61ac905b02646a25209b069eb747",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 232059911,
+            "instructions": 300202391,
+            "frontend_stall_cycles": 81714507,
+            "l1i_read_misses": 11543901
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 36.415961791207906,
+        "baseline": {
+          "seconds": 33.6812995695509,
+          "metric_seconds": 0.1405331,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-3-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c71e1510d24fbd38d3bb591cbfb791e57b2cfc65147f726586b3980007f150a8",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 394286691,
+            "instructions": 345873192,
+            "frontend_stall_cycles": 225780450,
+            "l1i_read_misses": 25313855
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.340874299872667,
+          "metric_seconds": 0.08935662,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-3-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "5d974bc23306806ec6dc1c45730551e40d7f43df608d73f4b56e318962e767cc",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 245216051,
+            "instructions": 300745014,
+            "frontend_stall_cycles": 86530403,
+            "l1i_read_misses": 12123686
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 37.831871614908984,
+        "baseline": {
+          "seconds": 33.706588950008154,
+          "metric_seconds": 0.13819237,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-4-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "dd6cf3c6442fd06183ffcf3b1ab802397771805d9f098b920aa466190e5fa9c5",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 388506562,
+            "instructions": 345725860,
+            "frontend_stall_cycles": 221668157,
+            "l1i_read_misses": 24589586
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.909801570232958,
+          "metric_seconds": 0.08591161,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/validations/dcdd07003c054346a656c5e87608d591/validation-4-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "6fb0b23905c895a615259e23061df1589974cb212b2856e4b65d7929d886736a",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-hybrid-r1/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 232448158,
+            "instructions": 300068474,
+            "frontend_stall_cycles": 85239033,
+            "l1i_read_misses": 11743756
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      }
+    ]
+  },
+  "pmu_median_reductions": {
+    "cycles": 40.65628794468703,
+    "instructions": 13.179581774721305,
+    "frontend_stall_cycles": 63.53090561990895,
+    "l1i_read_misses": 52.24093646798282
+  }
+}

@@ -21,6 +21,13 @@ runs/my-app/run
 运行都正确且收益超过阈值时选择候选；否则生成调用原版的入口。`tune.json` 记录
 实际选择，不能仅凭生成了一个 ELF 就判断优化有效。
 
+当完整输入指纹匹配已有八库 eager 配方时，自动策略还会私有重建 CPython ROI
+PGO/LTO，为 Python 记录原生 BOLT 边计数，并为其余七库采集完整 QEMU ROI。
+每库独立使用对应画像；源码编译需要 GCC/g++/make。其他 CPython 负载可显式
+选择 `--strategy cpython`，目前源码锁支持 3.12.13。
+具体流程与复用约束见 [自动调优](docs/AUTOMATIC-TUNING.md)，固定 vLLM 镜像的一条
+命令入口见 [负载协议](docs/WORKLOADS.md)。
+
 想单独审查画像或候选时：
 
 ```sh
@@ -30,7 +37,8 @@ python3 -m tgo optimize --run runs/train -o runs/candidate --image libpython3.12
 python3 -m tgo validate runs/candidate --pairs 5
 ```
 
-`--train-runs 1` 可减少新训练次数；`--run` 始终直接复用已有画像。可手动合并多份
+`--train-runs 1` 可减少新训练次数；`--run` 复用已有发现画像，通用 BOLT 流程不追加
+采集，CPython 策略仍继续各阶段训练。可手动合并多份
 已完成且采样设置、负载和 ROI 相同的记录，再搜索布局：
 
 ```sh
@@ -184,10 +192,10 @@ python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8
 # 可选：缺少保留重定位的 AArch64 DSO
 python3 scripts/bootstrap.py --components llvm --llvm-variant recover --jobs 8
 export TGO_QEMU_HEADER="$PWD/deps/install/include/qemu-plugin.h"
-python3 scripts/package_appimage.py --python deps/install/bin/python3.12
-dist/tgo-0.4.0-aarch64.AppImage doctor
+python3 scripts/package_appimage.py --python deps/install/bin/python3.12 --output dist/0.5.0
+dist/0.5.0/tgo-0.5.0-aarch64.AppImage doctor
 # 无 FUSE 环境
-APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.4.0-aarch64.AppImage doctor
+APPIMAGE_EXTRACT_AND_RUN=1 dist/0.5.0/tgo-0.5.0-aarch64.AppImage doctor
 ```
 
 每个 ISA 单独打包。AppImage 携带工具、Python 标准库及非 glibc 动态依赖；最低 glibc

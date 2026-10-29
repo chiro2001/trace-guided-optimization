@@ -8,7 +8,8 @@
 
 新鲜训练默认 `--train-runs 3`。第一轮实际探测后端，后续锁定同一后端和事件。
 原始记录分别放在 `training/capture-000` 等目录，合并结果位于 `capture/`。
-`--train-runs 1` 保持单轮流程；`--run` 不增加采集次数。Go 策略分别记录三轮实际
+`--train-runs 1` 保持单轮流程；通用 BOLT 策略的 `--run` 不增加采集次数，CPython
+专用策略仍继续编译和各阶段训练。Go 策略分别记录三轮实际
 compiler CPU profile，使用独立冷 cache，再通过 Go pprof 合并。自动发现 Go compiler
 后立即转入专用策略，不继续执行多余的硬件采集。
 

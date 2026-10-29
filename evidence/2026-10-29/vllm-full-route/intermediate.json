@@ -1,0 +1,1581 @@
+{
+  "schema": "tgo.vllm-route-evidence.v1",
+  "intermediate_results": [
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1",
+      "kind": "legacy-artifact-loader-regression",
+      "build_sha256": "3dcefafd4a21d180784efa26d94c7f2ebd519019527173bc0df9dc1b8b88afc6",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 38.97389538277435,
+        "min_reduction_percent": 36.37889969444389,
+        "max_reduction_percent": 40.422381805440175,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional",
+        "pairs": [
+          {
+            "reduction_percent": 38.97389538277435,
+            "baseline": {
+              "seconds": 93.61690898006782,
+              "metric_seconds": 0.13544194,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "1117e72345a6153476d54faa1917f7d29a421b6922f06d2b3a8ca4365e749945",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 380352176,
+                "instructions": 346293759,
+                "frontend_stall_cycles": 219564580,
+                "l1i_read_misses": 24438000
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 27.951172729954123,
+              "metric_seconds": 0.08265494,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3db80f1eed001f14b69136fa5f4bc158f2236b382e88b52fd7b0f0e231822451",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so"
+              ],
+              "pmu_medians": {
+                "cycles": 229075245,
+                "instructions": 299802676,
+                "frontend_stall_cycles": 79147538,
+                "l1i_read_misses": 11301232
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 38.746631396688066,
+            "baseline": {
+              "seconds": 33.29298629006371,
+              "metric_seconds": 0.13599479,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3b0e2dd5dccca55b0aae133ab538533dc084256f62ce41d8bf2494b339d5ce3d",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 381558258,
+                "instructions": 345566415,
+                "frontend_stall_cycles": 221177377,
+                "l1i_read_misses": 24488089
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 28.14500490995124,
+              "metric_seconds": 0.08330139,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "97a4219e6dbcc663b12a36187d04ab30810febaa5161fafd876d88fd5849fb84",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so"
+              ],
+              "pmu_medians": {
+                "cycles": 231512411,
+                "instructions": 300546684,
+                "frontend_stall_cycles": 80718410,
+                "l1i_read_misses": 11439895
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 39.440975206140095,
+            "baseline": {
+              "seconds": 34.018530999775976,
+              "metric_seconds": 0.13988181,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "8b850f6dfb13f39d8c32b43d92ddc409c0a9461d5f9a5f874b0b2964442359fa",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 393017526,
+                "instructions": 345587086,
+                "frontend_stall_cycles": 226201203,
+                "l1i_read_misses": 24948446
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 28.318843310233206,
+              "metric_seconds": 0.08471106,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "8d8e71075b1044c59981bba22c2e1c3cd4b7b7ffa90cb7b41bd4d8207934ea2b",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so"
+              ],
+              "pmu_medians": {
+                "cycles": 234328364,
+                "instructions": 298997462,
+                "frontend_stall_cycles": 81263377,
+                "l1i_read_misses": 11617754
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 36.37889969444389,
+            "baseline": {
+              "seconds": 33.47944120038301,
+              "metric_seconds": 0.13440412,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "fff1debac8f754dddb6814ab514f3ac62b5a33fd912cb3b77420b763eb8f0431",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 377044462,
+                "instructions": 345443790,
+                "frontend_stall_cycles": 219598117,
+                "l1i_read_misses": 24356267
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 28.689803180284798,
+              "metric_seconds": 0.08550938,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "7854715d91fe7b7d4e7c96f8c949e5e82190906cb9d69d82f12b428ce3e4d17c",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so"
+              ],
+              "pmu_medians": {
+                "cycles": 236785000,
+                "instructions": 299329078,
+                "frontend_stall_cycles": 82482115,
+                "l1i_read_misses": 11692105
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 40.422381805440175,
+            "baseline": {
+              "seconds": 33.77600118005648,
+              "metric_seconds": 0.13764466,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "cbbc3d78167519aaef2fe86c8831373505e7122982c2ecb6056f657dc5cff385",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 386697737,
+                "instructions": 346268330,
+                "frontend_stall_cycles": 222665208,
+                "l1i_read_misses": 24578970
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 28.147145860362798,
+              "metric_seconds": 0.08200541,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "93ae639022f1b54d95032867a84216fa898b904a621d255315324fe6ad2fb36a",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so"
+              ],
+              "pmu_medians": {
+                "cycles": 227901377,
+                "instructions": 300728234,
+                "frontend_stall_cycles": 79678754,
+                "l1i_read_misses": 11402029
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          }
+        ]
+      },
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libpython3.12.so.1.0/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "4911a2cbb8db3221e756efd594cf62f0da252bee9235d9afab1d4fcc7d54a51f"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/_multiarray_umath.cpython-312-aarch64-linux-gnu.so/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+          "output_sha256": "f66bc077584034a6094bee0e3e7a5606dca9a51f37ad841ad6c5d84c8fb369c2"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_cpu.so/libtorch_cpu.so",
+          "input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+          "output_sha256": "ea1295f087f95ff698af933eb26c3e402bca6f9488c6bc1a4592d1386829a9ce"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_python.so/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "b1aa076a5f919cc8261e61c54cc3b64caeeb1b7d598b7bf2878c05ce956f3adb"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libc10.so/libc10.so",
+          "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+          "output_sha256": "330b579cac88fc19763f65f9d655a8fc4ba6c5a28601c3424ff0a8739529a5e0"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libtorch_npu.so/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "b2ae48ee614b370b2775636a2263f6ecfe63e8a1cac725e4d1795715b569f16c"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libnnopbase.so/libnnopbase.so",
+          "input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+          "output_sha256": "035ee61e913b2e77d129ccc3053bb78057931458b41f83d341bc3a1ecb749f58"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/images/libophost_transformer.so/libophost_transformer.so",
+          "input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+          "output_sha256": "a8d0e7ece361f7ba70fa20e7dc6b42a7d8fe6e7b933775461e0d3586e44cb913"
+        }
+      ],
+      "loaded_audit": {
+        "scope": "legacy artifact loader regression only",
+        "validation_sha256": "590d8ef8074ab203fa9423400b509dec9856ddde506e85b8289700c1198e5644",
+        "pairs": [
+          {
+            "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate",
+            "expected": 8,
+            "loaded": 8,
+            "missing": [],
+            "map_files": [
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825713.images",
+                "sha256": "47a7db331959bf3c9913c79e6bcccba53dbecc5feab02991cf815bbcd40499a4"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825711.images",
+                "sha256": "63d81ceff02a268a053b2697f3c4ae818ce9c18d4663b354b772dddf1d787e25"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826343.images",
+                "sha256": "e28d399994a768a98c16b2b90327b8b62e31d7d7630163c5f32a6596fa92aaac"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826352.images",
+                "sha256": "714a2eaac94d0aafc18b5973c1fb63fb14d847b0537819a6ac1abff0a51a5584"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825719.images",
+                "sha256": "d595bc282c26469484db6dbacd25f745678553dc775182b8c900c156c561da4a"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826345.images",
+                "sha256": "31478355cd91e6e2292c5fb94aa335a2bb68dd310c1e7a9c4196dec475b085b3"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826350.images",
+                "sha256": "6e55a9ecf567e2026420a78c31d41711cbce39278a17048389ec179a37de032a"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826356.images",
+                "sha256": "9984f3a4045e1901022fada59c5e7665ffda1fabc5542c4dadeaf4963c0e4a2a"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825718.images",
+                "sha256": "353b1c98aebe9510fb9947a29bd3c06496a3fa0c4206b10c6761ae3380484e72"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826348.images",
+                "sha256": "add495f01bb347c6ce86fc5225feaec8975b8468d0e3b6f09ba7ea50f34b34f3"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825716.images",
+                "sha256": "4cbd569415d2a87b16a54a45cf372eb2aba8b4ab5aa0c21c9e9854531bc5c3bb"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1826354.images",
+                "sha256": "1db5b92e2e014207ba02e6af6d45790a7b7c00668e2e92fbdf4df2ff769a78da"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-0-candidate.1825658.images",
+                "sha256": "49dbeec54410bf5b462cbd7b32e1a73ccebbd29555cffebdbb6c7b5c9a6900c5"
+              }
+            ]
+          },
+          {
+            "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate",
+            "expected": 8,
+            "loaded": 8,
+            "missing": [],
+            "map_files": [
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827171.images",
+                "sha256": "40467e076eeddddcdac51c3baae56a8568eb4130639ea09cbe2bb602cfbb4be5"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827173.images",
+                "sha256": "75818ea7eb96c86faaa3a948fc2e5cd8fb223c3e6730aaf9153382b04528e566"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826538.images",
+                "sha256": "fd89790c48880838767480b4db1f6065278a8dcd245aa34c1996c8c565c702b7"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826539.images",
+                "sha256": "e5ea6eccb45fa08fb7da2cc2e745791bc9859eeadde4deae08e6db0114c3f251"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827167.images",
+                "sha256": "230aa1299408a148a98f924fed18e1c3fef7543b6b68f68710dc696e2b9ee095"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826483.images",
+                "sha256": "40ee0505f935cf4580018ca5c8d466c43e8d2e6e3d2358b1ec66edd98cff7e2f"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827165.images",
+                "sha256": "6018b51e51e400d4605a1e4352d64d4424b09c56ec8cdaf42afb850fb27b09ac"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827169.images",
+                "sha256": "185ec521a4dbb62ac7f07853960747a6d425828a64b773993a1e2e3e2e3f58eb"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826536.images",
+                "sha256": "aea477214a01b052a7a13067382c7c275caa19abaa9be88e1b5a7703e865dde3"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826431.images",
+                "sha256": "1170e204e67f2556443d4bc2300a01f28b0816b332284ccaec1852ea53ae4654"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827162.images",
+                "sha256": "f0c9546e43c68df60134f9cb8803cd2f561f8be1aee8615ba1b5dc5b998996f3"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1826485.images",
+                "sha256": "841a185f02a919143a5f28ff7d1a0cf9cff57bf4206843d80dd215fc086df601"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-1-candidate.1827160.images",
+                "sha256": "c2399524c43562b079331e20b4a1a0d784f92c12021a2b9f1bc0be3f832676ba"
+              }
+            ]
+          },
+          {
+            "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate",
+            "expected": 8,
+            "loaded": 8,
+            "missing": [],
+            "map_files": [
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829163.images",
+                "sha256": "5c72edd4e3df140022cac875b14ef65d20f16f2137f3730d2e719a0984ae325f"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829896.images",
+                "sha256": "ddbd6a8a9625cc6f5c388570fb91bb400af4e7c6397ef6a0991bd60242fcbb5e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829901.images",
+                "sha256": "9c7e489b30c020838c0ebf20a6d046cfe2cc05d1cd189a0ea69fc3574107d9b0"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829157.images",
+                "sha256": "315f881ee232b1c3008b2e59b7f55a1c6b2d8c32a8205c0c9838c9dc619c6cc8"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829101.images",
+                "sha256": "286b275e3ec30b2b19755f59097bdbda672f2866a67277adaba76eaa9a910d26"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829159.images",
+                "sha256": "679e40796aa0490355be7d9d58809fbc6ba6c54cf8892bbc4f6e89e677381d6f"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829165.images",
+                "sha256": "09557835af558e7f2fd3afc4e5a13b56c67aab84eea2bd04620930ddf90df75c"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829166.images",
+                "sha256": "ebabf6ee2f3428c73e39e8be4aad9dea3ee4f3bbfbb52eb9bf958d145d27040a"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829903.images",
+                "sha256": "463c48cc8cf125622ca5d928a46e94808677e252fb1079964afb875b075f169e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829907.images",
+                "sha256": "de5fb97deed94968e54970cdb412f081782b81e350202ebadf0eb2567c081e11"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829905.images",
+                "sha256": "e9f2e56c2cc3a066eff4c913152c508629b279f96d7911d40811ba30e55104ba"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829899.images",
+                "sha256": "a49c6d394ba7da54676665584e1fe093f12254fdfb47939f6d9015a7e5d7e02f"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-2-candidate.1829894.images",
+                "sha256": "5dcf3529f8227828d4f889ccba2b07582d81d0eb419fb5664f872a665d94e9fd"
+              }
+            ]
+          },
+          {
+            "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate",
+            "expected": 8,
+            "loaded": 8,
+            "missing": [],
+            "map_files": [
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830100.images",
+                "sha256": "b031aebed44d30fe17aef768d836a9d3d247246485e2a5b86e42d49123ecf34c"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830069.images",
+                "sha256": "94466e02426274f00130e645c2b917d8990951ed7c59da0b13bb8f8c0a58bff7"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830730.images",
+                "sha256": "ac0dd5d3b41cf82424fe54ab0005fb13e8175278dfc55e016d36bdcc4a750d3e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830098.images",
+                "sha256": "b4c115f7e5a15a4ecff26ba1787678e5c08e2c380e69e78c32437a0466258ce1"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1829989.images",
+                "sha256": "eaf74ab7629c10d75b8b493006dbb6cc952310cf52ef6157c5d0c3f592201c94"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830717.images",
+                "sha256": "0b7cebbea2706ed0c739d37a2721a1827e2976c78664cc6d1975bec15e7efb70"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830044.images",
+                "sha256": "67ffbf7a5b938fc2aa76525470ee5dc8fd0e59e6356c58e7a337cce1c67604e4"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830101.images",
+                "sha256": "47ee0d4b76f2063f3a7a5cdf5fa2c65b800f38e93ee0da8806747d729940a00c"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830724.images",
+                "sha256": "4ecebc487c244f1daecd65e04bd5e5f7c2a7fc22579bba1e4c9cc597d9b580f1"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830728.images",
+                "sha256": "554707a28e487bdeb1041c0b5b5691b9900ef9364907d413639a1afcfc2e5a5f"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830722.images",
+                "sha256": "ff7bb4bc0695b8928f967429ff8eee7703a94ea1509c35a65d4dc0a1a4b3a793"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830719.images",
+                "sha256": "95e056091482bcca708469a1661fbcbb3b5bd7386b827e02dffc49924319a1e6"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-3-candidate.1830726.images",
+                "sha256": "580f23790a2f0e1e38dc300678183cdca819f4fd9757a3c57fd4bee244f232d3"
+              }
+            ]
+          },
+          {
+            "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate",
+            "expected": 8,
+            "loaded": 8,
+            "missing": [],
+            "map_files": [
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833215.images",
+                "sha256": "bb06a78ebc580850384fc3e6724e5bf1059f4c2c736fa70ccf5d15846b64f446"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833223.images",
+                "sha256": "22d6d87c322c863d04e2acd36b68c2204e1c24b0ce76e2589764e7b0108994a0"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832580.images",
+                "sha256": "cf395cfdbbd92d565c951dfac4f8c193336ddadbd4163ace02d692f5795c109d"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832582.images",
+                "sha256": "09abceefd205daf431ef6764152c466487cdf741cad5abbdc9b5727f06e1045c"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833221.images",
+                "sha256": "549fbfc5e62411fb278ecffcd75165f81ea33cd845f3b1d96822b72d9de4d5fa"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833217.images",
+                "sha256": "bf7632a1b0ba2fbc53e078446730d53a1ec6527405796b5a3a631c3327d4189e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833212.images",
+                "sha256": "3cbb438f61d366141860062d94542346dc09837c75c1e24f1db3464f471c6b52"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832588.images",
+                "sha256": "04f0b0595cc0aef223df5f2fd984449e1d823d56d61216bc97ea02fba0cf0e35"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832586.images",
+                "sha256": "1d69f4f844a6c39382288d7ee529af746fb74da22f849ea4bbcdcb784bf2ac9e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832589.images",
+                "sha256": "2d88647727852964f2d5ff4766c35894d87d41de7d1719d816e9e77c409e1496"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833219.images",
+                "sha256": "45b87820c4f7be8d803f0f99a648cb82b61c5d5e2500d4150565df8f4f616f9e"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1833210.images",
+                "sha256": "c9266a418cd8238f5f63497cf3d4804f4d57f5ad13e5a90600283a2dc2262602"
+              },
+              {
+                "path": "/home/l00886679/projects/trace-guided-optimization/runs/legacy-eight-wrapper-r1/validations/5f7f2963659540dfb72669a452a6d6cf/validation-4-candidate.1832528.images",
+                "sha256": "21514da8a7478af5954d86ca49af647203ae0f9a54a859365e890b51aec54e29"
+              }
+            ]
+          }
+        ],
+        "all_eight_loaded": true
+      }
+    },
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1",
+      "kind": "new-binary-strategy-with-SPE",
+      "build_sha256": "333ceb536e5d82643f5665d045969e0f1f6bff6e77300a886377863c636469a5",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 14.960252454028055,
+        "min_reduction_percent": 12.7912972771425,
+        "max_reduction_percent": 19.614440946109045,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional",
+        "pairs": [
+          {
+            "reduction_percent": 19.614440946109045,
+            "baseline": {
+              "seconds": 35.2505377298221,
+              "metric_seconds": 0.145461245,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "eb8c23eb362afd0dfa58190667b846e19e6fe793b67ccfb447c41b12fb0a8949",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 408392754.0,
+                "instructions": 354469138.0,
+                "frontend_stall_cycles": 240758974.0,
+                "l1i_read_misses": 25457700.0
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 34.29392613004893,
+              "metric_seconds": 0.116929835,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "dec25f03879e5ef6fa11cafbd93df096326ebd51e43028b1e4fa5c98c01f1125",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ],
+              "pmu_medians": {
+                "cycles": 325425563.0,
+                "instructions": 356023701.0,
+                "frontend_stall_cycles": 167080477.0,
+                "l1i_read_misses": 21743126.5
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 15.826412087620255,
+            "baseline": {
+              "seconds": 34.884026649873704,
+              "metric_seconds": 0.14365309,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "7e1b1747208f73bbd53c95dd7da8151e50ce24f339f68576a161a0742a25b188",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 403479131.0,
+                "instructions": 355950005.0,
+                "frontend_stall_cycles": 231986808.5,
+                "l1i_read_misses": 25407942.5
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 34.857219609897584,
+              "metric_seconds": 0.12091796,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "7d09b06da65539636367d86f7a7af99e0e699b377664dfd337fd8e2b33ba1302",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ],
+              "pmu_medians": {
+                "cycles": 335127266.5,
+                "instructions": 356265136.0,
+                "frontend_stall_cycles": 171095763.0,
+                "l1i_read_misses": 22162735.5
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 14.960252454028055,
+            "baseline": {
+              "seconds": 35.301982999779284,
+              "metric_seconds": 0.141369105,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "0382f3ae2f60a20b0e05cb2fbde48a157d8972750e97e7b72d708e273f99659d",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 396865558.0,
+                "instructions": 355458637.0,
+                "frontend_stall_cycles": 234836054.5,
+                "l1i_read_misses": 25269942.0
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 34.3069477500394,
+              "metric_seconds": 0.12021993,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3146e31260a9030a784af130969e79898deec4d3f575152543d8104221363f1",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ],
+              "pmu_medians": {
+                "cycles": 334601800.0,
+                "instructions": 357230313.0,
+                "frontend_stall_cycles": 171016488.5,
+                "l1i_read_misses": 22126969.5
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 14.435657259144785,
+            "baseline": {
+              "seconds": 34.85033435001969,
+              "metric_seconds": 0.14045959,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3fb490b2fd3c4f47ea774fcd1dba9a43b156c6f9c1b44d945653f032816c8fe3",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 393551846.5,
+                "instructions": 355287978.5,
+                "frontend_stall_cycles": 230951579.5,
+                "l1i_read_misses": 25583887.5
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 34.651488590054214,
+              "metric_seconds": 0.120183325,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2056a6005646f3f8f45d737bb68b27922ed3acf35d27ccfed57ad56e3f05e917",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ],
+              "pmu_medians": {
+                "cycles": 334433879.5,
+                "instructions": 357820565.0,
+                "frontend_stall_cycles": 170347564.5,
+                "l1i_read_misses": 21979612.0
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 12.7912972771425,
+            "baseline": {
+              "seconds": 35.17022209987044,
+              "metric_seconds": 0.13887102,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "1e0d1f4e7352432a4329127af12dd79139bf5a88c560a0ea79be544b2a9850c2",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 388733831.0,
+                "instructions": 354450867.0,
+                "frontend_stall_cycles": 228896281.0,
+                "l1i_read_misses": 25214011.5
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 34.28719981992617,
+              "metric_seconds": 0.121107615,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/validations/2324e18a7cb84a40aa0d2930093bc333/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3864353bc7b2f4a39e20b63826b6bfc1fc30d7343da005a72630b860f4691fae",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ],
+              "pmu_medians": {
+                "cycles": 337083801.0,
+                "instructions": 356268237.0,
+                "frontend_stall_cycles": 169456515.0,
+                "l1i_read_misses": 22042788.5
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          }
+        ]
+      },
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "3955841b77d527b9c6c2f06e2a501e703fc405328f2b03f6563b38374d2245ce"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "d38089043e90b1047dfc10be46661ad72c9f3e3d9aee24dfc1641d56e652cc36"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "211e34de8e97f302eafc424ef6fd6b77cac359fb1631cc774624d67ff35f8264"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+          "input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+          "output_sha256": "63839abbdc9a70dff285e5304320a58ef3dea26baf3854a32c428f6f530cc9f4"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+          "input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+          "output_sha256": "891b7c7984e21cf8f1009863059abb8699dc35c364dbc796e72e06c277051e09"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+          "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+          "output_sha256": "c9fc316a53ad41e66a0df9b4d35cfcd6f706b5e8505e1b19b0a0935e3af0dd7f"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-binary-full-r1/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+          "input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+          "output_sha256": "f66e14377821ec093a3a8bc51aa1ad445b226216d839f1cddf10689b641a119c"
+        }
+      ]
+    },
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts",
+      "kind": "new-GCC-ROI-PGO-LTO-with-SPE",
+      "build_sha256": "706098cea21c62875a047789ccf15614565eabdaf1d8d09c9f3d014bd0d27a8f",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 21.11328477639661,
+        "min_reduction_percent": 19.29713454469929,
+        "max_reduction_percent": 26.586363883614272,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional",
+        "pairs": [
+          {
+            "reduction_percent": 19.29713454469929,
+            "baseline": {
+              "seconds": 33.13116369023919,
+              "metric_seconds": 0.13596827,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "17073f4483764c97d1c1174c5a69b642404ba4bd0d3c1f5af06e0b72bc81c2d8",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 382858699,
+                "instructions": 346242045,
+                "frontend_stall_cycles": 223572678,
+                "l1i_read_misses": 24331676
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 29.483190400060266,
+              "metric_seconds": 0.10973029,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "75cf311f406db98c664a4aa40d995aa78a8c261596014af138e6435ed310a579",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+              ],
+              "pmu_medians": {
+                "cycles": 303610778,
+                "instructions": 305532362,
+                "frontend_stall_cycles": 146567076,
+                "l1i_read_misses": 19944757
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 26.586363883614272,
+            "baseline": {
+              "seconds": 33.675654449965805,
+              "metric_seconds": 0.14486588,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2116dcece92f271b58eb7178079dd9d9c4c879d601e57c592fab56f2fef40456",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 405037457,
+                "instructions": 346608085,
+                "frontend_stall_cycles": 235213137,
+                "l1i_read_misses": 25169756
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 29.320090210065246,
+              "metric_seconds": 0.10635131,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "98b0bbcdc4b2e4f53d13b3a95c4946864fa7066c1d9a766e134810848733e589",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+              ],
+              "pmu_medians": {
+                "cycles": 295911666,
+                "instructions": 304729090,
+                "frontend_stall_cycles": 142066535,
+                "l1i_read_misses": 19859479
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 23.288650822169355,
+            "baseline": {
+              "seconds": 33.51330352993682,
+              "metric_seconds": 0.14295899,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "f58087fe83fddec3fc34773ef9e49071e21e35d1e4b2c44fbfba0e47400e6d2d",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 399214246,
+                "instructions": 346605543,
+                "frontend_stall_cycles": 231303473,
+                "l1i_read_misses": 25293801
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 29.30297422967851,
+              "metric_seconds": 0.10966577,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "863a415f4cb3e1211bc7a258b3c9496ed2b3536885fc487ea98e06b0cf0a4910",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+              ],
+              "pmu_medians": {
+                "cycles": 303100280,
+                "instructions": 305144336,
+                "frontend_stall_cycles": 146065229,
+                "l1i_read_misses": 20087302
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 20.365470983196275,
+            "baseline": {
+              "seconds": 33.49266591994092,
+              "metric_seconds": 0.13622641,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "680a5ee5e7713042760ba1619c54db32ba77bc793d2a55bbafc3de44a0afc72c",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 380172517,
+                "instructions": 345524319,
+                "frontend_stall_cycles": 222320802,
+                "l1i_read_misses": 24477068
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 29.501466719899327,
+              "metric_seconds": 0.10848326,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2d38a4453ee03f522730e801368441116c37bd117908b6a6ebab2fc1bb6a217a",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+              ],
+              "pmu_medians": {
+                "cycles": 300046500,
+                "instructions": 305209598,
+                "frontend_stall_cycles": 143309031,
+                "l1i_read_misses": 19773696
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          },
+          {
+            "reduction_percent": 21.11328477639661,
+            "baseline": {
+              "seconds": 33.48643718985841,
+              "metric_seconds": 0.13370146,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "6617effb64205194d47dbf5e4daa71b4c8c9671fc2f79eb649303f9f0659bb41",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [],
+              "pmu_medians": {
+                "cycles": 373321522,
+                "instructions": 346423609,
+                "frontend_stall_cycles": 219310367,
+                "l1i_read_misses": 24360046
+              },
+              "all_pmu_unmultiplexed": true
+            },
+            "candidate": {
+              "seconds": 29.111704050097615,
+              "metric_seconds": 0.10547269,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/validations/731cb7df804542be93ce5901d8280f38/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "491b4b0597762eeca0acb8c0233b6b07af6a90fb0ee0b851823acdbdc7d8868c",
+              "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+              "correctness_source": "result-json",
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+              ],
+              "pmu_medians": {
+                "cycles": 291420608,
+                "instructions": 305293328,
+                "frontend_stall_cycles": 140684665,
+                "l1i_read_misses": 19651616
+              },
+              "all_pmu_unmultiplexed": true
+            }
+          }
+        ]
+      },
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3bd1082e170c2433-87aa60d7/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "df5cc00683c3033215efad2a1b99dd6ccac02ab542ff0f44c05cfdc7c39f1747"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "a1a4305eb6e1abf306f40bacb9974d09070811d5926b425420a2a2529a49223f"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "114547f42e43d6db78c799d8dbde1cad602276f93f67c07953134267ca3a78c1"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+          "input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+          "output_sha256": "766672074c61ea6ec1403cb47385f5f81374a412eebe08fdc99f29369e9d17f0"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+          "input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+          "output_sha256": "94d69cea301bbe18244c734933282ccbfb0494499251afefd8bd5e3d9208d2e3"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+          "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+          "output_sha256": "bee28a6ad9066c4a494fff53ed6ac66ddaea4160cb53141f314f01d02bd9411a"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+          "output_sha256": "13b552cf7610292d109aa5bb4d9b632445c05edbf5b623e01ee0b48d1ca49f81"
+        },
+        {
+          "original": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+          "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-full-r3/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+          "input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+          "output_sha256": "7ce22862a0d31533a9e542134b244bb08ca353a9bc0fdf988236a32591390071"
+        }
+      ]
+    }
+  ],
+  "new_qemu_capture": {
+    "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1",
+    "run_sha256": "33f35178abd3277547dfa4b34e1ddbd8311735408b281b94b3d8f1954a06e906",
+    "profile_sha256": "72a65eaeef4b23b1ca90340ae66ef5c5d6b71d2f3984ac73bcc2f7d8dfd232ff",
+    "instructions": 353703301,
+    "marker_windows": 1,
+    "truncated": false,
+    "images": [
+      {
+        "path": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+        "sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+        "dynamic_instructions": 189943930,
+        "preaggregate_sha256": "7f30aaef55ce3f9e17c20d4efe7990b762446386d9d094e1e43698c8333aa976"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+        "sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+        "dynamic_instructions": 52571980,
+        "preaggregate_sha256": "070508241122aaf7800491ec7232d2d3140066859eda84f678a1a89312b5b497"
+      },
+      {
+        "path": "/usr/lib64/libc.so.6",
+        "sha256": "d96456d3edcaa910494e8db221c543614e53a5990dc54847bbd4309fee9a4881",
+        "dynamic_instructions": 30650156,
+        "preaggregate_sha256": "76cb65d45cb063718943c8002a10cdaa5435174e19c5b521bce4744130b6404a"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+        "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+        "dynamic_instructions": 22513250,
+        "preaggregate_sha256": "d36dd83a3c677c45d10c67dc42b194809ad2678765069c00e3b5b4ec113ca612"
+      },
+      {
+        "path": "/usr/lib/ld-linux-aarch64.so.1",
+        "sha256": "a0643ce2be24382672f606845166637327189af2ca4c56b5bff28ae62927fadc",
+        "dynamic_instructions": 15271932,
+        "preaggregate_sha256": "14fd37e3f990180c9cead6d18af6cf81d37c59ea56a6c8c5f310d7d02681f483"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+        "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+        "dynamic_instructions": 11045948,
+        "preaggregate_sha256": "5d1cf11a751e8c417ee5d80fc00bf9857fb19377deb0b4515c575d3c9461b7ab"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+        "sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+        "dynamic_instructions": 10910707,
+        "preaggregate_sha256": "4a575078289ba777af9402f03196f9efee46576124ab2e074701a1d3d515a902"
+      },
+      {
+        "path": "/usr/lib64/libstdc++.so.6.0.30",
+        "sha256": "e1898d210495a12d903f9670faf7ab737dc0fecfb4b102daa0577498860c1855",
+        "dynamic_instructions": 6954179,
+        "preaggregate_sha256": "a92cca3dcb98ff6874f9a956abcb61b5d45b194ab16ce42fa8623aceefb09834"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+        "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+        "dynamic_instructions": 3697172,
+        "preaggregate_sha256": "6f27ce16ea81a2672fcd2a4fb41f0f9a78004c75be87a63f8c5512728d0f0333"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/liberror_manager.so",
+        "sha256": "d741945076d8297ea71b961102c7eb3aaeaf267bcffe0e7c9f032db3d9f3a773",
+        "dynamic_instructions": 3155728,
+        "preaggregate_sha256": "1813feb00e9b3a9e5ac8fd9dc3f1f8f11b93d0da23ffb35fecedc883aad5d881"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+        "dynamic_instructions": 1128090,
+        "preaggregate_sha256": "429ec732dc8e1c0a6ea76f618ca287ffa93dfb12ed2d593cdc5ac1fde68dd0f9"
+      },
+      {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/vllm_ascend_C.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "7c279e29c1e23fea17bd2216628122914efaf02dad1925bcd9a396e01012023c",
+        "dynamic_instructions": 929227,
+        "preaggregate_sha256": "ff53475c6b33acbecbcf644814d74aafdd2199ced160807c4b914e58e25bd6ea"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/devlib/device/libascendalog.so",
+        "sha256": "842ca1508406a681833b337a240a3dd12cea4f81744ce3e6d39a239cad01b72c",
+        "dynamic_instructions": 911493,
+        "preaggregate_sha256": "70fdb3f6cddb235bdf881859f76bd87c572744363fddd237431d849c015b62b3"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopapi_math.so",
+        "sha256": "f9868c0ecdcd35c38adc44e0653463cc8d97a1a171edd4af855b3250c1c82958",
+        "dynamic_instructions": 499543,
+        "preaggregate_sha256": "13cf98c382dfe8e8e451c5f766f2435179684273c70b1455f458aec244692eec"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libmetadef.so",
+        "sha256": "bfae844ce0cb90dc5ed7f320769112ccd63ae5f2ff0a0313dc23a4595b71a997",
+        "dynamic_instructions": 438775,
+        "preaggregate_sha256": "4b0ee02de6d5ded29f16c58194e6470091b86eef0a4a78c9688306e929b88edb"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_comm_legacy.so",
+        "sha256": "8cd4d9b43b8f004643faf297e7fcfe7995b8cfe34a77014b14a7caecb7165087",
+        "dynamic_instructions": 334644,
+        "preaggregate_sha256": "843f62bbeaf517eaaa1b99900a51d7d23c912b72bc4a4c0614182eab1e0b7f23"
+      },
+      {
+        "path": "/opt/va26-stubs/libdevice_stub.so",
+        "sha256": "3ff658c7961bbc79271500b85e8391671712c707cd13b5a9d8cc4ccecab91720",
+        "dynamic_instructions": 216919,
+        "preaggregate_sha256": "aaa85ab0387deef748a2a5133f38e126600e78012017eb7e0409313c533ce497"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libascend_dump.so",
+        "sha256": "f1e5a58449299e93c36abc08bb0955483b08ed4f5cabd08d7dd8023f2312a1af",
+        "dynamic_instructions": 207289,
+        "preaggregate_sha256": "ef882f8118072dfc1212e0ad89bb71123947eded0c72c9ceffe2ffba9e4f8eaa"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+        "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+        "dynamic_instructions": 206682,
+        "preaggregate_sha256": "86cc11425687e0047b98f8533536e3999ce58f94d8c480ca4340cc906e1e3e0f"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libacl_rt_impl.so",
+        "sha256": "4595d4cf50f064cc9d6a97688eecf5e95ef92a4291911e26dd301091997c37ee",
+        "dynamic_instructions": 115662,
+        "preaggregate_sha256": "4c34dd7f74064b4b25f584bf25ac88d0709ea90a25526d65021998e3ab2a4f0f"
+      },
+      {
+        "path": "/opt/va26-stubs/libc_sec.so",
+        "sha256": "964df648e2dc8e04516b3919e259ca5a933d48dc3c4b88d4d558e7de212342e6",
+        "dynamic_instructions": 114566,
+        "preaggregate_sha256": "af04bde0857c274a6af923de5726d8f8a0407846483a79e5165ed1bef467f89a"
+      },
+      {
+        "path": "/usr/lib64/libgcc_s-12.so.1",
+        "sha256": "e15111896dc356f8174920e0d928ebad9c27666a6381dc790aa29b2ab442b27a",
+        "dynamic_instructions": 111061,
+        "preaggregate_sha256": "610974de4611080a087e4a624d6a271b622bae4f5761598fde1463b4d9ddc522"
+      },
+      {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/_cann_ops_custom/vendors/custom_transformer/op_api/lib/libcust_opapi.so",
+        "sha256": "e3968c3c6bec1331ffba219da0dcefe3dcea953568e28ba856a334bc0547237b",
+        "dynamic_instructions": 95413,
+        "preaggregate_sha256": "5a91c774148a7168903ab236ff173883c101293a20bc5ef42ce7157ba20f4e94"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libgraph.so",
+        "sha256": "a81a25d0576b8b08fc3709de3c1979406e3940854f25ee75626fc07b937a939a",
+        "dynamic_instructions": 89359,
+        "preaggregate_sha256": "e1b9d814d84234f6c6e546c925dc04e5ce6a173a459d3e680c8a9ac0e19555c7"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopapi_transformer.so",
+        "sha256": "9a79ed65cdebf70a4ee13c0e5fe0df331f8482a079907e4f184d9851e1183100",
+        "dynamic_instructions": 89346,
+        "preaggregate_sha256": "cf89a35f3207da786f16135db4d294dba7db211f2cdac6d3bc06a97c0aa5ba4f"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_legacy.so",
+        "sha256": "f1e54806382decf4ca3bd1ef05efa6d3e98313bdba664efaec8524b9e7bea1ce",
+        "dynamic_instructions": 85248,
+        "preaggregate_sha256": "4120949a173f89aaaf9c76b86f78e2c5ef54b3c93906724ff7bb09feabe87b4c"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopp_registry.so",
+        "sha256": "39d3bada7097847b146e76a1c3b05c1517da4e4d9a35953c859c6e80e821c9d9",
+        "dynamic_instructions": 79982,
+        "preaggregate_sha256": "9f74f43f2e0539fcf26e6c1249eae57a6975ca71b9a898179cbb5f5768be753a"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libplatform.so",
+        "sha256": "c80c6a5b72bf076240e261ab7a8cd178ba7013c8054cd1996964229d3d0c52e4",
+        "dynamic_instructions": 72635,
+        "preaggregate_sha256": "4b2583246cfa7f0588782fdfc41314ba2d66f0c947a0ee2ed72ac9efcd027faf"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/devlib/device/libunified_dlog.so",
+        "sha256": "a11afb2f58ea02deb54b1b65c853f4c9c2d0e8b97e685f0ce3e8747539a740ae",
+        "dynamic_instructions": 31775,
+        "preaggregate_sha256": "ab25686948d2f9a3c2065f351e6018d495b5dc427524615abfe08f19daea990c"
+      },
+      {
+        "path": "/opt/va26-stubs/libsoc_identity.so",
+        "sha256": "b6d38a5ed57358525d4e3753f48978fef2329c534965523bc86823467b31b04e",
+        "dynamic_instructions": 31316,
+        "preaggregate_sha256": "3d146f78df774318e5f3c15758c2285619932e3ed246e2520930f6b6a9b37653"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/vendors/batch_invariant/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64/libcust_opmaster_rt2.0.so",
+        "sha256": "68221652dffb7fa13351616ecdf4e3445425697452fed29ae147f0cc335b02c1",
+        "dynamic_instructions": 28440,
+        "preaggregate_sha256": "cee190c210a5eded516283ed77befdde09043a8937a0f50cf6c2afcb8856804e"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopapi_nn.so",
+        "sha256": "6644fd0f5f1e7a5cdb7e549acc1057703bc81eb269bb95890b878a7d7f7aa131",
+        "dynamic_instructions": 18051,
+        "preaggregate_sha256": "b0dddda854979fa98f0fbf46771a1b35ff28b55b9025b3da0914fc870ef77a2e"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_math.so",
+        "sha256": "c13c5b43f51ef59f3df48868814cd5bfe1b3d784c3138c7ad323cd753100a9aa",
+        "dynamic_instructions": 16956,
+        "preaggregate_sha256": "cbec200fad121eaf71c1d10f88df780c9daa20a12310b6dd2ec1bf401ca763aa"
+      },
+      {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/_cann_ops_custom/vendors/custom_transformer/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64/libcust_opmaster_rt2.0.so",
+        "sha256": "bb00819462a59a2164307407fb3b67e0f4e8edb7cd59e73ab895840414c60b60",
+        "dynamic_instructions": 16486,
+        "preaggregate_sha256": "96721287698984ca95c35083b9382b1e2b7d60d344114b1f39141c3812250826"
+      },
+      {
+        "path": "/usr/lib64/libm.so.6",
+        "sha256": "9a98d0293c90fb02edc80798237c447d371fff92a172b5ccc20d618b1e7f3929",
+        "dynamic_instructions": 15080,
+        "preaggregate_sha256": "6d9fd422dcd14061ecc2b116b86739a2c301b8d8dc210eb3656b411608d1e5a0"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libops_base.so",
+        "sha256": "e5eda9c92528c1379fe3dc7bf6e1b8c4d02444cc2354b26e2ec41d085bd201c6",
+        "dynamic_instructions": 12640,
+        "preaggregate_sha256": "2613685830e59b251b5d781ed035b491a1ce3faa215e98d318492dcb58afe830"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_graph/lib/linux/aarch64/libopgraph_transformer.so",
+        "sha256": "129b124c8b0fe3a0e19381fe9b7302623dd99ba035a3509431fe352c1b924630",
+        "dynamic_instructions": 11692,
+        "preaggregate_sha256": "3c09b5403c185b364724ef438a5ff0b6dfc52d5c32d26d49fa021738c2ad2d90"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libruntime.so",
+        "sha256": "7bc2b610dff552df2f114c95701156b4aba43ffcba24e06e3c249e1cf57bbc21",
+        "dynamic_instructions": 11286,
+        "preaggregate_sha256": "0fa7a820b9f9304e6bcbb8e708d9b5467c4c1b26daed71b4df854cfd8e0c8e28"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/site-packages/msgspec/_core.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "8fa0236ac1b241503baf9d06b4ceaaa3d7e0b54dd8671bd4fea702c2a3b3a430",
+        "dynamic_instructions": 10339,
+        "preaggregate_sha256": "f49b7a8ae8b4708dda110900353a5a884e9f75e9f6e70ff8bd2378c392f9fcc0"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_nn.so",
+        "sha256": "0257cbb6b2cc631110ceb7876e9e8f36c9ada2cb1f8150218b32f5e6d2a9722f",
+        "dynamic_instructions": 9583,
+        "preaggregate_sha256": "a0294acf7d77e84fabf09e04bd05120015b6602927a20ac51bce1e31f39d3e73"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libacl_rt.so",
+        "sha256": "5a6518505ef66688f02b4bde97517ba217212f29304d59b3a6ef0db14ded6c83",
+        "dynamic_instructions": 8610,
+        "preaggregate_sha256": "1190716b7a5551a9bb5d71915f3e9f1f1ae4efa34579d08995a99f28c3ccae87"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libregister.so",
+        "sha256": "84d4cb58dbe0ef3e59e6466f2ada7c2fcee9de9ead1d3845672948b561c569fa",
+        "dynamic_instructions": 6522,
+        "preaggregate_sha256": "8755e4a65e841f21c30e00644322d26fa60bf8a103c831b4944c5ef72349c645"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libexe_graph.so",
+        "sha256": "92245f33c93523ecf99614c735afa89b95b443aaac876ca09c4a088fb512249e",
+        "dynamic_instructions": 4956,
+        "preaggregate_sha256": "8206e8e29e0242b1eac0233677f414065a70611bf89ff23d012942bf787f0f19"
+      },
+      {
+        "path": "/vllm-workspace/vllm-ascend/vllm_ascend/_cann_ops_custom/vendors/custom_transformer/op_proto/lib/linux/aarch64/libcust_opsproto_rt2.0.so",
+        "sha256": "ef37625a22b143b29de9b5d2cb7c787ff139a7556ed42863f4402893e1b1f63f",
+        "dynamic_instructions": 2893,
+        "preaggregate_sha256": "6eebc46934111cab4c99e33882e37e9e48269b1f8bd79f721507e88d4db882eb"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/devlib/device/libmmpa.so",
+        "sha256": "6b46e65ddad411c86c5b39044a1f5f541bbc0348de88e8480bb353213145d8c1",
+        "dynamic_instructions": 1506,
+        "preaggregate_sha256": "a93762176e662d54ad9193b81770d90faefbd0f6366fb263015c8ea9529cdae4"
+      },
+      {
+        "path": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libascendalog.so",
+        "sha256": "7a0c86927cb68d9c5b89050c2d830b1d73e72f5cf6a4fec8f6c96c6292a3618f",
+        "dynamic_instructions": 1440,
+        "preaggregate_sha256": "c27e0408362c3daffc8dd8499344f1a2a8b946118fc32c51e1dbdcb1a19c2b22"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/lib-dynload/_bisect.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "3a782108bad987f6cc80a14113a8fbf988ca3bee4a946921e2d7c3cee160a5a2",
+        "dynamic_instructions": 1092,
+        "preaggregate_sha256": "7546deeea8cc4092ef8bbdd876359463e8109b543643d07f108e5c4b5c36ddbc"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/lib-dynload/_ctypes.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "1521fc22b97bf409898a9792ad709018a02630ef62c4869f782dc13d5e28d798",
+        "dynamic_instructions": 703,
+        "preaggregate_sha256": "d93e8532634f342eb08fafb84a4d45f4d441b2dfb00b235cddc8561292853db1"
+      },
+      {
+        "path": "/usr/lib64/libffi.so.8.1.2",
+        "sha256": "3343107f68508d8668e559a0f0f8bec56d2a31d47ec60882a12700f96423139c",
+        "dynamic_instructions": 158,
+        "preaggregate_sha256": "dd8ada6a2e3775da13e7712473a48b0f57d468424cdd48bc870c65ee12ab5920"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-qemu-full-v05-r1/runtime/libtgo_roi.so",
+        "sha256": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+        "dynamic_instructions": 137,
+        "preaggregate_sha256": "001acb524083bbc47f9b236bea3fe8879ff9fac1f7f9cdd215cfd6d06ded946f"
+      },
+      {
+        "path": "/usr/local/python3.12.13/lib/python3.12/lib-dynload/math.cpython-312-aarch64-linux-gnu.so",
+        "sha256": "75e3252ebede1b8f9bf4f7472449d9599420676338d402afd9405182fae12dee",
+        "dynamic_instructions": 116,
+        "preaggregate_sha256": "79014ec278f42ae5cdb169b6a369e4dc1b928a803672a0bd23b91c97ea3509f9"
+      },
+      {
+        "path": "/opt/va26-stubs/libopapi.so",
+        "sha256": "0e50cb1c91a5d3823316605edd96a0201c34d4705ec78e6b2f9c0ffd75371cc3",
+        "dynamic_instructions": 8,
+        "preaggregate_sha256": "5bfee20f19d59ccf53198fd1febecbe5681fc40b3f935f258583b003fb6be18c"
+      }
+    ]
+  }
+}
