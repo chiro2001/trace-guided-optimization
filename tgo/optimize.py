@@ -9,14 +9,14 @@ from .runtime import build_runtime, make_launcher
 from .util import read_json, write_json, run, sha256, tool, tool_env
 
 
-def eligible(row):
+def eligible(row, allow_stripped=False):
     name = Path(row["path"]).name
     if row["go"]:
         return "Go pclntab/stack maps require a Go-aware rewriter; layout rewrite disabled"
     if name.startswith(("ld-linux", "ld-musl", "libc.so", "libpthread.so", "libdl.so", "libtgo_")):
         return "loader/runtime support image excluded"
-    if not row["symbols"]:
-        return "symbol table absent; provide an unstripped matching ELF"
+    if not row["symbols"] and not allow_stripped:
+        return "symbol table absent; provide an unstripped matching ELF or explicitly use --allow-stripped"
     if row["machine"] not in (62, 183):
         return "unsupported ISA"
     if not row.get("dynamic_instructions", row.get("sample_percent", 0)):
@@ -51,7 +51,7 @@ def optimize(args):
     for row in profile["images"]:
         if args.image and not any(x == row["path"] or x == Path(row["path"]).name for x in args.image):
             continue
-        reason = eligible(row)
+        reason = eligible(row, args.allow_stripped)
         if not reason and is_executable_image(row) and Path(row["path"]).resolve() != Path(state["command"][0]).resolve():
             reason = "child executable needs an exec/toolchain adapter; loader redirection only applies to DSOs"
         if reason:
@@ -104,6 +104,8 @@ def optimize(args):
                 cmd += ["-p", row["perf_data"]]
                 cmd += ["-spe"] if profile["backend"] == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
             cmd += recovery
+            if args.allow_stripped:
+                cmd += ["-allow-stripped"]
             aggregate_env["TGO_SPE_STATS"] = str(image_dir / "spe-bridge.json")
             aggregation = run(cmd, image_dir / "aggregate.log", env=aggregate_env)
             if not fdata.exists() or not fdata.stat().st_size:
@@ -118,7 +120,9 @@ def optimize(args):
                 if not row["relocations"] and not recover:
                     flags += ["-aarch64-relaxation-non-reloc"]
             if recover:
-                flags += [*recovery, "-use-old-text=false"]
+                flags += [*recovery, "-use-old-text=false", "-lite", "-lite-threshold-count=1"]
+            if args.allow_stripped:
+                flags += ["-allow-stripped"]
             flags += args.bolt_arg
             optimization = run([bolt, original, "-data=" + str(fdata), "-o", target, *flags], image_dir / "bolt.log")
             normalization = None

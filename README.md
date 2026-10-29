@@ -31,6 +31,10 @@ python3 -m tgo validate runs/candidate --pairs 5
 `optimize` 输出未经收益筛选的候选，默认做三对正确性/加载验证。性能建议保存在
 `validation.json`。`tune` 才会根据收益选择最终入口。
 
+`--bolt-mode recover` 使用可选 AArch64 recovery BOLT，只处理有画像的函数。
+缺少 `.symtab` 时默认跳过；可显式加 `--allow-stripped` 让 BOLT 利用动态符号和
+unwind 信息恢复其能识别的函数，仍须通过逐负载验证，不保证恢复完整代码边界。
+
 ## 精确选择 ROI
 
 支持整段进程、从启动后指定的时间窗口，以及重复的显式标记。

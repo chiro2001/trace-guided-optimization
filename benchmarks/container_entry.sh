@@ -17,10 +17,12 @@ optimize|tune)
     : "${TGO_BUNDLE:?set a new output bundle directory}"
     TGO_DEFAULT_PAIRS=3
     if [ "$TGO_CONTAINER_ACTION" = tune ]; then TGO_DEFAULT_PAIRS=5; fi
+    set --
+    if [ "${TGO_ALLOW_STRIPPED:-0}" = 1 ]; then set -- --allow-stripped; fi
     exec "$TGO_APP" "$TGO_CONTAINER_ACTION" --run "$TGO_RUN" -o "$TGO_BUNDLE" \
         --image "${TGO_IMAGE_FILTER:-libpython3.12.so.1.0}" \
         --bolt-mode "${TGO_BOLT_MODE:-standard}" \
-        --entry-mode executable --metric decode --validate "${TGO_VALIDATE_PAIRS:-$TGO_DEFAULT_PAIRS}" --timeout 600
+        --entry-mode executable --metric decode --validate "${TGO_VALIDATE_PAIRS:-$TGO_DEFAULT_PAIRS}" --timeout 600 "$@"
     ;;
 *) echo "unknown TGO_CONTAINER_ACTION" >&2; exit 2 ;;
 esac
