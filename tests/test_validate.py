@@ -5,9 +5,26 @@ import time
 import unittest
 from tgo.util import write_json
 from tgo.validate import validate
+from tgo.runtime import build_runtime, make_launcher
 
 
 class ValidationTimeout(unittest.TestCase):
+    def test_standalone_roi_workload_gets_helper_for_both_validation_arms(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);build_runtime(root)
+            capture=root/"capture";capture.mkdir()
+            driver=root/"standalone.py"
+            driver.write_text("import os\nfrom pathlib import Path\nfrom tgo.roi import region\n"
+                "assert Path(os.environ['TGO_ROI_LIBRARY']).is_file()\n"
+                "with region('fixture'):print('ok')\n")
+            command=[sys.executable,str(driver)]
+            write_json(capture/"run.json",{"command":command,"env":{"PYTHONPATH":""},"cwd":str(root)})
+            entry=make_launcher(root,root/"run",command,[],cwd=str(root))
+            write_json(root/"build.json",{"source_run":str(capture),"entry":entry,"images":[]})
+            result=validate(root,pairs=1,metric="fixture")
+            self.assertTrue(result["equivalent"])
+            self.assertFalse(result["pairs"][0]["baseline"]["metric_missing"])
+
     def test_repeated_validation_preserves_each_rounds_raw_evidence(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

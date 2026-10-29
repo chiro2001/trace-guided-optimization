@@ -63,6 +63,11 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
         pair = {}
         for arm in (["baseline", "candidate"] if i % 2 == 0 else ["candidate", "baseline"]):
             env = workload_env(); env.update(state["env"])
+            support = bundle / "support"
+            if support.is_dir():
+                env["PYTHONPATH"] = str(support) + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
+            if (bundle / "libtgo_roi.so").exists():
+                env.setdefault("TGO_ROI_LIBRARY", str(bundle / "libtgo_roi.so"))
             label = f"warmup-{i + warmup_count}" if i < 0 else f"validation-{i}"
             prefix = evidence / f"{label}-{arm}"
             env["TGO_IMAGE_LOG"] = str(prefix)

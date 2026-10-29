@@ -76,6 +76,8 @@ def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=(
         command[1] = str(out / "support/tgo/python_entry.py")
     env = dict(env or {})
     env["TGO_PYTHON_SUPPORT"] = str(out / "support")
+    if (out / "libtgo_roi.so").exists():
+        env.setdefault("TGO_ROI_LIBRARY", str(out / "libtgo_roi.so"))
     def string(s):
         b = os.fsencode(s)
         return struct.pack("<I", len(b)) + b
