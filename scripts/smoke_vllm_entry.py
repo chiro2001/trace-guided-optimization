@@ -64,12 +64,17 @@ def main():
         with (output/(arm+'.launch.log')).open('wb') as log:
             subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=600)
     results={arm:json.loads(contents(output/(arm+'.result.json'))) for arm in ['candidate','disabled']}
-    observed={}
+    observed={};raw_files=[]
     for arm in results:
-        observed[arm]={line.split('\t',2)[-1] for p in output.glob(arm+'.*.images')
-            for line in contents(p).decode().splitlines()}
+        observed[arm]=set()
+        for p in output.glob(arm+'.*.images'):
+            data=contents(p)
+            observed[arm].update(line.split('\t',2)[-1] for line in data.decode().splitlines())
+            raw_files.append({'path':str(p),'sha256':hashlib.sha256(data).hexdigest()})
     evidence={'schema':'tgo.standalone-entry.v1','scope':'functional/load check, not performance confirmation',
         'bundle':str(bundle),'adjacent_entry':ADJACENT,'entry_sha256':hashlib.sha256(adjacent.read_bytes()).hexdigest(),
+        'build_sha256':hashlib.sha256((bundle/'build.json').read_bytes()).hexdigest(),
+        'image_sha256':{r['optimized']:r['output']['sha256'] for r in build['images']},'map_files':raw_files,
         'commands':commands,'source_tree_mounted':False,'working_directory':'/tmp',
         'correctness_equal':results['candidate']==results['disabled'],
         'loaded_optimized':sorted(observed['candidate']&expected),
