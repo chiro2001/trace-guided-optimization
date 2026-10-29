@@ -1,0 +1,1137 @@
+{
+  "state": "complete",
+  "selected": "ext-tsp",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/run",
+  "python_profile": "native-edges",
+  "library_profile": "qemu",
+  "training_phases": {
+    "compiler": 3,
+    "native_python": 3,
+    "qemu_libraries": 1,
+    "sampling": 0
+  },
+  "cpython_build": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/compiler/build.json",
+  "cpython_build_sha256": "6a10b426148d68b748df5fe041fb0ab731feccbcd73ea0df6babc307715f0035",
+  "schema": "tgo.vllm-fresh-appimage-evidence.v1",
+  "scope": "fresh offline AppImage discovery, source build, training, rewriting and independent confirmation; no profile/build reuse",
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2",
+  "launch_command": [
+    "sudo",
+    "-n",
+    "docker",
+    "run",
+    "--rm",
+    "--pid",
+    "host",
+    "--network",
+    "none",
+    "--cpuset-cpus",
+    "240,242,244,246,248,250,252,254",
+    "--cpuset-mems",
+    "0-3",
+    "--memory",
+    "40g",
+    "--memory-swap",
+    "40g",
+    "--pids-limit",
+    "2048",
+    "--cap-add",
+    "SYS_ADMIN",
+    "--cap-add",
+    "IPC_LOCK",
+    "--security-opt",
+    "seccomp=unconfined",
+    "-v",
+    "/home/l00886679/projects/trace-guided-optimization:/home/l00886679/projects/trace-guided-optimization",
+    "-v",
+    "/home/l00886679/projects/trace-guided-optimization/runs:/home/l00886679/projects/trace-guided-optimization/runs",
+    "-v",
+    "/home/l00886679/projects/trace-guided-optimization/dist/0.5.0:/home/l00886679/projects/trace-guided-optimization/dist/0.5.0",
+    "-v",
+    "/home/l00886679/models:/models:ro",
+    "-e",
+    "PY=/home/l00886679/projects/trace-guided-optimization/benchmarks/container_entry.sh",
+    "-e",
+    "TGO_APP=/home/l00886679/projects/trace-guided-optimization/dist/0.5.0/tgo-0.5.0-aarch64.AppImage",
+    "-e",
+    "TGO_CONTAINER_ACTION=tune",
+    "-e",
+    "TGO_BUNDLE=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2",
+    "-e",
+    "TGO_STRATEGY=auto",
+    "-e",
+    "TGO_BUILD_JOBS=8",
+    "-e",
+    "TGO_BUILD_TIMEOUT=3600",
+    "-e",
+    "TGO_TIMEOUT=600",
+    "-e",
+    "TGO_LAYOUT=ext-tsp",
+    "-e",
+    "TGO_IMAGE_SEARCH=joint",
+    "-e",
+    "APPIMAGE_EXTRACT_AND_RUN=1",
+    "-e",
+    "VLLM_ENABLE_V1_MULTIPROCESSING=0",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "TASK_QUEUE_ENABLE=1",
+    "-e",
+    "HF_HUB_OFFLINE=1",
+    "-e",
+    "TRANSFORMERS_OFFLINE=1",
+    "-e",
+    "XDG_CACHE_HOME=/home/l00886679/projects/trace-guided-optimization/build/cache-vllm-appimage-full-v05-r2",
+    "--entrypoint",
+    "/bin/bash",
+    "sha256:a6314dddb8665748c456a4ba3aee5ffd985e366689327889b9b072d4ce18bf97",
+    "/opt/va26-scripts/run_real_test_official.sh",
+    "/home/l00886679/projects/trace-guided-optimization/benchmarks/vllm_decode.py",
+    "--requests",
+    "9",
+    "--warmup-requests",
+    "1",
+    "--roi-cpu",
+    "240",
+    "--max-tokens",
+    "8",
+    "--no-detokenize",
+    "--check-native-ops"
+  ],
+  "appimage_sha256": "21719e548822588e6d99d3f346072df66c8d8a5c47fd58a4494b3ac6d447cce0",
+  "tune_sha256": "2ca436e4c13713cdcad67ed033bbd512e2b77f85d714c2672e3c3e18f47cbef1",
+  "build_sha256": "17e25b767fe67bac039cb4002fec3969dd059a652fd4351e2b8d4641733e2e88",
+  "compiler": {
+    "state": "complete",
+    "source": {
+      "version": "3.12.13",
+      "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tgz",
+      "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
+    },
+    "source_archive": "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/share/tgo/sources/Python-3.12.13.tgz",
+    "gcc": {
+      "path": "/usr/bin/gcc",
+      "sha256": "cb04d8988d5883d38ed3a3aec0261a4320bafa75beeac4a52aadde9363000654",
+      "version": "gcc (GCC) 12.3.1 (openEuler 12.3.1-111.oe2403sp3)"
+    },
+    "removed_build_profiles": 285,
+    "completed_rois": 27,
+    "training_runs_completed": 3,
+    "training_trials": [
+      {
+        "returncode": 0,
+        "seconds": 58.851178190205246,
+        "timed_out": false,
+        "stdout_sha256": "37d9cc2b8efaaaea1a4d37fcd70c951c9fc49638199b2f175d8c62399207a14d",
+        "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/compiler/training-000"
+      },
+      {
+        "returncode": 0,
+        "seconds": 58.55178097030148,
+        "timed_out": false,
+        "stdout_sha256": "6dcb836d08428cc586c608d7749185397bdd2f4a47139b9ca30219c5dda6cfe7",
+        "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/compiler/training-001"
+      },
+      {
+        "returncode": 0,
+        "seconds": 58.81660454021767,
+        "timed_out": false,
+        "stdout_sha256": "8f9d5c1567f1d38e318ce414709566ccec9f5073e31ffa676f61667df2f464b5",
+        "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/compiler/training-002"
+      }
+    ],
+    "gcda_count": 149,
+    "critical_profiles": [
+      {
+        "path": "Objects/call.gcda",
+        "sha256": "356105935571eec75383a548e1dd08a293fbdec17321fd3dad52134006408216"
+      },
+      {
+        "path": "Objects/dictobject.gcda",
+        "sha256": "e5ea7fe2f923a5a8e0b57abe6dbbe16fe9e784caddf4892e078104a8dd1fa0d1"
+      },
+      {
+        "path": "Objects/typeobject.gcda",
+        "sha256": "d3520126cdfe44a1692652605ebcdd7fdf4009aaa5058fd84d00a03a8232e44a"
+      },
+      {
+        "path": "Python/ceval.gcda",
+        "sha256": "df6a777ac74ff8f04f9040fc77b9e1882281ffb937237603dff681c5e270506f"
+      }
+    ]
+  },
+  "provenance": {
+    "baseline": {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/training/capture-000",
+      "run_sha256": "06cff1c999b7d261df15df00efc143b1937266c746a2bdf899fb1ad4469f3fe8",
+      "profile_sha256": "0f1d29f7072ebd1c650d780e35d9f6db1f69c575b9953448304811fb58c6953b"
+    },
+    "library_capture": {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+      "run_sha256": "cc5b337d58503837a0168cbb96fa528391dddb1829057add07f17b700b643087",
+      "profile_sha256": "d2216010dfe412f2f812f21a713cfcd5169c61630111caeed360382d9921d25b"
+    },
+    "native_manifest_sha256": "fc10d086c9e88b7eec8d9e851167acc7d4b8b3b994d9ba3ad0d551c256885fb9",
+    "native_source_sha256": "6d4bbcd5ab7ce580de20a687e9242090520d7020cdaa68e180d85bd072b527c6",
+    "native_fdata_sha256": "373260a4df5fbea86d355feeb180c5827069a3029ae2bc6218e3d5b385171bf7",
+    "native_roi_profiles": [
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0001.fdata",
+        "sha256": "3bf30dec2c30210ad38f797ff40931f2fa781a5af73f4eb74fac18cf523e1d89"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0002.fdata",
+        "sha256": "3a17ceab2f0eff7d5587d3746c7e930c46a698b02c499da73873543b26cbaa30"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0003.fdata",
+        "sha256": "8cc668338642ea7c628419ab36227e88c63f22781453921d396d039b3e44a7fa"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0004.fdata",
+        "sha256": "8ca7561b93d3e127ae02d6a98df5e835af2d5a248fe2386cc7500ab84e8500b0"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0005.fdata",
+        "sha256": "0a5d7b3695b13437d9211f4aac6741540e26a563690a4256af88101228f6450a"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0006.fdata",
+        "sha256": "98be29173d15f85597fd3692d8ff3fb88456c69f37e5dc58cffb41666a3dd10c"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0007.fdata",
+        "sha256": "b21942b5e81775a8af38387e7a1fe8ff53d8fd59914082f8b07bc7b3005b5ebb"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0008.fdata",
+        "sha256": "bd151e557467061d8897f31873a3d22aeca9d0452459a0379d8c41a38a3c3393"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2101983-0009.fdata",
+        "sha256": "9a87f8fb78c1c88224c6a3ce0f92b356723769ec30cd021ffd322b2e1f37b383"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0001.fdata",
+        "sha256": "c93e3ddd0737286f29a7aa066884bae3123edaca55ebcd3a63577fdb9b9c0ea3"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0002.fdata",
+        "sha256": "387c257bc7d1362102034a42f2764fe73b68debdd58e7e23084218a7ae2df3e0"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0003.fdata",
+        "sha256": "bee419e3e4242c1b9c15173cd63e83cb393afe00b68c804a6089e7b737660a8d"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0004.fdata",
+        "sha256": "be7bf1df45c5261a3e4f125bd76bb3c7e7dd7003b64b84411817515ba7e8e7e8"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0005.fdata",
+        "sha256": "352ab4a493c2fb83407827996f6b5a4deabf788355f5a3ccbabbb167b1ba1b43"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0006.fdata",
+        "sha256": "e664ec4b0eac9d7bb90a2a09621dd238d8c998e2dbc2103ca82e07bd80a913ab"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0007.fdata",
+        "sha256": "e3f35ccb7bbc79bb962a232f4817eb7c44faa2fa2fdd7946751ce989ceb33e97"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0008.fdata",
+        "sha256": "3720e8eb1e91046aa7e72e8c145d398168d5203a0558c41ba8f4a1ceed682f42"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2104878-0009.fdata",
+        "sha256": "72703d74edb8da9258c4ec333544dde88036a864d7401a8d40d8a27581744aef"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0001.fdata",
+        "sha256": "abcb8db9a26073e335393a899fe32c72b9010d54c660af5003d9ef02e3b8beb5"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0002.fdata",
+        "sha256": "ebb068817ad22c74d90d71986809e8856b79d1b25eb44414576da5ab56c8c3b8"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0003.fdata",
+        "sha256": "0b442fe756bfad3ec5b3691cab5a9b3be7aea35cd67dac80cd3186079ffe89f8"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0004.fdata",
+        "sha256": "f17071793cff6e991325c27ac6d673e47e36cddfab9c6b2494a1312c2ac5e600"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0005.fdata",
+        "sha256": "20b15c9257d90797cb3cccfef652bd87d41760049330afd2c180a256b52b46d3"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0006.fdata",
+        "sha256": "803fb96491b31a9bf74c763f2861a0b438f3ad654ec939d11aa0194c6cfec2b5"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0007.fdata",
+        "sha256": "eb5b9f5e598aacce42a2ab3c4e25940334ec9bebccc39985bd7e2f9c73404910"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0008.fdata",
+        "sha256": "06b9e4407193ce393dc8919d4267fa1302217ddf7cf806eb2f2a0a6d4618105b"
+      },
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profiles/profile-2107809-0009.fdata",
+        "sha256": "934ae4718d8127550e24b4e6d9f0a02ba59ee921ad832e6885ed0df7293b54e9"
+      }
+    ],
+    "runtime_archive_sha256": "ec24c24b6ca604a4f1b2255866a00947c811be39e367e0089eafc7c102990eb5"
+  },
+  "qemu": {
+    "instructions": 352496354,
+    "marker_windows": 1,
+    "truncated": false,
+    "quality": {
+      "kind": "dynamic-tb-counts",
+      "hardware_frontend_counters": false,
+      "scope": "QEMU process and threads; native exec children excluded",
+      "roi_window_limit": 1
+    },
+    "captures": [
+      {
+        "trace": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/capture.2112769.trace",
+        "trace_sha256": "0ba042e648e77330899b521cf92e0cb833129ec9144180ac31c7d90561d82a79",
+        "ignored": "no instructions and no ROI windows"
+      },
+      {
+        "trace": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/capture.2111067.trace",
+        "trace_sha256": "5e32fc9f35f58539a67aea732523b8e88f3dc727431555316dc517d595a2ad0a",
+        "maps": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/capture.2111067.images",
+        "maps_sha256": "e78c5979a5630de209a5787baa8282b18859842edac7155570b903f5cab74454"
+      },
+      {
+        "trace": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/capture.2128983.trace",
+        "trace_sha256": "0ba042e648e77330899b521cf92e0cb833129ec9144180ac31c7d90561d82a79",
+        "ignored": "no instructions and no ROI windows"
+      }
+    ],
+    "workload_roi_markers": [
+      {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/capture.2111067.roi",
+        "sha256": "220fb867f6b4f92fed108b99cd813f452a1da0fd7c5a87f5c7611d9af0fec429",
+        "begins": 9,
+        "ends": 9
+      }
+    ],
+    "correctness_matches_baseline": true
+  },
+  "images": [
+    {
+      "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+      "aggregation": {
+        "strategy": "native-bolt-roi-edges",
+        "manifest": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/native-python/profile.json",
+        "manifest_sha256": "fc10d086c9e88b7eec8d9e851167acc7d4b8b3b994d9ba3ad0d551c256885fb9",
+        "sha256": "373260a4df5fbea86d355feeb180c5827069a3029ae2bc6218e3d5b385171bf7"
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/compiler/optimized-image/libpython3.12.so.1.0",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.367563260253519,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/bolt.log"
+      },
+      "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+      "output_sha256": "899923679512fa40f0ade4a724c57e4b6126cd1af525c8c6be56793e76f46d6d",
+      "rewrite_input_sha256": "6d4bbcd5ab7ce580de20a687e9242090520d7020cdaa68e180d85bd072b527c6"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "7d9dcf58091f89acdf9a04d8a9d9f9663fd395b71dccc9ec108b596f1baa773c",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/83fb9a0eb249aef6-797bc1b1.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 14.28790451027453,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 56.13609117968008,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/bolt.log"
+      },
+      "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+      "output_sha256": "40c97297d206a585203ea02fbcf9f4b7ff62f492372505151f76e716704bd284",
+      "rewrite_input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "1373108b82404b2128e2900360bc9f71f9a599ae0bc50f994afe6c768ad256a0",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/6b2c97897785c9d4-afbafea7.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 3.5699366801418364,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 14.633440699893981,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/bolt.log"
+      },
+      "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+      "output_sha256": "e1fbb03e5545215a45bdf8e4166dc41ed16d53a331ff68fcd0058f6ac36378d8",
+      "rewrite_input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577"
+    },
+    {
+      "original": "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "4a575078289ba777af9402f03196f9efee46576124ab2e074701a1d3d515a902",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/308dda461704a6e5-0b1a0265.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.7157504200004041,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.6679832502268255,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/bolt.log"
+      },
+      "input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+      "output_sha256": "ae64eb78cf2b40c9fa540fc5e9b6526a11e95fda229eb12f2bbe29c55595fda8",
+      "rewrite_input_sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "40cc6b2ba0673c01d9c70f8f1f7273f21aaf8915baae57cecbff6e00c3fa6590",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/d9529119ac18ba15-39832c46.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 37.56839714990929,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 132.37898509996012,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/bolt.log"
+      },
+      "input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+      "output_sha256": "edc8591d1f720a0dec9b18c3025081c52a37ff3a3bce7ffabfccb17ef92bfbbd",
+      "rewrite_input_sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "1d3ddf8f6486cf19bd059b183c5d3c38bad84a705ba1f0a442c6c2db995c4496",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libc10.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/6af47532fcb08495-5c6014ee.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.21495539974421263,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 0.715681959874928,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/bolt.log"
+      },
+      "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "output_sha256": "4429c51e724a91651b30c77e957e575c269f782e2a9c25f902aba7e6a354dfe9",
+      "rewrite_input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1"
+    },
+    {
+      "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "f6e272c2213a39baf1eb6564f459a962cd0acfd7d8c4017fc9297d62be432807",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/python3.12.13/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/fb1837bd38404656-9223dbba.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 0.6656774999573827,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 2.8682086798362434,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/bolt.log"
+      },
+      "input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+      "output_sha256": "ea9779dad830bb126504c34b65e82ad613fb58fc24a9a3b8e97e51a4decffca4",
+      "rewrite_input_sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0"
+    },
+    {
+      "original": "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+      "aggregation": {
+        "strategy": "independent-qemu-object-profile",
+        "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture",
+        "preaggregate_sha256": "86cc11425687e0047b98f8533536e3999ce58f94d8c480ca4340cc906e1e3e0f",
+        "aggregation": {
+          "command": [
+            "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/perf2bolt",
+            "/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so",
+            "-o",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/profile.fdata",
+            "-pa",
+            "-p",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/library-capture/3f5758ed76ce537f-19fff49f.pa",
+            "-relocs",
+            "-force-patch",
+            "-pgo128-trampoline-mode",
+            "-pgo128-recover-code-relocs",
+            "-aarch64-relaxation-non-reloc",
+            "-pgo128-assume-code-pages-safe",
+            "-allow-stripped"
+          ],
+          "returncode": 0,
+          "seconds": 4.223297010175884,
+          "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/aggregate.log"
+        }
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_8b52164d4e8a6c447f2573442968de19/usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so.bind-now",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-cold-threshold=0",
+          "-group-stubs=false",
+          "-relocs",
+          "-force-patch",
+          "-pgo128-trampoline-mode",
+          "-pgo128-recover-code-relocs",
+          "-aarch64-relaxation-non-reloc",
+          "-pgo128-assume-code-pages-safe",
+          "-use-old-text=false",
+          "-eliminate-unreachable",
+          "-peepholes=all",
+          "-simplify-conditional-tail-calls",
+          "-sctc-mode=always",
+          "-split-eh",
+          "-plt=all",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 15.534217920154333,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/bolt.log"
+      },
+      "input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+      "output_sha256": "bf032bd28653775b13699d6073cb6fe8ea054de7b46c73dd0f20c10dd3f9e18a",
+      "rewrite_input_sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b"
+    }
+  ],
+  "validation": {
+    "schema": "tgo.validation.v1",
+    "equivalent": true,
+    "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f",
+    "requested_pairs": 5,
+    "completed_pairs": 5,
+    "warmup_pairs": [],
+    "metric": "decode",
+    "median_reduction_percent": 39.47121522275048,
+    "min_reduction_percent": 36.80245315505141,
+    "max_reduction_percent": 42.96445694590876,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional",
+    "pairs": [
+      {
+        "reduction_percent": 36.80245315505141,
+        "baseline": {
+          "seconds": 33.50528918020427,
+          "metric_seconds": 0.13418149,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-0-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "f7bee5fddc1b51d875bf4ebb98d7885e7042d52be6cb0370a552004dc3efcd45",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 374121776,
+            "instructions": 346036643,
+            "frontend_stall_cycles": 219793539,
+            "l1i_read_misses": 24266332
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.164440399967134,
+          "metric_seconds": 0.08479941,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-0-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "1003124a001f9a07755af56262afe470d3889ec22352fe49fa458e93cdc1992c",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 232913551,
+            "instructions": 300413363,
+            "frontend_stall_cycles": 81747135,
+            "l1i_read_misses": 11561457
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 39.47121522275048,
+        "baseline": {
+          "seconds": 33.69507519993931,
+          "metric_seconds": 0.13811328,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-1-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "4aced4967c775864ada0cf66f8e0cdd695d371bba99d5ed02c47fb953f4d503d",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 385668698,
+            "instructions": 345240132,
+            "frontend_stall_cycles": 220813970,
+            "l1i_read_misses": 24301336
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.140744159929454,
+          "metric_seconds": 0.08359829,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-1-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "90fe25bc50a6eb00321f38617f59fc349932a2a22098fe79e8b7583a05f36b99",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 230760262,
+            "instructions": 300342596,
+            "frontend_stall_cycles": 82067967,
+            "l1i_read_misses": 11694076
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 41.16489272021888,
+        "baseline": {
+          "seconds": 33.68193013034761,
+          "metric_seconds": 0.14122279,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-2-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "65202f742c97ec50bd5e4939a2578cbf9fe41db6367e1424646750ecd2e2a2ec",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 397009630,
+            "instructions": 345723499,
+            "frontend_stall_cycles": 227371060,
+            "l1i_read_misses": 24740642
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.152646680362523,
+          "metric_seconds": 0.08308858,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-2-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "1eefc8d551349bf61fb4ac3549603cbcc4ce5b28ac35e820af234c811765fb54",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 227965642,
+            "instructions": 300922613,
+            "frontend_stall_cycles": 80947066,
+            "l1i_read_misses": 11529333
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 39.375325339766256,
+        "baseline": {
+          "seconds": 33.4900575298816,
+          "metric_seconds": 0.1344748,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-3-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "2a8211287f7b539cd37c46603097aa9d48905d0fd2c47860763bb908945b1d60",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 376626181,
+            "instructions": 345884684,
+            "frontend_stall_cycles": 218469507,
+            "l1i_read_misses": 24158919
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.32590819010511,
+          "metric_seconds": 0.08152491,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-3-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "58075aff220389a1a1420db14c19d40dcde40c69ea8f9894e31019c85d89be90",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 222970406,
+            "instructions": 300262399,
+            "frontend_stall_cycles": 79318138,
+            "l1i_read_misses": 11401069
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      },
+      {
+        "reduction_percent": 42.96445694590876,
+        "baseline": {
+          "seconds": 33.51249243039638,
+          "metric_seconds": 0.14224467,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-4-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "5be711cc516253513758785c3ca46c783534f455bab9c0dc731eb3a0dd02a635",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [],
+          "pmu_medians": {
+            "cycles": 397754838,
+            "instructions": 345516803,
+            "frontend_stall_cycles": 229082674,
+            "l1i_read_misses": 25062022
+          },
+          "all_pmu_unmultiplexed": true
+        },
+        "candidate": {
+          "seconds": 28.31312463991344,
+          "metric_seconds": 0.08113002,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/validations/eb50d500250c4e42847a404a150f113f/validation-4-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "2246f5caef46543f1d4d8f9953665057bcd4ec74663b0da898bf028c8f62195c",
+          "correctness_sha256": "533cd262df4de4cb3b3514a3f4515e62a01173b8e28b202f028c9bbcb1649e04",
+          "correctness_source": "result-json",
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+          ],
+          "pmu_medians": {
+            "cycles": 221832311,
+            "instructions": 299555616,
+            "frontend_stall_cycles": 79580300,
+            "l1i_read_misses": 11456232
+          },
+          "all_pmu_unmultiplexed": true
+        }
+      }
+    ]
+  },
+  "pmu_median_reductions": {
+    "cycles": 40.79795371421616,
+    "instructions": 13.184522773213935,
+    "frontend_stall_cycles": 63.69372591663329,
+    "l1i_read_misses": 52.8080333395712
+  }
+}

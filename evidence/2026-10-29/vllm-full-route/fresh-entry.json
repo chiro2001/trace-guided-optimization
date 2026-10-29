@@ -1,0 +1,1214 @@
+{
+  "schema": "tgo.standalone-entry.v1",
+  "scope": "functional/load check, not performance confirmation",
+  "bundle": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2",
+  "adjacent_entry": "/usr/local/python3.12.13/bin/python3.tgo",
+  "entry_sha256": "074121ae2daa3bd0e3fca05ff2aea2f9bf4c7a6a660ec92787fd3efb51203596",
+  "build_sha256": "17e25b767fe67bac039cb4002fec3969dd059a652fd4351e2b8d4641733e2e88",
+  "image_sha256": {
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0": "899923679512fa40f0ade4a724c57e4b6126cd1af525c8c6be56793e76f46d6d",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so": "40c97297d206a585203ea02fbcf9f4b7ff62f492372505151f76e716704bd284",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so": "e1fbb03e5545215a45bdf8e4166dc41ed16d53a331ff68fcd0058f6ac36378d8",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so": "ae64eb78cf2b40c9fa540fc5e9b6526a11e95fda229eb12f2bbe29c55595fda8",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so": "edc8591d1f720a0dec9b18c3025081c52a37ff3a3bce7ffabfccb17ef92bfbbd",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so": "4429c51e724a91651b30c77e957e575c269f782e2a9c25f902aba7e6a354dfe9",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so": "ea9779dad830bb126504c34b65e82ad613fb58fc24a9a3b8e97e51a4decffca4",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so": "bf032bd28653775b13699d6073cb6fe8ea054de7b46c73dd0f20c10dd3f9e18a"
+  },
+  "map_files": [
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156635.images",
+      "sha256": "77baf84d30414aa5e41f24d6e1712d88b8331fe34a8746ddbd28daca69e9362c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157363.images",
+      "sha256": "37272f16f37bad31b56235232e73a27ef765dfc7efbc792629a93a00cc78062c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157635.images",
+      "sha256": "9e0368878e4e25706054f7fff6772d92b5d5c4414537d84a2cc73cbd82f4ead0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157380.images",
+      "sha256": "bbd4a541ad72f68c7973ca4d2b857f6e9e8718fcce6926e615bbbf488407871d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157463.images",
+      "sha256": "e01f367a7c261f725f537d0984986bf9c50b80c92e8a56582863ff3ec350e044"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156601.images",
+      "sha256": "9fe210f6a37d7553c1781f2f2c39f6e3f8ee6851a5b29882f1ec7ae7d0b1c5e2"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156718.images",
+      "sha256": "3cbcbc810d744e05505c865a4d78e7cb8f31a02539536ec9abe6a1ae77eb3eff"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157640.images",
+      "sha256": "cc587309eddd819d2029e1c0f172903fd784ea9b367dc2554ec3869ea6e2e46e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156471.images",
+      "sha256": "4dec374bf170ff8c9f586261e0c80df8a6c00eaefc001e51c0c21bf70ddbd261"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157458.images",
+      "sha256": "1a43affd09fe245f6cfdc518c01b1dc2b5b9602bc69c271b2a92b7e00726adde"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156407.images",
+      "sha256": "5bd2858ffe8b020135a0559fa7df86f6df07e19b48bf6703873ef44b7650dffb"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155586.images",
+      "sha256": "b95d4763561d3a6adc515381057ca4efd55941d0f4326065150e4ef72e698514"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156634.images",
+      "sha256": "51d50f91aa574118858ed05232bcaea6c1c78bd9ae229dcc2588b73c373c3825"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157539.images",
+      "sha256": "6422b720e14a03a974a6bd9c2af9eb2763e51a4a66ce5ad6448c726bd7973390"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156495.images",
+      "sha256": "b75dd0030a8adba418e82f1768d0b3374570c0ce355eae5742ea9808df80cba1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156591.images",
+      "sha256": "d36f655aa2f8bd0ae63b2b3beec2f353be5203e2abffe97a011d1698dc6b538c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157709.images",
+      "sha256": "585aeb47855804c9f6a3c88ca0940c10a7549383f35bf697de8d554213ba152b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157716.images",
+      "sha256": "04961d5e854bf915cc13825e7b8138899ebd533822ba838681e25f57e0ade32b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155641.images",
+      "sha256": "b21bf106a64c55fd21c870491c7dce3fc6704bb931dde9626321088449afb43c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155640.images",
+      "sha256": "fbf87c6736b557c7fd90743ea7ac1e1c338db2488f6c032672b276b36fdca9d0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157688.images",
+      "sha256": "1bea932c3c4bbdc5523d81519def6bc6d7f7614167f0738df442b24bfdb1a1a9"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156623.images",
+      "sha256": "57b5bbe32d36031b9ab2faf9a8f68b818feecb66d1d36d529a43570009e51316"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156877.images",
+      "sha256": "a4bb2a8228df8ea33a23dd3b918c888bd5dc72f73665c54f20c69fc58aa1ed37"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157605.images",
+      "sha256": "713eec1cb7e9d473965f0e25d014225a12946770e665be0600c082fd1dcada59"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156588.images",
+      "sha256": "c6b70aad5b2c0ca3ecc509846bc9e44adc5e7bdd65ac684830ab82cd4617e767"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156404.images",
+      "sha256": "bafa904c9d77744833b565058be25ee7020e9dced68ded1b01caea7fb7382b93"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157703.images",
+      "sha256": "39d4f3c84004cfc749deb0852477683895a0578093856aff8ca841b8f596e4b1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157388.images",
+      "sha256": "0c295b40be598803616bd753ac6b1f7fdc0ca416abd070800c0f0757d9c95521"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157601.images",
+      "sha256": "19654ac70151881fcc8b47b6da0a467f2148bbf96503bea3f743991d265d8a60"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157529.images",
+      "sha256": "08d743c65900521349943240b42c3d83feb18a12ae62f75263b18a762de71a33"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156405.images",
+      "sha256": "1060bbf30261f6b6e77c33d53e90f7e775fd19721eb40e9841c42927e06c5927"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157386.images",
+      "sha256": "3cda7d730719e07c7fd44301c945f9f5f6888b098d8c7409cd8763eda32f3d1e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156576.images",
+      "sha256": "28b4fef4b400300c49c5206c9034a066a10d8d2c2e1066837fcb945f7ae79ddc"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157718.images",
+      "sha256": "be1d9bd6dc3879f6e004f71f7208a2c74850464016a96133cb8b373f05be49c0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156876.images",
+      "sha256": "243d3fbd4bf254a3ea35aa60040bf40bfae606019e3213a997dab299ffd2b262"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157460.images",
+      "sha256": "13c095e53ebfd1912c36a279c8888248cb651d5a805ceba4752dfdb26a109537"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156788.images",
+      "sha256": "c4eab0df9fe839e817a3d4dec7c1700c4ecf07a602b92d71a3a92c1861612d00"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157540.images",
+      "sha256": "94c035d4b22339a17dafdda97242146daf230a350a5f2d144f82c6aa5feb9ea8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156792.images",
+      "sha256": "bf0e23791ef2acbf26c5778a5a4d74543ec83f693a390d0d9dcbb48eb8731d35"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156796.images",
+      "sha256": "3e22df0e7dcf222977a998ab357160264c41ac4c0f83ac4544cea9867c15f2b0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157377.images",
+      "sha256": "dbef2cf67e9e03b2d38e5e5b87089ba1de9ce35a4b9539c721ad16e87d991bef"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156722.images",
+      "sha256": "c181da7831197c68327e9226d0d823b83bfef91c12b0aabecad36e7b77a6a40b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155947.images",
+      "sha256": "33dce614490e1805ae7e979727b40fb9c39be33c5c8807ce7c0208f88e580de0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156812.images",
+      "sha256": "16b6199d65588e8b528b8b29a5a45851acb3d3b180b6e1096f799aee0823ff34"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157372.images",
+      "sha256": "282233fed5fb7075b19c14fb0aaa9ed306c1d2a1939fcac4fd83c4366cdd4985"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156624.images",
+      "sha256": "d9ec702996a5971a29e277d432efc3c39683f8477c046312d89e01277d2f3bd1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157466.images",
+      "sha256": "8b6407f1d6fdad8cdfded496262e8d2d295f3950dcfc63f0e41bbf80c378508a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157520.images",
+      "sha256": "a1db0f29cda33598962c5c558882cd2ccc23e76680937490cb69b75f947a9e2a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157770.images",
+      "sha256": "495551b325f5153389f2e514e806fd77402ef60c5a4a310ac2ebd300342411d3"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155907.images",
+      "sha256": "14d7d6dea45dda43378f8cb02ee7b71459fd96b423b11a9e49732529b85c0d8d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156880.images",
+      "sha256": "be8310033d270befe811531108293efe1c56874162c2fb3a65a8dcefa9013579"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157537.images",
+      "sha256": "b2f21ab9383b691e7ffc6309e8b816a699a893e80a4a680683ed40affeb287c6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157465.images",
+      "sha256": "deca24d0f9386621561addb2b194bc57679472dcf20e103de23164ef705efd9b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157364.images",
+      "sha256": "3e71af83a39fc37fb1bbc88661d3340c7ab923e835d164fe8040556491988a2b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155638.images",
+      "sha256": "77f8afabeb4686837751419327c6bb309c328318100c44689b70df60bc343801"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156723.images",
+      "sha256": "63a566e69bcefe2281ce09ab94526695e8469a597e6bcbf8fd0c614d68b54c71"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156787.images",
+      "sha256": "6f9e0c4baa04e3feddc6aa4ee3d7faf1036f45a4fe1cb308eeede0554def7cf8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157698.images",
+      "sha256": "21041fa925fd751dfff6925dcdf418f7b97d34d37c4c5744241143198fcb860e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156507.images",
+      "sha256": "0d6142698238742d16cac2f55699b84155d24fe6768e98d22457ae619873ce4f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156801.images",
+      "sha256": "cd00fc587bc965baa63fb75ef3f528d3cee3566e740fa5cce32c931ad928bf9e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156577.images",
+      "sha256": "8199002fcbb84eeb4a420fe0fd7f0022d7f3076f41ad3911c709f7d9bf22430f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156884.images",
+      "sha256": "184f303f586b1886efb2d16b6ed51efe0b5fc321bac6c921e3ec3c095a132bf3"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156500.images",
+      "sha256": "a2e3f9a60b96ecf459c64eeaeac7ae933d50c954e1a768c4f3f254771492c238"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157359.images",
+      "sha256": "7c5efc64e3726fe05183f70285ac752b32812c2be615c24dcf55271898bfc105"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156889.images",
+      "sha256": "02b8774f46c110b1db90ece8458281b779c4313d9dad205f82ed8a5158cb5a04"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156784.images",
+      "sha256": "c614d2a3e6c0835bb8a40e8add31e56ded6ca17474109afb1bda97ccd15c93d5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156665.images",
+      "sha256": "640c77bf5a56a8c387d6da326fe6c0b569fc3d48d53c8f2ebaf8f67455d13628"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157387.images",
+      "sha256": "21e9e757d8c46ebf5f94b6f2d4b8258e5426caad3b49c0b7685221a200376840"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156791.images",
+      "sha256": "b6c320b9fc2e3588fe505f280618480f76501755452df155161c127447df0888"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157365.images",
+      "sha256": "32442fd8e07f69fa181ad703fdd6e62c5c35712b92e8473c9eaac21952f3068c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157455.images",
+      "sha256": "292725d690a5f98b822042dfa264244feb2a0c1e95d1712f4d6f367fb845b3c8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157707.images",
+      "sha256": "5cab7df1c687a512fa432338097ebe7889fedf1f3acb3acd65eed25654d5710c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157462.images",
+      "sha256": "e1e1a0fa31fc624ae1d3f1861532cfebc1ef9f57a8068653c2f094bc96ef82a8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157389.images",
+      "sha256": "02db0bb4f1c6602ba28914349a654c19da3cc46c526040c42d35606cb882f207"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156864.images",
+      "sha256": "6970158e11049c337ed040dbfa94ba9cbd75890f800a8188e9c597343e56edc7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155890.images",
+      "sha256": "7e7b92a829c0551520ee92bf6e142192dfd649cce97c3a4fbee01d97e3f809b9"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156785.images",
+      "sha256": "e770c51e0bfccaf216650315df331e34fb6db1d4ee562cc99d6359a5e88d76d5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157598.images",
+      "sha256": "8b25c62e0f3667accff6fecfed34cc20d9b873fc3eb0e33910d1591d7bcd5f7d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156391.images",
+      "sha256": "08448891874eeac277b347a91b9d392a0843c024160fcd423310c50a6426bb34"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156625.images",
+      "sha256": "8fdbb7b17ed0fda3424bb0e61644df1b02a0b093bba40962efe54e99cacab902"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156807.images",
+      "sha256": "bfa0f08432c08cb82af3261dd4284269b98c000ce64e62c8310f2063068c0140"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156482.images",
+      "sha256": "53bcf1d0f75bde30956feedee53929b60b6309b56d743af6b7e44cd0d5067ff0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156860.images",
+      "sha256": "078e3bf801f9213a5c16639bc4c7a9e46f52dce0da79762c7530205b7767ede8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157636.images",
+      "sha256": "858e705e9e38f7ac8e4805b908f79a5e4e63be3471cf4fd5c743b69b616ac5c3"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157604.images",
+      "sha256": "ab55bc1025b47911a5324a3250f02c736c28136a5aee036d1701262bf61326e0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156794.images",
+      "sha256": "0f190a9b02a03729c82711d3f72aa3c4ef25b28a4a3fa999ecf4b0b05fb0c0e6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156808.images",
+      "sha256": "c26f8f88e15133a3a993b8151fc50e4e60bf89f5d3486865924f3534d673b22e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157369.images",
+      "sha256": "b6e7c54e0b2cd601013d2f5f22f4ff4e158b2fc5a74fcc0097a46f0ec95fe5ac"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156578.images",
+      "sha256": "e073051839921bbe474c632905ef8a265ed472e5f3de70e1c758e134a995f114"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156719.images",
+      "sha256": "97de88d77adca4b05d603bd5f3501fa5f672494f959c23adcd31ab6b5941a020"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156888.images",
+      "sha256": "304567d6e73e3bb972942ebf0cee961c1cf5c2ee448d2fd65ce2cc07cd7ea272"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157542.images",
+      "sha256": "b43898f14740ae49088e5084e6dec17ed283a87996038d6e09fbfb08c326ea74"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157450.images",
+      "sha256": "fe68a1622cac5619e2e948b5b6dc01e1f6ba900c4277d32546e938c5dbb11227"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155846.images",
+      "sha256": "5939825e0ee28bcf4608466a66e6247b00bc031e4d1a8fb263d824d49272cf0e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157705.images",
+      "sha256": "430f2c82d4c8e427fd7846a7beabf09a034ca52bc9556a1bdb723c7379c133fa"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156687.images",
+      "sha256": "ffd266a7bd34100eb32a2b163e978f2b0061f29c8e0adb9279d731e5c471881c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157456.images",
+      "sha256": "b054160da0a523fb74f16702b2c686274c37e4c81e0c7632622db761ee857ef6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157599.images",
+      "sha256": "4107736b6a9512a45261fd6db232906a348b6495d74d1f71a826fabb06d4c38a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156714.images",
+      "sha256": "8c3331f85e4b525e32c66632ea7ffd91f821c7de5a7fea30926dd8fb1f93a46f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156390.images",
+      "sha256": "df44c649889f5520f2b552769fcbe79e5acb3f800a8831157135382d8515a571"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156891.images",
+      "sha256": "bd4acea2033abd215fca91896491d82eb19451d88eca1cbc529dc8a515f1823a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156870.images",
+      "sha256": "be9c1b2f81d2a43cc86871d747880a893f8d5d5dd483db9b2823cc8dc09a998e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156875.images",
+      "sha256": "2b063d7bfb22e2ef0511397bf2e5a051215ad7c596220054d79cd49e270ea4d7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156873.images",
+      "sha256": "2c330818e72e449be8a497da68e5effc0bcbbe03cb9c678d38bc72d4b1b3f815"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156484.images",
+      "sha256": "11e5de79a51387b1fe1f17d5406ceb2ed4dd85e2ac8feca3017d30d69be0e9c2"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156799.images",
+      "sha256": "4afe645a0150492d13e06886041555486785c6384641e1abb1a774f2bc1ffcef"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156732.images",
+      "sha256": "f8ac1bbd57b0cf4dc6f9e5dd044c2e757e0d81007a53dc53b43279d784dd4d9a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156725.images",
+      "sha256": "e86c674033e4d801ec223f15bab78ef3cc8f22dd1d9afb6a46d26909e29fa9e7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157689.images",
+      "sha256": "f87967a45e70b7f47a5d7c95d8a3ff0ecb95eb16e6e4d61549ff69f034d56e50"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156595.images",
+      "sha256": "c9899b7aeff5ee9d3541dfaffbe88d3380f813dda795f12ed6a5c38fae7affa6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156575.images",
+      "sha256": "3135498fda0c9a559b7501633968bfc07a9c2fc4aaa048d552dfa5d2bf198614"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155583.images",
+      "sha256": "05b44f2f446069c263b154d0ef1ef97535fb1603297562d7da04ff5f79e5115a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157521.images",
+      "sha256": "2d09abba0de58961e32bb587da6102396d233cccab428c436d51f8c9cd9a8e79"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157697.images",
+      "sha256": "ba1108edade4a234b6d8ccbdaaf75046c3a43a49169ba0f590c6bc29fbd2240b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157518.images",
+      "sha256": "6773808e7870633cd140947dfe263ad75edb8b32d0389c73707293cbd8ae5e1a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156809.images",
+      "sha256": "6d5a383797a8770c9b6ff05b70a13b453cb9992719761819edcb41dff196fb32"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156481.images",
+      "sha256": "61c277b2f77cfe7b60d5bc2af60de9a880412318fb91137e76699f33099e558d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156496.images",
+      "sha256": "f5673e85bb1e7d0f6cb9c0b2986c1305cc1e344af74f2556eb30e87364e2a489"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156790.images",
+      "sha256": "664197763bc78912c6c938c4763678af1e5f0339117bb05ed0c77694180f461b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157773.images",
+      "sha256": "7ff1bc8b098ed2085c5879ab245145a49cb9a02ed0750829626040043fe4dbc9"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155851.images",
+      "sha256": "6d24d0aaeb6344a250ef3d72460f200cbea1e58c92eb38dea5d2b42b34f91f3f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156688.images",
+      "sha256": "e842d7202e7c08d9a7ed39e9e6f4d0e29b23e482f1bc0434723153a135c7e0e4"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157443.images",
+      "sha256": "6037d41aefa64b27276c0e97493070d705c7f4bb7d43d8fbfbf708be0066b0e5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156721.images",
+      "sha256": "7e97f0807f19d7470ae8085a6e0063d7eb6a705b8fcd06a85df4e47420a1c161"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156494.images",
+      "sha256": "d1c9765b421484521cb8f57cf8f7c78d58beefa21b7a86b9de411a6531f0566a"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157714.images",
+      "sha256": "b97709ef7dbf75efaab43dc3934b48b4fc53917d6d1d1e701cbdf1427990c648"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156501.images",
+      "sha256": "d1e921ad567b02fbf431737df48a0b0ff83ad56c7c32148b937c3cd9bc318c99"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156565.images",
+      "sha256": "44e8c89218efa04618801396119d3d947cc5c9873f52618e8591e3cb8cb873be"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157695.images",
+      "sha256": "20826951529d5adc95078185b2f6fedf8978f6dd8ded279daf0600134c360eec"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157527.images",
+      "sha256": "c5bdd73250ba577292cbe5a6e6be8b6347475fe623d5ec0aa6593c8218c418d0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157530.images",
+      "sha256": "20d9fabc6560daffeafe61bb0c0c52cd10b66f159a82fc50355c11b24e21041e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156886.images",
+      "sha256": "e5028bfcceb9df494e05aa46058aedd5f640ef88733f7823b360573f17f476da"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157371.images",
+      "sha256": "97da7006225d92cf5bec74e70a61ea41a1de8539ae1a436a71184967b82ed9e5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157710.images",
+      "sha256": "0db2cf4f73a9e800f86440c1e038fcc88898408ed504d6004588ab8675d8df47"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157452.images",
+      "sha256": "58c537591974ac4a0f654cfaf50ff7e34c333f2e8e832330a641288165b9c1e3"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157375.images",
+      "sha256": "062b9f1c44f710ee2190c3010d2873814c2a170afad6080417f415348580755b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157457.images",
+      "sha256": "779f0aa038a04ffce297d364ae0c93c483ce3d276ac18806900b0cde2c281d58"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156879.images",
+      "sha256": "7d148cc445cc79821e8a507d8445cb9f61a84ac4b8f7ccfe7628d05957b7f58d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156728.images",
+      "sha256": "a1bfe3cb93b79d34488885e762be68eb9ac5ee61ef366e91215764b9ed4106f7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157693.images",
+      "sha256": "4d54d676025658700813925548e63f09a419a78bbfc10be9fade78492610a65e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157704.images",
+      "sha256": "ac4af92d18079e7f42c299d860b9c66634be4126ea8569b2fe96cfe2a7cf04f5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157766.images",
+      "sha256": "d3b8cf801c20434564022f08a8c39103ce58d07a36bb22027f774422e273b0ef"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157533.images",
+      "sha256": "8de54238c5e7a19c8e4db9c2c66397b47abbe0b6e646c84d67cea6a10dbe5b7c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157713.images",
+      "sha256": "9daa1e691291b1b7545a69eb56aca8cb38bad8a94fc69971c220c53c11246d2d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156592.images",
+      "sha256": "e17d9a318aca837037c6c2bf6334ed2cece1a71884e1e9c6743dcf295ad2cad1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156874.images",
+      "sha256": "3fe38cb586fae73b5d9eb4c588ec3e1201b0900c8b1a721abe4c83a541add324"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156730.images",
+      "sha256": "1355568c8880421dbf1ec21c9fbb04e8665f318691a3969e9a571f9957eebb89"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157528.images",
+      "sha256": "288d887bd83b11e308a90eeecf846a3c2af0e1f7adf8f6abfac7c7fac38aa917"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157620.images",
+      "sha256": "99e379ea3d11f0794f015970e99f658e9610631e53f42c2b12c8a6e779fa84f1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155915.images",
+      "sha256": "f6747f5cc6ecb5b87a0be38aced8486967b185a025aee2a8eecc506e74db2d74"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156403.images",
+      "sha256": "960b6809a823443c4f458397015487e387f1a8ce94450f884533bbfa290e5cc5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155849.images",
+      "sha256": "0d8fdb5110ecdf6b66e7e105b549b549df05cbf94b04e3880aee1e28a9299c39"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155083.images",
+      "sha256": "ef2b82781c9c3cd2bf03c9be10ef45f49644782a3d49350f099c0b0593fa191c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156797.images",
+      "sha256": "5167567b5d5540c272d50597adc8a42848d95aade04898f4cffc3907e8d4f5df"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156498.images",
+      "sha256": "5df80ecf74fa2b10559e2ebdf36751d784b4079765170c74ab2f3499b4d3f136"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156715.images",
+      "sha256": "39b792a19ff0f0a9531ca1e911827c64794e52b829250721c3160c903242ab15"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156867.images",
+      "sha256": "b00c9a6b86b9f62d2f8d2a3284eac3b79c41bc4621cc32c1b3bd94a096595318"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156869.images",
+      "sha256": "eb3463fc8754d9d9c6ffc4ce02e878a85cb6ae23fb98c0db16614c7fe096a89d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157442.images",
+      "sha256": "49d109728c0c5189d08b45db96da2400fb8757885ad6976c1f76a6ef0d4a3891"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156622.images",
+      "sha256": "d5819474d0d47d25dcb6399d6a0e792036e706a0ec4ea8ce5ad0db7917545f06"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156862.images",
+      "sha256": "04a2f6a621e566a980c4bf91e32f86d6f41c9a9183fd8d09239a587e841785c2"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156861.images",
+      "sha256": "6f2b5a5487bc897f7adcc31f4de05ff2ceff9d3ae9740a02a954c2c3ad476a1f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156693.images",
+      "sha256": "fedc6760404c63376d0924b13bc13bcc1ac6c911f2ed4f54edb25696c3038d39"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156485.images",
+      "sha256": "763cc0b719dc7f5c0619537b51ab66682c19ce65a269ee550e0efc33b8d707d6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157390.images",
+      "sha256": "2060a7acd66824d65b6e16c7748f609c307a6a6ee6d5de530f49e65ec37893c7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157393.images",
+      "sha256": "587659dbc0406134161d4cedff8e5da2613dc20b47745db1819b1eaa64aa1470"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157368.images",
+      "sha256": "adb111428419b3c338d1915009745a7685e9513f5ec30d8cc9004d4dfa1f1b15"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157621.images",
+      "sha256": "391293ec8131e7fa12e542598d0947dde2f2b3ec6c398aeae4ca962ec840e59b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157379.images",
+      "sha256": "49cb86b3e401a55cabff86d7a80c71f8b715d3339cf770976c4cdf8940ed0b68"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157602.images",
+      "sha256": "5011fe20fc8bcaa5d7d68b1dc483b60bb85c710817ae9f4682bf18e1dc663b0e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156805.images",
+      "sha256": "875184b0a8e0256013d828b5b8c74ac2c3a546e66e104144b3b6fb1624435541"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156414.images",
+      "sha256": "655778f9a9524472fdebbadfb2901da1f2c19f9dbc958244b79fd95cf6016fb3"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157374.images",
+      "sha256": "b06ef20c8425d181a021eec51e14c544b263b25a7ac4f28cb773987914f508d5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156594.images",
+      "sha256": "b02e9d4a9136a2cde5b1ccd6af07b9f1fbe0f8ce950888bcb23604c9ef4e7471"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157464.images",
+      "sha256": "778640a5da513aebe1f57b0410e273cda4805a3ac4f44d098c9c0a5b4733c6f5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157362.images",
+      "sha256": "5bc377a230465919b672d125960ead552c80a0bda8bae31b8ca4c7b9e1c2945f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157441.images",
+      "sha256": "76fdc4b089badb45097362d14ae8fa29324850933ea9159a066d050456b9be84"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157392.images",
+      "sha256": "decc5397ee876d36fff1a8d15d233989931cd650240aab1400ca17145b0c46eb"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157595.images",
+      "sha256": "dff01833be47d611fb61190c3bda7161e4022758cb2f2eaa45ef576851fa725d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157633.images",
+      "sha256": "7df1ad3d19fab6296d0ea9125cde92637eef1b27f728799e612a5a1188110da5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157772.images",
+      "sha256": "c9b2bd8c150f870d00f1fca196cc35fc79020eed39f2eeb47447550ce8303190"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157381.images",
+      "sha256": "289e33ef190f21f89e3b2e2ec050a084e10a9a4221355e5829d78bebc356ecfc"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157627.images",
+      "sha256": "5630df36533500357fafe18d1774c677c056414d0c48cb34d32a5f0145754a3f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156516.images",
+      "sha256": "09a9cdc12644fce46407335d30b61c71e56908f84843f425f5a4ac51cc4b29c0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157534.images",
+      "sha256": "1af7754a3f52717a12055642deaa8e4d211f08e7333b3b0651bd3f5b070436ee"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157622.images",
+      "sha256": "51e6d03c92cb63f3ece1c4222bfef3ff822063e55e611bf27f41ffbd8b30172c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157448.images",
+      "sha256": "e12977466d0b1ff7dea86b180da5c029fc9687ee76809382946c311517cc0d2e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157637.images",
+      "sha256": "fc5982fe074203d0a29c7b32c0001c82ad0249de23b3bf44a6406a980079ea3f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157446.images",
+      "sha256": "1e22e6df01e1e9a428ae5554a2f1ffe9b037d3149fc6eebb44c7252bbc09a8f0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157711.images",
+      "sha256": "ab9d2c6792351a40c92a02019d0d1be10dc34b8a4c2d2aadf1a4415c043ca3fa"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157593.images",
+      "sha256": "284950de70b181edf63b769477d7cc57add128ea32922726f790e9212a3eb3b5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157634.images",
+      "sha256": "ea944b547c7930c8420117ce8f9dbe03b0ad92e99b1b774b900e272456d54268"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155853.images",
+      "sha256": "8b4ad26e42ec2027e87cd2597bbe0f2ac0ba511403b0915ec97eaf0dde5e9c6b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157624.images",
+      "sha256": "b18408c310cf11c9988cc48ebc2930643f99b1f1a6ab3e7a1f2ac25c085649c8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157629.images",
+      "sha256": "2556c8f8169132ecb1d4bfbfdf09e4ff6ded42f9a592afc7517886e1b0162436"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155844.images",
+      "sha256": "cb51f47e0689a0d499329292f6dcff68424a789ff6a82d53218dd2ec45e9e829"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156579.images",
+      "sha256": "44d360c9ba91ec1c188578e59a8c3086bfb488ca8addcb1872d58fbd41bbbe59"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157536.images",
+      "sha256": "de7af2ac7ff219ffa7c7b89c580b0cc7545d211284f198a36d726fb29ae5f740"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157639.images",
+      "sha256": "725f96cc62791615ab4efdbc51bc11da929b85f0004cc3e3b6d55844159c68a1"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155855.images",
+      "sha256": "1ecd3c834d4c0c161574e6579bd31f43c70c17af59a864f223583d3673b7c335"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156483.images",
+      "sha256": "d25d348fdc87820e5b28eb0e5a06c6821cae89bbba059eb2a057aebb5d5a2106"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156793.images",
+      "sha256": "38b462bf7d9ec2e208060785955cfb84cdafcdf6a756f865629b4fb4ef562a90"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157692.images",
+      "sha256": "8a38e16beb7a0dfbbc79319eb7189adc752c75b0b9e899e50270ac333fad3a83"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157524.images",
+      "sha256": "2ad5ba5751237dc9307aadb3985304bf8dedc329deea322492ddacea08432652"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157531.images",
+      "sha256": "84a6d062d1b1bf58c9764529d347e597f8edf1574a9318c94a9634e1d2a870c4"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157769.images",
+      "sha256": "c0afa8f93529bdeeb140d2b4a7ae4f996ec88885e3049b6655bf38229c3a49c5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156727.images",
+      "sha256": "56bf2e36fc12774de2e3508730238a9d501822862c93daedb62be8db1a2aa432"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156611.images",
+      "sha256": "e4a6a66d23c876c63407db2a8293cb59f824922056eeb622bdd25ea09979e56d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156392.images",
+      "sha256": "7091e5158ff812659832ed044b78746fe4b718ddcec73bce014e36f2d62a4c63"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157544.images",
+      "sha256": "532ee1611f705542a68331b96088808cb532c0ff38ff20b9c24c0101e35d33de"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156695.images",
+      "sha256": "f3044bcf3a866862355e61efdd54c763b5343d762decf62f25cb37fea117df32"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156402.images",
+      "sha256": "585b9ff8413df380bbf491465aa42db2e8dcad6f4e863f8b8decc781bd566e30"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156781.images",
+      "sha256": "f161fe7631c2be895370e336942a0ed44eb8abb48371fee5b2a4d2de7b6d2e1b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156389.images",
+      "sha256": "1e913b14e03e8aaca38a15c9d8d92b22bfc82c68454362e8818b3ec601472563"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157708.images",
+      "sha256": "b5f09d8608afb9b97edb6f01a578d92efe1f864096216ae8426ad3d9fa678e8f"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155646.images",
+      "sha256": "e5284aaf1ef38cbe9993eab3f459409ac7d4ac7276da6bd170c2e51aadd5e7e0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156589.images",
+      "sha256": "02276707bd493c19f6697f9285636b8df662fffb9dc2308bea8f6c7277bcbb2b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156378.images",
+      "sha256": "086194d58ed2d0a5ee1f91c908fc14468d5b369c11e55592a5c0414aa31d766d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155891.images",
+      "sha256": "74a314198d17f078623c88087d3c0a824507616498a8ec647d661f92dd2402b5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156401.images",
+      "sha256": "3dd316a7486406a3702f1190203da6f919b2ae094691a9128e313697603e03e9"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156590.images",
+      "sha256": "c1723d4caafdd4564a3df39685c6c49e17b45277fc4f554fdd1c2f69433f1388"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156806.images",
+      "sha256": "f87b9578e0c23ef1b8f06cd805495c209dd2d7a8cfa34bc7c4fc99cdc9b61b2e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157535.images",
+      "sha256": "191127920d22623c5ceab7aec61ce216cc6dc40c933246fdfc1be3363d709f97"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157469.images",
+      "sha256": "ab292214de8c17208b01582c446a2fb6e2d287b56791a18323bb84ee5967534d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157445.images",
+      "sha256": "f6501f26d8af1cc651107da71048eee9849f553ebcb85115525d2c4b4ba81efb"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157545.images",
+      "sha256": "9400853340097e934117fcac87aa506a47dbbe0e8a3998d3df14b4bdfc9cc880"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156610.images",
+      "sha256": "70cd4c68363b08642c41b4b38dbf8dcc5273b90ee8c3a352b4e560b75ad8a2f7"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156423.images",
+      "sha256": "c86fd7e576de9bd98aaedd75ee960be8b3cfd4508e79f7e6a2bf7c48690f43d9"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157771.images",
+      "sha256": "c21e21cce7fb02736fdee3e9ad09b5845e81ff26798994507b00b9e3d970faad"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157383.images",
+      "sha256": "af4bc04ac056a240093700a79d85b3563df3ad3a3dce02666b0f8a494c0b01c6"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155956.images",
+      "sha256": "cbc7da7c726a6a5d5f2532250a8aa23213744ac5844b03c505264dcffd6e2fbc"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156711.images",
+      "sha256": "04a6e6c563c73b68c9fa8f222431411e9fab83c16fc7a420ca9c23be66904b8b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157600.images",
+      "sha256": "d2a6c7a04420a0e8b63f83380438ca0e37accee6f096c270521528855f85194e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156786.images",
+      "sha256": "b09bdceacca8c6d9cde8fd20c56fb671f17688984e1c3f6f730be780ca4d794b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156881.images",
+      "sha256": "24487f428386771ed28d289ed7b0a7a93347b123d9cb59f9790c9c9f90cde3fe"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157702.images",
+      "sha256": "50a61828eb7ab093ae386a7a1632511df4c652885787c1c06f366b60ea157aef"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157630.images",
+      "sha256": "df2155c71907fb2580ff46c1c32d6ddfa7e4bcbf2dfae0baf936beb460e0c783"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157366.images",
+      "sha256": "5bb1ddb50e83eb5e4ae13b57cc6430b378a1942d6ff6ec7f59b982bfdb3a0eff"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155859.images",
+      "sha256": "7527a06b26a6ae2b5f3b1b9d7299c1c34757ada261f7220615387dfbd7c56d87"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157468.images",
+      "sha256": "b6e239a7c4b549b6f24aab5ff7bb9462f4575709011ac7b8496ef5490778745b"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157522.images",
+      "sha256": "2804f31090d24e744a1f0fad6012519bc575e78111ea4f7a92cd94c38de948d8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155647.images",
+      "sha256": "9c932a2e41fd81923a8ebf7bbd530e144e5812ce1398bacd53160f2460170944"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156621.images",
+      "sha256": "d0ff36a89abacb6df6b676d2e5b37d2af1b8a6492c704087053dd268165e7e1c"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156408.images",
+      "sha256": "93317dc990697ddf4a778d15b2d28f63dee769a1fd9bef5c05efd142a9fce0d5"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2155645.images",
+      "sha256": "b5dbdd1f704e5ef4edbf2d5e22829a8df2a19240a79db83b3ee794746e716ad8"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157625.images",
+      "sha256": "7c401bd1f56632a21725c22b26e76fe44d0cba1ae138b3b96b4eb4eb52d2b4af"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156883.images",
+      "sha256": "a3117e60ca160a0680efb0b67742b6b1cfee7e79c5e317748bddb111461ed252"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156388.images",
+      "sha256": "c6610a5d232a10b5eafb8a6e5c089c45b40798ce7bf2a41308de87a9ad3c745d"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157701.images",
+      "sha256": "195e1e5a5049c0daa83fd81a4f14031bad28839874ddb25036e277455b8a2138"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157370.images",
+      "sha256": "a7fb2c982c89204e086c2e9982d57f32e2a81e98a7d4675606e32fb2fb99dd33"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156811.images",
+      "sha256": "79e29eaef40d5a6ecc54fd662fb798d0da92542f2e95dc0e5e1354be109f46fb"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156802.images",
+      "sha256": "a3938521e8565a4d690bce3c4078ac0cb2a9c77bd4d47a8ed816fe76a45a22cf"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156690.images",
+      "sha256": "5e97383a24031afc958c5db0dacb25d9f1b7136a2f3a522bb73627ae0791db5e"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156692.images",
+      "sha256": "4df40f6f9b54d2bc6f1235abc6b328a0950cda5ec7e39069eae48dabf72f5a93"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156497.images",
+      "sha256": "65906f8288bb92859c089d4f5beef1c59741f70967d48d5a05d9d3e61d4a7389"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156865.images",
+      "sha256": "822c4ab17875c35f1a06891bd3042d1136902280729d166e140d3bdff40933a0"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156724.images",
+      "sha256": "ac5c0016125fc686accbbfb9d26f0b2b3f8aafa8560e26456558fcf1a52ceeef"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2157690.images",
+      "sha256": "a29d8e272abcf5cbd4e1cb61b3ac187e25937663c5b91d18e5e0889b02cc6dfd"
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/candidate.2156717.images",
+      "sha256": "dd03fffdfbb96f31bb69792e7c263a44eb2819300152b8e74372fa53f9ad0a2d"
+    }
+  ],
+  "commands": [
+    [
+      "sudo",
+      "-n",
+      "docker",
+      "run",
+      "--rm",
+      "--pid",
+      "host",
+      "--network",
+      "none",
+      "--cpuset-cpus",
+      "240,242,244,246,248,250,252,254",
+      "--cpuset-mems",
+      "0-3",
+      "--memory",
+      "40g",
+      "--memory-swap",
+      "40g",
+      "--pids-limit",
+      "2048",
+      "--cap-add",
+      "SYS_ADMIN",
+      "--cap-add",
+      "IPC_LOCK",
+      "--security-opt",
+      "seccomp=unconfined",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2:/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2:ro",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2:/verification",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/python3.tgo:/usr/local/python3.12.13/bin/python3.tgo:ro",
+      "-v",
+      "/home/l00886679/models:/models:ro",
+      "-e",
+      "PY=/verification/python-wrapper.sh",
+      "-e",
+      "TGO_RESULT_FILE=/verification/candidate.result.json",
+      "-e",
+      "TGO_IMAGE_LOG=/verification/candidate",
+      "-e",
+      "VLLM_ENABLE_V1_MULTIPROCESSING=0",
+      "-e",
+      "OMP_NUM_THREADS=1",
+      "-e",
+      "TASK_QUEUE_ENABLE=1",
+      "-e",
+      "HF_HUB_OFFLINE=1",
+      "-e",
+      "TRANSFORMERS_OFFLINE=1",
+      "-e",
+      "XDG_CACHE_HOME=/verification/cache",
+      "-e",
+      "TGO_DISABLE=0",
+      "--entrypoint",
+      "/bin/bash",
+      "sha256:a6314dddb8665748c456a4ba3aee5ffd985e366689327889b9b072d4ce18bf97",
+      "/opt/va26-scripts/run_real_test_official.sh",
+      "/verification/vllm_decode.py",
+      "--requests",
+      "9",
+      "--warmup-requests",
+      "1",
+      "--roi-cpu",
+      "240",
+      "--max-tokens",
+      "8",
+      "--no-detokenize",
+      "--check-native-ops"
+    ],
+    [
+      "sudo",
+      "-n",
+      "docker",
+      "run",
+      "--rm",
+      "--pid",
+      "host",
+      "--network",
+      "none",
+      "--cpuset-cpus",
+      "240,242,244,246,248,250,252,254",
+      "--cpuset-mems",
+      "0-3",
+      "--memory",
+      "40g",
+      "--memory-swap",
+      "40g",
+      "--pids-limit",
+      "2048",
+      "--cap-add",
+      "SYS_ADMIN",
+      "--cap-add",
+      "IPC_LOCK",
+      "--security-opt",
+      "seccomp=unconfined",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2:/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2:ro",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2:/verification",
+      "-v",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-entry-v05-r2/python3.tgo:/usr/local/python3.12.13/bin/python3.tgo:ro",
+      "-v",
+      "/home/l00886679/models:/models:ro",
+      "-e",
+      "PY=/verification/python-wrapper.sh",
+      "-e",
+      "TGO_RESULT_FILE=/verification/disabled.result.json",
+      "-e",
+      "TGO_IMAGE_LOG=/verification/disabled",
+      "-e",
+      "VLLM_ENABLE_V1_MULTIPROCESSING=0",
+      "-e",
+      "OMP_NUM_THREADS=1",
+      "-e",
+      "TASK_QUEUE_ENABLE=1",
+      "-e",
+      "HF_HUB_OFFLINE=1",
+      "-e",
+      "TRANSFORMERS_OFFLINE=1",
+      "-e",
+      "XDG_CACHE_HOME=/verification/cache",
+      "-e",
+      "TGO_DISABLE=1",
+      "--entrypoint",
+      "/bin/bash",
+      "sha256:a6314dddb8665748c456a4ba3aee5ffd985e366689327889b9b072d4ce18bf97",
+      "/opt/va26-scripts/run_real_test_official.sh",
+      "/verification/vllm_decode.py",
+      "--requests",
+      "9",
+      "--warmup-requests",
+      "1",
+      "--roi-cpu",
+      "240",
+      "--max-tokens",
+      "8",
+      "--no-detokenize",
+      "--check-native-ops"
+    ]
+  ],
+  "source_tree_mounted": false,
+  "working_directory": "/tmp",
+  "correctness_equal": true,
+  "loaded_optimized": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/3f5758ed76ce537f-19fff49f/libophost_transformer.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6af47532fcb08495-5c6014ee/libc10.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/6d4bbcd5ab7ce580-32994985/libpython3.12.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/d9529119ac18ba15-39832c46/libtorch_cpu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-full-v05-r2/cpython/layouts/ext-tsp/images/fb1837bd38404656-9223dbba/_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+  ],
+  "missing_optimized": [],
+  "disabled_loaded_optimized": [],
+  "passed": true
+}

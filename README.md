@@ -8,6 +8,11 @@
 
 当前进展见 [状态](docs/STATUS.md) 和 [实测记录](docs/RESULTS-20261029.md)。
 
+0.5.0 已用单个 AppImage 从头复现 vLLM 主机侧 eager decode：独立五对 ROI 时间
+减少中位数 **39.47%**、cycles 减少 **40.80%**，八库实际加载与新容器入口均通过。
+此结果限于固定 CPU-stub 负载；[完整证据](evidence/2026-10-29/vllm-full-route/README.md)
+区分了从头运行、缓存复用和旧工件加载回归。
+
 ```sh
 python3 scripts/bootstrap.py --jobs 8
 python3 -m tgo doctor

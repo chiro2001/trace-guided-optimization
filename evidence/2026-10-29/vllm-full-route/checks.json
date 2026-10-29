@@ -1,0 +1,16 @@
+{
+  "schema": "tgo.checks.v1",
+  "runtime_code_commit": "6b890bb",
+  "local": {
+    "total": 47,
+    "passed": 45,
+    "skipped": 2,
+    "log_sha256": "ba9583aa5ab2a6d4433912664fbe8674c87f1bc71e96de2ea9d6c86becb7cff8"
+  },
+  "arm": {
+    "total": 47,
+    "passed": 43,
+    "skipped": 4,
+    "log_sha256": "7df67da324100d53c991fd9a51f2fffa2ede4033774fa94e3071e328ff881f1c"
+  }
+}

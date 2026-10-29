@@ -82,7 +82,7 @@ PGO/LTO、Python 原生 BOLT 和七库 QEMU 训练，再构建八库并独立确
 确认后的解释器入口还可在新容器验证，无须挂载工具或项目源码：
 
 ```sh
-python3 scripts/smoke_vllm_entry.py runs/vllm-auto-hybrid-r1 --sudo \
+python3 scripts/smoke_vllm_entry.py runs/vllm-appimage-full-v05-r2 --sudo \
   --cpu 208 --cpus 208,210,212,214 -o runs/vllm-entry-check
 ```
 
