@@ -159,6 +159,7 @@ def main():
     apprun.write_text('''#!/bin/sh
 set -eu
 TGO_APPDIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+export TGO_APPDIR
 export TGO_PACKAGED=1
 export TGO_SAVED_PATH="${PATH-__UNSET__}"
 export TGO_SAVED_PYTHONHOME="${PYTHONHOME-__UNSET__}"
@@ -208,6 +209,10 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
         raise RuntimeError("source changed during packaging; preserve this AppDir for inspection and rebuild in a fresh output directory")
     write_json(app / "package-manifest.json", manifest)
     subprocess.run([apprun, "--help"], check=True)
+    check = json.loads(subprocess.check_output([apprun, "doctor"], text=True))
+    assets = check["packaged_compiler_inputs"]
+    if not assets["source_matches_lock"] or not assets["bolt_runtime_matches_manifest"]:
+        raise ValueError("packaged compiler inputs are not visible through AppRun")
     if not a.appdir_only:
         image_tool = Path(a.appimagetool) if a.appimagetool else fetch("appimagetool-" + platform.machine(), ROOT / "deps")
         image_tool.chmod(0o755)

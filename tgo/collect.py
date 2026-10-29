@@ -7,7 +7,7 @@ import time
 import tempfile
 from .runtime import build_runtime
 from .profile import qemu_profile
-from .util import command_path, tool, write_json, workload_env, tool_env, sha256, terminate_process_group
+from .util import command_path, tool, write_json, read_json, workload_env, tool_env, sha256, terminate_process_group
 from .validate import execute_trial
 
 SPE_FILTER = "/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u"
@@ -42,8 +42,23 @@ def doctor():
                 spe_probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
                     "--no-buildid-cache", "-e", event, *SPE_RECORD_OPTIONS, "-c", "4096", "--", "/bin/true"])
             spe_probe.update(event=event, scope="configured recorder/buffer permission probe; workload sampling coverage is checked after recording")
+    compiler_inputs = None
+    if os.environ.get("TGO_PACKAGED"):
+        appdir = os.environ.get("TGO_APPDIR")
+        compiler_inputs = {"appdir_exported": bool(appdir), "source_matches_lock": False,
+                           "bolt_runtime_matches_manifest": False}
+        if appdir:
+            appdir = Path(appdir)
+            locked = read_json(appdir / "dependencies.lock.json")["python-gzip"]
+            source = appdir / "usr/share/tgo/sources" / locked["url"].rsplit("/", 1)[-1]
+            archive = appdir / "usr/lib/tgo-bolt/libbolt_rt_instr.a"
+            expected = read_json(appdir / "package-manifest.json")["compiler_inputs"]["bolt_runtime"]["sha256"]
+            compiler_inputs.update(source_archive=str(source), bolt_runtime=str(archive),
+                source_matches_lock=source.is_file() and sha256(source)==locked["sha256"],
+                bolt_runtime_matches_manifest=archive.is_file() and sha256(archive)==expected)
     return {"architecture": platform.machine(), "perf": perf, "pmu": pmu, "perf_probe": probe,
             "spe_probe": spe_probe,
+            "packaged_compiler_inputs": compiler_inputs,
             "tools": {n: tool(n, required=False) for n in ("cc", "llvm-bolt", "perf2bolt", "qemu-" + platform.machine(), "patchelf")}}
 
 
