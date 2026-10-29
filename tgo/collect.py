@@ -33,13 +33,13 @@ def doctor():
     if perf:
         with tempfile.TemporaryDirectory(prefix="tgo-perf-probe-") as directory:
             probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
-                "-e", "cycles:u", "-F", "999", "--", "/bin/true"])
+                "--no-buildid-cache", "-e", "cycles:u", "-F", "999", "--", "/bin/true"])
         spe_name = next((name for name in sorted(pmu) if name.startswith("arm_spe_")), None)
         if spe_name:
             event = spe_name + SPE_FILTER
             with tempfile.TemporaryDirectory(prefix="tgo-spe-probe-") as directory:
                 spe_probe = probe_command([perf, "record", "-o", str(Path(directory) / "perf.data"),
-                    "-e", event, *SPE_RECORD_OPTIONS, "-c", "4096", "--", "/bin/true"])
+                    "--no-buildid-cache", "-e", event, *SPE_RECORD_OPTIONS, "-c", "4096", "--", "/bin/true"])
             spe_probe.update(event=event, scope="configured recorder/buffer permission probe; workload sampling coverage is checked after recording")
     return {"architecture": platform.machine(), "perf": perf, "pmu": pmu, "perf_probe": probe,
             "spe_probe": spe_probe,
@@ -126,7 +126,10 @@ def record(args):
                 "period": (args.period or 4096) if backend == "spe" or args.period else None,
                 "frequency": args.frequency if backend != "spe" and not args.period else None,
                 "branch_stack": bool(args.branch_stack)}
-            launch = [perf, "record", "-o", str(root / "perf.data"), "-e", event]
+            # Keep build IDs in perf.data, but do not hardlink source files into
+            # perf's global cache. On some overlayfs hosts those cache writes
+            # make later kernel MMAP names appear as '/ (deleted)'.
+            launch = [perf, "record", "--no-buildid-cache", "-o", str(root / "perf.data"), "-e", event]
             if backend == "spe":
                 launch += SPE_RECORD_OPTIONS
             if backend == "spe" or args.period:
