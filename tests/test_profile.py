@@ -8,6 +8,21 @@ from tgo.profile import qemu_profile
 
 
 class ProfileTests(unittest.TestCase):
+    def test_empty_fork_helpers_need_no_loader_map_but_contradictory_data_is_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);source=root/'lib.c';source.write_text('int f(int x){return x+1;}')
+            lib=root/'lib.so';subprocess.run(['cc','-shared','-fPIC',source,'-o',lib],check=True)
+            lo=next(v[0] for v in ELF(lib).loads if v[3]&1);base=0x70000000
+            (root/'capture.1.images').write_text(f'M\t{base:x}\t{lib}\n')
+            (root/'capture.1.trace').write_text(f'H\t10\t0\t1\nN\t{base+lo:x}\t{base+lo+4:x}\t10\n')
+            child=root/'capture.2.trace';child.write_text('H\t0\t0\t0\n')
+            result=qemu_profile(root)
+            self.assertEqual(result['instructions'],10)
+            self.assertEqual(len(result['captures']),2)
+            self.assertEqual(sum('ignored' in c for c in result['captures']),1)
+            child.write_text('H\t0\t0\t0\nN\t1\t2\t3\n')
+            with self.assertRaisesRegex(ValueError,'contradicts'):qemu_profile(root)
+
     def test_identical_dsos_at_different_paths_keep_separate_profiles(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

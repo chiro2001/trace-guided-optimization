@@ -67,7 +67,8 @@ def verified_sources(profile):
             check_file(original["raw_data"]["path"], original["raw_data"]["sha256"])
         for capture in original.get("captures", []):
             check_file(capture["trace"], capture["trace_sha256"])
-            check_file(capture["maps"], capture["maps_sha256"])
+            if capture.get("maps"):
+                check_file(capture["maps"], capture["maps_sha256"])
         for row in original["images"]:
             if row.get("preaggregate_sha256"):
                 check_file(row["preaggregate"], row["preaggregate_sha256"])

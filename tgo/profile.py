@@ -15,6 +15,19 @@ def qemu_profile(root, allow_truncated=False):
     captures = []
     for trace in root.glob("capture.*.trace"):
         imagefile = trace.with_suffix(".images")
+        with trace.open() as handle:
+            header = handle.readline().strip().split("\t")
+            if len(header) == 4 and header[0] == "H" and header[1:] == ["0", "0", "0"]:
+                if any(line.strip() for line in handle):
+                    raise ValueError("empty QEMU header contradicts trace records")
+                # fork/exec compiler helpers can leave an empty plugin stream
+                # without ever loading the audit DSO or entering the ROI.
+                empty = {"trace": str(trace), "trace_sha256": sha256(trace),
+                         "ignored": "no instructions and no ROI windows"}
+                if imagefile.exists():
+                    empty.update(maps=str(imagefile), maps_sha256=sha256(imagefile))
+                captures.append(empty)
+                continue
         if not imagefile.exists():
             from .util import read_json
             command = read_json(root / "run.json")["command"]
