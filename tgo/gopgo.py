@@ -235,17 +235,17 @@ def tune_go(args, root_exists=False):
     prior_profile = read_json(previous / "profile.json") if previous else None
     if prior_state and (prior_state.get("backend") != "go-cpu" or prior_state.get("state") != "recorded"):
         raise ValueError("Go PGO reuse requires a completed go-cpu capture")
-    command = command_path(args.command or (prior_state["command"] if prior_state else []))
+    raw_command = list(args.command or (prior_state["command"] if prior_state else []))
+    prior_go = str(Path(prior_state["toolchain"]["GOROOT"]) / "bin/go") if prior_state else None
+    direct_go = bool(raw_command and Path(raw_command[0]).name == "go")
+    selected_go = args.go or (raw_command[0] if direct_go and Path(raw_command[0]).is_absolute() else prior_go)
+    go = tool("go", selected_go)
+    if direct_go:
+        raw_command[0] = go
+    command = command_path(raw_command)
     overrides = dict(prior_state["env"]) if prior_state else {}
     overrides.update(dict(item.split("=", 1) for item in args.env))
     base = workload_env(); base.update(overrides)
-    prior_go = str(Path(prior_state["toolchain"]["GOROOT"]) / "bin/go") if prior_state else None
-    go = tool("go", args.go or prior_go)
-    if Path(command[0]).name == "go":
-        if args.go:
-            command[0] = go
-        else:
-            go = command[0]
     # Shell drivers that invoke `go` must see the selected toolchain too.
     base["PATH"] = str(Path(go).parent) + os.pathsep + base.get("PATH", "")
     overrides["PATH"] = base["PATH"]

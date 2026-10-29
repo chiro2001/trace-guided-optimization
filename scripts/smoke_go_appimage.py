@@ -40,7 +40,7 @@ def main():
         subprocess.run([*command, "tune", "--strategy", "go-compiler", "--go", str(go),
             "--go-variant", "layout-runtime", "--search-pairs", "1", "--validate", "1",
             "--go-warmups", "0", "--minimum-gain", "100", "--timeout", "900",
-            "-o", str(bundle), "--", str(go), "build", "-p", "1", "-o", "/dev/null", str(source)],
+            "-o", str(bundle), "--", "go", "build", "-p", "1", "-o", "/dev/null", str(source)],
             env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1800)
     candidate = bundle / "layout-runtime"
     built = json.loads((candidate / "build.json").read_text())
