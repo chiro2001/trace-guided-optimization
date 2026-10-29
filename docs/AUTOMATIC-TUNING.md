@@ -60,8 +60,42 @@ perf/SPE，不悄悄更换事件，也不因真实负载失败而重跑负载。
 - 其他对象使用标准策略。stripped ELF 允许 BOLT 利用其动态符号/unwind 信息
   识别函数；不能识别的范围不会由工具假定为安全。
 
-没有启用 assume-code-pages-safe。`standard` / `recover` 可固定策略；标准手工
+通用策略不启用 assume-code-pages-safe。`standard` / `recover` 可固定策略；标准手工
 模式仍需显式 `--allow-stripped` 才处理缺 `.symtab` 的输入。
+
+## CPython 与完整八库配方
+
+`--recipe auto` 默认识别已核实的 eager-v12 八库原始 SHA256。只有全部输入匹配才
+使用这份配方；版本变化退回通用策略。`--recipe standard` 禁用配方，显式
+`--recipe eager-v12` 则在身份不匹配时报错。NumPy 这类带非零 ELF entry 的共享库
+仍按 DSO 处理，不能仅凭 e_entry 把它当作子进程主程序。
+
+识别配方且有 GCC 时，`--strategy auto` 进入 CPython 策略；其他 CPython 负载可
+显式 `--strategy cpython`。策略下载并核对精确版本的源码，生成 GCC 插桩解释器，
+仅在 marker ROI reset/dump 画像，再构建保留重定位的 PGO/LTO libpython。
+需要匹配版本的 GCC、g++、make，以及共享 libpython 和显式 marker ROI。
+不安装替换原解释器，运行时由新 ELF 入口重定向私有库。
+
+AArch64 有 BOLT instrumentation runtime 时，`--python-profile auto` 为新 Python
+生成原生 BOLT 插桩库，逐 ROI reset/dump 并合并 fdata。hook 地址从当前 archive
+对象与实际链接产物推导，检查非重定位指令及运行时 maps。原生边计数只用于对应
+SHA256 的 Python，不与 SPE 采样单位混合。`--python-profile sample` 可显式保留
+采样路线；`native` 在条件不满足时直接报错。
+
+已知八库配方默认使用 QEMU 为其余七库记录完整 ROI。`--max-roi-windows 1`
+仅限制记录窗口，后续请求仍正常执行；不会修改用户负载参数以缩短正确性验证。
+混合画像按库独立归一化，热点选择沿用基线 discovery 权重。七库采用 BIND_NOW、
+全函数 recovery、4B 布局、清理和 PLT 策略；其中代码页恢复假设严格绑定已知原始
+SHA256，不自动推广至任意二进制。
+
+`--python-build DIR` 可复用本轮完成的构建，但会检查负载 contract、原始/输出 ELF
+及全部 GCC 训练画像 SHA256。`--library-capture DIR` 可复用完整 QEMU 采集，检查
+原始证据及逐库 ELF 身份。这些选项减少开发迭代时间，最终报告应分别列出缓存复用
+与从头构建的结果。`--library-backend spe|qemu` 可显式选择库画像路线。
+
+源码包和 instrumentation archive 已纳入下一版 AppImage 打包流程；现有 0.4.0
+分发文件不包含该策略。构建 Python 仍需要目标环境提供 GCC/g++/make。
+
 
 ## 失败和组合搜索
 
