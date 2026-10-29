@@ -3,8 +3,8 @@
 输入负载命令，采集目标区间的画像，优化热点 ELF/DSO，输出独立的原生 ELF 入口。
 原文件保持原状；新入口可以放在原入口旁边，例如 `python3.tgo`。
 
-目前实现 Linux AArch64 / x86-64、glibc、LLVM BOLT。Go 原生代码的重排尚不支持，
-会明确列出原因。不能保证所有二进制都可改写，也不能保证所有负载都有收益。
+目前实现 Linux AArch64 / x86-64、glibc、LLVM BOLT，以及 Go 编译器的 PGO 和包内
+函数布局。不能保证所有二进制都可改写，也不能保证所有负载都有收益。
 
 当前进展见 [状态](docs/STATUS.md) 和 [实测记录](docs/RESULTS-20261029.md)。
 
@@ -87,6 +87,33 @@ prefill 还是 decode；有语义边界的服务应采用显式 ROI adapter。
 头文件可通过 `TGO_QEMU_HEADER=.../deps/install/include/qemu-plugin.h` 指定。
 AppImage 已内置编译好的插件和匹配 QEMU，不要求目标机安装开发头文件或编译器。
 
+## Go 编译负载
+
+直接的 `go` 命令会自动选择 Go 策略；shell/build driver 可显式指定：
+
+```sh
+python3 -m tgo tune --strategy go-compiler --go /path/to/go \
+  -o runs/go-build --timeout 900 -- go build ./...
+python3 -m tgo tune --strategy go-compiler --go /path/to/go \
+  -o runs/go-driver --timeout 900 -- sh benchmarks/go_compile.sh
+runs/go-build/run
+```
+
+训练通过原生 `-toolexec` helper 给实际 compiler 进程加 CPU profile，合并画像后私有
+重建 `cmd/compile`。候选包括工作负载 PGO、紧凑内联、函数对齐、与 SDK 原画像混合、
+按调用热度聚类的包内函数布局。可用 `--go-variant layout` 等限制搜索范围。
+布局模式通过 source overlay 重建私有 linker，由 Go 自己生成 PC、栈和 GC metadata；
+保持包依赖顺序，跳过 FIPS、重复和外来符号；`layout-runtime` 还调整 runtime 的
+Go 函数，但保留其汇编函数位置。两者均不直接 BOLT 静态 Go 文件。
+`layout.json` 记录画像匹配和最终 ELF 地址检查。
+
+需要工作负载对应的完整 Go SDK（含源码）；`bootstrap.py --components go` 可下载
+锁定的官方 SDK。训练和验证较慢，默认每次运行使用独立冷 build cache，并先做两对
+不计入结果的预热。`--go-cache preserve` 适合有意评估真实缓存行为的负载。
+`--run runs/go-build/capture` 可复用同一 compiler 的已校验原始画像。
+生成入口检查版本漂移，并给 Go build cache 提供候选 compiler 的独立身份；
+`TGO_DISABLE=1` 恢复原工具。详见 [Go 策略](docs/GO-COMPILER.md)。
+
 环境变量通过 `--env KEY=VALUE` 显式保存供新入口重放；当前 shell 的其余环境由
 调用者提供，不会把全部环境或凭据写入产物。新入口保留固定 argv、追加的参数、
 cwd 和指定环境。虚拟环境的入口路径不会提前解析为其底层 Python 路径。
@@ -128,11 +155,13 @@ perf 的构建还需要基础开发环境中的 flex、bison、m4。
 
 ```sh
 python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8
+# 可选：缺少保留重定位的 AArch64 DSO
+python3 scripts/bootstrap.py --components llvm --llvm-variant recover --jobs 8
 export TGO_QEMU_HEADER="$PWD/deps/install/include/qemu-plugin.h"
 python3 scripts/package_appimage.py --python deps/install/bin/python3.12
-dist/tgo-0.1.0-aarch64.AppImage doctor
+dist/tgo-0.2.0-aarch64.AppImage doctor
 # 无 FUSE 环境
-APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.1.0-aarch64.AppImage doctor
+APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.2.0-aarch64.AppImage doctor
 ```
 
 每个 ISA 单独打包。AppImage 携带工具、Python 标准库及非 glibc 动态依赖；最低 glibc

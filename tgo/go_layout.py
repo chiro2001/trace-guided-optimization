@@ -57,7 +57,8 @@ func (l *Loader) tgoOrderPackageText(libs []*sym.Library) {
     var rows strings.Builder
     rows.WriteString("package\tbefore\tafter\tname\tsize\n")
     for _, lib := range libs {
-        if lib.Pkg == "runtime" || strings.HasPrefix(lib.Pkg, "internal/runtime/") ||
+        runtimePkg := lib.Pkg == "runtime" || strings.HasPrefix(lib.Pkg, "internal/runtime/")
+        if (runtimePkg && os.Getenv("TGO_GO_LAYOUT_RUNTIME") != "1") ||
             strings.HasPrefix(lib.Pkg, "crypto/internal/fips140") { continue }
         ordinary := true
         for _, s := range lib.Textp {
@@ -69,7 +70,7 @@ func (l *Loader) tgoOrderPackageText(libs []*sym.Library) {
         var slots []int
         var ordered []Sym
         for i, s := range lib.Textp {
-            if strings.HasPrefix(l.SymName(s), lib.Pkg+".") {
+            if strings.HasPrefix(l.SymName(s), lib.Pkg+".") && (!runtimePkg || !l.IsFromAssembly(s)) {
                 slots = append(slots, i)
                 ordered = append(ordered, s)
             }

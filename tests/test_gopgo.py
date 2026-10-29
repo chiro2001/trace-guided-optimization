@@ -26,15 +26,20 @@ class GoToolAdapter(unittest.TestCase):
             tool_dir = subprocess.check_output([go, "env", "GOTOOLDIR"], text=True).strip()
             original = str(Path(tool_dir) / "link")
             version = subprocess.check_output([original, "-V=full"], text=True).strip()
-            order = root / "order.txt"; order.write_text("main.main\nmain.recoverCheck\n")
-            env = adapter_env(env, root, original, version, "layout-test", linker)
-            env.update(TGO_GO_LAYOUT_ORDER=str(order), TGO_GO_LAYOUT_REPORT=str(root / "layout.tsv"))
-            correctness_fixture(go, env, root, 180)
-            nm = subprocess.check_output([go, "tool", "nm", "-size", "-sort", "address", root / "correctness-program"], text=True)
-            report = layout_report(root / "layout.tsv", {"main.main": 10, "main.recoverCheck": 5}, nm)
-            self.assertEqual(report["matched_symbols"], 2)
-            self.assertEqual(report["final_address_order_inversions"], 0)
-            self.assertGreater(report["moved_symbols"], 0)
+            order = root / "order.txt"; order.write_text("runtime.GC\nruntime.gcStart\nmain.main\nmain.recoverCheck\n")
+            for runtime in ("0", "1"):
+                with self.subTest(runtime=runtime):
+                    trial = root / ("trial-"+runtime); trial.mkdir()
+                    changed = adapter_env(env, root, original, version, "layout-test-"+runtime, linker)
+                    changed.update(TGO_GO_LAYOUT_ORDER=str(order), TGO_GO_LAYOUT_REPORT=str(trial / "layout.tsv"),
+                                   TGO_GO_LAYOUT_RUNTIME=runtime)
+                    correctness_fixture(go, changed, trial, 180)
+                    nm = subprocess.check_output([go, "tool", "nm", "-size", "-sort", "address", trial / "correctness-program"], text=True)
+                    report = layout_report(trial / "layout.tsv", {"main.main": 10, "main.recoverCheck": 5,
+                        "runtime.GC": 20, "runtime.gcStart": 15}, nm)
+                    self.assertEqual(report["matched_symbols"], 4 if runtime == "1" else 2)
+                    self.assertEqual(report["final_address_order_inversions"], 0)
+                    self.assertGreater(report["moved_symbols"], 0)
 
     def test_cache_identity_replaces_compiler_and_disable_uses_original(self):
         with tempfile.TemporaryDirectory() as d:

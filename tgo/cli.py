@@ -69,7 +69,7 @@ def main(argv=None):
     t.add_argument("--strategy", choices=["auto", "bolt", "go-compiler"], default="auto")
     t.add_argument("--go", help="Go toolchain used by the compilation workload")
     t.add_argument("--go-cache", choices=["cold", "preserve"], default="cold")
-    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid", "layout"], action="append")
+    t.add_argument("--go-variant", choices=["pgo", "compact", "aligned", "hybrid", "layout", "layout-runtime"], action="append")
     t.add_argument("--go-warmups", type=int, default=2, help="unmeasured Go validation warmup pairs")
     v = sub.add_parser("validate", help="AB/BA paired validation of an existing bundle")
     v.add_argument("bundle")
