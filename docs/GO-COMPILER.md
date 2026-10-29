@@ -48,6 +48,8 @@ ARM 分支 trampoline 均仍由 Go linker 正常生成。
 报冲突。helper 返回包含候选 SHA256 的 tool identity，使 Go cache 不会错误复用
 原 compiler 的构建结果。自建 linker 的身份还包含函数顺序文件与 runtime 模式，
 避免复用其他画像的布局。`TGO_DISABLE=1` 执行原工具和原版本信息。
+入口和 helper 的 stat 不同时会校验 SHA256；同内容文件可跨 namespace 使用。
+入口验证后更新传给 helper 的 stamp，正常编译调用继续使用快速检查。
 
 默认验证每 arm 使用独立冷 build cache，并先做两对不计入收益的预热。文件系统
 缓存、NUMA、CPU 频率和同机其他任务仍可能影响 wall time，应在稳定资源条件下

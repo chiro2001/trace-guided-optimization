@@ -1,0 +1,427 @@
+{
+  "schema": "tgo.build.v1",
+  "strategy": "bolt",
+  "source_run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-auto-r1/capture",
+  "images": [
+    {
+      "original": "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+      "optimized": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+      "input": {
+        "path": "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+        "sha256": "453fb977ff34801172cf614b3c72843c989839332351d228738677d942b0937c",
+        "build_id": "03c0aff2f1616cfedb999f68887090cc53916e29",
+        "machine": 183,
+        "type": 3,
+        "bytes": 217432,
+        "relocations": true,
+        "symbols": true,
+        "go": false,
+        "interpreter": null,
+        "entry": 0,
+        "rpath_kind": null,
+        "sample_percent": 99.99,
+        "perf_data": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-auto-r1/capture/perf.data"
+      },
+      "output": {
+        "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+        "sha256": "e2647c52019fa836006bfb845b4bdbd41dad64fa568f6dcf481c6414ce31345b",
+        "build_id": "03c0aff2f1616cfedb999f68887090cc53916e28",
+        "machine": 183,
+        "type": 3,
+        "bytes": 6357913,
+        "relocations": false,
+        "symbols": true,
+        "go": false,
+        "interpreter": null,
+        "entry": 0,
+        "rpath_kind": "runpath"
+      },
+      "fdata_sha256": "3a10f3480d853b1193319b2534a0b8bbba2409b01d39af92a8d81639da887f0a",
+      "recovered_relocations": false,
+      "load_order_normalization": null,
+      "aggregation": {
+        "command": [
+          "/tmp/appimage_extracted_25a3dcb1b38a8ef433234dc7f043d48f/usr/tools/llvm-bolt/bin/perf2bolt",
+          "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/profile.fdata",
+          "-p",
+          "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-auto-r1/capture/perf.data",
+          "-spe",
+          "-allow-stripped"
+        ],
+        "returncode": 0,
+        "seconds": 0.12774380994960666,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/aggregate.log"
+      },
+      "optimization": {
+        "command": [
+          "/tmp/appimage_extracted_25a3dcb1b38a8ef433234dc7f043d48f/usr/tools/llvm-bolt/bin/llvm-bolt",
+          "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+          "-data=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/profile.fdata",
+          "-o",
+          "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+          "-reorder-blocks=ext-tsp",
+          "-reorder-functions=hfsort+",
+          "-split-functions",
+          "-split-all-cold",
+          "-split-strategy=profile2",
+          "-dyno-stats",
+          "-align-functions=4",
+          "-align-functions-max-bytes=4",
+          "-enable-bat",
+          "-thread-count=4",
+          "-group-stubs=false",
+          "-allow-stripped",
+          "-split-functions=false",
+          "-split-all-cold=false"
+        ],
+        "returncode": 0,
+        "seconds": 0.04218917991966009,
+        "log": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/bolt.log"
+      },
+      "policy": {
+        "mode": "standard",
+        "reason": "retained relocations, executable/ISA policy, or recovery tool unavailable",
+        "bolt": "/tmp/appimage_extracted_25a3dcb1b38a8ef433234dc7f043d48f/usr/tools/llvm-bolt/bin/llvm-bolt",
+        "perf2bolt": "/tmp/appimage_extracted_25a3dcb1b38a8ef433234dc7f043d48f/usr/tools/llvm-bolt/bin/perf2bolt",
+        "allow_stripped": true,
+        "bolt_sha256": "054bb01ddddce8e165563b85fd8abb5a47a21cb667bc607fe2453f0fb7a4d01b",
+        "perf2bolt_sha256": "054bb01ddddce8e165563b85fd8abb5a47a21cb667bc607fe2453f0fb7a4d01b"
+      },
+      "spe_conversion": {
+        "branch_samples": 18516,
+        "emitted": 18516,
+        "unavailable_code": 0,
+        "unsupported_opcode": 0,
+        "prediction": "unknown except named miss events"
+      }
+    }
+  ],
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/run",
+  "entry_mode": "command",
+  "state": "validated",
+  "validation": {
+    "schema": "tgo.validation.v1",
+    "pairs": [
+      {
+        "baseline": {
+          "seconds": 0.09033616026863456,
+          "metric_seconds": 0.04552544,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-0-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 45127590,
+              "time_running": 45127590,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 130361828,
+                "instructions": 99281759,
+                "frontend_stall_cycles": 100276595,
+                "l1i_read_misses": 7300764
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.0663799699395895,
+          "metric_seconds": 0.0193773,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-0-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19390170,
+              "time_running": 19390170,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 56085579,
+                "instructions": 99280874,
+                "frontend_stall_cycles": 26645585,
+                "l1i_read_misses": 2389
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 57.43632571151427
+      },
+      {
+        "candidate": {
+          "seconds": 0.07042252970859408,
+          "metric_seconds": 0.01990631,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-1-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19487230,
+              "time_running": 19487230,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 56284357,
+                "instructions": 99280724,
+                "frontend_stall_cycles": 26870607,
+                "l1i_read_misses": 2676
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.09130155015736818,
+          "metric_seconds": 0.04612977,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-1-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 45742560,
+              "time_running": 45742560,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 132042387,
+                "instructions": 99281709,
+                "frontend_stall_cycles": 103008683,
+                "l1i_read_misses": 7299591
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 56.847150982976935
+      },
+      {
+        "baseline": {
+          "seconds": 0.08983741980046034,
+          "metric_seconds": 0.04496638,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-2-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 44930970,
+              "time_running": 44930970,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 129874136,
+                "instructions": 99281857,
+                "frontend_stall_cycles": 99868325,
+                "l1i_read_misses": 7370667
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.06616197992116213,
+          "metric_seconds": 0.01958978,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-2-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19571110,
+              "time_running": 19571110,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 56339564,
+                "instructions": 99280829,
+                "frontend_stall_cycles": 26926155,
+                "l1i_read_misses": 2473
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 56.434607366659264
+      },
+      {
+        "candidate": {
+          "seconds": 0.06698569003492594,
+          "metric_seconds": 0.01969849,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-3-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19667520,
+              "time_running": 19667520,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 56835517,
+                "instructions": 99280839,
+                "frontend_stall_cycles": 27502285,
+                "l1i_read_misses": 2441
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.09116296982392669,
+          "metric_seconds": 0.04621376,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-3-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 46118500,
+              "time_running": 46118500,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 133271905,
+                "instructions": 99281746,
+                "frontend_stall_cycles": 103146442,
+                "l1i_read_misses": 6643687
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 57.3752709149829
+      },
+      {
+        "baseline": {
+          "seconds": 0.09282045997679234,
+          "metric_seconds": 0.04853485,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-4-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 48478720,
+              "time_running": 48478720,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 139932716,
+                "instructions": 99281671,
+                "frontend_stall_cycles": 104201032,
+                "l1i_read_misses": 6934055
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.06682207994163036,
+          "metric_seconds": 0.0200402,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62/validation-4-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_sha256": "11cd21142ed24f709127233db8ead71678aa05947a7c2c57e071694a269577f3",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 20052890,
+              "time_running": 20052890,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 56919962,
+                "instructions": 99280845,
+                "frontend_stall_cycles": 27603640,
+                "l1i_read_misses": 2479
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+          ]
+        },
+        "reduction_percent": 58.709669443709004
+      }
+    ],
+    "equivalent": true,
+    "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.3.0-final/compact/validations/f4b00bc927304a71a26b714341d42f62",
+    "requested_pairs": 5,
+    "completed_pairs": 5,
+    "warmup_pairs": [],
+    "metric": "decode",
+    "median_reduction_percent": 57.3752709149829,
+    "min_reduction_percent": 56.434607366659264,
+    "max_reduction_percent": 58.709669443709004,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+  },
+  "workload": {
+    "command": [
+      "/usr/local/python3.12.13/bin/python3",
+      "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+      "--library",
+      "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+      "--iterations",
+      "5000000"
+    ],
+    "cwd": "/workspace",
+    "env": {}
+  }
+}

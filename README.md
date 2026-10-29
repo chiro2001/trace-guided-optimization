@@ -15,7 +15,8 @@ python3 -m tgo tune -o runs/my-app --backend auto -- /path/to/python app.py
 runs/my-app/run
 ```
 
-`tune` 顺序执行采集、三种布局初筛、独立 AB/BA 确认和入口生成。仅在每一对确认
+`tune` 自动选择采集后端、热点库及每库 BOLT 策略，再执行三种布局初筛、独立 AB/BA
+确认和入口生成。仅在每一对确认
 运行都正确且收益超过阈值时选择候选；否则生成调用原版的入口。`tune.json` 记录
 实际选择，不能仅凭生成了一个 ELF 就判断优化有效。
 
@@ -31,9 +32,14 @@ python3 -m tgo validate runs/candidate --pairs 5
 `optimize` 输出未经收益筛选的候选，默认做三对正确性/加载验证。性能建议保存在
 `validation.json`。`tune` 才会根据收益选择最终入口。
 
-`--bolt-mode recover` 使用可选 AArch64 recovery BOLT，只处理有画像的函数。
-缺少 `.symtab` 时默认跳过；可显式加 `--allow-stripped` 让 BOLT 利用动态符号和
-unwind 信息恢复其能识别的函数，仍须通过逐负载验证，不保证恢复完整代码边界。
+默认 `--bolt-mode auto` 按库选择策略：有保留重定位时使用标准 BOLT；AArch64 DSO
+缺少重定位且 recovery 工具可用时自动使用 recovery。自动策略也会尝试 stripped
+ELF 中可识别的函数，仍须通过输出及真实加载验证，不保证恢复完整代码边界。
+`--bolt-mode standard` 保持手工标准策略，缺符号时需显式 `--allow-stripped`。
+
+单库构建失败会保留该库原版并记录原因，其他库继续。整组验证失败或没有初筛收益
+时，默认探测有效子集，复用已经生成的 DSO。初筛按中位数排序；最终独立确认仍
+要求每一对超过 `--minimum-gain`（默认 0.5%）。详见 [自动调优](docs/AUTOMATIC-TUNING.md)。
 
 ## 精确选择 ROI
 
@@ -86,8 +92,9 @@ prefill 还是 decode；有语义边界的服务应采用显式 ROI adapter。
 | SPE | ARM 分支采样 | `--backend spe`，需要内核、PMU 和权限支持；内置已验证的 perf 分支样本转换桥，事件可用 `--event` 覆盖 |
 | QEMU | 无 PMU 权限、精确 ROI 路径 | TCG 插件汇总分支/连续落空路径，不把 QEMU wall time 当原生性能；native exec 子进程不在此画像范围 |
 
-`auto` 用 `perf stat cycles:u` 探测 PMU 权限，失败后选择 QEMU。它不会因负载执行
-失败而自动重跑负载。`--qemu-header` 必须与 QEMU 插件 ABI 匹配；bootstrap 下载的
+`auto` 实际探测事件权限：优先选择可打开的 retired-branch SPE，其次使用 cycles
+采样，硬件采样不可用时选择 QEMU。探测只验证事件可打开，实际采样覆盖由记录阶段
+检查。它不会因负载执行失败而自动重跑负载。`--qemu-header` 必须与 QEMU 插件 ABI 匹配；bootstrap 下载的
 头文件可通过 `TGO_QEMU_HEADER=.../deps/install/include/qemu-plugin.h` 指定。
 AppImage 已内置编译好的插件和匹配 QEMU，不要求目标机安装开发头文件或编译器。
 
@@ -138,15 +145,17 @@ TGO_DISABLE=1 /writable/venv/bin/python3.tgo app.py
 dlopen；同名但不同路径的库不会混用。每库独立目录，保留原 `$ORIGIN` 搜索语义。
 DSO 本身需要兼容原 ABI；不会将任意 ET_EXEC 硬转换成 DSO。
 
-构建时保存 SHA256/build-id，启动时核对输入/输出 ELF 的 inode、设备、大小与纳秒
-mtime。文件变化时要求重建或显式 `TGO_DISABLE=1`。这些是版本漂移检查，不是防篡改
-机制。已有 `LD_AUDIT` 配置会报冲突。产物绑定本机原路径，移动产物后应重新生成入口。
+构建时保存 SHA256/build-id，启动时快速核对输入/输出 ELF 的 inode、设备、大小与
+纳秒 mtime。元数据不同时再校验 SHA256，允许同内容文件在新容器的不同 overlay
+设备上使用；内容不符则要求重建或显式 `TGO_DISABLE=1`。这是版本漂移检查，不是
+防篡改机制。已有 `LD_AUDIT` 配置会报冲突。产物仍绑定原路径，移动目录需要重建入口。
 
 验证使用新进程 AB/BA 交替运行，比较退出码、确定性输出和真实映射的优化库。
 `emit_result` 有输出时使用其规范化 JSON，否则比较 stdout。业务自身的正确性测试
 仍需另外执行。`--metric decode` 使用命名 ROI 的时间，并尝试记录同线程用户态的
 cycles、instructions、frontend stall、L1I read miss；每项都保留打开失败原因，以及
 enabled/running，不能把复用计数当成无复用实测。
+每轮验证的原始证据独立保存在 `validations/<id>/`，探测、初筛和确认不会覆盖彼此。
 
 ## 构建与分发
 
@@ -163,9 +172,9 @@ python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8
 python3 scripts/bootstrap.py --components llvm --llvm-variant recover --jobs 8
 export TGO_QEMU_HEADER="$PWD/deps/install/include/qemu-plugin.h"
 python3 scripts/package_appimage.py --python deps/install/bin/python3.12
-dist/tgo-0.2.0-aarch64.AppImage doctor
+dist/tgo-0.3.0-aarch64.AppImage doctor
 # 无 FUSE 环境
-APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.2.0-aarch64.AppImage doctor
+APPIMAGE_EXTRACT_AND_RUN=1 dist/tgo-0.3.0-aarch64.AppImage doctor
 ```
 
 每个 ISA 单独打包。AppImage 携带工具、Python 标准库及非 glibc 动态依赖；最低 glibc

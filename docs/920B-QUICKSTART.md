@@ -1,10 +1,10 @@
 # 920B-47 快速运行
 
-下面使用本轮 0.2.0 AppImage，不需要安装额外 Python 包或 C 编译器。
+下面使用本轮 0.3.0 AppImage，不需要安装额外 Python 包或 C 编译器。
 
 ```sh
 cd ~/projects/trace-guided-optimization
-TGO_APP="$PWD/dist/0.2.0/tgo-0.2.0-aarch64.AppImage"
+TGO_APP="$PWD/dist/0.3.0-final/tgo-0.3.0-aarch64.AppImage"
 "$TGO_APP" --appimage-extract-and-run doctor
 ```
 
@@ -27,7 +27,8 @@ TGO_DISABLE=1 build/demo-venv/bin/python3.tgo benchmarks/native_frontend.py
 CPU 集合按实际空闲核心调整；所有重复运行继承相同 affinity。
 
 Python 实负载可使用 `deps/install/bin/python3.12 benchmarks/python_frontend.py`，
-`--image libpython3.12.so.1.0`。发行版解释器若没有匹配符号，会明确跳过。
+`--image libpython3.12.so.1.0`。自动策略会尝试 stripped ELF 可识别的函数；不能
+处理的对象保留原版，并记录原因。
 
 ## Go 编译
 
@@ -59,9 +60,7 @@ python3 scripts/smoke_go_appimage.py "$TGO_APP" \
 
 ```sh
 TGO_ROOT="$PWD"
-TGO_RUN="$PWD/runs/my-vllm-spe"
 TGO_BUNDLE="$PWD/runs/my-vllm-tuned"
-TGO_ACTION=record
 
 sudo -n docker run --rm --pid host --network none \
   --cpuset-cpus 216,218,220,222 --cpuset-mems 0-3 \
@@ -70,8 +69,7 @@ sudo -n docker run --rm --pid host --network none \
   -v "$TGO_ROOT:$TGO_ROOT" -v "$HOME/models:/models:ro" \
   -e PY="$TGO_ROOT/benchmarks/container_entry.sh" \
   -e TGO_APP="$TGO_APP" -e APPIMAGE_EXTRACT_AND_RUN=1 \
-  -e TGO_RUN="$TGO_RUN" -e TGO_BUNDLE="$TGO_BUNDLE" \
-  -e TGO_CONTAINER_ACTION="$TGO_ACTION" -e TGO_BACKEND=spe \
+  -e TGO_BUNDLE="$TGO_BUNDLE" -e TGO_CONTAINER_ACTION=tune \
   -e VLLM_ENABLE_V1_MULTIPROCESSING=0 -e OMP_NUM_THREADS=1 \
   -e TASK_QUEUE_ENABLE=1 -e HF_HUB_OFFLINE=1 -e TRANSFORMERS_OFFLINE=1 \
   -e XDG_CACHE_HOME="$TGO_ROOT/build/vllm-demo-cache" \
@@ -81,29 +79,27 @@ sudo -n docker run --rm --pid host --network none \
   "$TGO_ROOT/benchmarks/vllm_decode.py" --requests 16 --warmup-requests 1 --roi-cpu 216
 ```
 
-先完成 `record`，然后把 `TGO_ACTION` 改为 `tune` 重复同一命令。
-`TGO_RUN` 保持原采集路径，`TGO_BUNDLE` 必须是尚不存在的新目录。
-SPE 使用 host PID namespace 让硬件上下文 ID 和采集侧进程 ID 对齐；采集只针对
-本次启动的任务。普通 IP 采样可把 `TGO_BACKEND` 改为 `perf`。
-可通过 `TGO_EVENT=arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u`
-选择本机的 retired-branch 事件；在 docker 命令中用 `-e TGO_EVENT=...` 传入。
-优化阶段 `TGO_BOLT_MODE=recover` 选择独立 recovery BOLT，
-`TGO_ALLOW_STRIPPED=1` 显式允许尝试缺少 `.symtab` 的库。
+该命令在容器内完成采集、选库、布局比较、独立确认和入口生成。自动探测 SPE / perf，
+默认选择三个热点对象并逐库决定 recovery/standard；无需提供库名。`TGO_BUNDLE`
+必须是新目录。SPE 使用 host PID namespace 对齐硬件上下文 ID，采集只针对本次任务。
 
-本轮通过独立五对确认的组合是 libpython、libtorch_npu、libtorch_python。
-复用 retired SPE 采集后，在同一 docker 命令中设置以下环境；新增输出目录不能存在：
+需要缩小搜索范围可加 `-e TGO_LAYOUT=ext-tsp`。完整搜索和独立进程验证会多次加载
+模型，耗时明显长于单次 decode。若要复用现有画像，在同一 docker 命令中额外传入
+`-e TGO_RUN="$PWD/runs/vllm-spe-retired-r1"`；省略 TGO_RUN 则从头采集。
+手动选择可用 `TGO_BACKEND`、`TGO_EVENT`、`TGO_BOLT_MODE` 和逗号分隔的
+`TGO_IMAGE_FILTER`，默认无需这些变量。
 
-```sh
--e TGO_CONTAINER_ACTION=optimize -e TGO_BOLT_MODE=recover -e TGO_ALLOW_STRIPPED=1 \
--e TGO_IMAGE_FILTER=libpython3.12.so.1.0,libtorch_npu.so,libtorch_python.so \
--e TGO_VALIDATE_PAIRS=5
-```
-
-本机已经确认的入口为 `runs/vllm-spe-retired-multi-r1/run`，需在相同容器环境中使用。
-该轮 decode ROI 中位数减少 3.68%，不代表真实 NPU 服务吞吐。
+已确认的自动选库结果为 `runs/vllm-auto-tune-r1`，独立五对 decode ROI 中位数减少
+4.74%（2.92%～7.56%）。相邻入口部署使用已经升级内容校验的新入口：
+`runs/vllm-auto-tune-r1/portable-entry/python3.tgo`。该文件在新的同镜像容器中挂载到
+`/usr/local/python3.12.13/bin/python3.tgo`，通过了实际三库加载和 token 校验。
+这仍是 CPU-stub 主机路径，不代表真实 NPU 吞吐。另一轮从头采集未找到稳定收益，
+程序自动选择了 baseline；不能保证每份画像都有收益。
 
 先检查 `$TGO_BUNDLE/tune.json`。`selected=baseline` 表示未找到确认获益的布局。
 如果选中了候选，`$TGO_BUNDLE/run` 是可替代 Python 解释器的新 ELF。新容器挂载
 整个项目与 bundle 后，可额外只读挂载该文件到
 `/usr/local/python3.12.13/bin/python3.tgo`，把官方启动脚本的 `PY` 指向新入口，
 继续使用原工作负载参数。原 Python 入口不覆盖。
+同内容 ELF 的容器设备号/inode 变化会触发 SHA256 校验，不要求重新优化；原路径
+和整个 bundle 仍需保持可访问。

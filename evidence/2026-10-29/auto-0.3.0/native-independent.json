@@ -1,0 +1,1 @@
+{"passed": true, "scope": "fresh container, read-only project mount, empty tools/PYTHONPATH, cwd /tmp, no AppImage invocation", "loaded_optimized": ["/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-auto-r1/compact/images/453fb977ff348011-4824407c/libfrontend.so"], "stdout": "6459408424689070635"}

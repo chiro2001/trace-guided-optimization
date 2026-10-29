@@ -1,0 +1,314 @@
+{
+  "schema": "tgo.release-verification.v1",
+  "version": "0.3.0",
+  "runtime_commit": "880edbed91be9f593e36fac2968b9455aa3ba81b",
+  "appimage_sha256": "a766757f7f31c38358355c068da7eaf762825c71c860ba0e947f273a9d0bed98",
+  "tests": {
+    "amd64": 22,
+    "aarch64": 22,
+    "passed": true
+  },
+  "measurements": {
+    "native-full-search": {
+      "selected": "compact",
+      "paired_roi_reduction_percent": [
+        56.16642023549441,
+        56.28591265699389,
+        56.545745307634036,
+        57.89800599842242,
+        57.57919393258393
+      ],
+      "median_roi_reduction_percent": 56.545745307634036,
+      "min_roi_reduction_percent": 56.16642023549441,
+      "max_roi_reduction_percent": 57.89800599842242,
+      "pmu": {
+        "cycles": {
+          "paired_reduction_percent": [
+            55.99504180761128,
+            56.62218905729479,
+            56.55746658414744,
+            57.926570180196535,
+            57.85127474378308
+          ],
+          "median_reduction_percent": 56.62218905729479
+        },
+        "instructions": {
+          "paired_reduction_percent": [
+            0.00020849911278597588,
+            0.0001964122729902762,
+            0.000256846474444572,
+            3.5253445485050605e-05,
+            0.00014605012670365625
+          ],
+          "median_reduction_percent": 0.0001964122729902762
+        },
+        "frontend_stall_cycles": {
+          "paired_reduction_percent": [
+            72.20480623079939,
+            73.05805988500198,
+            72.35897168128942,
+            74.19022087079782,
+            73.2178883287405
+          ],
+          "median_reduction_percent": 73.05805988500198
+        },
+        "l1i_read_misses": {
+          "paired_reduction_percent": [
+            99.96567631874194,
+            99.96338301496858,
+            99.96393495463876,
+            99.96273990747174,
+            99.95828933537412
+          ],
+          "median_reduction_percent": 99.96338301496858
+        }
+      }
+    },
+    "native-final-runtime": {
+      "selected": "compact",
+      "paired_roi_reduction_percent": [
+        57.43632571151427,
+        56.847150982976935,
+        56.434607366659264,
+        57.3752709149829,
+        58.709669443709004
+      ],
+      "median_roi_reduction_percent": 57.3752709149829,
+      "min_roi_reduction_percent": 56.434607366659264,
+      "max_roi_reduction_percent": 58.709669443709004,
+      "pmu": {
+        "cycles": {
+          "paired_reduction_percent": [
+            56.976992528825235,
+            57.37402338841391,
+            56.6198738754266,
+            57.35371457322531,
+            59.32333508055401
+          ],
+          "median_reduction_percent": 57.35371457322531
+        },
+        "instructions": {
+          "paired_reduction_percent": [
+            0.0008914024176354118,
+            0.000992126354315559,
+            0.0010354359105124722,
+            0.0009135616934052848,
+            0.0008319763272313097
+          ],
+          "median_reduction_percent": 0.0009135616934052848
+        },
+        "frontend_stall_cycles": {
+          "paired_reduction_percent": [
+            73.42791206661934,
+            73.91423109447967,
+            73.03834323845923,
+            73.33666148174069,
+            73.50924509077798
+          ],
+          "median_reduction_percent": 73.42791206661934
+        },
+        "l1i_read_misses": {
+          "paired_reduction_percent": [
+            99.96727739726965,
+            99.96334041181211,
+            99.96644808400652,
+            99.96325835338119,
+            99.96424891351452
+          ],
+          "median_reduction_percent": 99.96424891351452
+        }
+      }
+    },
+    "vllm-reuse": {
+      "selected": "ext-tsp",
+      "paired_roi_reduction_percent": [
+        4.002465538381572,
+        7.556325456463164,
+        5.5381297658633315,
+        2.9202329884189138,
+        4.739440708260256
+      ],
+      "median_roi_reduction_percent": 4.739440708260256,
+      "min_roi_reduction_percent": 2.9202329884189138,
+      "max_roi_reduction_percent": 7.556325456463164,
+      "pmu": {
+        "cycles": {
+          "paired_reduction_percent": [
+            4.3050835027633845,
+            7.930181856119145,
+            5.965757433372421,
+            3.243259796114484,
+            4.886408025446098
+          ],
+          "median_reduction_percent": 4.886408025446098
+        },
+        "instructions": {
+          "paired_reduction_percent": [
+            -1.2736175362854096,
+            -0.8917719846339045,
+            -0.9610999734794179,
+            -1.1098797316080766,
+            -0.9576157651446371
+          ],
+          "median_reduction_percent": -0.9610999734794179
+        },
+        "frontend_stall_cycles": {
+          "paired_reduction_percent": [
+            9.182599346914422,
+            12.666712472982432,
+            10.47569129510536,
+            8.939560780426747,
+            10.431623322738147
+          ],
+          "median_reduction_percent": 10.431623322738147
+        },
+        "l1i_read_misses": {
+          "paired_reduction_percent": [
+            -10.564255814173107,
+            -6.196933606155364,
+            -9.269406236260291,
+            -10.607948337444007,
+            -7.660824966999535
+          ],
+          "median_reduction_percent": -9.269406236260291
+        }
+      }
+    }
+  },
+  "fresh_vllm": {
+    "selected": "baseline",
+    "subset_probes": 6,
+    "screened_candidates": [
+      [
+        "ext-tsp",
+        -1.5148661747955927
+      ],
+      [
+        "ext-tsp-subset-afbafea793",
+        -0.29418802786302933
+      ],
+      [
+        "ext-tsp-subset-ae660c2cbb",
+        -3.324015680023251
+      ]
+    ]
+  },
+  "independent_native": {
+    "passed": true,
+    "scope": "fresh container, read-only project mount, empty tools/PYTHONPATH, cwd /tmp, no AppImage invocation",
+    "loaded_optimized": [
+      "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-auto-r1/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+    ],
+    "stdout": "6459408424689070635"
+  },
+  "adjacent_vllm": {
+    "passed": true,
+    "entry": "/usr/local/python3.12.13/bin/python3.tgo",
+    "scope": "fresh container, read-only bundle, adjacent ELF entry, cwd /tmp, no AppImage invocation",
+    "loaded_optimized": [
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-tune-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-tune-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+      "/home/l00886679/projects/trace-guided-optimization/runs/vllm-auto-tune-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+    ],
+    "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+    "source_build_sha256": "bffe597f2302cb468dfc2be0581a8f7ffabec535cc9ec1582566755ed272bbcf"
+  },
+  "go_no_cc_smoke": {
+    "passed": true,
+    "runtime_moved_symbols": 1357
+  },
+  "limits": [
+    "CPU-stub vLLM host decode only",
+    "Native frontend fixture intentionally creates instruction-fetch pressure",
+    "Fresh single-run training did not reproduce the reused-profile gain",
+    "Go speedup remains unconfirmed"
+  ],
+  "evidence_sha256": {
+    "native-capture.json": "ba502feecf85eff535a7f4e2a35fdc2314d9b8d304df20ed171e79b075968439",
+    "vllm-reuse-tune.json": "c2d8a1a04d2c0f730ef76f57b58477e110a83559358c6ffe4e0a35329f801b3f",
+    "native-build.json": "2ae1aa3e5c840c2e2c49beb1e3ddfeddd8916ca52d200377bbb8c266ca4dd40a",
+    "native-independent.json": "12ca798e62dcf957be172b34f2fd1f6e5f16da4799bc6adf51cdee80da71021d",
+    "native-tune.json": "51398fbc7a55c33142b9e86673a18bedf76e24cc58de8f04134f7905a5fa2046",
+    "go-smoke.json": "a424985591350d252fd7735f6c9a6fc5f1e6a319e18273e0c4428254e1302654",
+    "vllm-reuse-build.json": "bffe597f2302cb468dfc2be0581a8f7ffabec535cc9ec1582566755ed272bbcf",
+    "package-manifest.json": "83f74d56dc6998bb3fa73204ad657198525fe582aa74bed7b404d6ef67cb0a1e",
+    "vllm-portable-build.json": "880de7659e2f23526de1a8a772345b69a838aa14ef44df284ad53244fd5e7d32",
+    "vllm-fresh-capture.json": "1a23073a45ae4cc6bd178e79e8b4c5c127c3a7698162b1e9b858413a20f00f76",
+    "vllm-fresh-tune.json": "ff50452ba5c427e1b56afff976410d2d274f7330195d5a5bd9fdf41c36a38d0b",
+    "native-abi2-tune.json": "01e64d5da9de690aa8a95b7eaf68cbc584393c6b12b8c6e73aa4fd1bb99d3f32",
+    "vllm-adjacent.json": "e815312adacf5ce2989f91dc5794476ea4130526a2dea3c94b727e92e1f22955",
+    "native-final-build.json": "b0b8e25b71b625de031fff83c32d1ed77097373c6f44a6ab0322821e4b8ad3e6",
+    "native-final-tune.json": "fad27be56262c14b218a4716e6d271d1957b6ee164975646c9ac154ab91b7843",
+    "native-helper-identities.json": "c204dac49ebe8055751ae784b549d7caf663779588f1e88d467be90ad2f8d316",
+    "tests.json": "3b35d2f702278bd6952ab909516f166ce6f50417e99d57029fb3e05271646fba"
+  },
+  "test_results": {
+    "schema": "tgo.test-results.v1",
+    "results": {
+      "amd64": {
+        "tests": 22,
+        "passed": true,
+        "cases": [
+          "test_marker_capture_contains_real_samples (test_collect.HardwareROI.test_marker_capture_contains_real_samples) ... ok",
+          "test_actual_compiler_cpu_profiles_are_readable (test_gopgo.GoToolAdapter.test_actual_compiler_cpu_profiles_are_readable) ... ok",
+          "test_cache_identity_replaces_compiler_and_disable_uses_original (test_gopgo.GoToolAdapter.test_cache_identity_replaces_compiler_and_disable_uses_original) ... ok",
+          "test_entry_refreshes_namespace_stamps_after_hash_verified_replacement (test_gopgo.GoToolAdapter.test_entry_refreshes_namespace_stamps_after_hash_verified_replacement) ... ok",
+          "test_private_linker_reorders_final_elf_and_preserves_runtime_metadata (test_gopgo.GoToolAdapter.test_private_linker_reorders_final_elf_and_preserves_runtime_metadata) ... ok",
+          "test_sha256_matches_standard_implementation_across_padding_and_read_boundaries (test_identity.NativeContentIdentity.test_sha256_matches_standard_implementation_across_padding_and_read_boundaries) ... ok",
+          "test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects (test_optimize.ObjectFailureFallback.test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects) ... ok",
+          "test_failed_object_keeps_original_while_other_dso_is_really_redirected (test_optimize.ObjectFailureFallback.test_failed_object_keeps_original_while_other_dso_is_really_redirected) ... ok",
+          "test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure (test_optimize.ObjectFailureFallback.test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure) ... ok",
+          "test_build_timeout_kills_descendant_that_ignores_sigterm (test_process.ProcessCleanup.test_build_timeout_kills_descendant_that_ignores_sigterm) ... ok",
+          "test_identical_dsos_at_different_paths_keep_separate_profiles (test_profile.ProfileTests.test_identical_dsos_at_different_paths_keep_separate_profiles) ... ok",
+          "test_load_bias_and_truncation (test_profile.ProfileTests.test_load_bias_and_truncation) ... ok",
+          "test_absolute_dlopen_and_collision_and_origin (test_runtime.RuntimeTests.test_absolute_dlopen_and_collision_and_origin) ... ok",
+          "test_entry_carries_its_python_roi_helper (test_runtime.RuntimeTests.test_entry_carries_its_python_roi_helper) ... ok",
+          "test_entry_rejects_stale_image_identity_before_publication (test_runtime.RuntimeTests.test_entry_rejects_stale_image_identity_before_publication) ... ok",
+          "test_no_overwrite (test_runtime.RuntimeTests.test_no_overwrite) ... ok",
+          "test_virtualenv_executable_keeps_its_prefix (test_runtime.RuntimeTests.test_virtualenv_executable_keeps_its_prefix) ... ok",
+          "test_real_vllm_screening_noise_does_not_bypass_strict_confirmation (test_selection.SelectionPolicy.test_real_vllm_screening_noise_does_not_bypass_strict_confirmation) ... ok",
+          "test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed (test_tune.SubsetSelection.test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed) ... ok",
+          "test_hanging_candidate_stops_its_process_group_and_rejects (test_validate.ValidationTimeout.test_hanging_candidate_stops_its_process_group_and_rejects) ... ok",
+          "test_repeated_validation_preserves_each_rounds_raw_evidence (test_validate.ValidationTimeout.test_repeated_validation_preserves_each_rounds_raw_evidence) ... ok",
+          "test_standalone_roi_workload_gets_helper_for_both_validation_arms (test_validate.ValidationTimeout.test_standalone_roi_workload_gets_helper_for_both_validation_arms) ... ok"
+        ],
+        "log_sha256": "75f2efaf90545638686bfc6215cc82241ce80ea161a41f0a753013b34fb3bef5"
+      },
+      "aarch64": {
+        "tests": 22,
+        "passed": true,
+        "cases": [
+          "test_marker_capture_contains_real_samples (test_collect.HardwareROI.test_marker_capture_contains_real_samples) ... ok",
+          "test_actual_compiler_cpu_profiles_are_readable (test_gopgo.GoToolAdapter.test_actual_compiler_cpu_profiles_are_readable) ... ok",
+          "test_cache_identity_replaces_compiler_and_disable_uses_original (test_gopgo.GoToolAdapter.test_cache_identity_replaces_compiler_and_disable_uses_original) ... ok",
+          "test_entry_refreshes_namespace_stamps_after_hash_verified_replacement (test_gopgo.GoToolAdapter.test_entry_refreshes_namespace_stamps_after_hash_verified_replacement) ... ok",
+          "test_private_linker_reorders_final_elf_and_preserves_runtime_metadata (test_gopgo.GoToolAdapter.test_private_linker_reorders_final_elf_and_preserves_runtime_metadata) ... ok",
+          "test_sha256_matches_standard_implementation_across_padding_and_read_boundaries (test_identity.NativeContentIdentity.test_sha256_matches_standard_implementation_across_padding_and_read_boundaries) ... ok",
+          "test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects (test_optimize.ObjectFailureFallback.test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects) ... ok",
+          "test_failed_object_keeps_original_while_other_dso_is_really_redirected (test_optimize.ObjectFailureFallback.test_failed_object_keeps_original_while_other_dso_is_really_redirected) ... ok",
+          "test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure (test_optimize.ObjectFailureFallback.test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure) ... ok",
+          "test_build_timeout_kills_descendant_that_ignores_sigterm (test_process.ProcessCleanup.test_build_timeout_kills_descendant_that_ignores_sigterm) ... ok",
+          "test_identical_dsos_at_different_paths_keep_separate_profiles (test_profile.ProfileTests.test_identical_dsos_at_different_paths_keep_separate_profiles) ... ok",
+          "test_load_bias_and_truncation (test_profile.ProfileTests.test_load_bias_and_truncation) ... ok",
+          "test_absolute_dlopen_and_collision_and_origin (test_runtime.RuntimeTests.test_absolute_dlopen_and_collision_and_origin) ... ok",
+          "test_entry_carries_its_python_roi_helper (test_runtime.RuntimeTests.test_entry_carries_its_python_roi_helper) ... ok",
+          "test_entry_rejects_stale_image_identity_before_publication (test_runtime.RuntimeTests.test_entry_rejects_stale_image_identity_before_publication) ... ok",
+          "test_no_overwrite (test_runtime.RuntimeTests.test_no_overwrite) ... ok",
+          "test_virtualenv_executable_keeps_its_prefix (test_runtime.RuntimeTests.test_virtualenv_executable_keeps_its_prefix) ... ok",
+          "test_real_vllm_screening_noise_does_not_bypass_strict_confirmation (test_selection.SelectionPolicy.test_real_vllm_screening_noise_does_not_bypass_strict_confirmation) ... ok",
+          "test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed (test_tune.SubsetSelection.test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed) ... ok",
+          "test_hanging_candidate_stops_its_process_group_and_rejects (test_validate.ValidationTimeout.test_hanging_candidate_stops_its_process_group_and_rejects) ... ok",
+          "test_repeated_validation_preserves_each_rounds_raw_evidence (test_validate.ValidationTimeout.test_repeated_validation_preserves_each_rounds_raw_evidence) ... ok",
+          "test_standalone_roi_workload_gets_helper_for_both_validation_arms (test_validate.ValidationTimeout.test_standalone_roi_workload_gets_helper_for_both_validation_arms) ... ok"
+        ],
+        "log_sha256": "126228a0a58c2f6137bc94c50b09a3414b069dbc4d697c5a09edd58db764eb57"
+      }
+    }
+  },
+  "native_helper_sha256": {
+    "launcher": "f0378986a94f001dcd99766ecd40b53cac27a12720dc8da6af512eb5e7c55c6c",
+    "go-tool": "75b5b0a7f6a84e0037be1f8a6425037d9c0c22fbf4825014ce1ab9246be64ee5",
+    "libtgo_roi.so": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+    "libtgo_audit.so": "baa036cd7e089a2aa316bd701a575583dce432a071a613e7addb698b9d9320b7"
+  }
+}

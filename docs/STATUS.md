@@ -1,7 +1,8 @@
 # 当前工作状态（2026-10-29）
 
-Goal 保持 active。0.2.0 已构建并通过分发验证。vLLM 三库候选通过独立五对确认，
-decode ROI 中位数减少 3.68%；Go compiler 策略已实现，尚无稳定 Go 收益。
+Goal 保持 active。0.3.0 已完成自动后端/选库/子集回退和分发验证。复用已验证 ROI
+画像时，自动选择 vLLM 三库并独立五对确认，decode ROI 中位数减少 4.74%；
+从头采集的另一份画像未找到稳定收益并保留原版。Go 尚无稳定收益。
 
 主仓库在 `920B-47:~/projects/trace-guided-optimization`，本地同名目录通过 Git 推送
 到远端工作区。没有修改 a3 网络、既有实验源码或原负载 ELF。
@@ -24,13 +25,18 @@ decode ROI 中位数减少 3.68%；Go compiler 策略已实现，尚无稳定 Go
   Go build cache 身份均被检查。详见 `docs/GO-COMPILER.md`。
 - 可选 AArch64 recovery BOLT：完整补丁已纳入仓库，使用独立源码/构建/安装目录，
   通过 `bootstrap.py --components llvm --llvm-variant recover` 自动构建。
+- 实测事件权限后优先 SPE，其次 perf，再其次 QEMU；按每库元数据自动选择 BOLT
+  策略。单库失败保留原版；整组无收益或输出失败时探测子集并复用已生成对象。
+  初筛按中位数排序，独立确认仍要求逐对超过门槛。每轮原始证据分别保留。
+- TGOCFG02 入口包含 SHA256：元数据变化时验证内容，兼容同镜像新容器的 overlay
+  设备号/inode 变化。Go helper 同步支持内容身份，避免逐 compiler 重复哈希。
 
-当前分发文件位于远端 `dist/0.2.0/tgo-0.2.0-aarch64.AppImage`，约 115 MiB。
+当前分发文件位于远端 `dist/0.3.0-final/tgo-0.3.0-aarch64.AppImage`，约 115 MiB。
 它携带自建工具和 Python，已验证无 FUSE 启动及完整调优流程。生成的入口随后可
 独立执行，原解释器入口保持原状。源码版本和实际依赖在包内 `package-manifest.json`。
-SHA256：`90277f8188a7a35f7550bf1eef8cb8230b69a1464e7ce46403635305b6f7d20a`。
-运行时代码提交 `99399c9`，包内有全部构建输入的 SHA256，并在构建期间检查源文件漂移。
-旧 alpha 仍保留在 `dist/alpha-0.1.0/`。
+SHA256：`a766757f7f31c38358355c068da7eaf762825c71c860ba0e947f273a9d0bed98`。
+运行时代码提交 `880edbe`，包内有全部构建输入的 SHA256，并在构建期间检查源文件漂移。
+旧 alpha 和 0.2.0 均保留。
 
 原始运行目录、失败证据和构建日志留在远端 `runs/`、`.tgo-cache/`、`deps/`，
 不纳入 Git。小型验证 JSON 放入仓库 `evidence/2026-10-29/`。
@@ -51,6 +57,12 @@ SHA256：`90277f8188a7a35f7550bf1eef8cb8230b69a1464e7ce46403635305b6f7d20a`。
 | vLLM retired-branch SPE | `runs/vllm-spe-retired-r1` | ROI 画像已采集 |
 | vLLM 三库 recovery | `runs/vllm-spe-retired-multi-r1` | 独立五对确认 3.68%，范围 2.50%～6.41% |
 | Go AppImage 功能 smoke | `runs/appimage-go-smoke-0.2.0` | 无 C 编译器、显式 SDK、项目外入口均通过 |
+| 自动选库 / vLLM 画像复用 | `runs/vllm-auto-tune-r1` | 自动三库 recovery；独立五对 4.74%，2.92%～7.56% |
+| AppImage 从头采集 vLLM | `runs/vllm-appimage-auto-r1` | 自动 SPE、三库及六个子集；无稳定收益，保留原版 |
+| AppImage 自动采集 / 原生前端 | `runs/appimage-native-auto-r1` | 自动 SPE 和三种布局；独立五对 56.55% |
+| 最终内容身份入口 / 原生前端 | `runs/appimage-native-abi2-r1` | 独立五对 56.85%，56.01%～58.71% |
+| 最终发布包 / 原生前端 | `runs/appimage-native-0.3.0-final` | 独立五对 57.38%，56.43%～58.71% |
+| 最终 Go AppImage smoke | `runs/appimage-go-smoke-0.3.0-final` | 无 C 编译器及项目外入口通过 |
 
 最终 alpha 还完成了 `runs/appimage-alpha-r1`：从 PATH 移除编译器和系统 Python，
 只保留基本 shell 工具，用分发文件完成端到端调优。之后在项目外的 `/tmp` 执行
@@ -65,14 +77,21 @@ Go runtime r1 曾因整包中存在特殊 text 符号而跳过 runtime，不能�
 的性能结论。r2 改为固定特殊符号位置、只调整普通 Go STEXT，并强制检查 runtime
 匹配与最终 ELF 地址；原 r1 证据保留。
 
+0.3.0 本地及 ARM 各 22 项测试通过，包括错误 DSO 的真实加载隔离、源漂移拒绝、
+每轮证据保留、超时后代进程清理，以及原生 SHA256 与标准实现的边界向量比较。
+相邻入口已在新容器中挂载到 `/usr/local/python3.12.13/bin/python3.tgo`，实际加载
+已确认的三库并通过 token 校验；测试从 `/tmp` 运行、bundle 只读、未调用 AppImage。
+对应新入口为 `runs/vllm-auto-tune-r1/portable-entry/python3.tgo`，其优化 DSO 未改变。
+小型证据集中在 `evidence/2026-10-29/auto-0.3.0/`。
+
 后续优先任务：
 
 1. 继续寻找 Go 编译负载的稳定收益。实际 runtime 布局和分发验证已完成，ARM r2
    三对均回退；本地 x86-64 中位数虽正，但有一对回退，均自动保留原版。
-2. vLLM 自动多库选择与泛化。三库 recovery 已有独立确认收益，但当前获益组合仍
-   显式指定。继续处理多库组合、strip 恢复、Python 源码 PGO，以及自动选择策略；
-   不默认假设代码页安全。
-3. 自动后端/ROI 策略，更多 DSO 组合与失败回退，跨进程和混合 prefill/decode 适配。
-4. 跨机器 bundle 重绑定、较低 glibc 构建基线、x86 完整 BOLT/AppImage 实测与冷 SDK CI。
+2. 改善画像稳定性。自动选库已经完成，但新旧单次 ROI 画像会得到不同收益；下一步
+   合并多次训练画像并比较完整布局搜索，继续探索 Python 源码 PGO。
+3. 通用子进程主 ELF 的 exec adapter、静态程序/QEMU 主模块发现、跨进程和混合
+   prefill/decode ROI 适配。当前 Go compiler 有专用 adapter，其他子进程主 ELF 仍跳过。
+4. 跨路径 bundle 重绑定、较低 glibc 构建基线、x86 完整 BOLT/AppImage 实测与冷 SDK CI。
 
 不要重复创建 Goal。下一轮先读取当前 `get_goal` 和此状态，再继续尚未完成的工作。

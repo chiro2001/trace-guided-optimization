@@ -1,0 +1,63 @@
+{
+  "schema": "tgo.test-results.v1",
+  "results": {
+    "amd64": {
+      "tests": 22,
+      "passed": true,
+      "cases": [
+        "test_marker_capture_contains_real_samples (test_collect.HardwareROI.test_marker_capture_contains_real_samples) ... ok",
+        "test_actual_compiler_cpu_profiles_are_readable (test_gopgo.GoToolAdapter.test_actual_compiler_cpu_profiles_are_readable) ... ok",
+        "test_cache_identity_replaces_compiler_and_disable_uses_original (test_gopgo.GoToolAdapter.test_cache_identity_replaces_compiler_and_disable_uses_original) ... ok",
+        "test_entry_refreshes_namespace_stamps_after_hash_verified_replacement (test_gopgo.GoToolAdapter.test_entry_refreshes_namespace_stamps_after_hash_verified_replacement) ... ok",
+        "test_private_linker_reorders_final_elf_and_preserves_runtime_metadata (test_gopgo.GoToolAdapter.test_private_linker_reorders_final_elf_and_preserves_runtime_metadata) ... ok",
+        "test_sha256_matches_standard_implementation_across_padding_and_read_boundaries (test_identity.NativeContentIdentity.test_sha256_matches_standard_implementation_across_padding_and_read_boundaries) ... ok",
+        "test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects (test_optimize.ObjectFailureFallback.test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects) ... ok",
+        "test_failed_object_keeps_original_while_other_dso_is_really_redirected (test_optimize.ObjectFailureFallback.test_failed_object_keeps_original_while_other_dso_is_really_redirected) ... ok",
+        "test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure (test_optimize.ObjectFailureFallback.test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure) ... ok",
+        "test_build_timeout_kills_descendant_that_ignores_sigterm (test_process.ProcessCleanup.test_build_timeout_kills_descendant_that_ignores_sigterm) ... ok",
+        "test_identical_dsos_at_different_paths_keep_separate_profiles (test_profile.ProfileTests.test_identical_dsos_at_different_paths_keep_separate_profiles) ... ok",
+        "test_load_bias_and_truncation (test_profile.ProfileTests.test_load_bias_and_truncation) ... ok",
+        "test_absolute_dlopen_and_collision_and_origin (test_runtime.RuntimeTests.test_absolute_dlopen_and_collision_and_origin) ... ok",
+        "test_entry_carries_its_python_roi_helper (test_runtime.RuntimeTests.test_entry_carries_its_python_roi_helper) ... ok",
+        "test_entry_rejects_stale_image_identity_before_publication (test_runtime.RuntimeTests.test_entry_rejects_stale_image_identity_before_publication) ... ok",
+        "test_no_overwrite (test_runtime.RuntimeTests.test_no_overwrite) ... ok",
+        "test_virtualenv_executable_keeps_its_prefix (test_runtime.RuntimeTests.test_virtualenv_executable_keeps_its_prefix) ... ok",
+        "test_real_vllm_screening_noise_does_not_bypass_strict_confirmation (test_selection.SelectionPolicy.test_real_vllm_screening_noise_does_not_bypass_strict_confirmation) ... ok",
+        "test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed (test_tune.SubsetSelection.test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed) ... ok",
+        "test_hanging_candidate_stops_its_process_group_and_rejects (test_validate.ValidationTimeout.test_hanging_candidate_stops_its_process_group_and_rejects) ... ok",
+        "test_repeated_validation_preserves_each_rounds_raw_evidence (test_validate.ValidationTimeout.test_repeated_validation_preserves_each_rounds_raw_evidence) ... ok",
+        "test_standalone_roi_workload_gets_helper_for_both_validation_arms (test_validate.ValidationTimeout.test_standalone_roi_workload_gets_helper_for_both_validation_arms) ... ok"
+      ],
+      "log_sha256": "75f2efaf90545638686bfc6215cc82241ce80ea161a41f0a753013b34fb3bef5"
+    },
+    "aarch64": {
+      "tests": 22,
+      "passed": true,
+      "cases": [
+        "test_marker_capture_contains_real_samples (test_collect.HardwareROI.test_marker_capture_contains_real_samples) ... ok",
+        "test_actual_compiler_cpu_profiles_are_readable (test_gopgo.GoToolAdapter.test_actual_compiler_cpu_profiles_are_readable) ... ok",
+        "test_cache_identity_replaces_compiler_and_disable_uses_original (test_gopgo.GoToolAdapter.test_cache_identity_replaces_compiler_and_disable_uses_original) ... ok",
+        "test_entry_refreshes_namespace_stamps_after_hash_verified_replacement (test_gopgo.GoToolAdapter.test_entry_refreshes_namespace_stamps_after_hash_verified_replacement) ... ok",
+        "test_private_linker_reorders_final_elf_and_preserves_runtime_metadata (test_gopgo.GoToolAdapter.test_private_linker_reorders_final_elf_and_preserves_runtime_metadata) ... ok",
+        "test_sha256_matches_standard_implementation_across_padding_and_read_boundaries (test_identity.NativeContentIdentity.test_sha256_matches_standard_implementation_across_padding_and_read_boundaries) ... ok",
+        "test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects (test_optimize.ObjectFailureFallback.test_automatic_recovery_is_limited_to_arm64_nonreloc_shared_objects) ... ok",
+        "test_failed_object_keeps_original_while_other_dso_is_really_redirected (test_optimize.ObjectFailureFallback.test_failed_object_keeps_original_while_other_dso_is_really_redirected) ... ok",
+        "test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure (test_optimize.ObjectFailureFallback.test_source_drift_is_fatal_instead_of_being_treated_as_an_object_failure) ... ok",
+        "test_build_timeout_kills_descendant_that_ignores_sigterm (test_process.ProcessCleanup.test_build_timeout_kills_descendant_that_ignores_sigterm) ... ok",
+        "test_identical_dsos_at_different_paths_keep_separate_profiles (test_profile.ProfileTests.test_identical_dsos_at_different_paths_keep_separate_profiles) ... ok",
+        "test_load_bias_and_truncation (test_profile.ProfileTests.test_load_bias_and_truncation) ... ok",
+        "test_absolute_dlopen_and_collision_and_origin (test_runtime.RuntimeTests.test_absolute_dlopen_and_collision_and_origin) ... ok",
+        "test_entry_carries_its_python_roi_helper (test_runtime.RuntimeTests.test_entry_carries_its_python_roi_helper) ... ok",
+        "test_entry_rejects_stale_image_identity_before_publication (test_runtime.RuntimeTests.test_entry_rejects_stale_image_identity_before_publication) ... ok",
+        "test_no_overwrite (test_runtime.RuntimeTests.test_no_overwrite) ... ok",
+        "test_virtualenv_executable_keeps_its_prefix (test_runtime.RuntimeTests.test_virtualenv_executable_keeps_its_prefix) ... ok",
+        "test_real_vllm_screening_noise_does_not_bypass_strict_confirmation (test_selection.SelectionPolicy.test_real_vllm_screening_noise_does_not_bypass_strict_confirmation) ... ok",
+        "test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed (test_tune.SubsetSelection.test_bad_rewritten_library_is_isolated_and_safe_subset_is_confirmed) ... ok",
+        "test_hanging_candidate_stops_its_process_group_and_rejects (test_validate.ValidationTimeout.test_hanging_candidate_stops_its_process_group_and_rejects) ... ok",
+        "test_repeated_validation_preserves_each_rounds_raw_evidence (test_validate.ValidationTimeout.test_repeated_validation_preserves_each_rounds_raw_evidence) ... ok",
+        "test_standalone_roi_workload_gets_helper_for_both_validation_arms (test_validate.ValidationTimeout.test_standalone_roi_workload_gets_helper_for_both_validation_arms) ... ok"
+      ],
+      "log_sha256": "126228a0a58c2f6137bc94c50b09a3414b069dbc4d697c5a09edd58db764eb57"
+    }
+  }
+}
