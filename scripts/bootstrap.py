@@ -41,9 +41,12 @@ def fetch(name, prefix):
     return dest
 
 
-def unpack(name, prefix):
+def unpack(name, prefix, namespace=None):
     archive = fetch(name, prefix)
-    sources = prefix / "sources"; sources.mkdir(parents=True, exist_ok=True)
+    sources = prefix / "sources"
+    if namespace:
+        sources /= namespace
+    sources.mkdir(parents=True, exist_ok=True)
     with tarfile.open(archive) as tar:
         top = tar.getmembers()[0].name.split("/")[0]
         dest = sources / top
@@ -78,6 +81,8 @@ def main():
     p.add_argument("--components", nargs="+", choices=["llvm", "qemu", "python", "go", "glib", "libffi", "zlib", "elfutils", "perf", "patchelf", "appimagetool"], default=["llvm", "qemu", "perf", "patchelf", "python"])
     p.add_argument("--jobs", type=int, default=min(os.cpu_count() or 1, 8))
     p.add_argument("--download-only", action="store_true")
+    p.add_argument("--llvm-variant", choices=["pages", "recover"], default="pages",
+                   help="recover builds an additional isolated AArch64 relocation recovery tool")
     a = p.parse_args()
     a.prefix = a.prefix.resolve(); a.prefix.mkdir(parents=True, exist_ok=True)
     install = a.prefix / "install"; (install / "bin").mkdir(parents=True, exist_ok=True)
@@ -133,12 +138,13 @@ def main():
                 raise ValueError("private Go entry already exists and is not a managed symlink")
             binary.symlink_to(Path("..") / target.name / "bin/go")
             continue
-        source = unpack(component, a.prefix)
-        build = a.prefix / "build" / component
+        recovery = component == "llvm" and a.llvm_variant == "recover"
+        source = unpack(component, a.prefix, "llvm-recover" if recovery else None)
+        build = a.prefix / "build" / ("llvm-recover" if recovery else component)
         build.parent.mkdir(parents=True, exist_ok=True)
         if component == "llvm":
-            marker = source / ".tgo-pages-patch"
-            patch = ROOT / "patches/bolt22-aarch64-pages.patch"
+            marker = source / (".tgo-recover-patch" if recovery else ".tgo-pages-patch")
+            patch = ROOT / "patches" / ("bolt22-aarch64-recover.patch" if recovery else "bolt22-aarch64-pages.patch")
             if not marker.exists():
                 execute(["patch", "-p1", "-i", patch], cwd=source)
                 marker.write_text(sha256(patch))
@@ -151,9 +157,11 @@ def main():
                      "-DLLVM_INCLUDE_EXAMPLES=OFF", "-DLLVM_ENABLE_ZLIB=OFF", "-DLLVM_ENABLE_ZSTD=OFF",
                      "-DLLVM_ENABLE_LIBXML2=OFF", "-DLLVM_ENABLE_CURL=OFF", "-DLLVM_ENABLE_LIBEDIT=OFF"], env=env)
             execute(["cmake", "--build", build, "--target", "llvm-bolt", "merge-fdata", "-j", a.jobs], env=env)
+            target_bin = install / "recover/bin" if recovery else install / "bin"
+            target_bin.mkdir(parents=True, exist_ok=True)
             for name in ("llvm-bolt", "merge-fdata"):
-                shutil.copy2(build / "bin" / name, install / "bin" / name)
-            p2b = install / "bin/perf2bolt"
+                shutil.copy2(build / "bin" / name, target_bin / name)
+            p2b = target_bin / "perf2bolt"
             if not p2b.exists():
                 p2b.symlink_to("llvm-bolt")
         elif component == "zlib":
@@ -223,6 +231,8 @@ def main():
             execute(["make", "-j", a.jobs], cwd=build, env=env)
             execute(["make", "install"], cwd=build, env=env)
     write_json(a.prefix / "build-manifest.json", {"components": components,
+               "llvm_variant": a.llvm_variant,
+               "patches": {p.name: sha256(p) for p in (ROOT / "patches").glob("*.patch")},
                "lock_sha256": sha256(ROOT / "dependencies.lock.json"),
                "binaries": {p.name: sha256(p) for p in (install / "bin").iterdir() if p.is_file()}})
 

@@ -1,0 +1,676 @@
+--- a/bolt/include/bolt/Core/BinaryBasicBlock.h
++++ b/bolt/include/bolt/Core/BinaryBasicBlock.h
+@@ -671,11 +671,10 @@
+ 
+   bool isSplit() const { return Fragment != FragmentNum::main(); }
+ 
+-  bool isCold() const {
+-    assert(Fragment.get() < 2 &&
+-           "Function is split into more than two (hot/cold)-fragments");
+-    return isSplit();
+-  }
++  // LongJmp uses isCold() as the generic predicate for all outlined
++  // fragments. Compact relocation mode can therefore place warm and
++  // per-block fragments contiguously after the main fragment.
++  bool isCold() const { return isSplit(); }
+ 
+   void setIsCold(const bool Flag) {
+     Fragment = Flag ? FragmentNum::cold() : FragmentNum::main();
+--- a/bolt/lib/Core/BinaryFunction.cpp
++++ b/bolt/lib/Core/BinaryFunction.cpp
+@@ -56,6 +56,7 @@
+ 
+ namespace opts {
+ 
++extern cl::opt<bool> TraceRecoveredRelocs;
+ extern cl::OptionCategory BoltCategory;
+ extern cl::OptionCategory BoltOptCategory;
+ 
+@@ -1696,6 +1697,11 @@
+       BranchTargetSymbol =
+           BC.handleExternalBranchTarget(TargetAddress, *this, *TargetFunction);
+       if (!BranchTargetSymbol)
++        continue;
++      // ForcePatch preserves every recognized old entry as a branch to its
++      // new body. Leave original direct calls/branches using that entry, so
++      // an instruction patch never needs to grow a four-byte call in place.
++      if (opts::TraceRecoveredRelocs)
+         continue;
+     }
+ 
+@@ -4515,6 +4521,25 @@
+     }
+   }
+ 
++  if (!BC.HasRelocations && isSplit()) {
++    for (FunctionFragment &FF : getLayout().getSplitFragments()) {
++      if (FF.empty())
++        continue;
++      const MCSymbol *StartSymbol = getSymbol(FF.getFragmentNum());
++      assert(StartSymbol && StartSymbol->isDefined() &&
++             "split function should have a defined fragment symbol");
++      const auto StartSymbolInfo =
++          Linker.lookupSymbolInfo(StartSymbol->getName());
++      assert(StartSymbolInfo && "Cannot find split fragment symbol");
++      ErrorOr<BinarySection &> SplitSection =
++          getCodeSection(FF.getFragmentNum());
++      assert(SplitSection && "Cannot find split fragment section");
++      FF.setAddress(StartSymbolInfo->Address);
++      FF.setImageSize(StartSymbolInfo->Size);
++      SplitSection->setOutputAddress(FF.getAddress());
++    }
++  }
++
+   // Update basic block output ranges for the debug info, if we have
+   // secondary entry points in the symbol table to update or if writing BAT.
+   if (!requiresAddressMap())
+--- a/bolt/lib/Passes/AArch64RelaxationPass.cpp
++++ b/bolt/lib/Passes/AArch64RelaxationPass.cpp
+@@ -24,6 +24,10 @@
+     "aarch64-relaxation",
+     cl::desc("Replace ARM non-local ADR/LDR instructions with ADRP"),
+     cl::init(true), cl::cat(BoltCategory), cl::ReallyHidden);
++cl::opt<bool> AArch64NonRelocOpt(
++    "aarch64-relaxation-non-reloc",
++    cl::desc("Relax ADR/LDR in simple functions without retained relocations"),
++    cl::init(false), cl::cat(BoltCategory), cl::Hidden);
+ } // namespace opts
+ 
+ namespace llvm {
+@@ -104,10 +108,15 @@
+ }
+ 
+ Error AArch64RelaxationPass::runOnFunctions(BinaryContext &BC) {
+-  if (!opts::AArch64PassOpt || !BC.HasRelocations)
++  if (!opts::AArch64PassOpt ||
++      (!BC.HasRelocations && !opts::AArch64NonRelocOpt))
+     return Error::success();
+ 
+   ParallelUtilities::WorkFuncTy WorkFun = [&](BinaryFunction &BF) {
++    // Non-relocation mode only emits simple functions. Growing an instruction
++    // in a non-simple function could invalidate an unrecognized jump table.
++    if (!BC.HasRelocations && !BF.isSimple())
++      return;
+     runOnFunction(BF);
+   };
+ 
+--- a/bolt/lib/Passes/LongJmp.cpp
++++ b/bolt/lib/Passes/LongJmp.cpp
+@@ -26,6 +26,7 @@
+ extern cl::opt<unsigned> AlignFunctions;
+ extern cl::opt<bool> UseOldText;
+ extern cl::opt<bool> HotFunctionsAtEnd;
++extern cl::opt<bool> TraceTrampolineMode;
+ 
+ static cl::opt<bool> GroupStubs("group-stubs",
+                                 cl::desc("share stubs across functions"),
+@@ -310,9 +311,12 @@
+   for (BinaryFunction *Func : SortedFunctions) {
+     if (!Func->isSplit())
+       continue;
+-    DotAddress = alignTo(DotAddress, Func->getMinAlignment());
++    const uint64_t MinAlignment = Func->getMinAlignment();
++    const uint64_t FunctionAlignment =
++        std::max<uint64_t>(Func->getAlignment(), MinAlignment);
++    DotAddress = alignTo(DotAddress, MinAlignment);
+     uint64_t Pad =
+-        offsetToAlignment(DotAddress, llvm::Align(Func->getAlignment()));
++        offsetToAlignment(DotAddress, llvm::Align(FunctionAlignment));
+     if (Pad <= Func->getMaxColdAlignmentBytes())
+       DotAddress += Pad;
+     ColdAddresses[Func] = DotAddress;
+@@ -370,9 +374,12 @@
+     if (!ColdLayoutDone && CurrentIndex >= LastHotIndex)
+       runColdLayout();
+ 
+-    DotAddress = alignTo(DotAddress, Func->getMinAlignment());
++    const uint64_t MinAlignment = Func->getMinAlignment();
++    const uint64_t FunctionAlignment =
++        std::max<uint64_t>(Func->getAlignment(), MinAlignment);
++    DotAddress = alignTo(DotAddress, MinAlignment);
+     uint64_t Pad =
+-        offsetToAlignment(DotAddress, llvm::Align(Func->getAlignment()));
++        offsetToAlignment(DotAddress, llvm::Align(FunctionAlignment));
+     if (Pad <= Func->getMaxAlignmentBytes())
+       DotAddress += Pad;
+     HotAddresses[Func] = DotAddress;
+@@ -643,13 +650,17 @@
+       BinaryBasicBlock *InsertionPoint = &BB;
+       if (Func.isSimple() && !BC.MIB->isCall(Inst) && FrontierAddress &&
+           !BB.isCold()) {
+-        int BitsAvail = BC.MIB->getPCRelEncodingSize(Inst) - 1;
+-        uint64_t Mask = ~((1ULL << BitsAvail) - 1);
+-        assert(FrontierAddress > DotAddress &&
+-               "Hot code should be before the frontier");
+-        uint64_t PCRelTgt = FrontierAddress - DotAddress;
+-        if (!(PCRelTgt & Mask))
+-          InsertionPoint = Frontier;
++        // With per-basic-block fragments, fragment order is no longer
++        // monotonically increasing by hot-block address. When the frontier is
++        // behind the current block, keep the stub local instead of forming an
++        // invalid unsigned difference.
++        if (FrontierAddress > DotAddress) {
++          int BitsAvail = BC.MIB->getPCRelEncodingSize(Inst) - 1;
++          uint64_t Mask = ~((1ULL << BitsAvail) - 1);
++          uint64_t PCRelTgt = FrontierAddress - DotAddress;
++          if (!(PCRelTgt & Mask))
++            InsertionPoint = Frontier;
++        }
+       }
+       // Always put stubs at the end of the function if non-simple. We can't
+       // change the layout of non-simple functions because it has jump tables
+@@ -727,8 +738,10 @@
+     // Dynamically-updated size of the fragment.
+     uint64_t FragmentSize = CodeSize;
+ 
+-    // Size of the trampoline in bytes.
+-    constexpr uint64_t TrampolineSize = 4;
++    // AArch64 compact-mode trampolines expand to MOVZ/MOVK*3/BR (20 bytes).
++    // The legacy single-branch trampoline remains 4 bytes.
++    const uint64_t TrampolineSize =
++        opts::CompactCodeModel ? 20 : 4;
+ 
+     // Trampolines created for the fragment. DestinationBB -> TrampolineBB.
+     // NB: here we store only the first trampoline created for DestinationBB.
+@@ -745,11 +758,18 @@
+       BinaryBasicBlock *TrampolineBB = FunctionTrampolines.back().second.get();
+ 
+       MCInst Inst;
++      InstructionListType LongJmp;
+       {
+         auto L = BC.scopeLock();
+-        MIB->createUncondBranch(Inst, TargetBB->getLabel(), BC.Ctx.get());
+-      }
+-      TrampolineBB->addInstruction(Inst);
++        if (opts::CompactCodeModel)
++          MIB->createLongJmp(LongJmp, TargetBB->getLabel(), BC.Ctx.get());
++        else
++          MIB->createUncondBranch(Inst, TargetBB->getLabel(), BC.Ctx.get());
++      }
++      if (opts::CompactCodeModel)
++        TrampolineBB->addInstructions(LongJmp.begin(), LongJmp.end());
++      else
++        TrampolineBB->addInstruction(Inst);
+       TrampolineBB->addSuccessor(TargetBB, Count);
+       TrampolineBB->setExecutionCount(Count);
+       const uint64_t TrampolineAddress =
+@@ -889,16 +909,10 @@
+           if (!mayNeedStub(BF.getBinaryContext(), Inst))
+             continue;
+ 
+-          const size_t BitsAvailable = MIB->getPCRelEncodingSize(Inst);
+-
+-          // Span of +/-128MB.
+-          if (BitsAvailable == LongestJumpBits)
+-            continue;
+-
+           const MCSymbol *TargetSymbol = MIB->getTargetSymbol(Inst);
+           BinaryBasicBlock *TargetBB = BB->getSuccessor(TargetSymbol);
+-          assert(TargetBB &&
+-                 "Basic block target expected for conditional branch.");
++          if (!TargetBB)
++            continue;
+ 
+           // Check if the relaxation is needed.
+           if (TargetBB->getFragmentNum() == FF.getFragmentNum() &&
+@@ -946,7 +960,7 @@
+ 
+ Error LongJmpPass::runOnFunctions(BinaryContext &BC) {
+ 
+-  assert((opts::CompactCodeModel ||
++  assert((opts::CompactCodeModel || opts::TraceTrampolineMode ||
+           opts::SplitStrategy != opts::SplitFunctionsStrategy::CDSplit) &&
+          "LongJmp cannot work with functions split in more than two fragments");
+ 
+--- a/bolt/lib/Passes/SplitFunctions.cpp
++++ b/bolt/lib/Passes/SplitFunctions.cpp
+@@ -100,6 +100,10 @@
+     JumpPower("jump-power",
+               cl::desc("Jump score power (when --split-strategy=cdsplit)"),
+               cl::init(0.15), cl::ReallyHidden, cl::cat(BoltOptCategory));
++static cl::opt<uint64_t> SplitCountThreshold(
++    "pgo128-split-count-threshold",
++    cl::desc("outline blocks below this observed execution count"),
++    cl::init(0), cl::Hidden, cl::cat(BoltOptCategory));
+ } // namespace opts
+ 
+ namespace {
+@@ -124,7 +128,8 @@
+ 
+   void fragment(const BlockIt Start, const BlockIt End) override {
+     for (BinaryBasicBlock *const BB : llvm::make_range(Start, End)) {
+-      if (BB->getExecutionCount() == 0)
++      if (BB->getExecutionCount() == 0 ||
++          BB->getExecutionCount() < opts::SplitCountThreshold)
+         BB->setFragmentNum(FragmentNum::cold());
+     }
+   }
+--- a/bolt/lib/Rewrite/BinaryPassManager.cpp
++++ b/bolt/lib/Rewrite/BinaryPassManager.cpp
+@@ -40,6 +40,7 @@
+ #include "bolt/Passes/ValidateInternalCalls.h"
+ #include "bolt/Passes/ValidateMemRefs.h"
+ #include "bolt/Passes/VeneerElimination.h"
++#include "bolt/Passes/TracePCCounts.h"
+ #include "bolt/Utils/CommandLineOpts.h"
+ #include "llvm/Support/FormatVariadic.h"
+ #include "llvm/Support/Timer.h"
+@@ -377,6 +378,8 @@
+   Manager.registerPass(
+       std::make_unique<EstimateEdgeCounts>(PrintEstimateEdgeCounts));
+ 
++  Manager.registerPass(std::make_unique<TracePCCounts>());
++
+   Manager.registerPass(std::make_unique<DynoStatsSetPass>());
+ 
+   Manager.registerPass(std::make_unique<AsmDumpPass>(),
+--- a/bolt/lib/Rewrite/RewriteInstance.cpp
++++ b/bolt/lib/Rewrite/RewriteInstance.cpp
+@@ -7,6 +7,7 @@
+ //===----------------------------------------------------------------------===//
+ 
+ #include "bolt/Rewrite/RewriteInstance.h"
++#include "bolt/Rewrite/RecoverCodeRelocs.h"
+ #include "bolt/Core/AddressMap.h"
+ #include "bolt/Core/BinaryContext.h"
+ #include "bolt/Core/BinaryEmitter.h"
+@@ -76,7 +77,16 @@
+ extern cl::opt<bool> X86AlignBranchWithin32BBoundaries;
+ 
+ namespace opts {
+-
++cl::opt<bool> TraceRecoveredRelocs(
++    "pgo128-recover-code-relocs",
++    cl::desc("EXPERIMENTAL recover linked code address pairs and relocate function pointers"),
++    cl::init(false), cl::Hidden, cl::cat(BoltCategory));
++cl::opt<bool> TraceTrampolineMode(
++    "pgo128-trampoline-mode",
++    cl::desc("EXPERIMENTAL AArch64 cloning with patched original entries"),
++    cl::init(false), cl::Hidden, cl::cat(BoltCategory));
++
++extern cl::opt<bool> AArch64NonRelocOpt;
+ extern cl::list<std::string> HotTextMoveSections;
+ extern cl::opt<bool> Hugify;
+ extern cl::opt<bool> Instrument;
+@@ -763,6 +773,7 @@
+     return E;
+   adjustCommandLineOptions();
+   discoverFileObjects();
++  if (opts::TraceRecoveredRelocs) recoverTraceCodeRelocations(*BC);
+ 
+   if (opts::Instrument && !BC->IsStaticExecutable) {
+     if (Error E = discoverRtInitAddress())
+@@ -2232,7 +2243,18 @@
+     BC->printSections(BC->outs());
+   }
+ 
+-  if (opts::RelocationMode == cl::BOU_TRUE && !HasTextRelocations) {
++  if (opts::TraceRecoveredRelocs && !opts::TraceTrampolineMode) {
++    BC->errs() << "BOLT-ERROR: code recovery requires explicit trampoline mode\n";
++    exit(1);
++  }
++  if (opts::TraceTrampolineMode && (!BC->isAArch64() || !opts::ForcePatch ||
++                                    !opts::AArch64NonRelocOpt)) {
++    BC->errs() << "BOLT-ERROR: trampoline experiment requires AArch64, "
++                  "-force-patch and -aarch64-relaxation-non-reloc\n";
++    exit(1);
++  }
++  if (opts::RelocationMode == cl::BOU_TRUE && !HasTextRelocations &&
++      !opts::TraceTrampolineMode) {
+     BC->errs()
+         << "BOLT-ERROR: relocations against code are missing from the input "
+            "file. Cannot proceed in relocations mode (-relocs).\n";
+@@ -2240,7 +2262,8 @@
+   }
+ 
+   BC->HasRelocations =
+-      HasTextRelocations && (opts::RelocationMode != cl::BOU_FALSE);
++      (HasTextRelocations || opts::TraceTrampolineMode) &&
++      (opts::RelocationMode != cl::BOU_FALSE);
+ 
+   if (BC->IsLinuxKernel && BC->HasRelocations) {
+     BC->outs() << "BOLT-INFO: disabling relocation mode for Linux kernel\n";
+@@ -2302,7 +2325,8 @@
+   }
+ 
+   if (BC->isAArch64() && !opts::CompactCodeModel &&
+-      opts::SplitStrategy == opts::SplitFunctionsStrategy::CDSplit) {
++      opts::SplitStrategy == opts::SplitFunctionsStrategy::CDSplit &&
++      !opts::TraceTrampolineMode) {
+     BC->errs() << "BOLT-ERROR: CDSplit is not supported with LongJmp. Try with "
+                   "'--compact-code-model'\n";
+     exit(1);
+@@ -5318,6 +5342,17 @@
+     if (*SymbolName == "_end") {
+       if (NextAvailableAddress > Symbol.st_value)
+         updateSymbolValue(*SymbolName, NextAvailableAddress);
++      goto registerSymbol;
++    }
++
++    // Original entry addresses remain canonical for runtime function
++    // pointers. New direct calls can use clone labels, but dynsym and dynamic
++    // data relocations must agree with ADRP+ADD references in unmodified code.
++    if (IsDynSym && opts::TraceTrampolineMode && !opts::TraceRecoveredRelocs &&
++        Symbol.getType() == ELF::STT_FUNC &&
++        BC->getBinaryFunctionContainingAddress(Symbol.st_value)) {
++      if (Symbol.st_shndx < ELF::SHN_LORESERVE)
++        NewSymbol.st_shndx = getNewSectionIndex(Symbol.st_shndx);
+       goto registerSymbol;
+     }
+ 
+@@ -6064,6 +6099,8 @@
+ }
+ 
+ uint64_t RewriteInstance::getNewFunctionAddress(uint64_t OldAddress) {
++  if (opts::TraceTrampolineMode && !opts::TraceRecoveredRelocs && BC->getBinaryFunctionAtAddress(OldAddress))
++    return OldAddress;
+   const BinaryFunction *Function = BC->getBinaryFunctionAtAddress(OldAddress);
+   if (!Function)
+     return 0;
+@@ -6072,6 +6109,8 @@
+ }
+ 
+ uint64_t RewriteInstance::getNewFunctionOrDataAddress(uint64_t OldAddress) {
++  if (opts::TraceTrampolineMode && !opts::TraceRecoveredRelocs && BC->getBinaryFunctionContainingAddress(OldAddress))
++    return OldAddress;
+   if (uint64_t Function = getNewFunctionAddress(OldAddress))
+     return Function;
+ 
+--- a/bolt/lib/Target/AArch64/AArch64MCSymbolizer.cpp
++++ b/bolt/lib/Target/AArch64/AArch64MCSymbolizer.cpp
+@@ -13,6 +13,13 @@
+ #include "bolt/Core/Relocation.h"
+ #include "llvm/MC/MCInst.h"
+ #include "llvm/Support/Debug.h"
++#include "llvm/Support/CommandLine.h"
++
++namespace opts {
++extern llvm::cl::opt<bool> AArch64NonRelocOpt;
++extern llvm::cl::opt<bool> TraceTrampolineMode;
++extern llvm::cl::opt<bool> TraceRecoveredRelocs;
++}
+ 
+ #define DEBUG_TYPE "bolt-symbolizer"
+ 
+@@ -54,6 +61,35 @@
+ 
+     LLVM_DEBUG(dbgs() << "BOLT-DEBUG: ignoring relocation at 0x"
+                       << Twine::utohexstr(InstAddress) << '\n');
++  }
++
++  // Runtime function pointers retain original entries in trampoline mode.
++  // Literal ADR (including linker-relaxed NOP+ADR) must agree with dynamic
++  // data and ADRP+ADD materialization of the same function address.
++  if (opts::TraceTrampolineMode && !opts::TraceRecoveredRelocs && BC.MIB->isADR(Inst)) {
++    const uint64_t OriginalTarget = InstAddress + Value;
++    if (BC.getBinaryFunctionAtAddress(OriginalTarget)) {
++      const MCSymbol *Canonical = BC.registerNameAtAddress(
++          ("__PGO128_CANONICALat" + Twine::utohexstr(OriginalTarget)).str(),
++          OriginalTarget, 0, 0);
++      addOperand(Canonical, 0, ELF::R_AARCH64_ADR_PREL_LO21);
++      return true;
++    }
++  }
++
++  // In non-relocation mode data and original function entry addresses stay
++  // fixed, but cold fragments may move by multiple pages. Leaving ADRP's
++  // encoded page delta unchanged then silently changes its absolute target.
++  // Reconstruct that original page, without pretending that it identifies the
++  // full symbol referenced by the following ADD or load/store.
++  if ((!BC.HasRelocations || opts::TraceTrampolineMode) &&
++      opts::AArch64NonRelocOpt && BC.MIB->isADRP(Inst)) {
++    const uint64_t Page = (InstAddress & ~0xfffULL) + Value * 4096;
++    const MCSymbol *PageSymbol =
++        BC.registerNameAtAddress(("__PGO128_PAGEat"+Twine::utohexstr(Page)).str(),
++                                 Page, 0, 0);
++    addOperand(PageSymbol, 0, ELF::R_AARCH64_ADR_PREL_PG_HI21);
++    return true;
+   }
+ 
+   if (!BC.MIB->hasPCRelOperand(Inst))
+--- /dev/null
++++ b/bolt/include/bolt/Passes/TracePCCounts.h
+@@ -0,0 +1,81 @@
++// Private experimental pass for exact counts from a verified complete ROI.
++#ifndef BOLT_PASSES_TRACE_PC_COUNTS_H
++#define BOLT_PASSES_TRACE_PC_COUNTS_H
++#include "bolt/Passes/BinaryPasses.h"
++#include "llvm/ADT/DenseMap.h"
++#include <fstream>
++#include <map>
++#include <sstream>
++namespace opts {
++extern llvm::cl::OptionCategory BoltOptCategory;
++inline llvm::cl::opt<std::string> TracePCCountsFile(
++    "pgo128-exact-counts", llvm::cl::desc("Verified original-VA PC and edge counts"),
++    llvm::cl::init(""), llvm::cl::Hidden, llvm::cl::cat(BoltOptCategory));
++}
++namespace llvm { namespace bolt {
++class TracePCCounts : public BinaryFunctionPass {
++public:
++  TracePCCounts() : BinaryFunctionPass(false) {}
++  const char *getName() const override { return "verified trace PC counts"; }
++  Error runOnFunctions(BinaryContext &BC) override {
++    if (opts::TracePCCountsFile.empty()) return Error::success();
++    if (!BC.isAArch64()) return createFatalBOLTError("exact PC counts require AArch64");
++    std::ifstream In(opts::TracePCCountsFile.getValue());
++    if (!In) return createFatalBOLTError("cannot open exact PC counts");
++    DenseMap<uint64_t, uint64_t> PCs;
++    std::map<std::pair<uint64_t, uint64_t>, uint64_t> Edges;
++    std::string Line;
++    while (std::getline(In, Line)) {
++      std::istringstream S(Line); std::string Kind, A, B, Extra;
++      uint64_t From=0, To=0, Count=0;
++      if (!(S >> Kind >> A) || StringRef(A).getAsInteger(16, From))
++        return createFatalBOLTError("malformed exact PC count record");
++      if (Kind == "P") {
++        if (!(S >> Count) || (S >> Extra) || !Count || (From & 3) || PCs.count(From))
++          return createFatalBOLTError("invalid or duplicate PC count");
++        PCs[From] = Count;
++      } else if (Kind == "E") {
++        if (!(S >> B >> Count) || StringRef(B).getAsInteger(16, To) ||
++            (S >> Extra) || !Count || ((From | To) & 3) || Edges.count({From, To}))
++          return createFatalBOLTError("invalid or duplicate edge count");
++        Edges[{From, To}] = Count;
++      } else return createFatalBOLTError("unknown exact PC count record");
++    }
++    uint64_t Blocks=0, Observed=0, Rescued=0, EdgeRecords=0, Functions=0;
++    for (auto &Entry : BC.getBinaryFunctions()) {
++      BinaryFunction &BF=Entry.second;
++      if (!BF.isSimple() || BF.empty()) continue;
++      bool FunctionObserved=false;
++      for (BinaryBasicBlock &BB : BF) {
++        const uint64_t Start=BF.getAddress()+BB.getInputOffset();
++        const uint64_t Count=PCs.lookup(Start);
++        if (Count) {
++          ++Observed; FunctionObserved=true;
++          if (BB.getExecutionCount()==0) ++Rescued;
++        }
++        BB.setExecutionCount(Count); ++Blocks;
++        if (BB.getOriginalSize()<4) continue;
++        const uint64_t Last=BF.getAddress()+BB.getEndOffset()-4;
++        auto BI=BB.branch_info_begin();
++        for (BinaryBasicBlock *Succ : BB.successors()) {
++          const uint64_t Target=BF.getAddress()+Succ->getInputOffset();
++          auto E=Edges.find({Last,Target});
++          BI->Count=(E==Edges.end()) ? 0 : E->second;
++          if (E!=Edges.end()) ++EdgeRecords;
++          ++BI;
++        }
++      }
++      BF.setExecutionCount(PCs.lookup(BF.getAddress()));
++      BF.markProfiled(BinaryFunction::PF_BRANCH);
++      if (FunctionObserved) ++Functions;
++    }
++    BC.outs() << "PGO128-EXACT: " << PCs.size() << " PC records; "
++              << Edges.size() << " adjacent/call-return records; " << Functions
++              << " observed functions; " << Observed << "/" << Blocks
++              << " observed blocks; " << Rescued << " observed blocks previously zero; "
++              << EdgeRecords << " CFG edge counts imported\n";
++    return Error::success();
++  }
++};
++}}
++#endif
+--- /dev/null
++++ b/bolt/include/bolt/Rewrite/RecoverCodeRelocs.h
+@@ -0,0 +1,159 @@
++// Experimental recovery of linked AArch64 code-address materialization.
++#ifndef BOLT_REWRITE_RECOVER_CODE_RELOCS_H
++#define BOLT_REWRITE_RECOVER_CODE_RELOCS_H
++#include "bolt/Core/BinaryContext.h"
++#include "bolt/Core/BinaryFunction.h"
++#include "bolt/Core/MCPlusBuilder.h"
++#include "llvm/ADT/DenseSet.h"
++#include "llvm/MC/MCDisassembler/MCDisassembler.h"
++#include "llvm/MC/MCRegisterInfo.h"
++#include "llvm/Support/Endian.h"
++#include "llvm/Support/CommandLine.h"
++#include <algorithm>
++#include <set>
++#include <vector>
++namespace llvm { namespace bolt {
++static cl::opt<bool> PGO128AssumeCodePagesSafe(
++    "pgo128-assume-code-pages-safe",
++    cl::desc("do not retain code pages with unresolved ADRP arithmetic"),
++    cl::init(false), cl::Hidden);
++
++inline void recoverTraceCodeRelocations(BinaryContext &BC) {
++  uint64_t Pairs=0, RelaxedADRs=0, DataEntries=0, AmbiguousPages=0;
++  std::set<uint64_t> KeepPages, KeepFunctions;
++  DenseSet<uint64_t> InstructionEntries;
++  auto codeSymbol=[&](uint64_t Address)->MCSymbol* {
++    BinaryFunction *Target=BC.getBinaryFunctionContainingAddress(Address);
++    if (!Target || (Address & 3) || Target->isInConstantIsland(Address)) return nullptr;
++    const uint64_t Offset=Address-Target->getAddress();
++    return Offset ? Target->addEntryPointAtOffset(Offset) : Target->getSymbol();
++  };
++  auto isCode=[&](uint64_t Address) {
++    auto S=BC.getSectionForAddress(Address); return S && S->isText();
++  };
++  std::vector<std::pair<uint64_t,uint64_t>> TextRanges;
++  for (BinarySection &S : BC.allocatableSections())
++    if (S.isText() && S.getSize()) TextRanges.emplace_back(S.getAddress(),S.getAddress()+S.getSize());
++  auto isCodePage=[&](uint64_t Page) {
++    return llvm::any_of(TextRanges,[&](auto Range) {
++      return std::max(Page,Range.first)<std::min(Page+4096,Range.second);
++    });
++  };
++  auto immediate21=[](uint32_t Word) {
++    int64_t Imm=((Word>>5)&0x7ffff)*4+((Word>>29)&3);
++    return (Imm & 0x100000) ? Imm-0x200000 : Imm;
++  };
++  auto signedImmediate=[](uint64_t Value,unsigned Bits) {
++    return (Value & (1ULL<<(Bits-1))) ? int64_t(Value)-int64_t(1ULL<<Bits) : int64_t(Value);
++  };
++  // No recovered pair may require an instruction that an incoming branch or
++  // externally stored code address can bypass. This also guards NOP+ADR where
++  // the ADR itself is an old secondary entry.
++  for (auto &Item : BC.getBinaryFunctions()) {
++    BinaryFunction &BF=Item.second;InstructionEntries.insert(BF.getAddress());
++    if (BF.isPseudo() || !BF.getSize()) continue;
++    auto Raw=BF.getData();if (!Raw) continue;
++    const ArrayRef<uint8_t> Bytes=*Raw;
++    const uint64_t Size=std::min<uint64_t>(BF.getSize(),Bytes.size());
++    for (uint64_t Off=0;Off+4<=Size;Off+=4) {
++      const uint64_t Address=BF.getAddress()+Off;
++      if (BF.isInConstantIsland(Address)) continue;
++      const uint32_t Word=support::endian::read32le(Bytes.data()+Off);
++      if ((Word & 0x7c000000)==0x14000000)
++        InstructionEntries.insert(Address+signedImmediate(Word&0x3ffffff,26)*4);
++      else if ((Word & 0xff000010)==0x54000000 || (Word & 0x7e000000)==0x34000000)
++        InstructionEntries.insert(Address+signedImmediate((Word>>5)&0x7ffff,19)*4);
++      else if ((Word & 0x7e000000)==0x36000000)
++        InstructionEntries.insert(Address+signedImmediate((Word>>5)&0x3fff,14)*4);
++    }
++  }
++  // All relative code pointers in dynamic data need their secondary entry
++  // points registered before CFG construction and function reordering.
++  for (BinarySection &Section : BC.allocatableSections())
++    for (const Relocation &R : Section.dynamicRelocations()) {
++      if (R.Symbol || !R.isRelative()) continue;
++      if (isCode(R.Addend) && codeSymbol(R.Addend)) {
++        ++DataEntries;InstructionEntries.insert(R.Addend);
++      }
++    }
++  for (auto &Item : BC.getBinaryFunctions()) {
++    BinaryFunction &BF=Item.second;
++    if (BF.isPseudo() || !BF.getSize()) continue;
++    auto Raw=BF.getData(); if (!Raw) continue;
++    const ArrayRef<uint8_t> Bytes=*Raw;
++    const uint64_t Size=std::min<uint64_t>(BF.getSize(),Bytes.size());
++    for (uint64_t Off=0;Off+4<=Size;Off+=4) {
++      const uint64_t Address=BF.getAddress()+Off;
++      if (BF.isInConstantIsland(Address) || BF.getRelocationAt(Off)) continue;
++      const uint32_t Word=support::endian::read32le(Bytes.data()+Off);
++      if ((Word & 0x9f000000)==0x10000000) {
++        const uint64_t Target=Address+immediate21(Word);
++        if (!isCode(Target)) continue;
++        MCSymbol *Symbol=codeSymbol(Target); if (!Symbol) continue;
++        if (Off>=4 && !InstructionEntries.contains(Address) &&
++            support::endian::read32le(Bytes.data()+Off-4)==0xd503201f) {
++          // Represent the linker's NOP+ADR relaxation using its original low
++          // relocation. Symbolizer and scanExternalRefs already undo this pair.
++          BF.addRelocation(Address,Symbol,ELF::R_AARCH64_ADD_ABS_LO12_NC,0,Target);
++          ++RelaxedADRs;
++        } else if (auto *T=BC.getBinaryFunctionContainingAddress(Target);T && T!=&BF) {
++          // Original code with a bare ADR cannot grow an instruction in place.
++          KeepFunctions.insert(T->getAddress());
++        }
++        continue;
++      }
++      if ((Word & 0x9f000000)!=0x90000000) continue;
++      const uint64_t Page=(Address & ~0xfffULL)+immediate21(Word)*4096;
++      if (!isCodePage(Page)) continue;
++      MCInst PageInst;uint64_t InstSize=0;
++      if (!BC.DisAsm->getInstruction(PageInst,InstSize,Bytes.slice(Off),Address,nulls()) ||
++          !BC.MIB->isADRP(PageInst)) {KeepPages.insert(Page);continue;}
++      const MCPhysReg Base=PageInst.getOperand(0).getReg();
++      const BitVector &Aliases=BC.MIB->getAliases(Base);
++      bool Recovered=false;
++      for (uint64_t Next=Off+4;Next+4<=Size && Next<=Off+64;Next+=4) {
++        if (InstructionEntries.contains(BF.getAddress()+Next)) break;
++        if (BF.isInConstantIsland(BF.getAddress()+Next) || BF.getRelocationAt(Next)) break;
++        const uint32_t LowWord=support::endian::read32le(Bytes.data()+Next);
++        MCInst LowInst;uint64_t LowSize=0;
++        if (!BC.DisAsm->getInstruction(LowInst,LowSize,Bytes.slice(Next),BF.getAddress()+Next,nulls())) break;
++        if (BC.MIB->isBranch(LowInst) || BC.MIB->isCall(LowInst)) break;
++        if ((LowWord & 0xffc00000)==0x91000000 &&
++            (LowWord & 31)==(Word & 31) && ((LowWord>>5)&31)==(Word & 31)) {
++          const uint64_t Target=Page+((LowWord>>10)&4095);
++          if (MCSymbol *Symbol=codeSymbol(Target)) {
++            BF.addRelocation(Address,Symbol,ELF::R_AARCH64_ADR_PREL_PG_HI21,0,Target);
++            BF.addRelocation(BF.getAddress()+Next,Symbol,ELF::R_AARCH64_ADD_ABS_LO12_NC,0,Target);
++            ++Pairs;Recovered=true;
++          }
++          break;
++        }
++        BitVector Used(BC.MRI->getNumRegs()),Written(BC.MRI->getNumRegs());
++        BC.MIB->getUsedRegs(LowInst,Used);BC.MIB->getWrittenRegs(LowInst,Written);
++        Used &= Aliases;Written &= Aliases;
++        if (Used.any() || Written.any()) break;
++      }
++      if (!Recovered) KeepPages.insert(Page);
++    }
++  }
++  // Unresolved code-page references retain all affected input functions. This
++  // preserves address arithmetic rather than guessing a symbol from its page.
++  if (!PGO128AssumeCodePagesSafe) {
++    for (uint64_t Page : KeepPages) {
++      ++AmbiguousPages;
++      auto It=BC.getBinaryFunctions().lower_bound(Page);
++      if (It!=BC.getBinaryFunctions().begin()) --It;
++      for (;It!=BC.getBinaryFunctions().end() && It->first<Page+4096;++It)
++        if (It->second.getAddress()+It->second.getSize()>Page)
++          KeepFunctions.insert(It->first);
++    }
++  }
++  for (uint64_t Address : KeepFunctions)
++    if (auto *BF=BC.getBinaryFunctionAtAddress(Address)) BF->setIgnored();
++  BC.outs()<<"PGO128-RECOVER: "<<Pairs<<" ADRP+ADD pairs; "<<RelaxedADRs
++           <<" NOP+ADR pairs; "<<DataEntries<<" dynamic code pointers; "
++           <<AmbiguousPages<<" ambiguous pages; "<<KeepFunctions.size()
++           <<" functions retained at original addresses\n";
++}
++}}
++#endif

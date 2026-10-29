@@ -36,7 +36,7 @@ def main():
     explicit = dict(s.split("=", 1) for s in a.tool)
     required = ("llvm-bolt", "qemu-" + platform.machine(), "patchelf")
     executables = {n: tool(n, explicit.get(n)) for n in required}
-    for n in ("perf", "merge-fdata"):
+    for n in ("perf", "merge-fdata", "llvm-bolt-recover"):
         found = tool(n, explicit.get(n), required=False)
         if found:
             executables[n] = found
@@ -119,6 +119,8 @@ def main():
         wrapper = binpath / name
         wrapper.write_text('#!/bin/sh\nTGO_TOOL_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/../tools/' + name + '/bin" && pwd)\nexec "$TGO_TOOL_DIR/' + name + '" "$@"\n')
         wrapper.chmod(0o755)
+        if name == "llvm-bolt-recover":
+            (private / "bin/perf2bolt").symlink_to(name)
     (app / "usr/tools/llvm-bolt/bin/perf2bolt").symlink_to("llvm-bolt")
     (binpath / "perf2bolt").write_text('#!/bin/sh\nTGO_TOOL_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/../tools/llvm-bolt/bin" && pwd)\nexec "$TGO_TOOL_DIR/perf2bolt" "$@"\n')
     (binpath / "perf2bolt").chmod(0o755)
@@ -149,6 +151,9 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
     notices.mkdir(parents=True)
     source_root = ROOT / "deps/sources"
     source_dirs = list(source_root.iterdir()) if source_root.exists() else []
+    recovery_sources = source_root / "llvm-recover"
+    if recovery_sources.is_dir():
+        source_dirs += [p for p in recovery_sources.iterdir() if p.is_dir()]
     for tree in list(source_dirs):
         sub = tree / "subprojects"
         if sub.is_dir():
@@ -167,6 +172,7 @@ exec "$TGO_APPDIR/usr/bin/python3" -m tgo "$@"
             manifest["license_files"].append(str(target.relative_to(app)))
     if (ROOT / "docs/THIRD_PARTY.md").exists():
         shutil.copy2(ROOT / "docs/THIRD_PARTY.md", app / "THIRD_PARTY.md")
+    shutil.copytree(ROOT / "patches", app / "usr/share/doc/tgo/patches")
     manifest["glibc_build_host"] = subprocess.check_output(["ldd", "--version"], text=True).splitlines()[0]
     write_json(app / "package-manifest.json", manifest)
     subprocess.run([apprun, "--help"], check=True)

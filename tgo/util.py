@@ -46,6 +46,8 @@ def tool(name, override=None, required=True):
     if os.environ.get("TGO_TOOL_ROOT"):
         private = "llvm-bolt" if name == "perf2bolt" else name
         candidates += [Path(os.environ["TGO_TOOL_ROOT"]) / private / "bin" / name]
+    if name == "llvm-bolt-recover":
+        candidates += [root / "deps/install/recover/bin/llvm-bolt"]
     candidates += [root / "deps/install/bin" / name, shutil.which(name)]
     for p in candidates:
         if p and Path(p).is_file() and os.access(p, os.X_OK):

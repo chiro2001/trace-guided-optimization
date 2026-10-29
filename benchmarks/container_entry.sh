@@ -6,10 +6,12 @@ set -eu
 : "${TGO_PYTHON:=/usr/local/python3.12.13/bin/python3}"
 case "${TGO_CONTAINER_ACTION:-record}" in
 record)
+    set -- -- "$TGO_PYTHON" "$@"
+    if [ -n "${TGO_EVENT-}" ]; then set -- --event "$TGO_EVENT" "$@"; fi
     exec "$TGO_APP" record -o "$TGO_RUN" --backend "${TGO_BACKEND:-perf}" \
         --roi marker --frequency "${TGO_FREQUENCY:-9999}" --timeout 600 \
         --env "LD_PRELOAD=${LD_PRELOAD-}" --env "LD_LIBRARY_PATH=${LD_LIBRARY_PATH-}" \
-        --env "PYTHONPATH=${PYTHONPATH-}" -- "$TGO_PYTHON" "$@"
+        --env "PYTHONPATH=${PYTHONPATH-}" "$@"
     ;;
 optimize|tune)
     : "${TGO_BUNDLE:?set a new output bundle directory}"
@@ -17,6 +19,7 @@ optimize|tune)
     if [ "$TGO_CONTAINER_ACTION" = tune ]; then TGO_DEFAULT_PAIRS=5; fi
     exec "$TGO_APP" "$TGO_CONTAINER_ACTION" --run "$TGO_RUN" -o "$TGO_BUNDLE" \
         --image "${TGO_IMAGE_FILTER:-libpython3.12.so.1.0}" \
+        --bolt-mode "${TGO_BOLT_MODE:-standard}" \
         --entry-mode executable --metric decode --validate "${TGO_VALIDATE_PAIRS:-$TGO_DEFAULT_PAIRS}" --timeout 600
     ;;
 *) echo "unknown TGO_CONTAINER_ACTION" >&2; exit 2 ;;

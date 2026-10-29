@@ -36,9 +36,9 @@ def optimize(args):
     out = Path(args.output).absolute()
     out.mkdir(parents=True, exist_ok=False)
     build_runtime(out)
-    bolt = tool("llvm-bolt", args.bolt)
-    p2b = tool("perf2bolt", args.perf2bolt or str(Path(bolt).with_name("perf2bolt")))
     recover = args.bolt_mode == "recover"
+    bolt = tool("llvm-bolt-recover" if recover else "llvm-bolt", args.bolt)
+    p2b = tool("perf2bolt", args.perf2bolt or str(Path(bolt).with_name("perf2bolt")))
     recovery = ["-relocs", "-force-patch", "-pgo128-trampoline-mode", "-pgo128-recover-code-relocs",
                 "-aarch64-relaxation-non-reloc"] if recover else []
     if recover:
