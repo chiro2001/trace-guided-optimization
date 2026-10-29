@@ -1,6 +1,7 @@
 # 当前工作状态（2026-10-29）
 
-Goal 保持 active。当前是已实现并实测的 alpha，尚未完成 Go 编译优化和所有负载适配。
+Goal 保持 active。当前正在从 alpha 推进到 0.2.0：Go compiler 策略已实现，尚无
+稳定 Go/vLLM 收益；新 AppImage 正在构建验证，未宣称所有负载适配完成。
 
 主仓库在 `920B-47:~/projects/trace-guided-optimization`，本地同名目录通过 Git 推送
 到远端工作区。没有修改 a3 网络、既有实验源码或原负载 ELF。
@@ -17,6 +18,12 @@ Goal 保持 active。当前是已实现并实测的 alpha，尚未完成 Go 编�
   以及私有 GLib、libelf 等 SDK 依赖；单个 AArch64 AppImage。
 - perf SPE 的 dlfilter 兼容桥：源/目标地址来自解码器，指令字来自 mmap 感知的
   object-code API。缺失的预测位明确保持未知。
+- Go compiler CPU profile、原生 toolexec、PGO/紧凑内联/对齐/混合画像、包内函数布局，
+  以及可选 runtime Go 函数布局；保持 Go linker 生成全部 PC/栈/GC metadata。
+  验证记录实际 compiler 执行、独立 cache、预热、输出和最终函数地址；版本漂移及
+  Go build cache 身份均被检查。详见 `docs/GO-COMPILER.md`。
+- 可选 AArch64 recovery BOLT：完整补丁已纳入仓库，使用独立源码/构建/安装目录，
+  通过 `bootstrap.py --components llvm --llvm-variant recover` 自动构建。
 
 当前分发文件位于远端 `dist/alpha-0.1.0/tgo-0.1.0-aarch64.AppImage`，约 91 MiB。
 它携带自建工具和 Python，已验证无 FUSE 启动及完整调优流程。生成的入口随后可
@@ -35,6 +42,10 @@ Goal 保持 active。当前是已实现并实测的 alpha，尚未完成 Go 编�
 | vLLM SPE / libpython 单候选 | `runs/vllm-spe-bolt-r1` | 正确性通过，性能回退，不推荐 |
 | vLLM SPE 多布局搜索 | `runs/vllm-spe-tune-r1` | 三种布局未通过收益门槛，自动选择原版 |
 | vLLM QEMU | `runs/vllm-qemu-r1` | 600 秒内未进入 ROI，超时退出 |
+| Go PGO / 紧凑内联 / 对齐 | `runs/go-compiler-arm-r2` | 均正确，三对筛选无稳定收益，保留原版 |
+| Go 包内函数布局 | `runs/go-compiler-arm-layout-r1` | 最终 ELF 地址与语义检查通过，无收益 |
+| Go runtime 函数布局 | `runs/go-compiler-arm-layout-runtime-r1` | 正在筛选 |
+| vLLM retired-branch SPE | `runs/vllm-spe-retired-r1` | 新 ROI 画像已采集，等待 recovery 工具复测 |
 
 最终 alpha 还完成了 `runs/appimage-alpha-r1`：从 PATH 移除编译器和系统 Python，
 只保留基本 shell 工具，用分发文件完成端到端调优。之后在项目外的 `/tmp` 执行
@@ -42,10 +53,8 @@ Goal 保持 active。当前是已实现并实测的 alpha，尚未完成 Go 编�
 
 后续优先任务：
 
-1. Go 编译优化。已实际采集 Go 编译进程树，compiler 占约 77.6% cycles 样本；
-   当前策略主动跳过 Go PC/栈元数据。优先实现 metadata 安全的 Go PGO/toolchain
-   adapter：原编译负载训练 compiler CPU profile，合并画像，私有重编译 `cmd/compile`，
-   通过原生 toolexec 和相邻 Go 入口重放。不能直接 BOLT 静态 Go 后宣称正确。
+1. 完成 Go runtime 布局筛选与 0.2.0 AppImage 无 C 编译器环境验证。Go 实现已通过
+   本地和 ARM 的集成测试；未把编译成功或局部正收益当作独立确认结果。
 2. vLLM 获益与泛化。比较紧凑布局，处理原 Python 缺少重定位和热 DSO 缺少符号的
    能力边界；可参考旧 BPU 的恢复/重编译经验，但须独立验证，不默认假设代码页安全。
 3. 自动后端/ROI 策略，更多 DSO 组合与失败回退，跨进程和混合 prefill/decode 适配。

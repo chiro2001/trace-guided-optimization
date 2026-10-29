@@ -32,10 +32,19 @@ python3 -m tgo tune -o runs/native --roi marker --metric decode \
 应由 perf 启动该脚本，以覆盖 `go` 和实际 compiler/assembler/linker 子进程。
 同一个用户、同一工具链、相同缓存策略是比较前提。
 
-当前可采集和识别 Go 热点，但 Go 的 pclntab、pcsp、栈映射、GC 安全点与指令位置
-绑定。当前 BOLT 策略没有更新这些结构，因此明确跳过 Go ELF；不会输出看似可运行
-却在栈回溯/GC 时可能错误的 Go 候选。后续工作应验证 Go-aware 重写或源代码 PGO
-策略。该限制意味着尚未实现“所有任意负载均能获益”。
+`tune --strategy go-compiler` 会自动为 compiler 子进程记录 CPU profile，私有重建
+compiler，并搜索 PGO/内联/对齐/混合画像及包内函数布局。布局由 Go linker 在生成
+PC/栈/GC metadata 之前完成。验证证明实际执行候选 compiler，默认冷缓存与两对
+不计入结果的预热。可复用完整捕获的 `capture`，不必重跑训练。
+
+```sh
+python3 -m tgo tune --strategy go-compiler --go deps/install/bin/go \
+  -o runs/go-compile --timeout 900 -- sh benchmarks/go_compile.sh
+```
+
+完整 SDK 含源码是前提；一般 Go 应用的二进制后处理仍被 BOLT 策略跳过。当前 ARM
+编译测试中已实现链路和正确性检查，但尚未确认稳定收益，不能把“生成了 compiler”
+当成性能结论。详见 [Go compiler](GO-COMPILER.md)。
 
 ## vLLM decode
 

@@ -1,0 +1,222 @@
+{
+  "schema": "tgo.tune.v1",
+  "strategy": "go-compiler-pgo",
+  "selected": "baseline",
+  "toolchain": {
+    "CGO_ENABLED": "1",
+    "GOARCH": "amd64",
+    "GOEXPERIMENT": "nodwarf5",
+    "GOHOSTARCH": "amd64",
+    "GOHOSTOS": "linux",
+    "GOOS": "linux",
+    "GOROOT": "/usr/lib/go",
+    "GOTOOLDIR": "/usr/lib/go/pkg/tool/linux_amd64",
+    "GOVERSION": "go1.27.3-X:nodwarf5"
+  },
+  "go": {
+    "path": "/usr/bin/go",
+    "sha256": "21401c8d2dae2e6db0d756f7b9ae5a885ac6c14882cbbe521c6f49b184da8402"
+  },
+  "compiler": {
+    "path": "/usr/lib/go/pkg/tool/linux_amd64/compile",
+    "sha256": "9e7c2f2d98036e47ecba57b7dc3556cd82bcf24e1f8c8bba5a9881b20951b6c5",
+    "version": "compile version go1.27.3 X:nodwarf5",
+    "build_settings": {
+      "-buildmode": "exe",
+      "-compiler": "gc",
+      "-gcflags": "cmd/...=-dwarf=false",
+      "-pgo": "default.pgo",
+      "-trimpath": "true",
+      "CGO_ENABLED": "0",
+      "GOAMD64": "v1",
+      "GOARCH": "amd64",
+      "GOEXPERIMENT": "nodwarf5",
+      "GOOS": "linux"
+    }
+  },
+  "candidates": [
+    {
+      "name": "hybrid",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 27.66685966681689,
+              "metric_seconds": 27.66685966681689,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 28.915638031437993,
+              "metric_seconds": 28.915638031437993,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/hybrid/compile"
+              ]
+            },
+            "reduction_percent": -4.5136252529551335
+          },
+          {
+            "candidate": {
+              "seconds": 28.72782212588936,
+              "metric_seconds": 28.72782212588936,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/hybrid/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 28.698298970237374,
+              "metric_seconds": 28.698298970237374,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": -0.10287423544721452
+          },
+          {
+            "baseline": {
+              "seconds": 27.620616503059864,
+              "metric_seconds": 27.620616503059864,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 28.164357318542898,
+              "metric_seconds": 28.164357318542898,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/hybrid/compile"
+              ]
+            },
+            "reduction_percent": -1.9686049202515044
+          }
+        ],
+        "equivalent": true,
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [
+          {
+            "baseline": {
+              "seconds": 27.529515797272325,
+              "metric_seconds": 27.529515797272325,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "candidate": {
+              "seconds": 27.7873403057456,
+              "metric_seconds": 27.7873403057456,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/hybrid/compile"
+              ]
+            },
+            "reduction_percent": -0.93653847881634
+          },
+          {
+            "candidate": {
+              "seconds": 28.309216195717454,
+              "metric_seconds": 28.309216195717454,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": [
+                "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/hybrid/compile"
+              ]
+            },
+            "baseline": {
+              "seconds": 27.767433687113225,
+              "metric_seconds": 27.767433687113225,
+              "returncode": 0,
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "correctness_source": "stdout",
+              "pmu": [],
+              "loaded_optimized": [],
+              "executed_compilers": []
+            },
+            "reduction_percent": -1.9511436120064118
+          }
+        ],
+        "metric": "whole-process-wall-time",
+        "median_reduction_percent": -1.9686049202515044,
+        "min_reduction_percent": -4.5136252529551335,
+        "max_reduction_percent": -0.10287423544721452,
+        "recommendation": "retain-baseline",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "state": "complete",
+  "capture": "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/capture",
+  "training": {
+    "samples": 7777,
+    "cpu_nanoseconds": 77770000000
+  },
+  "entry": "/home/chiro/projects/trace-guided-optimization/runs/go-compiler-local-hybrid-r2/run",
+  "entry_mode": "command",
+  "optimized_compiler": null
+}

@@ -1,6 +1,6 @@
 # 架构与边界
 
-管线：`WorkloadSpec → Collector → Profile → Eligibility/Policy → BOLT → Bundle → Validation → Selection`。
+管线：`WorkloadSpec → Collector → Profile → Eligibility/Policy → Optimizer → Bundle → Validation → Selection`。
 命令接口、采集、画像归一化、优化和部署分离，便于增加新的 trace 后端或优化器。
 
 ```mermaid
@@ -8,11 +8,14 @@ flowchart LR
   A[argv / cwd / env / ROI] --> B{采集后端}
   B --> P[perf / SPE]
   B --> Q[QEMU TCG 插件]
+  B --> J[Go compiler CPU profile]
   P --> C[ELF 身份与画像]
   Q --> C
   C --> D[资格检查与 BOLT 策略]
+  J --> K[Go PGO / 私有 linker 布局]
   D --> E[不可变 DSO 目录]
   E --> F[新进程 AB/BA 与真实加载验证]
+  K --> F
   F --> G[独立确认后选择布局]
   G --> H[相邻原生 ELF 入口]
 ```
@@ -65,7 +68,16 @@ SPE 另有 `perf --dlfilter` 兼容桥：使用 perf 的 mmap 生命周期和 ob
 基础策略使用 ext-tsp、hfsort+（有重定位）、冷热分离和 BAT；tune 比较取消分裂及
 128B 对齐的候选。采集粒度、padding、指令数量与 cache 容量间存在权衡，不能仅
 以静态布局好看作为收益。用户可传递 `--bolt-arg=-option=value` 作受控实验。
-未来可加入画像驱动 ICP、内联、重定位恢复、BAT 迭代和更多布局搜索；每项都需独立
+`--bolt-mode recover` 使用另行构建的 AArch64 recovery variant，恢复可识别的代码
+引用，保留旧入口 trampoline，重排后校正 PT_LOAD 顺序。构建路径、补丁和能力检查
+均独立于默认工具；没有启用假定所有代码页安全的选项。当前仅对 AArch64 DSO
+验证，不把缺符号、间接分支和未解析引用默认为可移动。仍需逐负载验证实际输出。
+
+Go compiler 独立使用源码 PGO 与私有 linker overlay；由 Go 正常生成运行时 metadata，
+不走 BOLT 后处理。原生 toolexec 负责训练采集和只替换记录的 compiler；运行证据
+使用真实 compiler 执行日志。详见 [Go compiler](GO-COMPILER.md)。
+
+未来可加入画像驱动 ICP、更多内联策略、BAT 迭代和更多布局搜索；每项都需独立
 能力检查、目标 ISA 回归、正确性和原生确认，不能直接默认打开旧实验的激进选项。
 
 ## 部署与分发
@@ -86,5 +98,5 @@ AppImage 与被优化负载的部署包是两种产物。前者可以分发；�
 3. validator 记录业务正确性、性能口径、加载证明，允许拒绝或保留原版。
 4. 部署器只接受已选对象，并保留关闭优化的路径。
 
-DynamoRIO 目前是计划的后端，没有以空壳宣称支持。Go 的源代码 PGO 或 metadata-aware
-重写器也应作为独立策略接入，不与当前 BOLT DSO 变换混为一谈。
+DynamoRIO 目前是计划的后端，没有以空壳宣称支持。一般 Go 应用程序的自动优化仍待
+独立适配，不与当前 compiler workload 策略混为一谈。
