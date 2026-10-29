@@ -93,9 +93,11 @@ def adapter_env(base, runtime, compiler, version, identity, optimized=None):
         raise ValueError("Go adapter output directory cannot contain whitespace or quote characters")
     env.update(GOFLAGS=(flags + " -toolexec=" + wrapper).strip(),
                TGO_GO_ORIGINAL=compiler, TGO_GO_ORIGINAL_STAMP=file_stamp(compiler),
+               TGO_GO_ORIGINAL_SHA256=sha256(compiler),
                TGO_GO_VERSION=version, TGO_GO_ID=tool_id(version, identity))
     if optimized:
-        env.update(TGO_GO_COMPILER=str(optimized), TGO_GO_COMPILER_STAMP=file_stamp(optimized))
+        env.update(TGO_GO_COMPILER=str(optimized), TGO_GO_COMPILER_STAMP=file_stamp(optimized),
+                   TGO_GO_COMPILER_SHA256=sha256(optimized))
     return env
 
 

@@ -4,13 +4,34 @@ import shutil
 import subprocess
 import tempfile
 import unittest
-from tgo.gopgo import adapter_env, profile_totals, blend_profiles, correctness_fixture
+from tgo.gopgo import adapter_env, profile_totals, blend_profiles, correctness_fixture, file_stamp
 from tgo.go_layout import linker_overlay, layout_report
 from tgo.runtime import build_runtime, make_launcher
 
 
 @unittest.skipUnless(shutil.which("go"), "Go SDK unavailable")
 class GoToolAdapter(unittest.TestCase):
+    def test_entry_refreshes_namespace_stamps_after_hash_verified_replacement(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);build_runtime(root)
+            go=shutil.which("go")
+            tool_dir=subprocess.check_output([go,"env","GOTOOLDIR"],text=True).strip()
+            original=root/"original-compile";optimized=root/"optimized-compile"
+            shutil.copy2(Path(tool_dir)/"compile",original);shutil.copy2(original,optimized)
+            version=subprocess.check_output([original,"-V=full"],text=True).strip()
+            env=adapter_env({},root,str(original),version,"namespace-test",optimized)
+            env.pop("GOFLAGS")
+            code="import os;print(os.environ['TGO_GO_ORIGINAL_STAMP'])"
+            entry=make_launcher(root,root/"entry",[shutil.which("python3"),"-c",code],[],env,
+                                check_paths=[original,optimized])
+            replacement=root/"replacement";shutil.copy2(original,replacement);os.replace(replacement,original)
+            self.assertEqual(subprocess.check_output([entry],text=True).strip(),file_stamp(original))
+            probe=adapter_env(os.environ,root,str(original),version,"namespace-test",optimized)
+            probe["TGO_GO_ORIGINAL_STAMP"]="0:0:0:0:0"
+            self.assertIn("tgo=namespace-test",subprocess.check_output([root/"go-tool",original,"-V=full"],env=probe,text=True))
+            probe["TGO_GO_ORIGINAL_SHA256"]="f"*64
+            self.assertEqual(subprocess.run([root/"go-tool",original,"-V=full"],env=probe,capture_output=True).returncode,125)
+
     def test_private_linker_reorders_final_elf_and_preserves_runtime_metadata(self):
         go = shutil.which("go")
         goroot = subprocess.check_output([go, "env", "GOROOT"], text=True).strip()

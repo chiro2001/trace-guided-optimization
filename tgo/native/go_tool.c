@@ -7,18 +7,20 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include "include/tgo_sha256.h"
 
 /* Go's -toolexec ABI: argv[1] is the original tool, argv[2:] its arguments.
  * Only the exact compiler recorded in the manifest may be substituted. */
 static int disabled(void) {
     const char *v=getenv("TGO_DISABLE"); return v && !strcmp(v,"1");
 }
-static int check_stamp(const char *path,const char *text) {
+static int check_stamp(const char *path,const char *text,const char *digest) {
     if(!text) return 0;
     unsigned long long dev,ino; long long size,sec; long ns; struct stat s;
-    if(sscanf(text,"%llu:%llu:%lld:%lld:%ld",&dev,&ino,&size,&sec,&ns)!=5 || stat(path,&s)) return -1;
-    return s.st_dev==dev && s.st_ino==ino && s.st_size==size &&
-           s.st_mtim.tv_sec==sec && s.st_mtim.tv_nsec==ns ? 0 : -1;
+    if(sscanf(text,"%llu:%llu:%lld:%lld:%ld",&dev,&ino,&size,&sec,&ns)==5 && !stat(path,&s) &&
+        s.st_dev==dev && s.st_ino==ino && s.st_size==size &&
+        s.st_mtim.tv_sec==sec && s.st_mtim.tv_nsec==ns) return 0;
+    return tgo_sha256_hex_matches(path,digest)?0:-1;
 }
 int main(int argc,char **argv) {
     if(argc<2) { fputs("tgo: -toolexec requires an original tool path\n",stderr); return 125; }
@@ -26,12 +28,12 @@ int main(int argc,char **argv) {
     const char *source=getenv("TGO_GO_ORIGINAL");
     int selected=source && realpath(argv[1],original) && realpath(source,expected) && !strcmp(original,expected);
     if(!selected || disabled()) { execv(argv[1],argv+1); perror("tgo: exec Go tool"); return 126; }
-    if(check_stamp(source,getenv("TGO_GO_ORIGINAL_STAMP"))) {
+    if(check_stamp(source,getenv("TGO_GO_ORIGINAL_STAMP"),getenv("TGO_GO_ORIGINAL_SHA256"))) {
         fputs("tgo: original Go compiler changed; retrain\n",stderr); return 125;
     }
     const char *compiler=getenv("TGO_GO_COMPILER");
     if(!compiler || !*compiler) compiler=argv[1];
-    if(check_stamp(compiler,getenv("TGO_GO_COMPILER_STAMP"))) {
+    if(check_stamp(compiler,getenv("TGO_GO_COMPILER_STAMP"),getenv("TGO_GO_COMPILER_SHA256"))) {
         fputs("tgo: optimized Go compiler changed; rebuild\n",stderr); return 125;
     }
     if(argc==3 && !strcmp(argv[2],"-V=full")) {

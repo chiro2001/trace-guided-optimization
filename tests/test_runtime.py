@@ -4,6 +4,7 @@ import subprocess
 import tempfile
 import unittest
 import venv
+import shutil
 from tgo.runtime import build_runtime, make_launcher
 
 
@@ -46,7 +47,10 @@ class RuntimeTests(unittest.TestCase):
             self.assertEqual(output, "42 7\n['space arg', '中文']\n")
             env = os.environ.copy(); env["TGO_DISABLE"] = "1"
             self.assertTrue(subprocess.check_output([entry], env=env, text=True).startswith("11 7"))
-            a.touch()
+            replacement=a.with_suffix(".replacement")
+            shutil.copy2(a,replacement);os.replace(replacement,a)
+            self.assertTrue(subprocess.check_output([entry],text=True).startswith("42 7"))
+            with a.open("ab") as stream:stream.write(b"changed")
             self.assertEqual(subprocess.run([entry], capture_output=True).returncode, 125)
 
     def test_no_overwrite(self):

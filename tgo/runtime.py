@@ -3,7 +3,7 @@ from pathlib import Path
 import struct
 import shutil
 import tempfile
-from .util import run, tool
+from .util import run, tool, sha256
 
 NATIVE = Path(__file__).parent / "native"
 
@@ -30,11 +30,12 @@ def build_runtime(out, qemu_header=None):
             run([cc, "-O2", "-Wall", "-Wextra", "-shared", "-fPIC", "-I", NATIVE / "include", source, "-o", target],
                 out / f"{name}.build.log")
     launcher = out / "launcher"
-    if not launcher.exists() or launcher.stat().st_mtime < (NATIVE / "launcher.c").stat().st_mtime:
+    identity_header = NATIVE / "include/tgo_sha256.h"
+    if not launcher.exists() or launcher.stat().st_mtime < max((NATIVE / "launcher.c").stat().st_mtime, identity_header.stat().st_mtime):
         run([cc, "-O2", "-Wall", "-Wextra", NATIVE / "launcher.c", "-o", launcher],
             out / "launcher.build.log")
     go_tool = out / "go-tool"
-    if not go_tool.exists() or go_tool.stat().st_mtime < (NATIVE / "go_tool.c").stat().st_mtime:
+    if not go_tool.exists() or go_tool.stat().st_mtime < max((NATIVE / "go_tool.c").stat().st_mtime, identity_header.stat().st_mtime):
         run([cc, "-O2", "-Wall", "-Wextra", NATIVE / "go_tool.c", "-o", go_tool], out / "go-tool.build.log")
     if qemu_header:
         source = NATIVE / "qemu.c"
@@ -89,11 +90,15 @@ def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=(
         st = Path(path).stat()
         payload += string(str(path)) + struct.pack("<qqqQQ", st.st_size,
             st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev)
+        payload += bytes.fromhex(sha256(path))
+    template = (out / "launcher").read_bytes()
+    if b"TGO_LAUNCHER_ABI_2\0" not in template:
+        raise ValueError("runtime launcher ABI mismatch; rebuild TGO and unset an older TGO_RUNTIME_DIR")
     with tempfile.NamedTemporaryFile(dir=entry.parent, prefix=".tgo-entry-", delete=False) as f:
         tmp = Path(f.name)
-        f.write((out / "launcher").read_bytes())
+        f.write(template)
         f.write(payload)
-        f.write(struct.pack("<Q8s", len(payload), b"TGOCFG01"))
+        f.write(struct.pack("<Q8s", len(payload), b"TGOCFG02"))
     tmp.chmod(0o755)
     # Atomic publication refuses overwrite, including races.
     try:

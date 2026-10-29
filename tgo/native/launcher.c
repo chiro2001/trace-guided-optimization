@@ -6,6 +6,9 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include "include/tgo_sha256.h"
+
+__attribute__((used)) static const char tgo_launcher_abi[]="TGO_LAUNCHER_ABI_2";
 
 /* Template built once; each entry carries a binary configuration after the ELF. */
 static unsigned char *cursor,*end;
@@ -19,13 +22,27 @@ static char *string(void) {
     char *s=malloc((size_t)n+1); if(!s) bad();
     memcpy(s,cursor,(size_t)n); s[n]=0; cursor+=n; return s;
 }
+static void refresh_go_stamp(const char *path,const struct stat *st) {
+    const char *keys[2]={"TGO_GO_ORIGINAL","TGO_GO_COMPILER"};
+    const char *stamps[2]={"TGO_GO_ORIGINAL_STAMP","TGO_GO_COMPILER_STAMP"};
+    for(unsigned i=0;i<2;i++) {
+        const char *expected=getenv(keys[i]);
+        if(expected && !strcmp(path,expected)) {
+            char value[160];
+            snprintf(value,sizeof(value),"%llu:%llu:%lld:%lld:%ld",(unsigned long long)st->st_dev,
+                (unsigned long long)st->st_ino,(long long)st->st_size,(long long)st->st_mtim.tv_sec,st->st_mtim.tv_nsec);
+            if(setenv(stamps[i],value,1)) bad();
+        }
+    }
+}
 int main(int argc,char **argv) {
     int fd=open("/proc/self/exe",O_RDONLY|O_CLOEXEC); struct stat st;
     unsigned char footer[16];
     if(fd<0 || fstat(fd,&st) || st.st_size<16 || pread(fd,footer,16,st.st_size-16)!=16) bad();
     cursor=footer;end=footer+16;
     uint64_t size=number(8);
-    if(memcmp(cursor,"TGOCFG01",8) || size>64*1024*1024 || size>(uint64_t)st.st_size-16) bad();
+    int format2=!memcmp(cursor,"TGOCFG02",8);
+    if((!format2 && memcmp(cursor,"TGOCFG01",8)) || size>64*1024*1024 || size>(uint64_t)st.st_size-16) bad();
     unsigned char *data=malloc((size_t)size); if(!data) bad();
     if(pread(fd,data,(size_t)size,st.st_size-16-(off_t)size)!=(ssize_t)size) bad();
     close(fd); cursor=data;end=data+size;
@@ -60,10 +77,14 @@ int main(int argc,char **argv) {
     for(size_t i=0;i<nc;i++) {
         char *path=string(); int64_t sz=(int64_t)number(8),sec=(int64_t)number(8),ns=(int64_t)number(8);
         uint64_t ino=number(8),dev=number(8);
-        if(!disabled && (stat(path,&st) || st.st_size!=sz || st.st_mtim.tv_sec!=sec ||
-            st.st_mtim.tv_nsec!=ns || st.st_ino!=ino || st.st_dev!=dev)) {
+        const unsigned char *digest=NULL;
+        if(format2) { if(end-cursor<32) bad();digest=cursor;cursor+=32; }
+        int same=!stat(path,&st) && st.st_size==sz && st.st_mtim.tv_sec==sec &&
+            st.st_mtim.tv_nsec==ns && st.st_ino==ino && st.st_dev==dev;
+        if(!disabled && !same && (!format2 || !tgo_sha256_matches(path,digest))) {
             fprintf(stderr,"tgo: ELF changed: %s; rebuild or use TGO_DISABLE=1\n",path); return 125;
         }
+        if(!disabled && !stat(path,&st)) refresh_go_stamp(path,&st);
     }
     if(cursor!=end) bad();
     if(!disabled && *audit) {
