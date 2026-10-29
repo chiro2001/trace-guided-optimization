@@ -1,6 +1,13 @@
 # 当前工作状态（2026-10-29）
 
-Goal 保持 active。0.3.0 已完成自动后端/选库/子集回退和分发验证。复用已验证 ROI
+目标继续推进，尚未完成。0.4.0 增加默认三轮训练、不可变画像集合及独立 fdata 合并，
+本地 33 项测试中一项真实 LLVM 合并测试因工具缺失跳过，ARM 33 项全部通过。
+最终包在普通用户环境自动选择 perf，合成负载三轮采集后独立五对确认中位数减少
+60.54%；计数和项目外独立入口均验证。Go 三轮 profile/无 CC smoke 通过，仍不作为
+稳定性能收益证据。vLLM 单画像完整布局确认 4.53%，显式混合画像确认 4.31%；
+同配置三轮训练完整布局选择 compact，独立五对确认 5.67%（2.91%～7.57%）。
+
+0.3.0 已完成自动后端/选库/子集回退和分发验证。复用已验证 ROI
 画像时，自动选择 vLLM 三库并独立五对确认，decode ROI 中位数减少 4.74%；
 从头采集的另一份画像未找到稳定收益并保留原版。Go 尚无稳定收益。
 
@@ -9,7 +16,7 @@ Goal 保持 active。0.3.0 已完成自动后端/选库/子集回退和分发验
 
 已实现：
 
-- `record / normalize / optimize / tune / validate / bind / inspect / doctor`。
+- `record / normalize / merge / optimize / tune / validate / bind / inspect / doctor`。
 - perf 整段、时间窗口、attach、FIFO marker；SPE；QEMU 聚合路径与显式 marker。
 - Python 函数 hook、原生 C ROI API、vLLM 四步 eager decode adapter。
 - 热点与 ELF 身份绑定、BOLT、多布局筛选、独立确认、实际映射和输出验证。
@@ -30,13 +37,21 @@ Goal 保持 active。0.3.0 已完成自动后端/选库/子集回退和分发验
   初筛按中位数排序，独立确认仍要求逐对超过门槛。每轮原始证据分别保留。
 - TGOCFG02 入口包含 SHA256：元数据变化时验证内容，兼容同镜像新容器的 overlay
   设备号/inode 变化。Go helper 同步支持内容身份，避免逐 compiler 重复哈希。
+- 默认三轮同配置训练。各轮独立处理 ASLR/mmap 后，使用真实 merge-fdata 累加计数；
+  源证据、采样单位、ROI 时间边界及 ELF 内容均检查，嵌套集合展开并拒绝重复来源。
+  Go 每轮独立冷 cache，通过 pprof 合并。已有 --run 不重新采集。
+- 硬件探测使用实际 recorder/SPE AUX 缓冲配置，避免小探测成功后因 mlock 权限
+  在真正采集时失败；cycles recorder 和探测统一固定 128 页 ring。
+  perf/SPE 禁止写全局 build-id cache，避免实测容器重复采集出现 `/ (deleted)`。
+  仍在原始文件中保留 build-id；多数样本无法对应可读 ELF 时保存诊断并拒绝继续。
 
-当前分发文件位于远端 `dist/0.3.0-final/tgo-0.3.0-aarch64.AppImage`，约 115 MiB。
+当前分发文件位于远端 `dist/0.4.0/tgo-0.4.0-aarch64.AppImage`，约 115 MiB。
 它携带自建工具和 Python，已验证无 FUSE 启动及完整调优流程。生成的入口随后可
 独立执行，原解释器入口保持原状。源码版本和实际依赖在包内 `package-manifest.json`。
-SHA256：`a766757f7f31c38358355c068da7eaf762825c71c860ba0e947f273a9d0bed98`。
-运行时代码提交 `880edbe`，包内有全部构建输入的 SHA256，并在构建期间检查源文件漂移。
-旧 alpha 和 0.2.0 均保留。
+SHA256：`053d4472bb6c9bd6c497c5153f6420d63967e8afaf210e4082afaf4f027fe9ea`。
+运行时代码提交 `c1cf4f4`，包内有全部构建输入的 SHA256，并在构建期间检查源文件漂移。
+旧 alpha、0.2.0、0.3.0 均保留；0.3.0 最终包 SHA256 为
+`a766757f7f31c38358355c068da7eaf762825c71c860ba0e947f273a9d0bed98`。
 
 原始运行目录、失败证据和构建日志留在远端 `runs/`、`.tgo-cache/`、`deps/`，
 不纳入 Git。小型验证 JSON 放入仓库 `evidence/2026-10-29/`。
@@ -63,6 +78,12 @@ SHA256：`a766757f7f31c38358355c068da7eaf762825c71c860ba0e947f273a9d0bed98`。
 | 最终内容身份入口 / 原生前端 | `runs/appimage-native-abi2-r1` | 独立五对 56.85%，56.01%～58.71% |
 | 最终发布包 / 原生前端 | `runs/appimage-native-0.3.0-final` | 独立五对 57.38%，56.43%～58.71% |
 | 最终 Go AppImage smoke | `runs/appimage-go-smoke-0.3.0-final` | 无 C 编译器及项目外入口通过 |
+| 0.4.0 初始三轮原生合成负载 | `runs/appimage-native-0.4.0-final` | 自动 QEMU；独立五对 57.76%，54.88%～59.43%；计数和独立入口通过 |
+| 0.4.0 最终三轮原生合成负载 | `runs/appimage-native-0.4.0` | 普通权限自动 perf；独立五对 60.54%，56.47%～61.34%；计数和独立入口通过 |
+| 0.4.0 最终三轮 Go smoke | `runs/appimage-go-smoke-0.4.0` | 无 CC、三轮独立 cache、profile 合并和项目外入口通过 |
+| vLLM 新单画像完整布局 | `runs/vllm-single-full-0.4.0-r1` | compact 独立五对 4.53%，0.89%～6.65%；新容器相邻入口通过 |
+| vLLM 显式混合旧/新画像 | `runs/vllm-mixed-full-0.4.0-r1` | ext-tsp 独立五对 4.31%，1.42%～5.60%；CPU216/224 训练、224 回放 |
+| vLLM 同配置三轮训练 | `runs/vllm-three-valid-0.4.0-r1` | 自动三库、完整布局、compact 独立五对 5.67%，2.91%～7.57%；三库计数逐条相加通过 |
 
 最终 alpha 还完成了 `runs/appimage-alpha-r1`：从 PATH 移除编译器和系统 Python，
 只保留基本 shell 工具，用分发文件完成端到端调优。之后在项目外的 `/tmp` 执行
@@ -88,8 +109,8 @@ Go runtime r1 曾因整包中存在特殊 text 符号而跳过 runtime，不能�
 
 1. 继续寻找 Go 编译负载的稳定收益。实际 runtime 布局和分发验证已完成，ARM r2
    三对均回退；本地 x86-64 中位数虽正，但有一对回退，均自动保留原版。
-2. 改善画像稳定性。自动选库已经完成，但新旧单次 ROI 画像会得到不同收益；下一步
-   合并多次训练画像并比较完整布局搜索，继续探索 Python 源码 PGO。
+2. 多轮训练、完整布局与变体合并已经完成 vLLM 验证；继续测试不同输入和主机上的
+   可重复性。训练覆盖不保证性能收益；后续继续探索 Python 源码 PGO。
 3. 通用子进程主 ELF 的 exec adapter、静态程序/QEMU 主模块发现、跨进程和混合
    prefill/decode ROI 适配。当前 Go compiler 有专用 adapter，其他子进程主 ELF 仍跳过。
 4. 跨路径 bundle 重绑定、较低 glibc 构建基线、x86 完整 BOLT/AppImage 实测与冷 SDK CI。

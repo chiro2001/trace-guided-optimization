@@ -1,0 +1,81 @@
+{
+  "schema": "tgo.run.v1",
+  "command": [
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "user_command": [
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "cwd": "/home/l00886679/projects/trace-guided-optimization",
+  "env": {},
+  "backend": "qemu",
+  "roi": "marker",
+  "pid": null,
+  "state": "recorded",
+  "branch_stack": false,
+  "automatic_backend": {
+    "selected": "qemu",
+    "reason": "hardware sampling probes unavailable",
+    "perf_probe": {
+      "usable": false,
+      "timed_out": false,
+      "diagnostic": "Permission error mapping pages.\nConsider increasing /proc/sys/kernel/perf_event_mlock_kb,\nor try again with a smaller value of -m/--mmap_pages.\n(current value: 4294967295,0)"
+    },
+    "spe_probe": {
+      "usable": false,
+      "timed_out": false,
+      "diagnostic": "Permission error mapping pages.\nConsider increasing /proc/sys/kernel/perf_event_mlock_kb,\nor try again with a smaller value of -m/--mmap_pages.\n(current value: 1024,16384)",
+      "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+      "scope": "configured recorder/buffer permission probe; workload sampling coverage is checked after recording"
+    }
+  },
+  "started_unix": 1793250265.7719061,
+  "sampling": {
+    "backend": "qemu",
+    "event": null,
+    "period": null,
+    "frequency": null,
+    "branch_stack": false
+  },
+  "collector_command": [
+    "/tmp/appimage_extracted_1b846a379859604803b3157d5121831e/usr/tools/qemu-aarch64/bin/qemu-aarch64",
+    "-plugin",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/runtime/libtgo_qemu.so,out=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/capture,roi=marker,limit=1000000000",
+    "-E",
+    "PYTHONPATH=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/runtime/support",
+    "-E",
+    "TGO_IMAGE_LOG=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/capture",
+    "-E",
+    "TGO_ROI_LOG=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/capture",
+    "-E",
+    "TGO_ROI_LIBRARY=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/runtime/libtgo_roi.so",
+    "-E",
+    "LD_AUDIT=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/runtime/libtgo_audit.so",
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "collector_sha256": "62a49bcd46b8e0d2a19229e1aa962cd5582177c37b00b93c33085b835ec98706",
+  "runtime_sha256": {
+    "libtgo_perf_spe.so": "89e4ea500cd89f5a616f027d7a380b930802afde90d428dddebad189b4b60a8a",
+    "libtgo_audit.so": "baa036cd7e089a2aa316bd701a575583dce432a071a613e7addb698b9d9320b7",
+    "libtgo_roi.so": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+    "libtgo_qemu.so": "63c2f73db0e8461eb114ae4258836458960318b22c72b565269c04350dbe1a0d"
+  },
+  "returncode": 0,
+  "phase": "complete",
+  "finished_unix": 1793250267.3218336
+}

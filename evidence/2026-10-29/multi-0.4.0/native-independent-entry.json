@@ -1,0 +1,13 @@
+{
+  "schema": "tgo.smoke.independent-entry.v1",
+  "passed": true,
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/run",
+  "cwd": "temporary directory outside project",
+  "PATH": "",
+  "PYTHONPATH": null,
+  "stdout": "1365023072499563508\n",
+  "loaded_optimized": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+  ],
+  "appimage_invoked": false
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "tgo.run.v1",
+  "command": [
+    "/usr/local/python3.12.13/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/benchmarks/vllm_decode.py",
+    "--requests",
+    "16",
+    "--warmup-requests",
+    "1",
+    "--roi-cpu",
+    "216"
+  ],
+  "user_command": [
+    "/usr/local/python3.12.13/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/benchmarks/vllm_decode.py",
+    "--requests",
+    "16",
+    "--warmup-requests",
+    "1",
+    "--roi-cpu",
+    "216"
+  ],
+  "cwd": "/workspace",
+  "env": {
+    "LD_PRELOAD": "/opt/va26-stubs/libhccl.so /opt/va26-stubs/libsoc_identity.so  /opt/va26-stubs/libdevice_stub.so",
+    "LD_LIBRARY_PATH": "/opt/va26-stubs:/vllm-workspace/vllm-ascend/vllm_ascend:/vllm-workspace/vllm-ascend/vllm_ascend/_cann_ops_custom/vendors/custom_transformer/op_api/lib:/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/device/lib64:/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64:/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib:/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib",
+    "PYTHONPATH": "/opt/va26-real-backend:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe:"
+  },
+  "backend": "spe",
+  "roi": "marker",
+  "pid": null,
+  "state": "recorded",
+  "branch_stack": false,
+  "automatic_backend": {
+    "selected": "spe",
+    "reason": "retired branch SPE recorder and buffers opened successfully",
+    "perf_probe": {
+      "usable": true,
+      "timed_out": false,
+      "diagnostic": "[ perf record: Woken up 2 times to write data ]\n[ perf record: Captured and wrote 0.013 MB /tmp/tgo-perf-probe-kzs9t1ea/perf.data (6 samples) ]"
+    },
+    "spe_probe": {
+      "usable": true,
+      "timed_out": false,
+      "diagnostic": "[ perf record: Woken up 2 times to write data ]\n[ perf record: Captured and wrote 0.041 MB /tmp/tgo-spe-probe-hsi0r8uv/perf.data ]",
+      "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+      "scope": "configured recorder/buffer permission probe; workload sampling coverage is checked after recording"
+    }
+  },
+  "started_unix": 1793251298.9279988,
+  "sampling": {
+    "backend": "spe",
+    "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+    "period": 4096,
+    "frequency": null,
+    "branch_stack": false
+  },
+  "collector_command": null,
+  "runtime_sha256": {
+    "libtgo_perf_spe.so": "89e4ea500cd89f5a616f027d7a380b930802afde90d428dddebad189b4b60a8a",
+    "libtgo_audit.so": "baa036cd7e089a2aa316bd701a575583dce432a071a613e7addb698b9d9320b7",
+    "libtgo_roi.so": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+    "libtgo_qemu.so": "63c2f73db0e8461eb114ae4258836458960318b22c72b565269c04350dbe1a0d"
+  },
+  "returncode": 0,
+  "phase": "complete",
+  "finished_unix": 1793251496.24349,
+  "aggregate": true,
+  "source_runs": 3,
+  "training_contract": {
+    "command": [
+      "/usr/local/python3.12.13/bin/python3",
+      "/home/l00886679/projects/trace-guided-optimization/benchmarks/vllm_decode.py",
+      "--requests",
+      "16",
+      "--warmup-requests",
+      "1",
+      "--roi-cpu",
+      "216"
+    ],
+    "cwd": "/workspace",
+    "env": {
+      "LD_PRELOAD": "/opt/va26-stubs/libhccl.so /opt/va26-stubs/libsoc_identity.so  /opt/va26-stubs/libdevice_stub.so",
+      "LD_LIBRARY_PATH": "/opt/va26-stubs:/vllm-workspace/vllm-ascend/vllm_ascend:/vllm-workspace/vllm-ascend/vllm_ascend/_cann_ops_custom/vendors/custom_transformer/op_api/lib:/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/device/lib64:/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64:/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib:/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib",
+      "PYTHONPATH": "/opt/va26-real-backend:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe:/usr/local/Ascend/cann-9.1.0/python/site-packages:/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe:"
+    },
+    "roi": "marker",
+    "roi_window": null,
+    "python_hook": null
+  }
+}

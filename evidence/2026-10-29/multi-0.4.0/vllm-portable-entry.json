@@ -1,0 +1,16 @@
+{
+  "schema": "tgo.smoke.vllm-portable.v1",
+  "passed": true,
+  "entry": "/usr/local/python3.12.13/bin/python3.tgo",
+  "bundle": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1",
+  "cwd": "temporary directory outside project",
+  "project_mount": "read-only",
+  "appimage_invoked": false,
+  "loaded_optimized": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/libtorch_python.so"
+  ],
+  "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+  "ROI_CPU": 236
+}

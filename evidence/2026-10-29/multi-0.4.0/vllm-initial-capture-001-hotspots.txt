@@ -1,0 +1,199 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 244K of event 'branch'
+# Event count (approx.): 244150
+#
+# Overhead	Shared Object                                                                                                                     
+ 93.35% 	/ (deleted)                                                                                                                       
+ 4.70%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so                                                                   
+ 0.71%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/devlib/device/libascendalog.so                                                         
+ 0.21%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopapi_math.so                                                                 
+ 0.13%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libmetadef.so                                                                    
+ 0.08%  	/root/.triton/cache/VFSh_ntpvI-FA6pEdgLGwJA5ak3yykWFZDYF7AFGpQU/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.08%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libacl_rt_impl.so                                                                
+ 0.08%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libascend_dump.so                                                                
+ 0.07%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/liberror_manager.so                                                              
+ 0.07%  	/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_legacy.so                       
+ 0.06%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libacl_rt.so                                                                     
+ 0.05%  	/root/.triton/cache/8BGjLdaK4PJdcwWB619JcXioczGPJ1isTXtT8dRdWl8/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.05%  	/root/.triton/cache/rrir5U5WeKh90b8AU2cLOCbb7UXjMq9G6rRKigds2vM/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.04%  	/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_transformer.so                  
+ 0.04%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libgraph.so                                                                      
+ 0.03%  	/root/.triton/cache/UiH64Rq0LOXPZ1pN9B7-Sg/npu_utils.so                                                                           
+ 0.03%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libplatform.so                                                                   
+ 0.03%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/devlib/device/libunified_dlog.so                                                       
+ 0.03%  	/usr/local/python3.12.13/lib/python3.12/site-packages/tokenizers/tokenizers.abi3.so                                               
+ 0.03%  	/root/.triton/cache/Ud2kWRADZfiIUolj_A-5gvkqoN33Vnf9wtFvNz_Demg/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.03%  	/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_comm_legacy.so                  
+ 0.02%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopapi_nn.so                                                                   
+ 0.02%  	/root/.triton/cache/yoK0XyO3rEkrXAyWooUQ9AoyM1MMJLrKf9rbI_Epf0E/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.01%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libregister.so                                                                   
+ 0.01%  	[vdso]                                                                                                                            
+ 0.01%  	/usr/local/Ascend/cann-9.1.0/opp/vendors/batch_invariant/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64/libcust_opmaster_rt2.0.so
+ 0.01%  	/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_math.so                         
+ 0.01%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libopp_registry.so                                                               
+ 0.00%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libops_base.so                                                                   
+ 0.00%  	/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libruntime.so                                                                    
+ 0.00%  	/root/.triton/cache/lwC_T4x_8rZTiVBugnbppSAoVjEX0A4rPy8aCES1_oY/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so               
+ 0.00%  	/usr/local/Ascend/cann-9.1.0/opp/built-in/op_impl/ai_core/tbe/op_host/lib/linux/aarch64/libophost_nn.so                           
+
+
+#
+# (Tip: If call chains don't work try perf record --call-graph dwarf or --call-graph lbr)
+#
+build id event received for /home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/training/capture-001/runtime/libtgo_audit.so: 940eb652573d75fb08d24a394a6fba1c9f1b6cba [20]
+build id event received for /home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/training/capture-001/runtime/libtgo_roi.so: 96921fc45493a918d9ea1811f170a5248d1cf4c1 [20]
+build id event received for /root/.triton/cache/8BGjLdaK4PJdcwWB619JcXioczGPJ1isTXtT8dRdWl8/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 56fd6225b558a14801e25a65d9e1dc0484cf3cf7 [20]
+build id event received for /root/.triton/cache/L1GHC6SpVvioi5NYFYBVPySWnO15fZVsix_q19aSFHY/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 06c33f99c94d5b58c02047bffeb5093ad038f667 [20]
+build id event received for /root/.triton/cache/OMN3GcMX2zzQmbmIPqxufWiOHSJuciQbTNt0Sq-hO7w/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 3a143fa27e6cd499c763eb7870baa4a19382a067 [20]
+build id event received for /root/.triton/cache/Q9ZlQw4R4NDkcJ8x4qfeipOR9NoQ93pOPhgXWWj4E-Q/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 685874947804a61204c5ec16316b1ba52d1b6e43 [20]
+build id event received for /root/.triton/cache/TEUFEFyxj0mxSg7GWF6pEmHEnicemiUMcTbYPBwxlwQ/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 8e10a9c7dd9591ae77992a0150f054c10ba926e2 [20]
+build id event received for /root/.triton/cache/Ud2kWRADZfiIUolj_A-5gvkqoN33Vnf9wtFvNz_Demg/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 3aa6f6c577631d27d233ea2b549156e1c32e36eb [20]
+build id event received for /root/.triton/cache/UiH64Rq0LOXPZ1pN9B7-Sg/npu_utils.so: 1c20b5ff0f99ed19946ad286f77b2a6f9621c495 [20]
+build id event received for /root/.triton/cache/VFSh_ntpvI-FA6pEdgLGwJA5ak3yykWFZDYF7AFGpQU/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 791bef1264709247ef6d946aced91b5d25b05d26 [20]
+build id event received for /root/.triton/cache/VR2wPcMi5Aax0zmtHG6t9cEkY_N6LW5JgG9YuytwyG0/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: ac61a471c0058da67924ab2f58ba04478c848bd1 [20]
+build id event received for /root/.triton/cache/YVMstkKD2-TFfToW5zyI7gnWcL9eHB2r5x6LQPqv1oQ/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: ad3f34659a5556673fd9cd47b5c3ac8ec365265f [20]
+build id event received for /root/.triton/cache/gfAskvCJPFxaW5Yb8HUEwTh0qDp_20xV4IAfq9C8luY/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 5f76190c55b93f6bf18dc1b7c00dae698230376f [20]
+build id event received for /root/.triton/cache/lwC_T4x_8rZTiVBugnbppSAoVjEX0A4rPy8aCES1_oY/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 32bb05951dd44a4caaabc1c5ac941c33cc8b5ae6 [20]
+build id event received for /root/.triton/cache/nCc3O3_tL1rOyxEHQLhqqLT329nXLD8IE03ji3fpJpA/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: bda99ef68d7d0f568902c4a043f05a8b29e7bc2c [20]
+build id event received for /root/.triton/cache/qA8clf2HXAr-icGPdCQ4C-oKyv-Aqf2cU6uvOptHwbA/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: 205c5e0f550b7f43d1cd96668f570fe528349b3f [20]
+build id event received for /root/.triton/cache/rrir5U5WeKh90b8AU2cLOCbb7UXjMq9G6rRKigds2vM/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: cc5942e95894bfb21af54c8157a30e3288d0b835 [20]
+build id event received for /root/.triton/cache/yoK0XyO3rEkrXAyWooUQ9AoyM1MMJLrKf9rbI_Epf0E/launcher_cxx11abi1.cpython-312-aarch64-linux-gnu.so: c55975bcaede8a4891b660f5e592de39a3f16b99 [20]
+build id event received for [vdso]: 3c42e3321f921937bde4bb3f739032d39be05a28 [20]
+build id event received for [kernel.kallsyms]: 579b13171904200b37e022a4b24ed45ed7d47016 [20]
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+/ was updated (is prelink enabled?). Restart the long running apps that use it!
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+Getting more data
+No more data
+No data or all data has been processed.
+Getting more data
+No more data
+No data or all data has been processed.
+Getting more data
+No more data
+No data or all data has been processed.
+Getting more data
+No more data
+No data or all data has been processed.

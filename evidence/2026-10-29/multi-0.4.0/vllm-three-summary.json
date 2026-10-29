@@ -1,0 +1,310 @@
+{
+  "state": "complete",
+  "training_runs_completed": 3,
+  "selected": "compact",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/libtorch_python.so"
+  ],
+  "error": null,
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1",
+  "tune_sha256": "1998b012f98d885af0eddaa3744b11fb69f0a16b08f07917c35336db12002535",
+  "profile_sha256": "6d6383c6857cf6ecf46470688c984ae90d47b744b20b7b2ac51b0d5b4e1053e9",
+  "capture_set": {
+    "schema": "tgo.profile-set.v1",
+    "backend": "spe",
+    "sources": [
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/training/capture-000",
+        "run_sha256": "e5bdbc25ca3bdf56e92c532a7fce8ed2816e3bfacc04f8d5292ffc2b7b73f702",
+        "profile_sha256": "1160e550074d033525615a645d74d8d9b71399195c94df1dfb38d1b589a577b6"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/training/capture-001",
+        "run_sha256": "78217faf6c8a86620d063919fd07808f136da1c055b100e4fc96dca72989f309",
+        "profile_sha256": "51ff4b6567da69fab65e53b62eb991455479e97ecebab19cb41956d11547e230"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/training/capture-002",
+        "run_sha256": "33cb897e2c829b38be24fe7f854821d007a11b6a801273ad887f24bdc713bc97",
+        "profile_sha256": "b4e20833486004cb4e8f8692c00ba6312af96dd039925944dbf56b13d3419bc6"
+      }
+    ],
+    "quality": {
+      "kind": "independently-normalized-captures",
+      "runs": 3,
+      "hotspot_weight": "mean per-run sample share",
+      "fdata_weight": "sum of counts after independent ELF mapping",
+      "workload_variations": []
+    }
+  },
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 0.8908742087684662,
+      "min_reduction_percent": 0.7058541850071709,
+      "max_reduction_percent": 2.7548342135787163,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "f0521773270cf30cd57b52587b60be3d37b17080df1094d7ab2b8604c080c90b",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 4043,
+          "total_count": 377600,
+          "fdata_sha256": "23488da6c82d4a0f79de0b02ee1249201596b6719c000eea5f3d40ecc4c39548",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/observations/0/profile.fdata",
+              "sha256": "c40b1303424fa31400a8826bd81c48c13c5de828fc46b76c657396ac664d33a8"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/observations/1/profile.fdata",
+              "sha256": "616f8605207c7530e020870516a65cb6924a619a20571c3793c0092858391432"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/observations/2/profile.fdata",
+              "sha256": "70b69da9b10f384aa0abd2b64cb8afa9e09a7b7c81a692c209bdacb1f1a58942"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "bca5bbbefd4a183cce113e93fa984df51ee04fd50991aac9571fcff3e198f1c0",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 2544,
+          "total_count": 130847,
+          "fdata_sha256": "e5e5fc4b7fea720125ed03f31b634519a4f4e9048bcc5dac3f7f761ae8ba7703",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/observations/0/profile.fdata",
+              "sha256": "903f0f7d912d7cc2b3929bac12d9ab9d33e6b6c8c73a4c0d9ea484e78948eea2"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/observations/1/profile.fdata",
+              "sha256": "c869d1616ea9e12dfa1febcd8a31f89db933a9c25d5586e2837ffb4221d16c8d"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/observations/2/profile.fdata",
+              "sha256": "7017ea5efeb2fb172670566715f985d1b85dd601f2ad172100a34abaa479c1e1"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "f0cb1de87ee695510acc19513b4639701121589beaf629eae1a1b3741b8c2e67",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 1644,
+          "total_count": 55688,
+          "fdata_sha256": "9254751e9a3e79ef05d303677d6438811b2968778a8ef17e3ed1cdc0c09969c2",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/observations/0/profile.fdata",
+              "sha256": "02af29d7592aaea5f30f40d6f1203dffaa8c67775b1c73fad7fffae594103c70"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/observations/1/profile.fdata",
+              "sha256": "0dc7a545717159c2c03cbd3b8bc3cc656e85ecc8ae23bea5017136f957355a18"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/observations/2/profile.fdata",
+              "sha256": "cd47f25dac2e8a8570b0ce6079a575f208dd1ea5687b293e516dd9803456dbd1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "compact",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 5.558581885280289,
+      "min_reduction_percent": 3.2583707498891834,
+      "max_reduction_percent": 6.385575342223682,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "c20add4683a5c972f82bef30a7cb825c7b72d46d20b2436d20bb9b5331911127",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 4043,
+          "total_count": 377600,
+          "fdata_sha256": "23488da6c82d4a0f79de0b02ee1249201596b6719c000eea5f3d40ecc4c39548",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/observations/0/profile.fdata",
+              "sha256": "c40b1303424fa31400a8826bd81c48c13c5de828fc46b76c657396ac664d33a8"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/observations/1/profile.fdata",
+              "sha256": "616f8605207c7530e020870516a65cb6924a619a20571c3793c0092858391432"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/observations/2/profile.fdata",
+              "sha256": "70b69da9b10f384aa0abd2b64cb8afa9e09a7b7c81a692c209bdacb1f1a58942"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "56a5405ec3316d89357f9249c47cbb51c8fbb928f79f635ac1dfcda5335208e4",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 2544,
+          "total_count": 130847,
+          "fdata_sha256": "e5e5fc4b7fea720125ed03f31b634519a4f4e9048bcc5dac3f7f761ae8ba7703",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/observations/0/profile.fdata",
+              "sha256": "903f0f7d912d7cc2b3929bac12d9ab9d33e6b6c8c73a4c0d9ea484e78948eea2"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/observations/1/profile.fdata",
+              "sha256": "c869d1616ea9e12dfa1febcd8a31f89db933a9c25d5586e2837ffb4221d16c8d"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/observations/2/profile.fdata",
+              "sha256": "7017ea5efeb2fb172670566715f985d1b85dd601f2ad172100a34abaa479c1e1"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "ad50934b4168b91b3436dce71869f7f75752b7a1fd642d61a2b23af2857af6ff",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 1644,
+          "total_count": 55688,
+          "fdata_sha256": "9254751e9a3e79ef05d303677d6438811b2968778a8ef17e3ed1cdc0c09969c2",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/observations/0/profile.fdata",
+              "sha256": "02af29d7592aaea5f30f40d6f1203dffaa8c67775b1c73fad7fffae594103c70"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/observations/1/profile.fdata",
+              "sha256": "0dc7a545717159c2c03cbd3b8bc3cc656e85ecc8ae23bea5017136f957355a18"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/observations/2/profile.fdata",
+              "sha256": "cd47f25dac2e8a8570b0ce6079a575f208dd1ea5687b293e516dd9803456dbd1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "aligned",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 0.3297209600689799,
+      "min_reduction_percent": -0.46460375668859744,
+      "max_reduction_percent": 3.297154080472231,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "5c1c5db5a0f9e7f53293422d2ffa546cb7a2d7fa13cdfa6f03acd75b081dd34c",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 4043,
+          "total_count": 377600,
+          "fdata_sha256": "23488da6c82d4a0f79de0b02ee1249201596b6719c000eea5f3d40ecc4c39548",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/observations/0/profile.fdata",
+              "sha256": "c40b1303424fa31400a8826bd81c48c13c5de828fc46b76c657396ac664d33a8"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/observations/1/profile.fdata",
+              "sha256": "616f8605207c7530e020870516a65cb6924a619a20571c3793c0092858391432"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/observations/2/profile.fdata",
+              "sha256": "70b69da9b10f384aa0abd2b64cb8afa9e09a7b7c81a692c209bdacb1f1a58942"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "9c5cdd83b7c3340a35595e506cd7f0a32352e1b4a44c4c92d4cc5fe1071ac26b",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 2544,
+          "total_count": 130847,
+          "fdata_sha256": "e5e5fc4b7fea720125ed03f31b634519a4f4e9048bcc5dac3f7f761ae8ba7703",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/observations/0/profile.fdata",
+              "sha256": "903f0f7d912d7cc2b3929bac12d9ab9d33e6b6c8c73a4c0d9ea484e78948eea2"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/observations/1/profile.fdata",
+              "sha256": "c869d1616ea9e12dfa1febcd8a31f89db933a9c25d5586e2837ffb4221d16c8d"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/observations/2/profile.fdata",
+              "sha256": "7017ea5efeb2fb172670566715f985d1b85dd601f2ad172100a34abaa479c1e1"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "e691457f3045502dcd7f01f89b7176a9f8836967ff688c42881e143530c286ab",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 1644,
+          "total_count": 55688,
+          "fdata_sha256": "9254751e9a3e79ef05d303677d6438811b2968778a8ef17e3ed1cdc0c09969c2",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/6b2c97897785c9d4-afbafea7/observations/0/profile.fdata",
+              "sha256": "02af29d7592aaea5f30f40d6f1203dffaa8c67775b1c73fad7fffae594103c70"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/6b2c97897785c9d4-afbafea7/observations/1/profile.fdata",
+              "sha256": "0dc7a545717159c2c03cbd3b8bc3cc656e85ecc8ae23bea5017136f957355a18"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-valid-0.4.0-r1/aligned/images/6b2c97897785c9d4-afbafea7/observations/2/profile.fdata",
+              "sha256": "cd47f25dac2e8a8570b0ce6079a575f208dd1ea5687b293e516dd9803456dbd1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmation": {
+    "equivalent": true,
+    "completed_pairs": 5,
+    "median_reduction_percent": 5.6676215512971195,
+    "min_reduction_percent": 2.9144380291916017,
+    "max_reduction_percent": 7.574573402207763
+  },
+  "pmu": {
+    "all_enabled_equal_running_no_open_errors": true,
+    "median_reduction_percent": {
+      "cycles": 6.027023968900469,
+      "instructions": -1.1241539974364612,
+      "frontend_stall_cycles": 11.97091491207135,
+      "l1i_read_misses": -6.312315809872526
+    }
+  }
+}

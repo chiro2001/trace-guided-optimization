@@ -1,0 +1,204 @@
+{
+  "schema": "tgo.package.v1",
+  "version": "0.4.0",
+  "arch": "aarch64",
+  "tools": {
+    "python3": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/python3.12",
+      "sha256": "1d2dad4314062999f3626cdb89eb8369a5ffd7f4f1d5da50623d5754c986b900",
+      "packaged": "usr/bin/python3"
+    },
+    "llvm-bolt": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/llvm-bolt",
+      "sha256": "5a390fbd11b4c4eb833607f909eee3db46d15fb7286e6de77be76f3d2dd77778",
+      "packaged": "usr/tools/llvm-bolt/bin/llvm-bolt"
+    },
+    "merge-fdata": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/merge-fdata",
+      "sha256": "5661afc0631089c3bec1b3d7c0f20f7611068d03b8f335a7d028d880e58ce88a",
+      "packaged": "usr/tools/merge-fdata/bin/merge-fdata"
+    },
+    "qemu-aarch64": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/qemu-aarch64",
+      "sha256": "83a3c4942058a8a88fc046cede63833d75fe75b6a1e89d43604e3e86836a7a95",
+      "packaged": "usr/tools/qemu-aarch64/bin/qemu-aarch64"
+    },
+    "patchelf": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/patchelf",
+      "sha256": "1989d6e6d2b4272342ea9ae2829879eed481877151b9c7dfb99ed95bcb2ad593",
+      "packaged": "usr/tools/patchelf/bin/patchelf"
+    },
+    "perf": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/bin/perf",
+      "sha256": "cae100e08976c3868efbb78322e5544bb12b471730ef649c018056df9ac30156",
+      "packaged": "usr/tools/perf/bin/perf"
+    },
+    "llvm-bolt-recover": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/recover/bin/llvm-bolt",
+      "sha256": "f4cf78f563bf28f8b32355e94b50dc828ea123e191e09eacf31e3d99ebed4120",
+      "packaged": "usr/tools/llvm-bolt-recover/bin/llvm-bolt-recover"
+    }
+  },
+  "libraries": {
+    "python/libffi.so.7": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libffi.so.7",
+      "sha256": "c7e414957a976a7b1ed1f43ec5153392f8a352d73800fbab3214ef43262f3ac3"
+    },
+    "python/libz.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libz.so.1",
+      "sha256": "b220873d5ac4b5a239ba73074febfad9e3d070e3c648cb4ada5e40baedc236ff"
+    },
+    "python/libcrypto.so.3": {
+      "source": "/usr/lib64/libcrypto.so.3",
+      "sha256": "2c9c656b65a4d40daddf06a6ffc7492ef22a425c0668226d6ecaf4ffb8d301b5"
+    },
+    "python/libssl.so.3": {
+      "source": "/usr/lib64/libssl.so.3",
+      "sha256": "363a90168b439ae3a2e51f3f5513ae2725ebc5ab3e7109d9a564cfeaafb4a415"
+    },
+    "python/libcrypt.so.1": {
+      "source": "/usr/lib64/libcrypt.so.1",
+      "sha256": "b2144145d8fe39cd288cb2bd89024d07798f93935febcd6bc87f7ef82aa5af0b"
+    },
+    "python/libpython3.12.so.1.0": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libpython3.12.so.1.0",
+      "sha256": "6fe97dad98242b2aed2dda6b49e9fe44ac77fa718bc435ef4f9cd8dc32ff72b2"
+    },
+    "llvm-bolt/libstdc++.so.6": {
+      "source": "/usr/lib64/libstdc++.so.6",
+      "sha256": "1ff87a52df5744a0be098bcaa36a9114e582009fc75fe0a158278d58669a143a"
+    },
+    "llvm-bolt/libgcc_s.so.1": {
+      "source": "/usr/lib64/libgcc_s.so.1",
+      "sha256": "b49abcb00eb19de431f7373cffbafc95cef3fce8eb33e236d24167aad402ebed"
+    },
+    "merge-fdata/libstdc++.so.6": {
+      "source": "/usr/lib64/libstdc++.so.6",
+      "sha256": "1ff87a52df5744a0be098bcaa36a9114e582009fc75fe0a158278d58669a143a"
+    },
+    "merge-fdata/libgcc_s.so.1": {
+      "source": "/usr/lib64/libgcc_s.so.1",
+      "sha256": "b49abcb00eb19de431f7373cffbafc95cef3fce8eb33e236d24167aad402ebed"
+    },
+    "qemu-aarch64/libz.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libz.so.1",
+      "sha256": "b220873d5ac4b5a239ba73074febfad9e3d070e3c648cb4ada5e40baedc236ff"
+    },
+    "qemu-aarch64/libdw.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libdw.so.1",
+      "sha256": "af081f44bc34d82ab8feef2d75c31f267fcf2dc6b3d3dcadcd1bd4946a31e53a"
+    },
+    "qemu-aarch64/libglib-2.0.so.0": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libglib-2.0.so.0",
+      "sha256": "6c130063d70c180b50af1e04356d45259ac999024e4c658b2e43ec6914837e9c"
+    },
+    "qemu-aarch64/libgmodule-2.0.so.0": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libgmodule-2.0.so.0",
+      "sha256": "325b3800bb0b3d21907c7eb655cb305d4cd49e7fe27ec29b3f9c57c80bf6267b"
+    },
+    "qemu-aarch64/libelf.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libelf.so.1",
+      "sha256": "b234d9166f600f4be50ae543f53dcca71848da62ecd1f157d2ff96abad599d36"
+    },
+    "patchelf/libstdc++.so.6": {
+      "source": "/usr/lib64/libstdc++.so.6",
+      "sha256": "1ff87a52df5744a0be098bcaa36a9114e582009fc75fe0a158278d58669a143a"
+    },
+    "patchelf/libgcc_s.so.1": {
+      "source": "/usr/lib64/libgcc_s.so.1",
+      "sha256": "b49abcb00eb19de431f7373cffbafc95cef3fce8eb33e236d24167aad402ebed"
+    },
+    "perf/libz.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libz.so.1",
+      "sha256": "b220873d5ac4b5a239ba73074febfad9e3d070e3c648cb4ada5e40baedc236ff"
+    },
+    "perf/libelf.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libelf.so.1",
+      "sha256": "b234d9166f600f4be50ae543f53dcca71848da62ecd1f157d2ff96abad599d36"
+    },
+    "perf/libdw.so.1": {
+      "source": "/home/l00886679/projects/trace-guided-optimization/deps/install/lib/libdw.so.1",
+      "sha256": "af081f44bc34d82ab8feef2d75c31f267fcf2dc6b3d3dcadcd1bd4946a31e53a"
+    },
+    "perf/libstdc++.so.6": {
+      "source": "/usr/lib64/libstdc++.so.6",
+      "sha256": "1ff87a52df5744a0be098bcaa36a9114e582009fc75fe0a158278d58669a143a"
+    },
+    "perf/libgcc_s.so.1": {
+      "source": "/usr/lib64/libgcc_s.so.1",
+      "sha256": "b49abcb00eb19de431f7373cffbafc95cef3fce8eb33e236d24167aad402ebed"
+    },
+    "llvm-bolt-recover/libstdc++.so.6": {
+      "source": "/usr/lib64/libstdc++.so.6",
+      "sha256": "1ff87a52df5744a0be098bcaa36a9114e582009fc75fe0a158278d58669a143a"
+    },
+    "llvm-bolt-recover/libgcc_s.so.1": {
+      "source": "/usr/lib64/libgcc_s.so.1",
+      "sha256": "b49abcb00eb19de431f7373cffbafc95cef3fce8eb33e236d24167aad402ebed"
+    }
+  },
+  "source_commit": "b33465857a4c0f350f7b39fcbc9d5e2fd3f2dbbe",
+  "source_dirty": false,
+  "build_input_sha256": {
+    "dependencies.lock.json": "08f1d05873602c70c4ddb6aad24605c2b9bea676dfe681d760ebef2cc9fa6207",
+    "docs/THIRD_PARTY.md": "f77806f855efea0642c1effbf61a9f5cc96ff601f6482891f805976536e192e1",
+    "patches/bolt22-aarch64-pages.patch": "c530272fb8b4709b7751b9cd5c2c04d6af5b679e2cfed3954f93f1c3ea40e8f5",
+    "patches/bolt22-aarch64-recover.patch": "ad5554a828e7bc5df2cfc21e26362fc900ad7a932f69772d11eac0ffb8dc3dfa",
+    "pyproject.toml": "478a8c890b6afc0bbb9601f98b0aa4bd672816ce63d656e721c84fb6bfbdb08d",
+    "scripts/bootstrap.py": "87cd4c508bc90f742eeeea4fc97824b77ba0a1b60a87c5383ae1dad98d3758eb",
+    "scripts/package_appimage.py": "30ecd3550b78ba566d8cf4676be62cf55a645c3f0aa723d2bd81c9c51031891e",
+    "tgo/__init__.py": "cfbfeb5b20b9a87f6180c200f25c1f91914e9460e8840434f0b54a8151820bf1",
+    "tgo/__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "tgo/capture_set.py": "40eced348e12e7b2bf8ebb8fc508f8a00f0ebf861994229472fc69bcd5449377",
+    "tgo/cli.py": "e66b38034c4ec90d5d1501cb5995ce4f9f749ab280f7dd78c2f4b6b0b152af97",
+    "tgo/collect.py": "1a8540513d38adbebecff13941d718602479d88c1475ed51778f8473e739294c",
+    "tgo/elf.py": "c0edbb8cb676de4e935e3a9b54d55096fb9e0ff819880a287321b78cade45f43",
+    "tgo/fixtures/go_correctness.go": "e4515a6c4d649189cd89a2829cd5a8e9bd081cedb228f02172e4c19e8133fde3",
+    "tgo/go_layout.py": "7375263b7a34884260aead338f60f2a57f49320d1a9fcad8a011598bf51bcf45",
+    "tgo/gopgo.py": "b98ee9cf4593982556d6ae5d08afcf3e1e50db556c4e94c3ef413da08dec7ca7",
+    "tgo/native/audit.c": "b54129fc5f8c17e78a2c81500fd06bbd4ee55da55c7ec5fbf42f437fb6c7d4fe",
+    "tgo/native/go_tool.c": "3567e732ad069823aa0663e0b95d5ec70c0bf71b5a5d1fb877ca33c66fbeaff8",
+    "tgo/native/include/perf_dlfilter.h": "26377885f8327b0f4ec0fde4a79aebe460d192783e55e4bbb915d4bdd9857f46",
+    "tgo/native/include/tgo_sha256.h": "1e5a58665a14867de423614ff9fa45c5a7b210cb004dfcc8ad00a9f036aa9d62",
+    "tgo/native/launcher.c": "3b74bfe313a4824817050ea884c572b8e80953e5f33e6a00ce94a40a726106c8",
+    "tgo/native/perf_spe.c": "b1fc9c7b1485c4b5e51b96ed8f3012f164bf9cf9d2ae29b43589b13475f8e6f3",
+    "tgo/native/qemu.c": "bf56ea8ccc92bbdeb319f8ec08671707aa5f9da225f3e16266b8498871ecb75f",
+    "tgo/native/roi.c": "fb0989783d59565fe8cb37a175072848e9a9f1f4164765d67f12436adfad4b32",
+    "tgo/optimize.py": "42340af07e48c87fced116754c035994407c44a860d39032bb461de84fbb9004",
+    "tgo/perf.py": "ae86d68a022f8f667193992c73497468b368e4efa36f949fcac2dc7c4bc85214",
+    "tgo/pmu.py": "e5828ebb9267eb02359946d706d8743e12d8bcac7229b6c8f0775d55dcc23ea4",
+    "tgo/profile.py": "438ea260bef0bedae1c8fd3495251527f4f1ce2450d1eb74e86d20b4811b9e3b",
+    "tgo/python_entry.py": "1a064f4f1d416984dd1472dd627e31c8a7f98458f911018b8c426f6738ed518c",
+    "tgo/roi.py": "6a25207713a4e3e5babbf221e419c602575f5fd05a8843d55ee2c5dec95908e7",
+    "tgo/runtime.py": "f4d6bc0d52601baef7e0ef5c8a0cb09ffb9d49b59f916ceac81db112af2805f9",
+    "tgo/selection.py": "2bca37501fc9855464f919fe6d01478f752982eb07efe4b41a94e56aba41af5f",
+    "tgo/tune.py": "83e10aa6c2ec16647011ee050102c827da876b17536a3430d0cb51d8238b0476",
+    "tgo/util.py": "df1a8135bbb4c0cde1ded18a1b66a292ed42fe66ee2c3552fc22e0ac74ee23b6",
+    "tgo/validate.py": "f72b7307e5fac80bc90f2110df861210612998411c58ef6d93bdcd21084c1c0a"
+  },
+  "dependency_lock_sha256": "08f1d05873602c70c4ddb6aad24605c2b9bea676dfe681d760ebef2cc9fa6207",
+  "license_files": [
+    "usr/share/doc/tgo/licenses/qemu-10.0.0/COPYING.LIB",
+    "usr/share/doc/tgo/licenses/qemu-10.0.0/COPYING",
+    "usr/share/doc/tgo/licenses/qemu-10.0.0/LICENSE",
+    "usr/share/doc/tgo/licenses/patchelf-0.18.0/COPYING",
+    "usr/share/doc/tgo/licenses/llvm-project-22.1.0.src/LICENSE.TXT",
+    "usr/share/doc/tgo/licenses/elfutils-0.193/COPYING-LGPLV3",
+    "usr/share/doc/tgo/licenses/elfutils-0.193/COPYING-GPLV2",
+    "usr/share/doc/tgo/licenses/elfutils-0.193/COPYING",
+    "usr/share/doc/tgo/licenses/Python-3.12.13/LICENSE",
+    "usr/share/doc/tgo/licenses/go/LICENSE",
+    "usr/share/doc/tgo/licenses/glib-2.84.1/COPYING",
+    "usr/share/doc/tgo/licenses/linux-6.14/GPL-2.0",
+    "usr/share/doc/tgo/licenses/linux-6.14/COPYING",
+    "usr/share/doc/tgo/licenses/llvm-project-22.1.0.src/LICENSE.TXT",
+    "usr/share/doc/tgo/licenses/pcre2-10.44/LICENCE",
+    "usr/share/doc/tgo/licenses/pcre2-10.44/LICENSE.build",
+    "usr/share/doc/tgo/licenses/pcre2-10.44/COPYING",
+    "usr/share/doc/tgo/licenses/libffi/LICENSE",
+    "usr/share/doc/tgo/licenses/zlib-1.3.1/LICENSE.build",
+    "usr/share/doc/tgo/licenses/zlib-1.3.1/LICENSE",
+    "usr/share/doc/tgo/licenses/zlib-1.3.1/README"
+  ],
+  "glibc_build_host": "ldd (GNU libc) 2.38"
+}

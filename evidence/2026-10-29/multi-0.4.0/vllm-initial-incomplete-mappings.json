@@ -1,0 +1,4152 @@
+{
+  "schema": "tgo.tune.v1",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/capture",
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp",
+      "images": [
+        "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+        "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+        "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so"
+      ],
+      "failed_images": [],
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 34.573382979724556,
+              "metric_seconds": 0.135769695,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "f1500bab984572f03ad8567b949230c71a183dc163c0d5e162d11d521f25745a",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134494720,
+                  "time_running": 134494720,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377729975,
+                    "instructions": 353685542,
+                    "frontend_stall_cycles": 208714383,
+                    "l1i_read_misses": 26522992
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137350320,
+                  "time_running": 137350320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384289153,
+                    "instructions": 364498526,
+                    "frontend_stall_cycles": 210032132,
+                    "l1i_read_misses": 26703828
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134544810,
+                  "time_running": 134544810,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377824489,
+                    "instructions": 355128005,
+                    "frontend_stall_cycles": 208298640,
+                    "l1i_read_misses": 26587943
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134474540,
+                  "time_running": 134474540,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377592886,
+                    "instructions": 354786122,
+                    "frontend_stall_cycles": 208102322,
+                    "l1i_read_misses": 26587138
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134372950,
+                  "time_running": 134372950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377235053,
+                    "instructions": 354830522,
+                    "frontend_stall_cycles": 208106346,
+                    "l1i_read_misses": 26592517
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134596080,
+                  "time_running": 134596080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377528999,
+                    "instructions": 354547403,
+                    "frontend_stall_cycles": 209073932,
+                    "l1i_read_misses": 26534482
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133873130,
+                  "time_running": 133873130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375680707,
+                    "instructions": 354824019,
+                    "frontend_stall_cycles": 208861413,
+                    "l1i_read_misses": 26548092
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133568930,
+                  "time_running": 133568930,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374918199,
+                    "instructions": 354733107,
+                    "frontend_stall_cycles": 208047402,
+                    "l1i_read_misses": 26528644
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133492820,
+                  "time_running": 133492820,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374709169,
+                    "instructions": 354797088,
+                    "frontend_stall_cycles": 207629487,
+                    "l1i_read_misses": 26479156
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136418870,
+                  "time_running": 136418870,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376249405,
+                    "instructions": 354749343,
+                    "frontend_stall_cycles": 208306475,
+                    "l1i_read_misses": 26502587
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136383150,
+                  "time_running": 136383150,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382948500,
+                    "instructions": 354858331,
+                    "frontend_stall_cycles": 211129912,
+                    "l1i_read_misses": 26663371
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136334770,
+                  "time_running": 136334770,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382890958,
+                    "instructions": 354640953,
+                    "frontend_stall_cycles": 210999174,
+                    "l1i_read_misses": 26662848
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136540670,
+                  "time_running": 136540670,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383533039,
+                    "instructions": 354941881,
+                    "frontend_stall_cycles": 211400704,
+                    "l1i_read_misses": 26728314
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136407630,
+                  "time_running": 136407630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383121882,
+                    "instructions": 354739806,
+                    "frontend_stall_cycles": 210977384,
+                    "l1i_read_misses": 26697851
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137111510,
+                  "time_running": 137111510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384704795,
+                    "instructions": 354723131,
+                    "frontend_stall_cycles": 211979081,
+                    "l1i_read_misses": 26729034
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137249050,
+                  "time_running": 137249050,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 385178043,
+                    "instructions": 354710504,
+                    "frontend_stall_cycles": 212293577,
+                    "l1i_read_misses": 26687641
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 35.187995969783515,
+              "metric_seconds": 0.13311791,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "90ec72cff8eaf1ff7418b0b2883879b5573926f303789a6e6e1cdeedc86dfe58",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133560180,
+                  "time_running": 133560180,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374629478,
+                    "instructions": 357158661,
+                    "frontend_stall_cycles": 202299426,
+                    "l1i_read_misses": 28078098
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138454960,
+                  "time_running": 138454960,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386558770,
+                    "instructions": 367717735,
+                    "frontend_stall_cycles": 205554206,
+                    "l1i_read_misses": 28197061
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133930250,
+                  "time_running": 133930250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375549432,
+                    "instructions": 358585788,
+                    "frontend_stall_cycles": 202751302,
+                    "l1i_read_misses": 28216448
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133676500,
+                  "time_running": 133676500,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374883451,
+                    "instructions": 357956755,
+                    "frontend_stall_cycles": 202205704,
+                    "l1i_read_misses": 28154331
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132831220,
+                  "time_running": 132831220,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372458840,
+                    "instructions": 358287358,
+                    "frontend_stall_cycles": 201464886,
+                    "l1i_read_misses": 28084145
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132841270,
+                  "time_running": 132841270,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372520938,
+                    "instructions": 358007346,
+                    "frontend_stall_cycles": 201279851,
+                    "l1i_read_misses": 28059869
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133459600,
+                  "time_running": 133459600,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374068332,
+                    "instructions": 358124926,
+                    "frontend_stall_cycles": 202112403,
+                    "l1i_read_misses": 28099762
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137778330,
+                  "time_running": 137778330,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376742651,
+                    "instructions": 358086659,
+                    "frontend_stall_cycles": 203296199,
+                    "l1i_read_misses": 28176179
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134213110,
+                  "time_running": 134213110,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376353483,
+                    "instructions": 358276517,
+                    "frontend_stall_cycles": 203120256,
+                    "l1i_read_misses": 28158908
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 128722630,
+                  "time_running": 128722630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 360813187,
+                    "instructions": 358077884,
+                    "frontend_stall_cycles": 198570681,
+                    "l1i_read_misses": 27705095
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130054910,
+                  "time_running": 130054910,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364570062,
+                    "instructions": 358290135,
+                    "frontend_stall_cycles": 199333415,
+                    "l1i_read_misses": 27777495
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130438560,
+                  "time_running": 130438560,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 365737291,
+                    "instructions": 358074097,
+                    "frontend_stall_cycles": 199494433,
+                    "l1i_read_misses": 27838667
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131167140,
+                  "time_running": 131167140,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367778938,
+                    "instructions": 358212218,
+                    "frontend_stall_cycles": 199997228,
+                    "l1i_read_misses": 27884724
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131074130,
+                  "time_running": 131074130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367676157,
+                    "instructions": 358062798,
+                    "frontend_stall_cycles": 199711755,
+                    "l1i_read_misses": 27882237
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131338940,
+                  "time_running": 131338940,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 368418895,
+                    "instructions": 358231342,
+                    "frontend_stall_cycles": 199779118,
+                    "l1i_read_misses": 27852554
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131579450,
+                  "time_running": 131579450,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369083025,
+                    "instructions": 358117696,
+                    "frontend_stall_cycles": 200115818,
+                    "l1i_read_misses": 27928497
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 1.953149412319144
+          },
+          {
+            "candidate": {
+              "seconds": 35.086220710072666,
+              "metric_seconds": 0.13305245,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2a222a457a0a4f27903e90f7c7bcdda7f1830a17b54a62d80d73c4db76450a79",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134440680,
+                  "time_running": 134440680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376981047,
+                    "instructions": 357322797,
+                    "frontend_stall_cycles": 202776814,
+                    "l1i_read_misses": 28083621
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138261810,
+                  "time_running": 138261810,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386290873,
+                    "instructions": 368035576,
+                    "frontend_stall_cycles": 204577019,
+                    "l1i_read_misses": 28274157
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135571640,
+                  "time_running": 135571640,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380331091,
+                    "instructions": 358796367,
+                    "frontend_stall_cycles": 203554983,
+                    "l1i_read_misses": 28228380
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134114820,
+                  "time_running": 134114820,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376219076,
+                    "instructions": 358466879,
+                    "frontend_stall_cycles": 202247246,
+                    "l1i_read_misses": 28111245
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134061080,
+                  "time_running": 134061080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376078085,
+                    "instructions": 358691807,
+                    "frontend_stall_cycles": 202170432,
+                    "l1i_read_misses": 28225239
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133665770,
+                  "time_running": 133665770,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374949764,
+                    "instructions": 358310541,
+                    "frontend_stall_cycles": 201892694,
+                    "l1i_read_misses": 28156396
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133670790,
+                  "time_running": 133670790,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374874790,
+                    "instructions": 358455111,
+                    "frontend_stall_cycles": 201607791,
+                    "l1i_read_misses": 28099388
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131770970,
+                  "time_running": 131770970,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369313774,
+                    "instructions": 358244563,
+                    "frontend_stall_cycles": 200113128,
+                    "l1i_read_misses": 27941495
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132788960,
+                  "time_running": 132788960,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372261239,
+                    "instructions": 358464866,
+                    "frontend_stall_cycles": 200800325,
+                    "l1i_read_misses": 28050148
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132560000,
+                  "time_running": 132560000,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371723116,
+                    "instructions": 358195364,
+                    "frontend_stall_cycles": 200802735,
+                    "l1i_read_misses": 28048112
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132361250,
+                  "time_running": 132361250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371135387,
+                    "instructions": 358523183,
+                    "frontend_stall_cycles": 200377160,
+                    "l1i_read_misses": 28003111
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132365840,
+                  "time_running": 132365840,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371252013,
+                    "instructions": 358286755,
+                    "frontend_stall_cycles": 199652290,
+                    "l1i_read_misses": 27961386
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132827600,
+                  "time_running": 132827600,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372512575,
+                    "instructions": 358496384,
+                    "frontend_stall_cycles": 200820564,
+                    "l1i_read_misses": 28056291
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132653070,
+                  "time_running": 132653070,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371954286,
+                    "instructions": 358376799,
+                    "frontend_stall_cycles": 201025685,
+                    "l1i_read_misses": 28036863
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132217070,
+                  "time_running": 132217070,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 370781554,
+                    "instructions": 358425209,
+                    "frontend_stall_cycles": 200478431,
+                    "l1i_read_misses": 27993950
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131558740,
+                  "time_running": 131558740,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 368932028,
+                    "instructions": 358272024,
+                    "frontend_stall_cycles": 200402819,
+                    "l1i_read_misses": 27963701
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 34.739779059775174,
+              "metric_seconds": 0.13176993,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "cc719e68610a0bb6102506d09a41627ff2af6724cb007a43e70d325c832cb196",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132872460,
+                  "time_running": 132872460,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373700628,
+                    "instructions": 353475959,
+                    "frontend_stall_cycles": 204582440,
+                    "l1i_read_misses": 25876496
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137454850,
+                  "time_running": 137454850,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 385134745,
+                    "instructions": 364100924,
+                    "frontend_stall_cycles": 208235011,
+                    "l1i_read_misses": 26066443
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134169800,
+                  "time_running": 134169800,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377477621,
+                    "instructions": 354975453,
+                    "frontend_stall_cycles": 205945711,
+                    "l1i_read_misses": 26001238
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133317320,
+                  "time_running": 133317320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375032441,
+                    "instructions": 354319155,
+                    "frontend_stall_cycles": 204716353,
+                    "l1i_read_misses": 26008181
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133234890,
+                  "time_running": 133234890,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374803847,
+                    "instructions": 354605953,
+                    "frontend_stall_cycles": 204644871,
+                    "l1i_read_misses": 25976950
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133911820,
+                  "time_running": 133911820,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376659432,
+                    "instructions": 354324926,
+                    "frontend_stall_cycles": 205877247,
+                    "l1i_read_misses": 25986986
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133843530,
+                  "time_running": 133843530,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376563885,
+                    "instructions": 354531354,
+                    "frontend_stall_cycles": 206029897,
+                    "l1i_read_misses": 25966124
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 129556160,
+                  "time_running": 129556160,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364169185,
+                    "instructions": 354385469,
+                    "frontend_stall_cycles": 202198515,
+                    "l1i_read_misses": 25566110
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 127840580,
+                  "time_running": 127840580,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 359405492,
+                    "instructions": 354646760,
+                    "frontend_stall_cycles": 200885779,
+                    "l1i_read_misses": 25480881
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 129140480,
+                  "time_running": 129140480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 362962675,
+                    "instructions": 354392151,
+                    "frontend_stall_cycles": 201641869,
+                    "l1i_read_misses": 25538089
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130621380,
+                  "time_running": 130621380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 366907158,
+                    "instructions": 354600534,
+                    "frontend_stall_cycles": 202776137,
+                    "l1i_read_misses": 25634156
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131402250,
+                  "time_running": 131402250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369331167,
+                    "instructions": 354412168,
+                    "frontend_stall_cycles": 203456382,
+                    "l1i_read_misses": 25679818
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131397400,
+                  "time_running": 131397400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369524940,
+                    "instructions": 354613609,
+                    "frontend_stall_cycles": 203205861,
+                    "l1i_read_misses": 25693546
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131674440,
+                  "time_running": 131674440,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 370122114,
+                    "instructions": 354441905,
+                    "frontend_stall_cycles": 203489636,
+                    "l1i_read_misses": 25718306
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131492640,
+                  "time_running": 131492640,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369799678,
+                    "instructions": 354542709,
+                    "frontend_stall_cycles": 203213101,
+                    "l1i_read_misses": 25748242
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131445800,
+                  "time_running": 131445800,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369751891,
+                    "instructions": 354359876,
+                    "frontend_stall_cycles": 203037746,
+                    "l1i_read_misses": 25742433
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": -0.9733024825921754
+          },
+          {
+            "baseline": {
+              "seconds": 34.7965002800338,
+              "metric_seconds": 0.13352839,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "f9f80447d1a065ba4e94887793876b6281e9aa6aed2cd123b808ad8ca7f44187",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135706590,
+                  "time_running": 135706590,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380789362,
+                    "instructions": 353971680,
+                    "frontend_stall_cycles": 209572984,
+                    "l1i_read_misses": 26468454
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138519730,
+                  "time_running": 138519730,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 387173052,
+                    "instructions": 364637919,
+                    "frontend_stall_cycles": 211437790,
+                    "l1i_read_misses": 26512685
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134168410,
+                  "time_running": 134168410,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376584837,
+                    "instructions": 355397224,
+                    "frontend_stall_cycles": 208502083,
+                    "l1i_read_misses": 26358850
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133829190,
+                  "time_running": 133829190,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375757921,
+                    "instructions": 354719310,
+                    "frontend_stall_cycles": 207882308,
+                    "l1i_read_misses": 26333509
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134638560,
+                  "time_running": 134638560,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377927825,
+                    "instructions": 355486720,
+                    "frontend_stall_cycles": 208764113,
+                    "l1i_read_misses": 26407873
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132506950,
+                  "time_running": 132506950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371518866,
+                    "instructions": 354845554,
+                    "frontend_stall_cycles": 207838935,
+                    "l1i_read_misses": 26115008
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133130660,
+                  "time_running": 133130660,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373376771,
+                    "instructions": 355209361,
+                    "frontend_stall_cycles": 207697447,
+                    "l1i_read_misses": 26195258
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132579640,
+                  "time_running": 132579640,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372072781,
+                    "instructions": 355157833,
+                    "frontend_stall_cycles": 207073073,
+                    "l1i_read_misses": 26162783
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132439430,
+                  "time_running": 132439430,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371566757,
+                    "instructions": 355127666,
+                    "frontend_stall_cycles": 207261388,
+                    "l1i_read_misses": 26145335
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132306730,
+                  "time_running": 132306730,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371169967,
+                    "instructions": 354828472,
+                    "frontend_stall_cycles": 206826421,
+                    "l1i_read_misses": 26163056
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 139761530,
+                  "time_running": 139761530,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379583607,
+                    "instructions": 355296845,
+                    "frontend_stall_cycles": 209792857,
+                    "l1i_read_misses": 26425102
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134240000,
+                  "time_running": 134240000,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376597841,
+                    "instructions": 355071118,
+                    "frontend_stall_cycles": 208384406,
+                    "l1i_read_misses": 26324425
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132868080,
+                  "time_running": 132868080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372902444,
+                    "instructions": 355292009,
+                    "frontend_stall_cycles": 207354010,
+                    "l1i_read_misses": 26189994
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132879740,
+                  "time_running": 132879740,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372972783,
+                    "instructions": 355028168,
+                    "frontend_stall_cycles": 206827953,
+                    "l1i_read_misses": 26227972
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133357820,
+                  "time_running": 133357820,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374345579,
+                    "instructions": 355266002,
+                    "frontend_stall_cycles": 207152013,
+                    "l1i_read_misses": 26256314
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132382600,
+                  "time_running": 132382600,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371285329,
+                    "instructions": 355090149,
+                    "frontend_stall_cycles": 207207420,
+                    "l1i_read_misses": 26157372
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 35.199727879837155,
+              "metric_seconds": 0.1360097,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "9f649ef9c391eeffb01143ae77f13b1e4f4ca42f02ff07b6f85a4f4f741e96bd",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135040420,
+                  "time_running": 135040420,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377993303,
+                    "instructions": 357431459,
+                    "frontend_stall_cycles": 204510030,
+                    "l1i_read_misses": 28537461
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138571230,
+                  "time_running": 138571230,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386474565,
+                    "instructions": 367957221,
+                    "frontend_stall_cycles": 206788968,
+                    "l1i_read_misses": 28733809
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136597320,
+                  "time_running": 136597320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382239128,
+                    "instructions": 358807009,
+                    "frontend_stall_cycles": 205958271,
+                    "l1i_read_misses": 28707414
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136322260,
+                  "time_running": 136322260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381615727,
+                    "instructions": 358372423,
+                    "frontend_stall_cycles": 205436693,
+                    "l1i_read_misses": 28711863
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136809610,
+                  "time_running": 136809610,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382936369,
+                    "instructions": 358756407,
+                    "frontend_stall_cycles": 205785013,
+                    "l1i_read_misses": 28724914
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136181680,
+                  "time_running": 136181680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381328824,
+                    "instructions": 358218130,
+                    "frontend_stall_cycles": 205330565,
+                    "l1i_read_misses": 28700635
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136047180,
+                  "time_running": 136047180,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380913369,
+                    "instructions": 358557712,
+                    "frontend_stall_cycles": 205409259,
+                    "l1i_read_misses": 28693490
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135665900,
+                  "time_running": 135665900,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379903878,
+                    "instructions": 358499390,
+                    "frontend_stall_cycles": 204880642,
+                    "l1i_read_misses": 28601340
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135844570,
+                  "time_running": 135844570,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380282683,
+                    "instructions": 358679911,
+                    "frontend_stall_cycles": 205057201,
+                    "l1i_read_misses": 28636388
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135656080,
+                  "time_running": 135656080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379782190,
+                    "instructions": 358382665,
+                    "frontend_stall_cycles": 204894764,
+                    "l1i_read_misses": 28630380
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135729910,
+                  "time_running": 135729910,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379995212,
+                    "instructions": 358635373,
+                    "frontend_stall_cycles": 204975933,
+                    "l1i_read_misses": 28625808
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135787010,
+                  "time_running": 135787010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380173238,
+                    "instructions": 358385219,
+                    "frontend_stall_cycles": 205048421,
+                    "l1i_read_misses": 28640189
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135602090,
+                  "time_running": 135602090,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379707036,
+                    "instructions": 358523615,
+                    "frontend_stall_cycles": 204955807,
+                    "l1i_read_misses": 28687036
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135676630,
+                  "time_running": 135676630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379909028,
+                    "instructions": 358291137,
+                    "frontend_stall_cycles": 205174660,
+                    "l1i_read_misses": 28688312
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135792460,
+                  "time_running": 135792460,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380207854,
+                    "instructions": 358426581,
+                    "frontend_stall_cycles": 205248489,
+                    "l1i_read_misses": 28717473
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135722100,
+                  "time_running": 135722100,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379973522,
+                    "instructions": 358350034,
+                    "frontend_stall_cycles": 204944683,
+                    "l1i_read_misses": 28689809
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": -1.8582639991390648
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/ext-tsp/validations/3d0fa6d55a9740ff8b5bbddd4cdf78d8",
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": -0.9733024825921754,
+        "min_reduction_percent": -1.8582639991390648,
+        "max_reduction_percent": 1.953149412319144,
+        "recommendation": "retain-baseline",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "compact",
+      "directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact",
+      "images": [
+        "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+        "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+        "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so"
+      ],
+      "failed_images": [],
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 34.98515227995813,
+              "metric_seconds": 0.137268395,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "b4c8d9c5a30e550cd15b223aecc336c2a0c759fa68bd267de583deda17c0dbf2",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133192610,
+                  "time_running": 133192610,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373759971,
+                    "instructions": 353485090,
+                    "frontend_stall_cycles": 208171370,
+                    "l1i_read_misses": 26585020
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138462510,
+                  "time_running": 138462510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386778199,
+                    "instructions": 364096943,
+                    "frontend_stall_cycles": 211163465,
+                    "l1i_read_misses": 26794179
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136666870,
+                  "time_running": 136666870,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383466102,
+                    "instructions": 354944968,
+                    "frontend_stall_cycles": 210910369,
+                    "l1i_read_misses": 26820859
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136809160,
+                  "time_running": 136809160,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383976718,
+                    "instructions": 354459262,
+                    "frontend_stall_cycles": 210822985,
+                    "l1i_read_misses": 26837586
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137171390,
+                  "time_running": 137171390,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384798158,
+                    "instructions": 354720846,
+                    "frontend_stall_cycles": 211072955,
+                    "l1i_read_misses": 26826709
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136715000,
+                  "time_running": 136715000,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383470607,
+                    "instructions": 354352697,
+                    "frontend_stall_cycles": 210529395,
+                    "l1i_read_misses": 26859708
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136967970,
+                  "time_running": 136967970,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384329926,
+                    "instructions": 354503601,
+                    "frontend_stall_cycles": 210894513,
+                    "l1i_read_misses": 26864626
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137072280,
+                  "time_running": 137072280,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384520442,
+                    "instructions": 354359105,
+                    "frontend_stall_cycles": 211041109,
+                    "l1i_read_misses": 26833714
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137091300,
+                  "time_running": 137091300,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384388836,
+                    "instructions": 354659569,
+                    "frontend_stall_cycles": 210910638,
+                    "l1i_read_misses": 26882566
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136557310,
+                  "time_running": 136557310,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382981080,
+                    "instructions": 354308069,
+                    "frontend_stall_cycles": 210579511,
+                    "l1i_read_misses": 26871853
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 141101330,
+                  "time_running": 141101330,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 385324670,
+                    "instructions": 354681498,
+                    "frontend_stall_cycles": 211188327,
+                    "l1i_read_misses": 26946328
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136987580,
+                  "time_running": 136987580,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384374496,
+                    "instructions": 354464039,
+                    "frontend_stall_cycles": 210565228,
+                    "l1i_read_misses": 26876028
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138822650,
+                  "time_running": 138822650,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 389691545,
+                    "instructions": 354658776,
+                    "frontend_stall_cycles": 212840719,
+                    "l1i_read_misses": 26948793
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137578050,
+                  "time_running": 137578050,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386272998,
+                    "instructions": 354435352,
+                    "frontend_stall_cycles": 211093639,
+                    "l1i_read_misses": 26914693
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137359290,
+                  "time_running": 137359290,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 385638446,
+                    "instructions": 354675480,
+                    "frontend_stall_cycles": 211111278,
+                    "l1i_read_misses": 26957339
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137919950,
+                  "time_running": 137919950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 387148260,
+                    "instructions": 354613085,
+                    "frontend_stall_cycles": 211809926,
+                    "l1i_read_misses": 26951143
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 34.23930198000744,
+              "metric_seconds": 0.13189576,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "f8023cadb4f8421709261c269d2119eb302bfa0d635cf60b69a72765865e9c12",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131440170,
+                  "time_running": 131440170,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367603388,
+                    "instructions": 356882974,
+                    "frontend_stall_cycles": 197214151,
+                    "l1i_read_misses": 27899649
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135503530,
+                  "time_running": 135503530,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377583435,
+                    "instructions": 367762266,
+                    "frontend_stall_cycles": 199085929,
+                    "l1i_read_misses": 28129488
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133361400,
+                  "time_running": 133361400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373051166,
+                    "instructions": 358653072,
+                    "frontend_stall_cycles": 198333610,
+                    "l1i_read_misses": 28116558
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133669410,
+                  "time_running": 133669410,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373825544,
+                    "instructions": 357976282,
+                    "frontend_stall_cycles": 198772998,
+                    "l1i_read_misses": 28127181
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131439530,
+                  "time_running": 131439530,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367638572,
+                    "instructions": 358249384,
+                    "frontend_stall_cycles": 197031141,
+                    "l1i_read_misses": 27952996
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131524980,
+                  "time_running": 131524980,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367802474,
+                    "instructions": 357924328,
+                    "frontend_stall_cycles": 196818298,
+                    "l1i_read_misses": 27894101
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131392080,
+                  "time_running": 131392080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367469152,
+                    "instructions": 358159405,
+                    "frontend_stall_cycles": 196757977,
+                    "l1i_read_misses": 27922141
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131534040,
+                  "time_running": 131534040,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367893876,
+                    "instructions": 358080311,
+                    "frontend_stall_cycles": 196645977,
+                    "l1i_read_misses": 27889456
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134338120,
+                  "time_running": 134338120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375581210,
+                    "instructions": 358319951,
+                    "frontend_stall_cycles": 199393010,
+                    "l1i_read_misses": 27955427
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133123490,
+                  "time_running": 133123490,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372480790,
+                    "instructions": 358184687,
+                    "frontend_stall_cycles": 197535316,
+                    "l1i_read_misses": 27974539
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132317030,
+                  "time_running": 132317030,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 370113063,
+                    "instructions": 358367500,
+                    "frontend_stall_cycles": 197146259,
+                    "l1i_read_misses": 27884784
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131589840,
+                  "time_running": 131589840,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367904226,
+                    "instructions": 358063588,
+                    "frontend_stall_cycles": 196708153,
+                    "l1i_read_misses": 27832698
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131344460,
+                  "time_running": 131344460,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367028636,
+                    "instructions": 358127671,
+                    "frontend_stall_cycles": 196449898,
+                    "l1i_read_misses": 27802649
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131359960,
+                  "time_running": 131359960,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367263569,
+                    "instructions": 358039291,
+                    "frontend_stall_cycles": 196519297,
+                    "l1i_read_misses": 27884257
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131811800,
+                  "time_running": 131811800,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 368649493,
+                    "instructions": 358405841,
+                    "frontend_stall_cycles": 196807878,
+                    "l1i_read_misses": 27894598
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131995130,
+                  "time_running": 131995130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369068326,
+                    "instructions": 358289121,
+                    "frontend_stall_cycles": 197040484,
+                    "l1i_read_misses": 27914430
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 3.913963589360814
+          },
+          {
+            "candidate": {
+              "seconds": 35.420434130355716,
+              "metric_seconds": 0.134024245,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "648123a66bce44b1303bc6c262e97fd94c5291038b12c6f118c3f96b6d7db982",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133335480,
+                  "time_running": 133335480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371919234,
+                    "instructions": 356486118,
+                    "frontend_stall_cycles": 197699910,
+                    "l1i_read_misses": 27167446
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135418600,
+                  "time_running": 135418600,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376562293,
+                    "instructions": 367179576,
+                    "frontend_stall_cycles": 198251887,
+                    "l1i_read_misses": 27247423
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132954090,
+                  "time_running": 132954090,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371260086,
+                    "instructions": 358061410,
+                    "frontend_stall_cycles": 197239578,
+                    "l1i_read_misses": 27262168
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133458790,
+                  "time_running": 133458790,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372544958,
+                    "instructions": 357708142,
+                    "frontend_stall_cycles": 197237834,
+                    "l1i_read_misses": 27316938
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133343260,
+                  "time_running": 133343260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372173740,
+                    "instructions": 357677684,
+                    "frontend_stall_cycles": 197182981,
+                    "l1i_read_misses": 27338535
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133956110,
+                  "time_running": 133956110,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373944670,
+                    "instructions": 357461506,
+                    "frontend_stall_cycles": 197322686,
+                    "l1i_read_misses": 27378312
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134286730,
+                  "time_running": 134286730,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375006300,
+                    "instructions": 357484211,
+                    "frontend_stall_cycles": 198165882,
+                    "l1i_read_misses": 27286269
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133787470,
+                  "time_running": 133787470,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373770286,
+                    "instructions": 357379058,
+                    "frontend_stall_cycles": 197589447,
+                    "l1i_read_misses": 27332557
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133869370,
+                  "time_running": 133869370,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374024963,
+                    "instructions": 357601655,
+                    "frontend_stall_cycles": 197592614,
+                    "l1i_read_misses": 27326193
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134078880,
+                  "time_running": 134078880,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374297181,
+                    "instructions": 357428346,
+                    "frontend_stall_cycles": 198097733,
+                    "l1i_read_misses": 27345841
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134203210,
+                  "time_running": 134203210,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374637621,
+                    "instructions": 357703677,
+                    "frontend_stall_cycles": 198169753,
+                    "l1i_read_misses": 27399005
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133665880,
+                  "time_running": 133665880,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373642675,
+                    "instructions": 357412852,
+                    "frontend_stall_cycles": 197504889,
+                    "l1i_read_misses": 27416688
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133707380,
+                  "time_running": 133707380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373559554,
+                    "instructions": 357601635,
+                    "frontend_stall_cycles": 198109503,
+                    "l1i_read_misses": 27343057
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133128350,
+                  "time_running": 133128350,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372235078,
+                    "instructions": 357594827,
+                    "frontend_stall_cycles": 197243243,
+                    "l1i_read_misses": 27404363
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133890380,
+                  "time_running": 133890380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374332178,
+                    "instructions": 357654330,
+                    "frontend_stall_cycles": 197862417,
+                    "l1i_read_misses": 27388233
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133814720,
+                  "time_running": 133814720,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374028236,
+                    "instructions": 357451942,
+                    "frontend_stall_cycles": 197742449,
+                    "l1i_read_misses": 27408847
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 35.84207805013284,
+              "metric_seconds": 0.13592762,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "953c314a2e2e8de7ffde33ebcc52063ec386cfd27edbe66ffc991745433e34e3",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135211030,
+                  "time_running": 135211030,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380282134,
+                    "instructions": 352823765,
+                    "frontend_stall_cycles": 209077624,
+                    "l1i_read_misses": 26068528
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138060430,
+                  "time_running": 138060430,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 386706051,
+                    "instructions": 363449680,
+                    "frontend_stall_cycles": 210209421,
+                    "l1i_read_misses": 26216791
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135896200,
+                  "time_running": 135896200,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382001961,
+                    "instructions": 354290497,
+                    "frontend_stall_cycles": 208927456,
+                    "l1i_read_misses": 26216220
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135845480,
+                  "time_running": 135845480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381803033,
+                    "instructions": 353871078,
+                    "frontend_stall_cycles": 208881991,
+                    "l1i_read_misses": 26224231
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135755470,
+                  "time_running": 135755470,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381593177,
+                    "instructions": 354055158,
+                    "frontend_stall_cycles": 208657176,
+                    "l1i_read_misses": 26253980
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135357390,
+                  "time_running": 135357390,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380441825,
+                    "instructions": 353703491,
+                    "frontend_stall_cycles": 208247859,
+                    "l1i_read_misses": 26228288
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134280950,
+                  "time_running": 134280950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377298115,
+                    "instructions": 353777391,
+                    "frontend_stall_cycles": 208093797,
+                    "l1i_read_misses": 26011362
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135018190,
+                  "time_running": 135018190,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379308667,
+                    "instructions": 353636390,
+                    "frontend_stall_cycles": 208521290,
+                    "l1i_read_misses": 26066067
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134865270,
+                  "time_running": 134865270,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379138588,
+                    "instructions": 353797622,
+                    "frontend_stall_cycles": 208175189,
+                    "l1i_read_misses": 26099843
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135288330,
+                  "time_running": 135288330,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380253663,
+                    "instructions": 353951330,
+                    "frontend_stall_cycles": 208476019,
+                    "l1i_read_misses": 26131953
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135039250,
+                  "time_running": 135039250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379672535,
+                    "instructions": 353871969,
+                    "frontend_stall_cycles": 208239790,
+                    "l1i_read_misses": 26155077
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136085950,
+                  "time_running": 136085950,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382426916,
+                    "instructions": 353680956,
+                    "frontend_stall_cycles": 209268753,
+                    "l1i_read_misses": 26162986
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136284250,
+                  "time_running": 136284250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383202971,
+                    "instructions": 353906415,
+                    "frontend_stall_cycles": 209643141,
+                    "l1i_read_misses": 26245285
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135863380,
+                  "time_running": 135863380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382029292,
+                    "instructions": 353680575,
+                    "frontend_stall_cycles": 208993212,
+                    "l1i_read_misses": 26212242
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135698630,
+                  "time_running": 135698630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381735263,
+                    "instructions": 353837088,
+                    "frontend_stall_cycles": 208523672,
+                    "l1i_read_misses": 26249379
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135943470,
+                  "time_running": 135943470,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382446185,
+                    "instructions": 353646806,
+                    "frontend_stall_cycles": 208987147,
+                    "l1i_read_misses": 26288138
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 1.4002856814531284
+          },
+          {
+            "baseline": {
+              "seconds": 35.73502006009221,
+              "metric_seconds": 0.134271695,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2b1c5021133a0e3919bb974aa4e6197868bf7363ae81031e693eadcc487c4fb1",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136110590,
+                  "time_running": 136110590,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382571587,
+                    "instructions": 354097612,
+                    "frontend_stall_cycles": 208433919,
+                    "l1i_read_misses": 26199939
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 139837220,
+                  "time_running": 139837220,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 391422863,
+                    "instructions": 364688935,
+                    "frontend_stall_cycles": 210733443,
+                    "l1i_read_misses": 26371250
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136854400,
+                  "time_running": 136854400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384544302,
+                    "instructions": 355573669,
+                    "frontend_stall_cycles": 208749924,
+                    "l1i_read_misses": 26314609
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135753050,
+                  "time_running": 135753050,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381444452,
+                    "instructions": 355064968,
+                    "frontend_stall_cycles": 208004819,
+                    "l1i_read_misses": 26182929
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130905370,
+                  "time_running": 130905370,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367718058,
+                    "instructions": 355416200,
+                    "frontend_stall_cycles": 204115191,
+                    "l1i_read_misses": 25818849
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134986230,
+                  "time_running": 134986230,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372719974,
+                    "instructions": 355105790,
+                    "frontend_stall_cycles": 205384050,
+                    "l1i_read_misses": 25909010
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134441690,
+                  "time_running": 134441690,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377668351,
+                    "instructions": 355193865,
+                    "frontend_stall_cycles": 207135819,
+                    "l1i_read_misses": 25997708
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133960490,
+                  "time_running": 133960490,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376281996,
+                    "instructions": 355081017,
+                    "frontend_stall_cycles": 206573059,
+                    "l1i_read_misses": 25981437
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131885630,
+                  "time_running": 131885630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 370297675,
+                    "instructions": 355000844,
+                    "frontend_stall_cycles": 204650053,
+                    "l1i_read_misses": 25855719
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132135750,
+                  "time_running": 132135750,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371058092,
+                    "instructions": 355011531,
+                    "frontend_stall_cycles": 204936427,
+                    "l1i_read_misses": 25868134
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133090030,
+                  "time_running": 133090030,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373751049,
+                    "instructions": 355249962,
+                    "frontend_stall_cycles": 205484027,
+                    "l1i_read_misses": 25987880
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134177780,
+                  "time_running": 134177780,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376983947,
+                    "instructions": 355029543,
+                    "frontend_stall_cycles": 206272832,
+                    "l1i_read_misses": 26070020
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134347710,
+                  "time_running": 134347710,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377392113,
+                    "instructions": 355011636,
+                    "frontend_stall_cycles": 206270997,
+                    "l1i_read_misses": 26114188
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132387680,
+                  "time_running": 132387680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371754976,
+                    "instructions": 354937619,
+                    "frontend_stall_cycles": 204882477,
+                    "l1i_read_misses": 25939874
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131156400,
+                  "time_running": 131156400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 368336729,
+                    "instructions": 355200782,
+                    "frontend_stall_cycles": 203959401,
+                    "l1i_read_misses": 25811471
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132761110,
+                  "time_running": 132761110,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372921206,
+                    "instructions": 354858083,
+                    "frontend_stall_cycles": 205047190,
+                    "l1i_read_misses": 25940507
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 35.01567069021985,
+              "metric_seconds": 0.134571835,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "ea97e6e0de92df9d91375dbca308dcafe0524f200dc0777e5c42a6643d3cd079",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133952130,
+                  "time_running": 133952130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375166209,
+                    "instructions": 356358790,
+                    "frontend_stall_cycles": 196241640,
+                    "l1i_read_misses": 27439749
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136991350,
+                  "time_running": 136991350,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382261549,
+                    "instructions": 367170206,
+                    "frontend_stall_cycles": 197755626,
+                    "l1i_read_misses": 27562565
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134248620,
+                  "time_running": 134248620,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376051316,
+                    "instructions": 357885644,
+                    "frontend_stall_cycles": 196658211,
+                    "l1i_read_misses": 27509363
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133637510,
+                  "time_running": 133637510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374348023,
+                    "instructions": 357385294,
+                    "frontend_stall_cycles": 195949260,
+                    "l1i_read_misses": 27505624
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133645340,
+                  "time_running": 133645340,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374378874,
+                    "instructions": 357670219,
+                    "frontend_stall_cycles": 196017334,
+                    "l1i_read_misses": 27501363
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133715290,
+                  "time_running": 133715290,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374690159,
+                    "instructions": 357380515,
+                    "frontend_stall_cycles": 195824314,
+                    "l1i_read_misses": 27477410
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134144810,
+                  "time_running": 134144810,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375792944,
+                    "instructions": 357565946,
+                    "frontend_stall_cycles": 196136957,
+                    "l1i_read_misses": 27539701
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133796880,
+                  "time_running": 133796880,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374870904,
+                    "instructions": 357446855,
+                    "frontend_stall_cycles": 195809213,
+                    "l1i_read_misses": 27513852
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133595990,
+                  "time_running": 133595990,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374345789,
+                    "instructions": 357685836,
+                    "frontend_stall_cycles": 195699712,
+                    "l1i_read_misses": 27483972
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 138757390,
+                  "time_running": 138757390,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375359053,
+                    "instructions": 357645559,
+                    "frontend_stall_cycles": 196170848,
+                    "l1i_read_misses": 27558228
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134773910,
+                  "time_running": 134773910,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377070181,
+                    "instructions": 357556145,
+                    "frontend_stall_cycles": 197364654,
+                    "l1i_read_misses": 27569562
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134523620,
+                  "time_running": 134523620,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376356310,
+                    "instructions": 357417463,
+                    "frontend_stall_cycles": 197113237,
+                    "l1i_read_misses": 27534500
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135283920,
+                  "time_running": 135283920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378980505,
+                    "instructions": 357634815,
+                    "frontend_stall_cycles": 198160989,
+                    "l1i_read_misses": 27523059
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134621930,
+                  "time_running": 134621930,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377234358,
+                    "instructions": 357418136,
+                    "frontend_stall_cycles": 197214830,
+                    "l1i_read_misses": 27561830
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135163260,
+                  "time_running": 135163260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378673514,
+                    "instructions": 357520982,
+                    "frontend_stall_cycles": 197658962,
+                    "l1i_read_misses": 27561868
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134799040,
+                  "time_running": 134799040,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377627576,
+                    "instructions": 357383389,
+                    "frontend_stall_cycles": 197431786,
+                    "l1i_read_misses": 27533487
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": -0.22353184712533558
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/compact/validations/fbe46d8877374957bbe8e5c253691260",
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 1.4002856814531284,
+        "min_reduction_percent": -0.22353184712533558,
+        "max_reduction_percent": 3.913963589360814,
+        "recommendation": "retain-baseline",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "aligned",
+      "directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned",
+      "images": [
+        "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+        "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+        "/usr/local/Ascend/cann-9.1.0/aarch64-linux/lib64/libnnopbase.so"
+      ],
+      "failed_images": [],
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 35.00898037990555,
+              "metric_seconds": 0.134440305,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "995104353c6115b89629cdeaed2ab63d3f8f34bb435d2f5e79e261e4705a566f",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132034920,
+                  "time_running": 132034920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 370175306,
+                    "instructions": 353568762,
+                    "frontend_stall_cycles": 205812695,
+                    "l1i_read_misses": 26116205
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136243030,
+                  "time_running": 136243030,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379972790,
+                    "instructions": 364289688,
+                    "frontend_stall_cycles": 207759215,
+                    "l1i_read_misses": 26187986
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132869480,
+                  "time_running": 132869480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 372459372,
+                    "instructions": 355052854,
+                    "frontend_stall_cycles": 205809670,
+                    "l1i_read_misses": 26154627
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132593380,
+                  "time_running": 132593380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371819019,
+                    "instructions": 354483324,
+                    "frontend_stall_cycles": 205308063,
+                    "l1i_read_misses": 26163926
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133977480,
+                  "time_running": 133977480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375493826,
+                    "instructions": 354699258,
+                    "frontend_stall_cycles": 207070866,
+                    "l1i_read_misses": 26188476
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133072570,
+                  "time_running": 133072570,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373375726,
+                    "instructions": 354524012,
+                    "frontend_stall_cycles": 205947809,
+                    "l1i_read_misses": 26197997
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133244630,
+                  "time_running": 133244630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373797625,
+                    "instructions": 354597408,
+                    "frontend_stall_cycles": 205912727,
+                    "l1i_read_misses": 26206932
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133247900,
+                  "time_running": 133247900,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373877052,
+                    "instructions": 354548606,
+                    "frontend_stall_cycles": 205852099,
+                    "l1i_read_misses": 26217166
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133599350,
+                  "time_running": 133599350,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 374742357,
+                    "instructions": 354623429,
+                    "frontend_stall_cycles": 206109126,
+                    "l1i_read_misses": 26251103
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 139693120,
+                  "time_running": 139693120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380755397,
+                    "instructions": 354466521,
+                    "frontend_stall_cycles": 209089907,
+                    "l1i_read_misses": 26333588
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134616510,
+                  "time_running": 134616510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377633158,
+                    "instructions": 354689501,
+                    "frontend_stall_cycles": 207058673,
+                    "l1i_read_misses": 26310230
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134513870,
+                  "time_running": 134513870,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377466087,
+                    "instructions": 354387559,
+                    "frontend_stall_cycles": 206875090,
+                    "l1i_read_misses": 26324842
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134867200,
+                  "time_running": 134867200,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378390304,
+                    "instructions": 354675223,
+                    "frontend_stall_cycles": 207306970,
+                    "l1i_read_misses": 26341873
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135087790,
+                  "time_running": 135087790,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379104415,
+                    "instructions": 354463320,
+                    "frontend_stall_cycles": 207769780,
+                    "l1i_read_misses": 26350535
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135931840,
+                  "time_running": 135931840,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381287171,
+                    "instructions": 354442380,
+                    "frontend_stall_cycles": 208854145,
+                    "l1i_read_misses": 26300002
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135148440,
+                  "time_running": 135148440,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379067662,
+                    "instructions": 354391344,
+                    "frontend_stall_cycles": 207596580,
+                    "l1i_read_misses": 26321322
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 34.66717837005854,
+              "metric_seconds": 0.131019985,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "5caa30bfe0a53c2d3829ae596dc3916e893352b871aff8345923d4836f83e3f7",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130782450,
+                  "time_running": 130782450,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 365426129,
+                    "instructions": 356952342,
+                    "frontend_stall_cycles": 201366240,
+                    "l1i_read_misses": 28258051
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 139859270,
+                  "time_running": 139859270,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 389489195,
+                    "instructions": 367463455,
+                    "frontend_stall_cycles": 208158383,
+                    "l1i_read_misses": 28727610
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135805860,
+                  "time_running": 135805860,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379814724,
+                    "instructions": 358312884,
+                    "frontend_stall_cycles": 205045292,
+                    "l1i_read_misses": 28725764
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 129724510,
+                  "time_running": 129724510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 362530106,
+                    "instructions": 357754222,
+                    "frontend_stall_cycles": 200201870,
+                    "l1i_read_misses": 28165023
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130588080,
+                  "time_running": 130588080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364892456,
+                    "instructions": 358129935,
+                    "frontend_stall_cycles": 201076339,
+                    "l1i_read_misses": 28243548
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 129369310,
+                  "time_running": 129369310,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 361477975,
+                    "instructions": 357657712,
+                    "frontend_stall_cycles": 200066645,
+                    "l1i_read_misses": 28132039
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 128549760,
+                  "time_running": 128549760,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 359226704,
+                    "instructions": 357736595,
+                    "frontend_stall_cycles": 199437466,
+                    "l1i_read_misses": 28095265
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130441640,
+                  "time_running": 130441640,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364526025,
+                    "instructions": 357668191,
+                    "frontend_stall_cycles": 200950574,
+                    "l1i_read_misses": 28093003
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132334720,
+                  "time_running": 132334720,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369992508,
+                    "instructions": 357911762,
+                    "frontend_stall_cycles": 201955867,
+                    "l1i_read_misses": 28259910
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132727850,
+                  "time_running": 132727850,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371123666,
+                    "instructions": 357836165,
+                    "frontend_stall_cycles": 202193469,
+                    "l1i_read_misses": 28334813
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135335620,
+                  "time_running": 135335620,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 365808504,
+                    "instructions": 358036864,
+                    "frontend_stall_cycles": 201517115,
+                    "l1i_read_misses": 28241337
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130870350,
+                  "time_running": 130870350,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 365685744,
+                    "instructions": 357556056,
+                    "frontend_stall_cycles": 201223098,
+                    "l1i_read_misses": 28235191
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130280110,
+                  "time_running": 130280110,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364175805,
+                    "instructions": 357739563,
+                    "frontend_stall_cycles": 200962351,
+                    "l1i_read_misses": 28218064
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130528010,
+                  "time_running": 130528010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 364658793,
+                    "instructions": 357661953,
+                    "frontend_stall_cycles": 201040248,
+                    "l1i_read_misses": 28134701
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131495250,
+                  "time_running": 131495250,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367505682,
+                    "instructions": 357901700,
+                    "frontend_stall_cycles": 201324778,
+                    "l1i_read_misses": 28221283
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132045730,
+                  "time_running": 132045730,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369101201,
+                    "instructions": 357659857,
+                    "frontend_stall_cycles": 201845587,
+                    "l1i_read_misses": 28228145
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": 2.544118000922424
+          },
+          {
+            "candidate": {
+              "seconds": 35.263436739798635,
+              "metric_seconds": 0.136412865,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "54fb736e2a53969cee3c22bb03c3fb92e4ee49df29bc286dd7526edbc65895cd",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135926120,
+                  "time_running": 135926120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380689429,
+                    "instructions": 357237092,
+                    "frontend_stall_cycles": 206383838,
+                    "l1i_read_misses": 28826674
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136970400,
+                  "time_running": 136970400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382430206,
+                    "instructions": 367847766,
+                    "frontend_stall_cycles": 206434599,
+                    "l1i_read_misses": 28774543
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134082630,
+                  "time_running": 134082630,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 375472067,
+                    "instructions": 358675980,
+                    "frontend_stall_cycles": 204805077,
+                    "l1i_read_misses": 28663435
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131382770,
+                  "time_running": 131382770,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 367889726,
+                    "instructions": 358252481,
+                    "frontend_stall_cycles": 202569810,
+                    "l1i_read_misses": 28387656
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131014920,
+                  "time_running": 131014920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 366752934,
+                    "instructions": 358590821,
+                    "frontend_stall_cycles": 202406028,
+                    "l1i_read_misses": 28380042
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131453940,
+                  "time_running": 131453940,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 368208405,
+                    "instructions": 358152173,
+                    "frontend_stall_cycles": 202466361,
+                    "l1i_read_misses": 28417252
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132803770,
+                  "time_running": 132803770,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371952808,
+                    "instructions": 358306597,
+                    "frontend_stall_cycles": 203459115,
+                    "l1i_read_misses": 28535264
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 133143100,
+                  "time_running": 133143100,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373031761,
+                    "instructions": 358200411,
+                    "frontend_stall_cycles": 203907905,
+                    "l1i_read_misses": 28579875
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136779020,
+                  "time_running": 136779020,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382914050,
+                    "instructions": 358380515,
+                    "frontend_stall_cycles": 206755812,
+                    "l1i_read_misses": 28835640
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136123970,
+                  "time_running": 136123970,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381461338,
+                    "instructions": 358136997,
+                    "frontend_stall_cycles": 207128439,
+                    "l1i_read_misses": 28894500
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136459770,
+                  "time_running": 136459770,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382256302,
+                    "instructions": 358296147,
+                    "frontend_stall_cycles": 207549615,
+                    "l1i_read_misses": 28913692
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137361280,
+                  "time_running": 137361280,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 384438930,
+                    "instructions": 358163914,
+                    "frontend_stall_cycles": 208811045,
+                    "l1i_read_misses": 28894806
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137022490,
+                  "time_running": 137022490,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383627051,
+                    "instructions": 358453541,
+                    "frontend_stall_cycles": 208008302,
+                    "l1i_read_misses": 28912127
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136330140,
+                  "time_running": 136330140,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382176747,
+                    "instructions": 358160690,
+                    "frontend_stall_cycles": 207169525,
+                    "l1i_read_misses": 28873235
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136555080,
+                  "time_running": 136555080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382770818,
+                    "instructions": 358230070,
+                    "frontend_stall_cycles": 207473024,
+                    "l1i_read_misses": 28911387
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136988230,
+                  "time_running": 136988230,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383831259,
+                    "instructions": 358068811,
+                    "frontend_stall_cycles": 207881880,
+                    "l1i_read_misses": 28915856
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 34.440061510074884,
+              "metric_seconds": 0.135330275,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "5db1b6757872e8b3e2f4d1c3767ea54f2ac0225aa9bc0bed234cceba5aefa7d1",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135462280,
+                  "time_running": 135462280,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380680791,
+                    "instructions": 353103355,
+                    "frontend_stall_cycles": 210041427,
+                    "l1i_read_misses": 26703729
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137651280,
+                  "time_running": 137651280,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 385735007,
+                    "instructions": 363806254,
+                    "frontend_stall_cycles": 210550753,
+                    "l1i_read_misses": 26747182
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135416240,
+                  "time_running": 135416240,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380793124,
+                    "instructions": 354522384,
+                    "frontend_stall_cycles": 209436945,
+                    "l1i_read_misses": 26770156
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134959800,
+                  "time_running": 134959800,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379366985,
+                    "instructions": 354072236,
+                    "frontend_stall_cycles": 209095683,
+                    "l1i_read_misses": 26713332
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134072510,
+                  "time_running": 134072510,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377039035,
+                    "instructions": 354470217,
+                    "frontend_stall_cycles": 208507732,
+                    "l1i_read_misses": 26660391
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130103010,
+                  "time_running": 130103010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 365760731,
+                    "instructions": 354093323,
+                    "frontend_stall_cycles": 205436424,
+                    "l1i_read_misses": 26304280
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131495550,
+                  "time_running": 131495550,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 369797743,
+                    "instructions": 354170864,
+                    "frontend_stall_cycles": 206365308,
+                    "l1i_read_misses": 26392845
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132180920,
+                  "time_running": 132180920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371594941,
+                    "instructions": 354072552,
+                    "frontend_stall_cycles": 206749551,
+                    "l1i_read_misses": 26404941
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132251220,
+                  "time_running": 132251220,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371831528,
+                    "instructions": 354234192,
+                    "frontend_stall_cycles": 206790746,
+                    "l1i_read_misses": 26467749
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 130420320,
+                  "time_running": 130420320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 366526348,
+                    "instructions": 354109963,
+                    "frontend_stall_cycles": 205508094,
+                    "l1i_read_misses": 26278053
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136389480,
+                  "time_running": 136389480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 373088842,
+                    "instructions": 354264272,
+                    "frontend_stall_cycles": 207631856,
+                    "l1i_read_misses": 26487985
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135075590,
+                  "time_running": 135075590,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379708077,
+                    "instructions": 354091571,
+                    "frontend_stall_cycles": 209887389,
+                    "l1i_read_misses": 26652598
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135565670,
+                  "time_running": 135565670,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380939944,
+                    "instructions": 354252426,
+                    "frontend_stall_cycles": 211004983,
+                    "l1i_read_misses": 26642181
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135208820,
+                  "time_running": 135208820,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380159716,
+                    "instructions": 354103420,
+                    "frontend_stall_cycles": 210047085,
+                    "l1i_read_misses": 26677237
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135401960,
+                  "time_running": 135401960,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380632093,
+                    "instructions": 354258225,
+                    "frontend_stall_cycles": 210359484,
+                    "l1i_read_misses": 26711418
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135340920,
+                  "time_running": 135340920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380459121,
+                    "instructions": 354150004,
+                    "frontend_stall_cycles": 210137821,
+                    "l1i_read_misses": 26719612
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": -0.799961427699758
+          },
+          {
+            "baseline": {
+              "seconds": 34.8885958599858,
+              "metric_seconds": 0.13559168,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3be951e3f3b9c3dec1846488347b04b8368e46b27671ed05d54a978adca665c6",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 134591830,
+                  "time_running": 134591830,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 376191503,
+                    "instructions": 354301749,
+                    "frontend_stall_cycles": 209689143,
+                    "l1i_read_misses": 26631695
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136196010,
+                  "time_running": 136196010,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379738794,
+                    "instructions": 365089791,
+                    "frontend_stall_cycles": 209887945,
+                    "l1i_read_misses": 26704129
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135172550,
+                  "time_running": 135172550,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378168709,
+                    "instructions": 356088265,
+                    "frontend_stall_cycles": 209573856,
+                    "l1i_read_misses": 26815197
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135266810,
+                  "time_running": 135266810,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378513935,
+                    "instructions": 355645874,
+                    "frontend_stall_cycles": 209442823,
+                    "l1i_read_misses": 26817001
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135342690,
+                  "time_running": 135342690,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378821651,
+                    "instructions": 355885331,
+                    "frontend_stall_cycles": 209257278,
+                    "l1i_read_misses": 26835728
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135299220,
+                  "time_running": 135299220,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378690036,
+                    "instructions": 355274458,
+                    "frontend_stall_cycles": 209040023,
+                    "l1i_read_misses": 26827136
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135986120,
+                  "time_running": 135986120,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380132277,
+                    "instructions": 355381722,
+                    "frontend_stall_cycles": 209738703,
+                    "l1i_read_misses": 26779031
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135583320,
+                  "time_running": 135583320,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379396885,
+                    "instructions": 355306802,
+                    "frontend_stall_cycles": 209430106,
+                    "l1i_read_misses": 26788438
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131091680,
+                  "time_running": 131091680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 366557255,
+                    "instructions": 355614827,
+                    "frontend_stall_cycles": 206191096,
+                    "l1i_read_misses": 26483397
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 132670180,
+                  "time_running": 132670180,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 371223590,
+                    "instructions": 355378695,
+                    "frontend_stall_cycles": 207136238,
+                    "l1i_read_misses": 26571208
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 139200160,
+                  "time_running": 139200160,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378748815,
+                    "instructions": 355546487,
+                    "frontend_stall_cycles": 209630266,
+                    "l1i_read_misses": 26834432
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135462570,
+                  "time_running": 135462570,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379072777,
+                    "instructions": 355424689,
+                    "frontend_stall_cycles": 209380048,
+                    "l1i_read_misses": 26805442
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135494700,
+                  "time_running": 135494700,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379073402,
+                    "instructions": 355430349,
+                    "frontend_stall_cycles": 209961357,
+                    "l1i_read_misses": 26787362
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135172300,
+                  "time_running": 135172300,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378270175,
+                    "instructions": 355213426,
+                    "frontend_stall_cycles": 209211659,
+                    "l1i_read_misses": 26801327
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136586550,
+                  "time_running": 136586550,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382301509,
+                    "instructions": 355492384,
+                    "frontend_stall_cycles": 211010052,
+                    "l1i_read_misses": 26808325
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136054130,
+                  "time_running": 136054130,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380761080,
+                    "instructions": 355165983,
+                    "frontend_stall_cycles": 210017345,
+                    "l1i_read_misses": 26855878
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 34.83779437979683,
+              "metric_seconds": 0.13622333,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "81258025b15f9c325033f72e685a6226a60dcc6eb51e12af8042c83ba34a200f",
+              "correctness_sha256": "a0d8362ac67a5fb29b3e5b944aac3f5676c6bdf5c7e84b4a0e834e826ef19774",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 131045380,
+                  "time_running": 131045380,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 366516080,
+                    "instructions": 357938872,
+                    "frontend_stall_cycles": 203325664,
+                    "l1i_read_misses": 28641308
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136992400,
+                  "time_running": 136992400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 381714126,
+                    "instructions": 368397447,
+                    "frontend_stall_cycles": 207278809,
+                    "l1i_read_misses": 28982803
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135072740,
+                  "time_running": 135072740,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 377759881,
+                    "instructions": 359266921,
+                    "frontend_stall_cycles": 206594524,
+                    "l1i_read_misses": 29040488
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135389650,
+                  "time_running": 135389650,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378475468,
+                    "instructions": 358704166,
+                    "frontend_stall_cycles": 206677265,
+                    "l1i_read_misses": 29045238
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135410050,
+                  "time_running": 135410050,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378851064,
+                    "instructions": 359091059,
+                    "frontend_stall_cycles": 206441788,
+                    "l1i_read_misses": 29030558
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135241200,
+                  "time_running": 135241200,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 378457059,
+                    "instructions": 358748233,
+                    "frontend_stall_cycles": 206250627,
+                    "l1i_read_misses": 29036259
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135547650,
+                  "time_running": 135547650,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379351533,
+                    "instructions": 359033029,
+                    "frontend_stall_cycles": 206570255,
+                    "l1i_read_misses": 29026991
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135676360,
+                  "time_running": 135676360,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 379665418,
+                    "instructions": 358983423,
+                    "frontend_stall_cycles": 206475655,
+                    "l1i_read_misses": 29060374
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 135997920,
+                  "time_running": 135997920,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380632380,
+                    "instructions": 359140496,
+                    "frontend_stall_cycles": 206954647,
+                    "l1i_read_misses": 29077470
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136046330,
+                  "time_running": 136046330,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 380702913,
+                    "instructions": 358791914,
+                    "frontend_stall_cycles": 207023563,
+                    "l1i_read_misses": 29115685
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 137094090,
+                  "time_running": 137094090,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383182141,
+                    "instructions": 358951500,
+                    "frontend_stall_cycles": 208101010,
+                    "l1i_read_misses": 29195253
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136742390,
+                  "time_running": 136742390,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382601038,
+                    "instructions": 358675120,
+                    "frontend_stall_cycles": 207925086,
+                    "l1i_read_misses": 29129219
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136577310,
+                  "time_running": 136577310,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382295126,
+                    "instructions": 358868190,
+                    "frontend_stall_cycles": 207548640,
+                    "l1i_read_misses": 29150159
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136807890,
+                  "time_running": 136807890,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 383004505,
+                    "instructions": 358849291,
+                    "frontend_stall_cycles": 208039757,
+                    "l1i_read_misses": 29119858
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136711080,
+                  "time_running": 136711080,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382641902,
+                    "instructions": 358815627,
+                    "frontend_stall_cycles": 207790537,
+                    "l1i_read_misses": 29145229
+                  }
+                },
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 136817400,
+                  "time_running": 136817400,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 382945841,
+                    "instructions": 358837560,
+                    "frontend_stall_cycles": 207690774,
+                    "l1i_read_misses": 29163337
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/308dda461704a6e5-0b1a0265/libnnopbase.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0"
+              ]
+            },
+            "reduction_percent": -0.4658471670238251
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-three-captures-0.4.0-r1/aligned/validations/d45d57e64dc042d1a67149c0f5140b8d",
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": -0.4658471670238251,
+        "min_reduction_percent": -0.799961427699758,
+        "max_reduction_percent": 2.544118000922424,
+        "recommendation": "retain-baseline",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "probes": [],
+  "confirmations": [],
+  "selected": "baseline",
+  "state": "failed",
+  "training_runs_completed": 3,
+  "automatic_images": true,
+  "bolt_policy": "auto",
+  "image_search": "joint",
+  "error": "Owned experiment stopped: captures 001 and 002 resolve over 93% of samples to / (deleted) after perf build-id cache writes; not evidence for multi-capture tuning"
+}

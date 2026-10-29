@@ -1,0 +1,84 @@
+{
+  "schema": "tgo.run.v1",
+  "command": [
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "user_command": [
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "cwd": "/home/l00886679/projects/trace-guided-optimization",
+  "env": {},
+  "backend": "spe",
+  "roi": "marker",
+  "pid": null,
+  "state": "failed",
+  "branch_stack": false,
+  "automatic_backend": {
+    "selected": "spe",
+    "reason": "retired branch SPE event opened successfully",
+    "perf_probe": {
+      "usable": true,
+      "timed_out": false,
+      "diagnostic": "Performance counter stats for '/bin/true':\n\n           204,573      cycles:u                                                              \n\n       0.000529300 seconds time elapsed\n\n       0.000435000 seconds user\n       0.000000000 seconds sys"
+    },
+    "spe_probe": {
+      "usable": true,
+      "timed_out": false,
+      "diagnostic": "[ perf record: Woken up 0 times to write data ]\n[ perf record: Captured and wrote 0.041 MB /tmp/tgo-spe-probe-whxl87e3/perf.data ]",
+      "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+      "scope": "event-open probe; workload sampling coverage is checked after recording"
+    }
+  },
+  "started_unix": 1793250060.724112,
+  "sampling": {
+    "backend": "spe",
+    "event": "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+    "period": 4096,
+    "frequency": null,
+    "branch_stack": false
+  },
+  "collector_command": [
+    "/tmp/appimage_extracted_352605979b70f744ae59e541cf20f924/usr/tools/perf/bin/perf",
+    "record",
+    "-o",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/perf.data",
+    "-e",
+    "arm_spe_0/ts_enable=1,branch_filter=1,event_filter=0x2,jitter=1/u",
+    "--switch-events",
+    "--sample-cpu",
+    "--mmap-pages=1024,16384",
+    "-c",
+    "4096",
+    "--delay=-1",
+    "--control=fifo:/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/control.fifo,/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/ack.fifo",
+    "--",
+    "env",
+    "PYTHONPATH=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/runtime/support",
+    "LD_AUDIT=/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/runtime/libtgo_audit.so",
+    "/usr/bin/python3",
+    "/home/l00886679/projects/trace-guided-optimization/build/standalone_native.py",
+    "--library",
+    "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+    "--iterations",
+    "2000000"
+  ],
+  "collector_sha256": "97408f9640674241eae719507f0e028ad89a3373054b166885be33107b99d42a",
+  "runtime_sha256": {
+    "libtgo_perf_spe.so": "89e4ea500cd89f5a616f027d7a380b930802afde90d428dddebad189b4b60a8a",
+    "libtgo_audit.so": "baa036cd7e089a2aa316bd701a575583dce432a071a613e7addb698b9d9320b7",
+    "libtgo_roi.so": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+    "libtgo_qemu.so": "63c2f73db0e8461eb114ae4258836458960318b22c72b565269c04350dbe1a0d"
+  },
+  "returncode": 255,
+  "error": "collector/workload failed (255); see /home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-r1/training/capture-000/stderr"
+}

@@ -56,5 +56,10 @@ ARM 分支 trampoline 均仍由 Go linker 正常生成。
 确认。当前计时指标是完整编译命令的 wall time，不能将其直接称为前端 stall 改善。
 负载自己的产物正确性测试可以在 driver 中执行；stdout 相同不等于完整语义证明。
 
+新训练默认执行三轮，可用 `--train-runs N` 调整；各轮独立冷 GOCACHE，原始 profile
+保存在 `capture/profiles/round-000/` 等目录，stdout/stderr 和时长分别记录在
+`training_trials`。Go pprof 合并全部轮次，保留 PGO 所需元数据。`--run` 复用时不增加
+训练次数，并给复制的原始 profile 加序号，避免不同目录中的同名 PID 文件互相覆盖。
+
 AppImage 携带 adapter，不要求目标机安装 C 编译器；Go 工作负载本身仍需对应的完整
 SDK。产物绑定记录的原路径，移动 SDK 或升级 compiler 后需要重新调优。

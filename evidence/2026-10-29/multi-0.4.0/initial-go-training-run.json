@@ -1,0 +1,63 @@
+{
+  "schema": "tgo.run.v1",
+  "strategy": "go-compiler-pgo",
+  "backend": "go-cpu",
+  "command": [
+    "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/bin/go",
+    "build",
+    "-p",
+    "1",
+    "-o",
+    "/dev/null",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/fixture.go"
+  ],
+  "cwd": "/home/l00886679/projects/trace-guided-optimization",
+  "env": {
+    "PATH": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/bin:/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/path"
+  },
+  "state": "recorded",
+  "validation": {
+    "go_cache": "cold",
+    "warmup_pairs": 0
+  },
+  "toolchain": {
+    "CGO_ENABLED": "0",
+    "GOARCH": "arm64",
+    "GOEXPERIMENT": "",
+    "GOHOSTARCH": "arm64",
+    "GOHOSTOS": "linux",
+    "GOOS": "linux",
+    "GOROOT": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3",
+    "GOTOOLDIR": "/home/l00886679/projects/trace-guided-optimization/deps/install/go-1.27.3/pkg/tool/linux_arm64",
+    "GOVERSION": "go1.27.3"
+  },
+  "training_trials": [
+    {
+      "returncode": 0,
+      "seconds": 1.464514069724828,
+      "timed_out": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/profiles/round-000",
+      "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/workload-0"
+    },
+    {
+      "returncode": 0,
+      "seconds": 1.4164380696602166,
+      "timed_out": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/profiles/round-001",
+      "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/workload-1"
+    },
+    {
+      "returncode": 0,
+      "seconds": 1.4347448297776282,
+      "timed_out": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "profiles": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/profiles/round-002",
+      "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-go-smoke-0.4.0-final/bundle/capture/workload-2"
+    }
+  ],
+  "returncode": 0,
+  "training_runs_completed": 3,
+  "phase": "complete"
+}

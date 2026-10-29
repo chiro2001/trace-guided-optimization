@@ -1,0 +1,94 @@
+{
+  "state": "complete",
+  "training_runs_completed": 3,
+  "selected": "compact",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/compact/images/453fb977ff348011-4824407c/libfrontend.so"
+  ],
+  "error": null,
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0",
+  "tune_sha256": "0197bced237cce3e0ee377941578a3b60ce65fbecc05a4c3f9cc13a0e6d0c81d",
+  "profile_sha256": "86be7ac1ec2e905b4037fa61676f746b4ef16b2324c723f330e641325d3cefb9",
+  "capture_set": {
+    "schema": "tgo.profile-set.v1",
+    "backend": "perf",
+    "sources": [
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/training/capture-000",
+        "run_sha256": "14f536bf4cf1731cb09da78f273e5277a0a21a76130a2f39c6c811855d785818",
+        "profile_sha256": "e03a5f2f283f8101d4f9e74b15ec475760439d7279a6b6100c9ce263202cb56b"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/training/capture-001",
+        "run_sha256": "22cc012271d188704dce860d66d320a815169c0a13f10ed67ee46aee3e1da6d0",
+        "profile_sha256": "e677f58b19767b5495ff4987e413646d49441c0364a3fb766cd3d8169b803876"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/training/capture-002",
+        "run_sha256": "3258a8c575e21d929ed6c4311513e1d602bafb7fafd50f6c3de22acd7d09be75",
+        "profile_sha256": "1855f6368d3ac16ffbab233b9f09f47f58df737ea71c716f863779b8a99fab00"
+      }
+    ],
+    "quality": {
+      "kind": "independently-normalized-captures",
+      "runs": 3,
+      "hotspot_weight": "mean per-run sample share",
+      "fdata_weight": "sum of counts after independent ELF mapping",
+      "workload_variations": []
+    }
+  },
+  "candidates": [
+    {
+      "name": "compact",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 56.68827067256199,
+      "min_reduction_percent": 54.89742791689534,
+      "max_reduction_percent": 57.455471738938016,
+      "error": null,
+      "images": [
+        {
+          "original": "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+          "input_sha256": "453fb977ff34801172cf614b3c72843c989839332351d228738677d942b0937c",
+          "output_sha256": "6460edfbbc8f1412aa3a5b294820b6561904d267d66580e8af04c02e175df0d9",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "count_records": 7,
+          "total_count": 10,
+          "fdata_sha256": "6512858233f27184fea2a08fb0fd1cf8a0a6eedca96471949dc5a6798249806c",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/compact/images/453fb977ff348011-4824407c/observations/0/profile.fdata",
+              "sha256": "47393ce01ccab186ee23e11b7920f466eac6281f653705846c8e24b5c2fc7cd6"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/compact/images/453fb977ff348011-4824407c/observations/1/profile.fdata",
+              "sha256": "fee3234b9470d9465657af381dae3d247721f0adce8817868914336ef09e3309"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0/compact/images/453fb977ff348011-4824407c/observations/2/profile.fdata",
+              "sha256": "138b1f0ed11b2bd43e391438d6a759b9e3a3df5d1026e9e63f96f66aa1a52009"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmation": {
+    "equivalent": true,
+    "completed_pairs": 5,
+    "median_reduction_percent": 60.53793626396985,
+    "min_reduction_percent": 56.47028603127844,
+    "max_reduction_percent": 61.33846333787314
+  },
+  "pmu": {
+    "all_enabled_equal_running_no_open_errors": true,
+    "median_reduction_percent": {
+      "cycles": 59.21030293120888,
+      "instructions": 0.0015130713376887428,
+      "frontend_stall_cycles": 74.5501230860743,
+      "l1i_read_misses": 99.95270642467818
+    }
+  }
+}

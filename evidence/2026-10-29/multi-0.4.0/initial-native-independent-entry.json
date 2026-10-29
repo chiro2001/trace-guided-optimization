@@ -1,0 +1,15 @@
+{
+  "schema": "tgo.smoke.independent-entry.v1",
+  "passed": true,
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/run",
+  "cwd": "temporary directory outside project",
+  "PATH": "",
+  "PYTHONPATH": null,
+  "stdout": "1365023072499563508\n",
+  "loaded_optimized": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so"
+  ],
+  "appimage_invoked": false
+}

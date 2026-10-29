@@ -1,0 +1,20 @@
+[
+  {
+    "round": 0,
+    "deleted_mmaps": 0,
+    "python_mmaps": 1,
+    "hotspots": "# To display the perf.data header info, please use --header/--header-only options.\n#\n#\n# Total Lost Samples: 0\n#\n# Samples: 613  of event 'cycles:u'\n# Event count (approx.): 1733677960\n#\n# Overhead\tShared Object                                    \n 99.17% \t/usr/local/python3.12.13/lib/libpython3.12.so.1.0\n 0.51%  \t/usr/lib/ld-linux-aarch64.so.1                   \n 0.32%  \t/usr/lib64/libc.so.6                             \n 0.00%  \t[unknown]                                        \n\n\n#\n# (Tip: Show current config key-value pairs: perf config --list)\n#\n"
+  },
+  {
+    "round": 1,
+    "deleted_mmaps": 3,
+    "python_mmaps": 0,
+    "hotspots": "# To display the perf.data header info, please use --header/--header-only options.\n#\n#\n# Total Lost Samples: 0\n#\n# Samples: 594  of event 'cycles:u'\n# Event count (approx.): 1683495711\n#\n# Overhead\tShared Object\n 100.00%\t/ (deleted)  \n 0.00%  \t[unknown]    \n\n\n#\n# (Tip: To see callchains in a more compact form: perf report -g folded)\n#\n"
+  },
+  {
+    "round": 2,
+    "deleted_mmaps": 3,
+    "python_mmaps": 0,
+    "hotspots": "# To display the perf.data header info, please use --header/--header-only options.\n#\n#\n# Total Lost Samples: 0\n#\n# Samples: 584  of event 'cycles:u'\n# Event count (approx.): 1658987200\n#\n# Overhead\tShared Object\n 100.00%\t/ (deleted)  \n 0.00%  \t[unknown]    \n\n\n#\n# (Tip: To see list of saved events and attributes: perf evlist -v)\n#\n"
+  }
+]

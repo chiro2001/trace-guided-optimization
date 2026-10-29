@@ -1,0 +1,144 @@
+{
+  "state": "complete",
+  "training_runs_completed": 3,
+  "selected": "compact",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so"
+  ],
+  "error": null,
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final",
+  "tune_sha256": "26c7228b3423a17c5975e48e4d5a23eae70ada5da78ba2b219cf08e96efd1941",
+  "profile_sha256": "bfcd1ef2d5761d905f217c9583d66990d2bb5edb6e958ea34fc2f8f34eca087a",
+  "capture_set": {
+    "schema": "tgo.profile-set.v1",
+    "backend": "qemu",
+    "sources": [
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000",
+        "run_sha256": "45fad5b5357269958986c382009b068dacd0c1626d4d07604992aa5f3f9ba916",
+        "profile_sha256": "841bf76bc5e16d8c903849e4f2157a6d9f2f30e4b300e24bdb60519599615291"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-001",
+        "run_sha256": "39ce1be97be7ac2a745f516a69742798a9daeb68468c6f51087a6a42e6bd8814",
+        "profile_sha256": "6433bd21077b22c45e3306a1bf5c0399f1fb63d7a94e418e4331372da244d353"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-002",
+        "run_sha256": "0986732d1d9c873b3b34f5fd82c7ca00bd4f2340fb231ddd410750d0dc647516",
+        "profile_sha256": "5b1eb911c95eb1eb495caba5919591b1e79190f4bbda2d7106c268165e1e86b3"
+      }
+    ],
+    "quality": {
+      "kind": "independently-normalized-captures",
+      "runs": 3,
+      "hotspot_weight": "summed dynamic instruction counts",
+      "fdata_weight": "sum of counts after independent ELF mapping",
+      "workload_variations": []
+    }
+  },
+  "candidates": [
+    {
+      "name": "compact",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 58.710169875186224,
+      "min_reduction_percent": 58.132169348162165,
+      "max_reduction_percent": 58.84803414361255,
+      "error": null,
+      "images": [
+        {
+          "original": "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+          "input_sha256": "453fb977ff34801172cf614b3c72843c989839332351d228738677d942b0937c",
+          "output_sha256": "c55954739701a9b66d179d5f4e36f040ddb99f46913e348d0cbe6257a0ffaf76",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "branch_records": 210,
+          "total_count": 35821599,
+          "fdata_sha256": "28a5e00ab703186f582566dbd70b374f96a69a9538cbc2374eb44a39863d6ecd",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/observations/0/profile.fdata",
+              "sha256": "24204c635ccd6ea40074745268cde3da91d8a5d7cba62119b046aca66798ba1f"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/observations/1/profile.fdata",
+              "sha256": "24204c635ccd6ea40074745268cde3da91d8a5d7cba62119b046aca66798ba1f"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/observations/2/profile.fdata",
+              "sha256": "24204c635ccd6ea40074745268cde3da91d8a5d7cba62119b046aca66798ba1f"
+            }
+          ]
+        },
+        {
+          "original": "/usr/lib64/libpython3.11.so.1.0",
+          "input_sha256": "acea6c58e04b50a31027117e70ea8d885ff88e035a6ca57c373c45138079bb16",
+          "output_sha256": "0f36c875bb75566daa815fb01a41ab2a35c8638998e76cd5bfc14348bcdb74d7",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "branch_records": 2169,
+          "total_count": 16710,
+          "fdata_sha256": "4c2662dd90545a2f4cbbbf4fd2f321e155a2e5ae8e807c1d67db076cd79d75ef",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/observations/0/profile.fdata",
+              "sha256": "27af9487ec00b8ec4e4371a24d34763f67580ff1bdf693d7e03d1b005c1c6896"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/observations/1/profile.fdata",
+              "sha256": "5240c0eb39f81c3bfad6010a5b758260b6c21d6b69f84247e16fced9961e0eb3"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/observations/2/profile.fdata",
+              "sha256": "341166e297eaf32e2aa92a3b7b9d721a16c4698e41d2f80aa37c77f916c4179b"
+            }
+          ]
+        },
+        {
+          "original": "/usr/lib64/python3.11/lib-dynload/_ctypes.cpython-311-aarch64-linux-gnu.so",
+          "input_sha256": "9b1fb9ef4ecb71a774b98994049747e51ad2c68e00f5c229816caa3ba4115bf5",
+          "output_sha256": "6831818f9ad908784e9c2b7ddf340d9cef652f340bf5f0a349a044b79bf131a4",
+          "fdata_sum_verified": true,
+          "input_captures": 3,
+          "branch_records": 269,
+          "total_count": 1353,
+          "fdata_sha256": "e2434dda68bedd573d0ce8244efe44b4beda70093c08b394ab1afb22ba715dfa",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/observations/0/profile.fdata",
+              "sha256": "91318da7f0fc7cfaf6d9ceb845d4a8824a4d81efeee744b80c6ad130b09c0fd8"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/observations/1/profile.fdata",
+              "sha256": "91318da7f0fc7cfaf6d9ceb845d4a8824a4d81efeee744b80c6ad130b09c0fd8"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/observations/2/profile.fdata",
+              "sha256": "91318da7f0fc7cfaf6d9ceb845d4a8824a4d81efeee744b80c6ad130b09c0fd8"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmation": {
+    "equivalent": true,
+    "completed_pairs": 5,
+    "median_reduction_percent": 57.757080608830066,
+    "min_reduction_percent": 54.8824965066529,
+    "max_reduction_percent": 59.42572514995885
+  },
+  "pmu": {
+    "all_enabled_equal_running_no_open_errors": true,
+    "median_reduction_percent": {
+      "cycles": 58.34598920831058,
+      "instructions": -0.0002870091790674323,
+      "frontend_stall_cycles": 74.68903073675894,
+      "l1i_read_misses": 99.94702097491643
+    }
+  }
+}

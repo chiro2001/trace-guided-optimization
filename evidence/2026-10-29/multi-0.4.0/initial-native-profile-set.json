@@ -1,0 +1,259 @@
+{
+  "schema": "tgo.profile-set.v1",
+  "backend": "qemu",
+  "sources": [
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000",
+      "run_sha256": "45fad5b5357269958986c382009b068dacd0c1626d4d07604992aa5f3f9ba916",
+      "profile_sha256": "841bf76bc5e16d8c903849e4f2157a6d9f2f30e4b300e24bdb60519599615291"
+    },
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-001",
+      "run_sha256": "39ce1be97be7ac2a745f516a69742798a9daeb68468c6f51087a6a42e6bd8814",
+      "profile_sha256": "6433bd21077b22c45e3306a1bf5c0399f1fb63d7a94e418e4331372da244d353"
+    },
+    {
+      "run": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-002",
+      "run_sha256": "0986732d1d9c873b3b34f5fd82c7ca00bd4f2340fb231ddd410750d0dc647516",
+      "profile_sha256": "5b1eb911c95eb1eb495caba5919591b1e79190f4bbda2d7106c268165e1e86b3"
+    }
+  ],
+  "images": [
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+      "sha256": "453fb977ff34801172cf614b3c72843c989839332351d228738677d942b0937c",
+      "build_id": "03c0aff2f1616cfedb999f68887090cc53916e29",
+      "machine": 183,
+      "type": 3,
+      "bytes": 217432,
+      "relocations": true,
+      "symbols": true,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": null,
+      "dynamic_instructions": 119097951.0,
+      "image_id": "453fb977ff348011-4824407c",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/usr/lib64/libpython3.11.so.1.0",
+      "sha256": "acea6c58e04b50a31027117e70ea8d885ff88e035a6ca57c373c45138079bb16",
+      "build_id": "4d3b7d93a586f9bdb715b322334d0621104ce430",
+      "machine": 183,
+      "type": 3,
+      "bytes": 5192248,
+      "relocations": false,
+      "symbols": false,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": null,
+      "dynamic_instructions": 113983.0,
+      "image_id": "acea6c58e04b50a3-6922b012",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/usr/lib64/libc.so.6",
+      "sha256": "118c2be24a86fe233f512eb24d0c68a0520cb6e2f1baa207e16fb5c918a47f41",
+      "build_id": "041aeb1c3f154c04129943cb9434d262a3120115",
+      "machine": 183,
+      "type": 3,
+      "bytes": 1657472,
+      "relocations": false,
+      "symbols": false,
+      "go": false,
+      "interpreter": "/lib/ld-linux-aarch64.so.1",
+      "entry": 161984,
+      "rpath_kind": null,
+      "dynamic_instructions": 13209.0,
+      "image_id": "118c2be24a86fe23-1f2645b5",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/usr/lib64/python3.11/lib-dynload/_ctypes.cpython-311-aarch64-linux-gnu.so",
+      "sha256": "9b1fb9ef4ecb71a774b98994049747e51ad2c68e00f5c229816caa3ba4115bf5",
+      "build_id": "f8ffd295ed2a3c0a0d5efa9f6507adbcbbee7527",
+      "machine": 183,
+      "type": 3,
+      "bytes": 146192,
+      "relocations": false,
+      "symbols": false,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": null,
+      "dynamic_instructions": 4479.0,
+      "image_id": "9b1fb9ef4ecb71a7-69951081",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/usr/lib/ld-linux-aarch64.so.1",
+      "sha256": "6c7d8fd55664a4a8a07aacace2040a05239532b8b921b72113872ca6e443992f",
+      "build_id": "8a53c7b4498bc1a8e670b80806b446f342fda8b1",
+      "machine": 183,
+      "type": 3,
+      "bytes": 204072,
+      "relocations": false,
+      "symbols": false,
+      "go": false,
+      "interpreter": null,
+      "entry": 104512,
+      "rpath_kind": null,
+      "dynamic_instructions": 1701.0,
+      "image_id": "6c7d8fd55664a4a8-ec71c481",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/usr/lib64/libffi.so.8.1.2",
+      "sha256": "6350324674a7a8d8b4c8ccd3b94136bb85a72c98736e0a50effeeeb0e86bb6ee",
+      "build_id": "d45b92fc9d3bdf994d216311b33eaadcf23910a1",
+      "machine": 183,
+      "type": 3,
+      "bytes": 67696,
+      "relocations": false,
+      "symbols": false,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": null,
+      "dynamic_instructions": 1182.0,
+      "image_id": "6350324674a7a8d8-82a8e7de",
+      "observations": [
+        {
+          "source": 0
+        },
+        {
+          "source": 1
+        },
+        {
+          "source": 2
+        }
+      ]
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-000/runtime/libtgo_roi.so",
+      "sha256": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+      "build_id": "96921fc45493a918d9ea1811f170a5248d1cf4c1",
+      "machine": 183,
+      "type": 3,
+      "bytes": 132441,
+      "relocations": false,
+      "symbols": true,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": "runpath",
+      "dynamic_instructions": 137.0,
+      "image_id": "81c6806597f30a46-6d65107a",
+      "observations": [
+        {
+          "source": 0
+        }
+      ]
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-001/runtime/libtgo_roi.so",
+      "sha256": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+      "build_id": "96921fc45493a918d9ea1811f170a5248d1cf4c1",
+      "machine": 183,
+      "type": 3,
+      "bytes": 132441,
+      "relocations": false,
+      "symbols": true,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": "runpath",
+      "dynamic_instructions": 137.0,
+      "image_id": "81c6806597f30a46-677e1728",
+      "observations": [
+        {
+          "source": 1
+        }
+      ]
+    },
+    {
+      "path": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/training/capture-002/runtime/libtgo_roi.so",
+      "sha256": "81c6806597f30a461c5d5750c307413e5231e57f60209e82fec5d18c287c8b09",
+      "build_id": "96921fc45493a918d9ea1811f170a5248d1cf4c1",
+      "machine": 183,
+      "type": 3,
+      "bytes": 132441,
+      "relocations": false,
+      "symbols": true,
+      "go": false,
+      "interpreter": null,
+      "entry": 0,
+      "rpath_kind": "runpath",
+      "dynamic_instructions": 137.0,
+      "image_id": "81c6806597f30a46-9c69cb03",
+      "observations": [
+        {
+          "source": 2
+        }
+      ]
+    }
+  ],
+  "quality": {
+    "kind": "independently-normalized-captures",
+    "runs": 3,
+    "hotspot_weight": "summed dynamic instruction counts",
+    "fdata_weight": "sum of counts after independent ELF mapping",
+    "workload_variations": []
+  },
+  "instructions": 119232952,
+  "unmapped_instructions": 36,
+  "marker_windows": 3,
+  "truncated": false
+}

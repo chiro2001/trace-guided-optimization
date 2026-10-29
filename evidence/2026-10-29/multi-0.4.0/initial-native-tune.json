@@ -1,0 +1,876 @@
+{
+  "schema": "tgo.tune.v1",
+  "capture": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/capture",
+  "candidates": [
+    {
+      "name": "compact",
+      "directory": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact",
+      "images": [
+        "/home/l00886679/projects/trace-guided-optimization/build/bench/libfrontend.so",
+        "/usr/lib64/libpython3.11.so.1.0",
+        "/usr/lib64/python3.11/lib-dynload/_ctypes.cpython-311-aarch64-linux-gnu.so"
+      ],
+      "failed_images": [],
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.10613270988687873,
+              "metric_seconds": 0.0189963,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 19018260,
+                  "time_running": 19018260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 55063018,
+                    "instructions": 39719838,
+                    "frontend_stall_cycles": 41611911,
+                    "l1i_read_misses": 3161564
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.04221234982833266,
+              "metric_seconds": 0.00784354,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7857840,
+                  "time_running": 7857840,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22714060,
+                    "instructions": 39720017,
+                    "frontend_stall_cycles": 10960658,
+                    "l1i_read_misses": 1689
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "reduction_percent": 58.710169875186224
+          },
+          {
+            "candidate": {
+              "seconds": 0.04169111978262663,
+              "metric_seconds": 0.00777538,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7788330,
+                  "time_running": 7788330,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22533125,
+                    "instructions": 39720073,
+                    "frontend_stall_cycles": 10749832,
+                    "l1i_read_misses": 1512
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.05156387994065881,
+              "metric_seconds": 0.01889431,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 18437050,
+                  "time_running": 18437050,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 53293688,
+                    "instructions": 39720136,
+                    "frontend_stall_cycles": 41628646,
+                    "l1i_read_misses": 3560011
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 58.84803414361255
+          },
+          {
+            "baseline": {
+              "seconds": 0.052054399624466896,
+              "metric_seconds": 0.01849279,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 18509710,
+                  "time_running": 18509710,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 53583163,
+                    "instructions": 39719874,
+                    "frontend_stall_cycles": 40540447,
+                    "l1i_read_misses": 3428016
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.04238751996308565,
+              "metric_seconds": 0.00774253,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7756070,
+                  "time_running": 7756070,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22431181,
+                    "instructions": 39720142,
+                    "frontend_stall_cycles": 10635994,
+                    "l1i_read_misses": 1558
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "reduction_percent": 58.132169348162165
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/d45e2a4ba4b1467da0c73120597709d8",
+        "requested_pairs": 3,
+        "completed_pairs": 3,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 58.710169875186224,
+        "min_reduction_percent": 58.132169348162165,
+        "max_reduction_percent": 58.84803414361255,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "probes": [],
+  "confirmations": [
+    {
+      "name": "compact",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 0.052586319856345654,
+              "metric_seconds": 0.01849945,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 18516020,
+                  "time_running": 18516020,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 53591053,
+                    "instructions": 39719984,
+                    "frontend_stall_cycles": 41583142,
+                    "l1i_read_misses": 3346283
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.042842949740588665,
+              "metric_seconds": 0.00834649,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 8207090,
+                  "time_running": 8207090,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22322823,
+                    "instructions": 39720098,
+                    "frontend_stall_cycles": 10495688,
+                    "l1i_read_misses": 1796
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "reduction_percent": 54.8824965066529
+          },
+          {
+            "candidate": {
+              "seconds": 0.04194475011900067,
+              "metric_seconds": 0.00795137,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7782490,
+                  "time_running": 7782490,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22401399,
+                    "instructions": 39720182,
+                    "frontend_stall_cycles": 10600016,
+                    "l1i_read_misses": 1778
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.052930339705199,
+              "metric_seconds": 0.01908711,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 19058040,
+                  "time_running": 19058040,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 55106244,
+                    "instructions": 39719986,
+                    "frontend_stall_cycles": 41879139,
+                    "l1i_read_misses": 3544373
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 58.341676660322086
+          },
+          {
+            "baseline": {
+              "seconds": 0.05172757990658283,
+              "metric_seconds": 0.01795579,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 17950480,
+                  "time_running": 17950480,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 51540842,
+                    "instructions": 39719970,
+                    "frontend_stall_cycles": 40804473,
+                    "l1i_read_misses": 3516486
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.042811740189790726,
+              "metric_seconds": 0.0077553,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7769890,
+                  "time_running": 7769890,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22466442,
+                    "instructions": 39720020,
+                    "frontend_stall_cycles": 10566293,
+                    "l1i_read_misses": 1863
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "reduction_percent": 56.80891790336153
+          },
+          {
+            "candidate": {
+              "seconds": 0.04259122023358941,
+              "metric_seconds": 0.00772269,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7736740,
+                  "time_running": 7736740,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22376493,
+                    "instructions": 39720041,
+                    "frontend_stall_cycles": 10571672,
+                    "l1i_read_misses": 1525
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "baseline": {
+              "seconds": 0.05164055014029145,
+              "metric_seconds": 0.01828162,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 17887140,
+                  "time_running": 17887140,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 51678284,
+                    "instructions": 39719948,
+                    "frontend_stall_cycles": 40435768,
+                    "l1i_read_misses": 3631403
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 57.757080608830066
+          },
+          {
+            "baseline": {
+              "seconds": 0.0522745200432837,
+              "metric_seconds": 0.01899021,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 19009710,
+                  "time_running": 19009710,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 55024603,
+                    "instructions": 39720010,
+                    "frontend_stall_cycles": 42056840,
+                    "l1i_read_misses": 3477465
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 0.042596859857439995,
+              "metric_seconds": 0.00770514,
+              "returncode": 0,
+              "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+              "correctness_source": "stdout",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 7719870,
+                  "time_running": 7719870,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 22318091,
+                    "instructions": 39720144,
+                    "frontend_stall_cycles": 10332265,
+                    "l1i_read_misses": 1888
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+                "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+              ]
+            },
+            "reduction_percent": 59.42572514995885
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "decode",
+        "median_reduction_percent": 57.757080608830066,
+        "min_reduction_percent": 54.8824965066529,
+        "max_reduction_percent": 59.42572514995885,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "selected": "compact",
+  "state": "complete",
+  "training_runs_completed": 3,
+  "automatic_images": true,
+  "bolt_policy": "auto",
+  "image_search": "joint",
+  "confirmation": {
+    "schema": "tgo.validation.v1",
+    "pairs": [
+      {
+        "baseline": {
+          "seconds": 0.052586319856345654,
+          "metric_seconds": 0.01849945,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-0-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 18516020,
+              "time_running": 18516020,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 53591053,
+                "instructions": 39719984,
+                "frontend_stall_cycles": 41583142,
+                "l1i_read_misses": 3346283
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.042842949740588665,
+          "metric_seconds": 0.00834649,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-0-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 8207090,
+              "time_running": 8207090,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 22322823,
+                "instructions": 39720098,
+                "frontend_stall_cycles": 10495688,
+                "l1i_read_misses": 1796
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+          ]
+        },
+        "reduction_percent": 54.8824965066529
+      },
+      {
+        "candidate": {
+          "seconds": 0.04194475011900067,
+          "metric_seconds": 0.00795137,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-1-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 7782490,
+              "time_running": 7782490,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 22401399,
+                "instructions": 39720182,
+                "frontend_stall_cycles": 10600016,
+                "l1i_read_misses": 1778
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.052930339705199,
+          "metric_seconds": 0.01908711,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-1-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19058040,
+              "time_running": 19058040,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 55106244,
+                "instructions": 39719986,
+                "frontend_stall_cycles": 41879139,
+                "l1i_read_misses": 3544373
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 58.341676660322086
+      },
+      {
+        "baseline": {
+          "seconds": 0.05172757990658283,
+          "metric_seconds": 0.01795579,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-2-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 17950480,
+              "time_running": 17950480,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 51540842,
+                "instructions": 39719970,
+                "frontend_stall_cycles": 40804473,
+                "l1i_read_misses": 3516486
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.042811740189790726,
+          "metric_seconds": 0.0077553,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-2-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 7769890,
+              "time_running": 7769890,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 22466442,
+                "instructions": 39720020,
+                "frontend_stall_cycles": 10566293,
+                "l1i_read_misses": 1863
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+          ]
+        },
+        "reduction_percent": 56.80891790336153
+      },
+      {
+        "candidate": {
+          "seconds": 0.04259122023358941,
+          "metric_seconds": 0.00772269,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-3-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 7736740,
+              "time_running": 7736740,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 22376493,
+                "instructions": 39720041,
+                "frontend_stall_cycles": 10571672,
+                "l1i_read_misses": 1525
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+          ]
+        },
+        "baseline": {
+          "seconds": 0.05164055014029145,
+          "metric_seconds": 0.01828162,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-3-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 17887140,
+              "time_running": 17887140,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 51678284,
+                "instructions": 39719948,
+                "frontend_stall_cycles": 40435768,
+                "l1i_read_misses": 3631403
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "reduction_percent": 57.757080608830066
+      },
+      {
+        "baseline": {
+          "seconds": 0.0522745200432837,
+          "metric_seconds": 0.01899021,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-4-baseline",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 19009710,
+              "time_running": 19009710,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 55024603,
+                "instructions": 39720010,
+                "frontend_stall_cycles": 42056840,
+                "l1i_read_misses": 3477465
+              }
+            }
+          ],
+          "loaded_optimized": []
+        },
+        "candidate": {
+          "seconds": 0.042596859857439995,
+          "metric_seconds": 0.00770514,
+          "returncode": 0,
+          "evidence_prefix": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e/validation-4-candidate",
+          "timed_out": false,
+          "metric_missing": false,
+          "stdout_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_sha256": "c687ec716b1d8f249eb8b1963ade881180960817575a59fbc80ea394da267248",
+          "correctness_source": "stdout",
+          "pmu": [
+            {
+              "scope": "native-calling-thread-user",
+              "open_errors": [],
+              "time_enabled": 7719870,
+              "time_running": 7719870,
+              "no_multiplex": true,
+              "events": {
+                "cycles": 22318091,
+                "instructions": 39720144,
+                "frontend_stall_cycles": 10332265,
+                "l1i_read_misses": 1888
+              }
+            }
+          ],
+          "loaded_optimized": [
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so",
+            "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0"
+          ]
+        },
+        "reduction_percent": 59.42572514995885
+      }
+    ],
+    "equivalent": true,
+    "evidence_directory": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/validations/7594d139e7b1450da9b6ceee41ddd14e",
+    "requested_pairs": 5,
+    "completed_pairs": 5,
+    "warmup_pairs": [],
+    "metric": "decode",
+    "median_reduction_percent": 57.757080608830066,
+    "min_reduction_percent": 54.8824965066529,
+    "max_reduction_percent": 59.42572514995885,
+    "recommendation": "candidate",
+    "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+  },
+  "entry_mode": "executable",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/453fb977ff348011-4824407c/libfrontend.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/acea6c58e04b50a3-6922b012/libpython3.11.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/appimage-native-0.4.0-final/compact/images/9b1fb9ef4ecb71a7-69951081/_ctypes.cpython-311-aarch64-linux-gnu.so"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "tgo.evidence.packages.v1",
+  "version": "0.4.0",
+  "architecture": "aarch64",
+  "appimage_name": "tgo-0.4.0-aarch64.AppImage",
+  "packages": [
+    {
+      "directory": "dist/0.4.0-r1",
+      "source_commit": "91bc6390e302b6a19211dd22e467decb447d492b",
+      "appimage_sha256": "9b8a51a779d1f20f70bb51d94caddab1fc86302dcdc553d1156770798e08c419",
+      "experiments": [
+        "vllm-single-full-0.4.0-r1",
+        "vllm-three-captures-0.4.0-r1 (rejected: incomplete mappings)"
+      ]
+    },
+    {
+      "directory": "dist/0.4.0-final",
+      "source_commit": "b33465857a4c0f350f7b39fcbc9d5e2fd3f2dbbe",
+      "appimage_sha256": "916324ec97e38baf70d3953b9b959c622ead1130d1087abfd4a7d7d09f1c18fe",
+      "experiments": [
+        "appimage-native-0.4.0-final",
+        "appimage-go-smoke-0.4.0-final",
+        "vllm-mixed-full-0.4.0-r1"
+      ]
+    },
+    {
+      "directory": "dist/0.4.0-release",
+      "source_commit": "87205f03acdbbcf6efc629e89ff528ad4c5b059d",
+      "appimage_sha256": "00e8b0af856cc71e68dff6adf5e4809570f6dac3d60d2126c5530b3a6b16ad58",
+      "experiments": [
+        "vllm-three-valid-0.4.0-r1",
+        "appimage-native-0.4.0-release (rejected: default ring mapping permission)",
+        "appimage-go-smoke-0.4.0-release"
+      ]
+    },
+    {
+      "directory": "dist/0.4.0",
+      "source_commit": "c1cf4f400b4bee2176baa565a0b6055556298039",
+      "appimage_sha256": "053d4472bb6c9bd6c497c5153f6420d63967e8afaf210e4082afaf4f027fe9ea",
+      "experiments": [
+        "appimage-native-0.4.0",
+        "appimage-go-smoke-0.4.0"
+      ],
+      "current_distribution": true
+    }
+  ]
+}

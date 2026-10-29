@@ -1,0 +1,134 @@
+{
+  "state": "complete",
+  "training_runs_completed": 2,
+  "selected": "ext-tsp",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/libtorch_python.so"
+  ],
+  "error": null,
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1",
+  "tune_sha256": "b2cea238a2d641fe00bf0be6c9d7d571e6f7b88b17bf1939b1082c135d2ab118",
+  "profile_sha256": "4224a5c138a3ebad9547069c56c15975f690bb4153b58e61ed3fd725e5456877",
+  "capture_set": {
+    "schema": "tgo.profile-set.v1",
+    "backend": "spe",
+    "sources": [
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-appimage-auto-r1/capture",
+        "run_sha256": "1a23073a45ae4cc6bd178e79e8b4c5c127c3a7698162b1e9b858413a20f00f76",
+        "profile_sha256": "8927f95c37caef85eeb2799d89472fad6f90f5473b05cc291f9bf782321f95ca"
+      },
+      {
+        "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-spe-retired-r1",
+        "run_sha256": "693e96698a4443e90a73f2991f906d90fc6533c9d95b3f7a6e10de2132cb1a44",
+        "profile_sha256": "48694c9e709eb24528176dbd0fef0ee26098c658f0c7c606728d5809de9fc33b"
+      }
+    ],
+    "quality": {
+      "kind": "independently-normalized-captures",
+      "runs": 2,
+      "hotspot_weight": "mean per-run sample share",
+      "fdata_weight": "sum of counts after independent ELF mapping",
+      "workload_variations": [
+        {
+          "source": 1,
+          "different_fields": [
+            "command"
+          ]
+        }
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 3.2793508765137425,
+      "min_reduction_percent": 1.3434975458833986,
+      "max_reduction_percent": 3.9263550429821326,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "9faafab60a72d55213c9faf0aa300b544fd8609f25884d9f9976f8a15c1237cc",
+          "fdata_sum_verified": true,
+          "input_captures": 2,
+          "count_records": 4356,
+          "total_count": 253060,
+          "fdata_sha256": "d43005dbfc8d331506496a54cd110dd6553f19bd30920579507e07214ec2c981",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/observations/0/profile.fdata",
+              "sha256": "526f53abc8c7dc0e268d31e4e73d7cab98f907b29cfed68808da10f81fc463b0"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/de439dc24ea47b35-180ec7c1/observations/1/profile.fdata",
+              "sha256": "d462c27d6bac5da44838074b5e18a7ffbe68147cbd692279e7d09e1e235a7aac"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "ebb2b731e5b02acc3f1b43b3e31c5a8f742f9a2b57b8243707b9c41aae35f027",
+          "fdata_sum_verified": true,
+          "input_captures": 2,
+          "count_records": 2727,
+          "total_count": 145210,
+          "fdata_sha256": "75fed76256be8976fcede71f5f6df7155d34e5025f590d59b7e26e7948c7efba",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/observations/0/profile.fdata",
+              "sha256": "f3d19e6759128cc4d1e4bc47a82ed6620f9ce55d895b0d20554708430048b905"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/83fb9a0eb249aef6-797bc1b1/observations/1/profile.fdata",
+              "sha256": "6e0966cebd59818556ec611e4b53f348e95e2cd84d8f313b952958bae8b0ee9f"
+            }
+          ]
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "e23526a502de29929a89495763c98e6eecc282233145b3dfa2c2fb031e1f44e7",
+          "fdata_sum_verified": true,
+          "input_captures": 2,
+          "count_records": 1697,
+          "total_count": 37932,
+          "fdata_sha256": "17d8bf1028e5be80bfa5c78024b2fbcd0d7811d498bb707fcbfa70763238cabc",
+          "input_fdata": [
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/observations/0/profile.fdata",
+              "sha256": "166ca40f8e70a9906f279d1b32a8b14c4fd6c891038e091d902bcc40c57719de"
+            },
+            {
+              "path": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-mixed-full-0.4.0-r1/ext-tsp/images/6b2c97897785c9d4-afbafea7/observations/1/profile.fdata",
+              "sha256": "0060fa8285a26123f09aa806fdd9ba29a7578d9dff3d4566762f2d998f81a7cc"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmation": {
+    "equivalent": true,
+    "completed_pairs": 5,
+    "median_reduction_percent": 4.311312082250596,
+    "min_reduction_percent": 1.4182999819375541,
+    "max_reduction_percent": 5.596671804191667
+  },
+  "pmu": {
+    "all_enabled_equal_running_no_open_errors": true,
+    "median_reduction_percent": {
+      "cycles": 4.811557102263109,
+      "instructions": -0.9782889131331185,
+      "frontend_stall_cycles": 11.463131179186348,
+      "l1i_read_misses": -11.479883098298016
+    }
+  }
+}

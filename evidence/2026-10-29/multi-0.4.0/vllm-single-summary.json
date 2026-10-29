@@ -1,0 +1,111 @@
+{
+  "state": "complete",
+  "training_runs_completed": 1,
+  "selected": "compact",
+  "entry": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/run",
+  "optimized_images": [
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/de439dc24ea47b35-180ec7c1/libpython3.12.so.1.0",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/83fb9a0eb249aef6-797bc1b1/libtorch_npu.so",
+    "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1/compact/images/6b2c97897785c9d4-afbafea7/libtorch_python.so"
+  ],
+  "error": null,
+  "run": "/home/l00886679/projects/trace-guided-optimization/runs/vllm-single-full-0.4.0-r1",
+  "tune_sha256": "27dbde636764a3c443abc5a3da6fd092e503626098955d5b2606e69792688636",
+  "profile_sha256": "8927f95c37caef85eeb2799d89472fad6f90f5473b05cc291f9bf782321f95ca",
+  "candidates": [
+    {
+      "name": "ext-tsp",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 0.05938451324158933,
+      "min_reduction_percent": -0.3868319063760506,
+      "max_reduction_percent": 2.1989850583805204,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "e34d04ba960ecbf812ae95127e900eb391abf343947cfe3f38aea8b6f55ad2ba"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "3a8fd87f066aa42ef87a44844e1448fbd2537671cc9d04a1911da0f7cd386684"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "820422da2430fe7e1997f38d43fda0d8792285e67e3be2ebafe6e0d8fed90979"
+        }
+      ]
+    },
+    {
+      "name": "compact",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 1.5614492805641533,
+      "min_reduction_percent": 0.9938488588753791,
+      "max_reduction_percent": 5.281702837965286,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "f71b3c3c41f20cb3b5ffa7553b37ef8ff2a47484bdc35720e87b84a96381de6e"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "024830548ff2f4d94551ed665ac05757b4940147ed51a3ff54ab1868a62a5472"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "7fa8c0ef6982166627775f20fa6edea5dd08e7f6f54c9d396cff5ccabd985677"
+        }
+      ]
+    },
+    {
+      "name": "aligned",
+      "equivalent": true,
+      "completed_pairs": 3,
+      "median_reduction_percent": 0.4998482976859675,
+      "min_reduction_percent": -4.592263008970754,
+      "max_reduction_percent": 2.0375013382978646,
+      "error": null,
+      "images": [
+        {
+          "original": "/usr/local/python3.12.13/lib/libpython3.12.so.1.0",
+          "input_sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+          "output_sha256": "e293f4b15d57bedb33cfacdd6321147e16bce82016d7b2fb7c880029125c3588"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch_npu/lib/libtorch_npu.so",
+          "input_sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+          "output_sha256": "f1a27a5fe4740ec6a5cfb8d9f92b9b5ac770e11c78fd9bd5cc2d24ed986532c8"
+        },
+        {
+          "original": "/usr/local/python3.12.13/lib/python3.12/site-packages/torch/lib/libtorch_python.so",
+          "input_sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+          "output_sha256": "b47ae4c3e894616cc6029a57f7a32320c1c3cc537786f9c53f2e56fd0cb9d26a"
+        }
+      ]
+    }
+  ],
+  "confirmation": {
+    "equivalent": true,
+    "completed_pairs": 5,
+    "median_reduction_percent": 4.532128799346912,
+    "min_reduction_percent": 0.8908593367270567,
+    "max_reduction_percent": 6.64622646139571
+  },
+  "pmu": {
+    "all_enabled_equal_running_no_open_errors": true,
+    "median_reduction_percent": {
+      "cycles": 5.1015717992040415,
+      "instructions": -1.0962225955901683,
+      "frontend_stall_cycles": 11.367996119466861,
+      "l1i_read_misses": -7.916184731140041
+    }
+  }
+}

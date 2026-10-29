@@ -9,9 +9,10 @@ flowchart LR
   B --> P[perf / SPE]
   B --> Q[QEMU TCG 插件]
   B --> J[Go compiler CPU profile]
-  P --> C[ELF 身份与画像]
+  P --> C[逐轮 ELF 身份与画像]
   Q --> C
-  C --> D[资格检查与 BOLT 策略]
+  C --> M[兼容性检查与画像集合]
+  M --> D[资格检查与 BOLT 策略]
   J --> K[Go PGO / 私有 linker 布局]
   D --> E[不可变 DSO 目录]
   E --> F[新进程 AB/BA 与真实加载验证]
@@ -25,6 +26,10 @@ flowchart LR
 - `run.json`：argv、cwd、显式 env、ROI、后端命令、进程状态。
 - `profile.json`：按完整路径和 SHA256 标识的 ELF，架构、build-id、符号/重定位、
   计数权重、原始画像位置和采集范围/质量。
+- `tgo.profile-set.v1`：不可变叶子 capture 的路径与 run/profile SHA256，以及逐 ELF
+  的正权重 observation 引用；不借用某一轮的 perf.data/预聚合文件充当合并结果。
+  嵌套集合展开，重复来源拒绝。每轮先独立处理映射，fdata 再累加；不同事件、采样
+  单位或同路径 ELF 内容不能混合。负载变体需显式允许并记录差异。
 - `build.json`：绑定画像与 BOLT 的 SHA，逐库命令、日志、输入/输出身份、入口、
   被跳过对象及原因。构建成功不等于有收益。
 - `validation.json`：逐对正确性、真实映射、ROI/整进程时间、可用 PMU 原始值。
