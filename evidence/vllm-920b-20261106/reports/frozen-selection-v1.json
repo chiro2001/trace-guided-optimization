@@ -1,0 +1,79 @@
+{
+  "status": "complete",
+  "candidates": [
+    "full-stack-lite-fast-r1",
+    "combined-eval-fast-r4",
+    "combined-eval-fast-r5"
+  ],
+  "selection_rule": "最小化进程内fast状态wall中位数/基线与回滚wall中位数；相差≤0.5%优先库更多者",
+  "started_unix": 1793893002.4591894,
+  "rows": [
+    {
+      "tag": "full-stack-lite-fast-r1",
+      "session_sha256": "d9a725584b2c05f21eb58c875dbca6fdd3b2cda56a9cb13fed9213f2fdd76196",
+      "ratio": 0.8156828916507327,
+      "libraries": 6,
+      "fast_wall_ns": [
+        16299559820,
+        16178834410
+      ],
+      "baseline_wall_ns": [
+        19735839480,
+        20081587810
+      ]
+    },
+    {
+      "tag": "combined-eval-fast-r4",
+      "session_sha256": "74ce00e2dce7a099775d9d8a0b6e7d00d0ab41d99a03a61c0d8e46e93b1093b3",
+      "ratio": 0.8395734195182213,
+      "libraries": 6,
+      "fast_wall_ns": [
+        17014229570,
+        17184286220
+      ],
+      "baseline_wall_ns": [
+        19951660040,
+        20781544460
+      ]
+    },
+    {
+      "tag": "combined-eval-fast-r5",
+      "session_sha256": "d33cea8724c6c97d5ae6ee48f1a4b879aad1532d40fff1e063be25ca8f5b5b2b",
+      "ratio": 0.8879434578639614,
+      "libraries": 7,
+      "fast_wall_ns": [
+        17342603610,
+        17280298630
+      ],
+      "baseline_wall_ns": [
+        19311005690,
+        19681231860
+      ]
+    }
+  ],
+  "selected": {
+    "tag": "full-stack-lite-fast-r1",
+    "session_sha256": "d9a725584b2c05f21eb58c875dbca6fdd3b2cda56a9cb13fed9213f2fdd76196",
+    "ratio": 0.8156828916507327,
+    "libraries": 6,
+    "fast_wall_ns": [
+      16299559820,
+      16178834410
+    ],
+    "baseline_wall_ns": [
+      19735839480,
+      20081587810
+    ]
+  },
+  "frozen_unix": 1793893318.885015,
+  "matrix_command": [
+    "/usr/bin/python3",
+    "${FROZEN_ROOT}/scripts/formal_matrix.py",
+    "--tag",
+    "formal-host-v1",
+    "--candidate",
+    "full-stack-lite-fast-r1"
+  ],
+  "exit_code": 0,
+  "finished_unix": 1793894987.6823688
+}

@@ -1,0 +1,841 @@
+{
+  "passed": true,
+  "matrix": "formal-host-v1",
+  "checked_unix": 1793895733.4225283,
+  "sha_checks": {
+    "${FROZEN_ROOT}/inputs/pool/de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+      "bytes": 30689272
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libpython3.12.so.1.0": {
+      "kind": "历史ELF来源",
+      "sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+      "bytes": 30689272
+    },
+    "${FROZEN_ROOT}/inputs/pool/d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+      "bytes": 255800841
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_cpu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+      "bytes": 255800841
+    },
+    "${FROZEN_ROOT}/inputs/pool/6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+      "bytes": 28367960
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_python.so": {
+      "kind": "历史ELF来源",
+      "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+      "bytes": 28367960
+    },
+    "${FROZEN_ROOT}/inputs/pool/6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "bytes": 1643448
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so": {
+      "kind": "历史ELF来源",
+      "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "bytes": 1643448
+    },
+    "${FROZEN_ROOT}/inputs/pool/83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+      "bytes": 82429241
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_npu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+      "bytes": 82429241
+    },
+    "${FROZEN_ROOT}/inputs/pool/fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+      "bytes": 4597833
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+      "bytes": 4597833
+    },
+    "${FROZEN_ROOT}/inputs/pool/308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+      "bytes": 4328144
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libnnopbase.so": {
+      "kind": "历史ELF来源",
+      "sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+      "bytes": 4328144
+    },
+    "${FROZEN_ROOT}/inputs/pool/3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+      "bytes": 26741336
+    },
+    "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libophost_transformer.so": {
+      "kind": "历史ELF来源",
+      "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+      "bytes": 26741336
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/variants/baseline/attention_v1.py": {
+      "kind": "业务源码",
+      "sha256": "4ba903ee8afb23012e78870034b1280039ccf81edb41b8e16f00e6e5bbc4c076",
+      "bytes": 94223
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/variants/baseline/module.py": {
+      "kind": "业务源码",
+      "sha256": "34c99682b7832a5110dfd85bd886f542fa62aff35ddf3f1473ea86a8abd4adeb",
+      "bytes": 127468
+    },
+    "${FROZEN_ROOT}/inputs/pool/c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79",
+      "bytes": 64109952
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/python-current-pgo-lto/libpython3.12.so.1.0": {
+      "kind": "历史ELF来源",
+      "sha256": "c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79",
+      "bytes": 64109952
+    },
+    "${FROZEN_ROOT}/inputs/pool/5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d",
+      "bytes": 80840800
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/npu-pgo-use/libtorch_npu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d",
+      "bytes": 80840800
+    },
+    "${FROZEN_ROOT}/inputs/pool/1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056",
+      "bytes": 3476744
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/cann-pgo-use/libnnopbase.so": {
+      "kind": "历史ELF来源",
+      "sha256": "1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056",
+      "bytes": 3476744
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/variants/combined/attention_v1.py": {
+      "kind": "业务源码",
+      "sha256": "3b05f739c8d8bbb23f37d1b133499e8833914dc8073b7c90aa930cf1f7d40ffd",
+      "bytes": 95369
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/variants/combined/module.py": {
+      "kind": "业务源码",
+      "sha256": "5547b3fd26623cc3acd37993f6ff9e36d7dc99b15b6c9879bf8022d5597a0820",
+      "bytes": 127333
+    },
+    "${FROZEN_ROOT}/inputs/pool/15b3b792cae7dfd28d8b2a164bf5f0a63b758f7bcea65115184dc625bd09efeb.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "15b3b792cae7dfd28d8b2a164bf5f0a63b758f7bcea65115184dc625bd09efeb",
+      "bytes": 16025648
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-python-bolt/libpython3.12.so.1.0": {
+      "kind": "历史ELF来源",
+      "sha256": "15b3b792cae7dfd28d8b2a164bf5f0a63b758f7bcea65115184dc625bd09efeb",
+      "bytes": 16025648
+    },
+    "${FROZEN_ROOT}/inputs/pool/a571a8ef439d24acef90ace784a1c0d06a91ff25d7c99bf9ac23e02b6df376c4.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "a571a8ef439d24acef90ace784a1c0d06a91ff25d7c99bf9ac23e02b6df376c4",
+      "bytes": 626861280
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_cpu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "a571a8ef439d24acef90ace784a1c0d06a91ff25d7c99bf9ac23e02b6df376c4",
+      "bytes": 626861280
+    },
+    "${FROZEN_ROOT}/inputs/pool/d52662d79d530c8148d992aff07dfc524f411188a9ec49f150eeeb84f6f4dbac.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "d52662d79d530c8148d992aff07dfc524f411188a9ec49f150eeeb84f6f4dbac",
+      "bytes": 65827728
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_python.so": {
+      "kind": "历史ELF来源",
+      "sha256": "d52662d79d530c8148d992aff07dfc524f411188a9ec49f150eeeb84f6f4dbac",
+      "bytes": 65827728
+    },
+    "${FROZEN_ROOT}/inputs/pool/da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8",
+      "bytes": 7697952
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so": {
+      "kind": "历史ELF来源",
+      "sha256": "da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8",
+      "bytes": 7697952
+    },
+    "${FROZEN_ROOT}/inputs/pool/a0f7df0e1e3cb616f75430258b29c5a0d238a0c1b2576c9ced8388f0845007ff.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "a0f7df0e1e3cb616f75430258b29c5a0d238a0c1b2576c9ced8388f0845007ff",
+      "bytes": 184974272
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_npu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "a0f7df0e1e3cb616f75430258b29c5a0d238a0c1b2576c9ced8388f0845007ff",
+      "bytes": 184974272
+    },
+    "${FROZEN_ROOT}/inputs/pool/29e2c9245eead4f330ab6a8fec2191c270fce222ff2cdb2971d9772b19cd60c7.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "29e2c9245eead4f330ab6a8fec2191c270fce222ff2cdb2971d9772b19cd60c7",
+      "bytes": 15330000
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+      "kind": "历史ELF来源",
+      "sha256": "29e2c9245eead4f330ab6a8fec2191c270fce222ff2cdb2971d9772b19cd60c7",
+      "bytes": 15330000
+    },
+    "${FROZEN_ROOT}/inputs/pool/41cfda52561691fdcca30c4bf5adf9b43035733e7ed06f10611931a266c1bb0a.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "41cfda52561691fdcca30c4bf5adf9b43035733e7ed06f10611931a266c1bb0a",
+      "bytes": 19280320
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libnnopbase.so": {
+      "kind": "历史ELF来源",
+      "sha256": "41cfda52561691fdcca30c4bf5adf9b43035733e7ed06f10611931a266c1bb0a",
+      "bytes": 19280320
+    },
+    "${FROZEN_ROOT}/inputs/pool/3c10a95d0b473e4fda2b75e05bcd18a7cb3330304c4f815f3e15d4fe284681aa.so": {
+      "kind": "NUMA2输入副本",
+      "sha256": "3c10a95d0b473e4fda2b75e05bcd18a7cb3330304c4f815f3e15d4fe284681aa",
+      "bytes": 82072592
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libophost_transformer.so": {
+      "kind": "历史ELF来源",
+      "sha256": "3c10a95d0b473e4fda2b75e05bcd18a7cb3330304c4f815f3e15d4fe284681aa",
+      "bytes": 82072592
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-pages/bin/llvm-bolt": {
+      "kind": "初始登记输入或旧工具",
+      "sha256": "4e9eaaa5ba167913b6e3c5ac821a412e76a6dc1295c574efbe2fca903b50c090",
+      "bytes": 54949896
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-recover-v12/bin/llvm-bolt": {
+      "kind": "初始登记输入或旧工具",
+      "sha256": "ac9e7499f16abc0f6ede1859ee2c1b83191c0bc560e7ba8e75a455ea734b2beb",
+      "bytes": 54974256
+    },
+    "${FROZEN_ROOT}/scripts/calibrate.py": {
+      "kind": "正式冻结代码",
+      "sha256": "87944c43f9a61b02b32abc3ecdbebc5acd5db1feacdeb22194bea63321c517af",
+      "bytes": 1142
+    },
+    "${FROZEN_ROOT}/scripts/native_worker.py": {
+      "kind": "正式冻结代码",
+      "sha256": "eb46aa782eb8fe60822d8dbb5ce78838f478bc42c35be7ef205096d1c9050598",
+      "bytes": 4937
+    },
+    "${FROZEN_ROOT}/scripts/private_tables.py": {
+      "kind": "正式冻结代码",
+      "sha256": "e579a115f5a7fd58a992ff0c933c7bc811bc22d48c5c068a789239836af30029",
+      "bytes": 17933
+    },
+    "${FROZEN_ROOT}/scripts/eh_frame.py": {
+      "kind": "正式冻结代码",
+      "sha256": "3fd9a2e3678c920033e15962efec6bd906a4ae5ffc5aad29c464e26be4828c57",
+      "bytes": 4229
+    },
+    "${FROZEN_ROOT}/scripts/model_worker.py": {
+      "kind": "正式冻结代码",
+      "sha256": "6edad328ea02d41673b30b0568184f34dc669e4e1e2efb8d3a32dacaede62336",
+      "bytes": 10636
+    },
+    "${FROZEN_ROOT}/scripts/common.py": {
+      "kind": "正式冻结代码",
+      "sha256": "95ba63791466b47bca8623ee53044fa3f1030e1aac15671cb94f4db0491b4eae",
+      "bytes": 2255
+    },
+    "${FROZEN_ROOT}/scripts/online_session.py": {
+      "kind": "正式冻结代码",
+      "sha256": "88917fc5502cdc1b8bf0cd58a38e81c77c7adc72ca558e68e95ca4f0d9fba75d",
+      "bytes": 13486
+    },
+    "${FROZEN_ROOT}/scripts/python_gate.py": {
+      "kind": "正式冻结代码",
+      "sha256": "e42d1578073b5b4b7e16ceeb7c73a47b43476fec865bdc0a5d288941fe93ee37",
+      "bytes": 2922
+    },
+    "${FROZEN_ROOT}/scripts/prepare.py": {
+      "kind": "正式冻结代码",
+      "sha256": "96e910bbe0e93f491ed4902bd51204181cc2290d6b709f9dc78e5a272bc093c3",
+      "bytes": 1871
+    },
+    "${FROZEN_ROOT}/scripts/full_stack.py": {
+      "kind": "正式冻结代码",
+      "sha256": "8c3fbb7c336068a9da306e179fc26d6f416d3234fc7e8615cf4033c2295ca5b5",
+      "bytes": 2191
+    },
+    "${FROZEN_ROOT}/scripts/near_fastplt.py": {
+      "kind": "正式冻结代码",
+      "sha256": "225a7c1b7cbe4d6d645df30ee5f65ac4a0a45248ed1554ea5b2e23f7f8bfbd3e",
+      "bytes": 5555
+    },
+    "${FROZEN_ROOT}/scripts/normalize.py": {
+      "kind": "正式冻结代码",
+      "sha256": "6790f4cb24264edad623cd770e922607e5608afee87e89f33545fa402118badd",
+      "bytes": 1800
+    },
+    "${FROZEN_ROOT}/scripts/online.py": {
+      "kind": "正式冻结代码",
+      "sha256": "52ac6f691bf2370c411a52ebef4b1c536fd6c2c7f68dd03572cf0864ac83ea79",
+      "bytes": 23639
+    },
+    "${FROZEN_ROOT}/scripts/build_full.py": {
+      "kind": "正式冻结代码",
+      "sha256": "480e5e6201510a93b10e55e96b5eb4f0a0298ae264025f5909d1b02599d660c4",
+      "bytes": 6833
+    },
+    "${FROZEN_ROOT}/scripts/freeze_and_measure.py": {
+      "kind": "正式冻结代码",
+      "sha256": "e3852f575d8d44d7d237ee2d9d7dff6e6495f4a1099c6222ed6a2cee90510106",
+      "bytes": 2197
+    },
+    "${FROZEN_ROOT}/scripts/bench.py": {
+      "kind": "正式冻结代码",
+      "sha256": "f90ccc6935e72f50619a9d08af67b0669d38ae2b7428326fd2b419cc84505cfe",
+      "bytes": 7396
+    },
+    "${FROZEN_ROOT}/scripts/probe.py": {
+      "kind": "正式冻结代码",
+      "sha256": "d32513a0410f294221c63ddd1090617bf3921fa4182f218ae872c517aac301d0",
+      "bytes": 6012
+    },
+    "${FROZEN_ROOT}/scripts/formal_matrix.py": {
+      "kind": "正式冻结代码",
+      "sha256": "84924f18ad0d6f7efcc6760237460f48a43ba0db39966dee9d56b9d558e1f913",
+      "bytes": 2815
+    },
+    "${FROZEN_ROOT}/scripts/inventory.py": {
+      "kind": "正式冻结代码",
+      "sha256": "a85fcb40e9ffdfca4dcbfb398022a50809f2c49ffa4b4f6275abaf699153756d",
+      "bytes": 1825
+    },
+    "${FROZEN_ROOT}/scripts/native_test.py": {
+      "kind": "正式冻结代码",
+      "sha256": "8eb5d08b23c4b68e981d5cc48216c02a9bfb40095d4b0dedeb2d0f7eceaae0da",
+      "bytes": 5721
+    },
+    "${FROZEN_ROOT}/native/fixture.cpp": {
+      "kind": "正式冻结代码",
+      "sha256": "9e5769c46ab3a1f2c0615cd782d096cf78d49c5fdc9e170b4e8a6c0176cb1e74",
+      "bytes": 1618
+    },
+    "${FROZEN_ROOT}/native/libreplay_loader.so": {
+      "kind": "正式冻结代码",
+      "sha256": "7da3c1bf486bd128668d1ec3371f32e705a0b804b411631c260b26a33fb781e2",
+      "bytes": 71784
+    },
+    "${FROZEN_ROOT}/native/libreplay_loader_gate.so": {
+      "kind": "正式冻结代码",
+      "sha256": "5a5c1688e8314a0086f6c47dcf43d13b4b68ddb419f67e9b26dcbfd49331ee6a",
+      "bytes": 72016
+    },
+    "${FROZEN_ROOT}/native/loader.c": {
+      "kind": "正式冻结代码",
+      "sha256": "16df0ee296e31622504414d0b142776a75857dfb6ec29ade9ac9056c38c9df79",
+      "bytes": 4685
+    },
+    "${FROZEN_ROOT}/reference/transaction_v2.py": {
+      "kind": "正式冻结代码",
+      "sha256": "e22c92f35673efdb4eae2461154377ae2e47e898388ca3b7bc1187c97306af64",
+      "bytes": 61458
+    },
+    "${FROZEN_ROOT}/reference/elf_aarch64.py": {
+      "kind": "正式冻结代码",
+      "sha256": "b3cd0eb45257613ed719aa37b71e75e56e0921dcc92dd17ef2d9f5f9c6e63246",
+      "bytes": 11490
+    },
+    "${FROZEN_ROOT}/reference/normalize_elf_loads.py": {
+      "kind": "正式冻结代码",
+      "sha256": "59a58b330f76e498e1003ffff7ac1ed65ce175db7f4df784ae2e79a61c0ed432",
+      "bytes": 3648
+    },
+    "${FROZEN_ROOT}/reference/measure_roi.py": {
+      "kind": "正式冻结代码",
+      "sha256": "d7973c7a4e34bf02a7f43727bbc1f85e4caf398518ec26294e822b2753686301",
+      "bytes": 7724
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "39e34c5bf22a16315cebb1ea91b6a632cc966abe8a8a6ef81a3c54f19815f0a8",
+      "bytes": 66106
+    },
+    "${FROZEN_ROOT}/tool-work/identity-v4-r2/llvm-bolt": {
+      "kind": "本轮生成工具",
+      "sha256": "e7ffb33166a90817050aad17d050db474b8a9b2954fdd798edfd9b2815ce1703",
+      "bytes": 54980376
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libnnopbase.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "efd10c4233ce2464eb9b0b71b08a311cebf0a3d798c0731def10fc2a2f0b4279",
+      "bytes": 221607
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_python.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "796c3b0d45e6a5e2f1735c810fe065aa069836dd2e174bc1b9aa80a628bef4b3",
+      "bytes": 761642
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_npu.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "1f4fb1e906a768090168c186f0f518f4adf823559c4604d51d910b586243aad9",
+      "bytes": 1620707
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_cpu.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "6eaac921e3f255e4599d12ebcdfa97a0797681608e33dfa830d3f64b94e176d0",
+      "bytes": 747747
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/_multiarray_umath.cpython-312-aarch64-linux-gnu.so.fdata": {
+      "kind": "正式BOLT画像",
+      "sha256": "e71be6aacf47fee6b36f84273290435a5882bba770c4cf0cf7bc66a9829f3e6a",
+      "bytes": 297717
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-python-bolt/libpython3.12.so.1.0.fdata": {
+      "kind": "Python原生插桩画像",
+      "sha256": "7ad7ad4a1b7ffc9bf8a1a7b7e592a82a47b9b69976be62dcb2ecdb26713b513a",
+      "bytes": 791682
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/profiles/trace-all-current-raw-r1/manifest.json": {
+      "kind": "画像来源manifest",
+      "sha256": "1e5722b66a8d501df78ad4531ecda0ef501a52c30198ad772efb192d34da9ee2",
+      "bytes": 3605
+    },
+    "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/profiles/trace-all-current-raw-r1/libc10.so.pa": {
+      "kind": "画像来源PA",
+      "sha256": "e876e4640a5fe662064674a3149c4ef4345ec6ab4b547309e680b9399257e736",
+      "bytes": 15032
+    }
+  },
+  "sessions": [
+    {
+      "tag": "calibration-current-r2",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "calibration-offline-r1",
+      "status": "failed",
+      "error": "BrokenPipeError(32, 'Broken pipe')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "calibration2-current-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "calibration2-offline-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "calibration2-original-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "combined-eval-fast-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError('BOLT失败:${FROZEN_ROOT}/artifacts/combined-eval-fast-r1-libpython3.12.so.1.0')"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('RuntimeError(\\'{\\\\\\'status\\\\\\': \\\\\\'error\\\\\\', \\\\\\'error\\\\\\': \"RuntimeError(\\\\\\'找不到库地址范围内的新区域:libophost_transformer.so\\\\\\')\", \\\\\\'traceback\\\\\\': \\\\\\'Traceback (most recent call last):\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r1/source-snapshot/scripts/model_worker.py\", line 183, in handle\\\\\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r1/source-snapshot/scripts/model_worker.py\", line 164, in command\\\\\\\\n    return reserve(self,cmd)\\\\\\\\n           ^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r1/source-snapshot/scripts/online.py\", line 106, in reserve\\\\\\\\n    raise RuntimeError(\\\\\\\\\\\\\\'找不到库地址范围内的新区域:\\\\\\\\\\\\\\'+name)\\\\\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\\\\\n\\\\\\'}\\')')"
+        }
+      ]
+    },
+    {
+      "tag": "combined-eval-fast-r4",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError(\"标签表分派基址未得到完整证明:opcode_targets.0:[('0x18000c78', (0, None, 'indexed'), None, {}), ('0x180010e8', (0, None, 'indexed'), None, {}), ('0x1800a2a0', (0, None, 'indexed'), None, {}), ('0x1800a2f4', (0, None, 'indexed'), None, {})]\")"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('RuntimeError(\\'{\\\\\\'status\\\\\\': \\\\\\'error\\\\\\', \\\\\\'error\\\\\\': \"RuntimeError(\\\\\\'找不到库地址范围内的新区域:libophost_transformer.so\\\\\\')\", \\\\\\'traceback\\\\\\': \\\\\\'Traceback (most recent call last):\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r4/source-snapshot/scripts/model_worker.py\", line 183, in handle\\\\\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r4/source-snapshot/scripts/model_worker.py\", line 164, in command\\\\\\\\n    return reserve(self,cmd)\\\\\\\\n           ^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r4/source-snapshot/scripts/online.py\", line 106, in reserve\\\\\\\\n    raise RuntimeError(\\\\\\\\\\\\\\'找不到库地址范围内的新区域:\\\\\\\\\\\\\\'+name)\\\\\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\\\\\n\\\\\\'}\\')')"
+        }
+      ]
+    },
+    {
+      "tag": "combined-eval-fast-r5",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('RuntimeError(\\'{\\\\\\'status\\\\\\': \\\\\\'error\\\\\\', \\\\\\'error\\\\\\': \"RuntimeError(\\\\\\'找不到库地址范围内的新区域:libophost_transformer.so\\\\\\')\", \\\\\\'traceback\\\\\\': \\\\\\'Traceback (most recent call last):\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r5/source-snapshot/scripts/model_worker.py\", line 183, in handle\\\\\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r5/source-snapshot/scripts/model_worker.py\", line 164, in command\\\\\\\\n    return reserve(self,cmd)\\\\\\\\n           ^^^^^^^^^^^^^^^^^\\\\\\\\n  File \"${FROZEN_ROOT}/runs/combined-eval-fast-r5/source-snapshot/scripts/online.py\", line 106, in reserve\\\\\\\\n    raise RuntimeError(\\\\\\\\\\\\\\'找不到库地址范围内的新区域:\\\\\\\\\\\\\\'+name)\\\\\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\\\\\n\\\\\\'}\\')')"
+        }
+      ]
+    },
+    {
+      "tag": "early-tf-current-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r0-offline",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r0-original",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r1-offline",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r1-original",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r2-offline",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "formal-host-v1-r2-original",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "full-stack-lite-fast-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError('新标签不在BOLT代码中')"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'找不到库地址范围内的新区域:libophost_transformer.so\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-lite-fast-r1/source-snapshot/scripts/model_worker.py\", line 180, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-lite-fast-r1/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return reserve(self,cmd)\\\\n           ^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-lite-fast-r1/source-snapshot/scripts/online.py\", line 106, in reserve\\\\n    raise RuntimeError(\\\\\\'找不到库地址范围内的新区域:\\\\\\'+name)\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "full-stack-v4-early-r1",
+      "status": "failed",
+      "error": "ValueError('max() arg is an empty sequence')",
+      "qualification_failures": [
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError(\"标签表分派基址未得到完整证明:opcode_targets.0:[('0x2220dbc', (0, None, 'indexed')), ('0x222122c', (0, None, 'indexed')), ('0x222a3e4', (0, None, 'indexed')), ('0x222a438', (0, None, 'indexed'))]\")"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'找不到库地址范围内的新区域:libophost_transformer.so\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-early-r1/source-snapshot/scripts/model_worker.py\", line 180, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-early-r1/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return reserve(self,cmd)\\\\n           ^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-early-r1/source-snapshot/scripts/online.py\", line 106, in reserve\\\\n    raise RuntimeError(\\\\\\'找不到库地址范围内的新区域:\\\\\\'+name)\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "full-stack-v4-r1",
+      "status": "failed",
+      "error": "RuntimeError('找不到画像内的执行证明入口:libnnopbase.so')",
+      "qualification_failures": [
+        {
+          "name": "libc10.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x1480bffc:0xd0f5e9b0\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r1/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r1/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r1/source-snapshot/scripts/online.py\", line 232, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r1/source-snapshot/scripts/online.py\", line 61, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x1480bffc:0xd0f5e9b0\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "full-stack-v4-r2",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libc10.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x1480c008:0xd4200020\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 240, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 68, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x1480c008:0xd4200020\\\\n\\'}')"
+        },
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"非函数入口指针变化:(\\\\\\'.data.rel.ro\\\\\\', \\\\\\'0x47b410\\\\\\', \\\\\\'0x1ef0d4\\\\\\', \\\\\\'0x8c20b24\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 165, in load\\\\n    old,new,proof=qualify(source,output,report)\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 140, in qualify\\\\n    if entrymap.get(oldvalue)!=newvalue and not same_external and not same_relocated_value:raise RuntimeError(\\\\\\'非函数入口指针变化:\\\\\\'+str((change[\\\\\\'name\\\\\\'],hex(asec[\\\\\\'addr\\\\\\']+offset),hex(oldvalue),hex(newvalue))))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 非函数入口指针变化:(\\\\\\'.data.rel.ro\\\\\\', \\\\\\'0x47b410\\\\\\', \\\\\\'0x1ef0d4\\\\\\', \\\\\\'0x8c20b24\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_python.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x1627e3a4:0xd4200020\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 240, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 68, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x1627e3a4:0xd4200020\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_npu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x347dcd10:0xd4200020\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 240, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 68, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x347dcd10:0xd4200020\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_cpu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x2cb988e4:0xd4200020\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 240, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 68, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x2cb988e4:0xd4200020\\\\n\\'}')"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'找不到库地址范围内的新区域:libophost_transformer.so\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 158, in command\\\\n    return reserve(self,cmd)\\\\n           ^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 93, in reserve\\\\n    raise RuntimeError(\\\\\\'找不到库地址范围内的新区域:\\\\\\'+name)\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\n\\'}')"
+        },
+        {
+          "name": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'辅助叶函数含未证明指令:0x4543bc8c:0xd4200020\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 240, in load\\\\n    if f[\\\\\\'name\\\\\\']==\\\\\\'call_weak_fn\\\\\\' and bias+f[\\\\\\'new_vaddr\\\\\\'] not in starts:supplemented.extend(supplement_weak(w,old,new,f,bias))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r2/source-snapshot/scripts/online.py\", line 68, in supplement_weak\\\\n    raise RuntimeError(\\\\\\'辅助叶函数含未证明指令:\\\\\\'+hex(pc)+\\\\\\':\\\\\\'+hex(word))\\\\nRuntimeError: 辅助叶函数含未证明指令:0x4543bc8c:0xd4200020\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "full-stack-v4-r3",
+      "status": "failed",
+      "error": "RuntimeError('没有任何库通过资格')",
+      "qualification_failures": [
+        {
+          "name": "libc10.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'_ZN3c1022memoryProfilingEnabledEv\\\\\\', \\\\\\'0xffff988c110c\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff844f26f0\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'_ZN3c1022memoryProfilingEnabledEv\\\\\\', \\\\\\'0xffff988c110c\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff844f26f0\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libnnopbase.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'_ZN13aclFloatArrayD0Ev\\\\\\', \\\\\\'0xffff99333ca4\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff6d9843a4\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'_ZN13aclFloatArrayD0Ev\\\\\\', \\\\\\'0xffff99333ca4\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff6d9843a4\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"非函数入口指针变化:(\\\\\\'.data.rel.ro\\\\\\', \\\\\\'0x47b410\\\\\\', \\\\\\'0x1ef0d4\\\\\\', \\\\\\'0x2420674\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 178, in load\\\\n    old,new,proof=qualify(source,output,report)\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 153, in qualify\\\\n    if entrymap.get(oldvalue)!=newvalue and not same_external and not same_relocated_value:raise RuntimeError(\\\\\\'非函数入口指针变化:\\\\\\'+str((change[\\\\\\'name\\\\\\'],hex(asec[\\\\\\'addr\\\\\\']+offset),hex(oldvalue),hex(newvalue))))\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 非函数入口指针变化:(\\\\\\'.data.rel.ro\\\\\\', \\\\\\'0x47b410\\\\\\', \\\\\\'0x1ef0d4\\\\\\', \\\\\\'0x2420674\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_python.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'_ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv\\\\\\', \\\\\\'0xffff9b101ce4\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff8eec4450\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'_ZNSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv\\\\\\', \\\\\\'0xffff9b101ce4\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff8eec4450\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_npu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'_ZNK3c1010TensorImpl14device_defaultEv.part.0.lto_priv.0\\\\\\', \\\\\\'0xffff9d6772c8\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff777e52f8\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'_ZNK3c1010TensorImpl14device_defaultEv.part.0.lto_priv.0\\\\\\', \\\\\\'0xffff9d6772c8\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff777e52f8\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libtorch_cpu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'_ZN2at16toAccumulateTypeEN3c1010ScalarTypeEb\\\\\\', \\\\\\'0xffffa307f674\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff8551a810\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'_ZN2at16toAccumulateTypeEN3c1010ScalarTypeEb\\\\\\', \\\\\\'0xffffa307f674\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff8551a810\\\\\\')\\\\n\\'}')"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'找不到库地址范围内的新区域:libophost_transformer.so\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 158, in command\\\\n    return reserve(self,cmd)\\\\n           ^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 106, in reserve\\\\n    raise RuntimeError(\\\\\\'找不到库地址范围内的新区域:\\\\\\'+name)\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\n\\'}')"
+        },
+        {
+          "name": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \\'RuntimeError(\"新CFI入口不符:(\\\\\\'OBJECT_getitem\\\\\\', \\\\\\'0xffffb23ebd54\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff7f9d92d0\\\\\\')\")\\', \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/model_worker.py\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r3/source-snapshot/scripts/online.py\", line 288, in load\\\\n    if actual!=target and original:raise RuntimeError(\\\\\\'新CFI入口不符:\\\\\\'+str((f[\\\\\\'name\\\\\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\\\\\'OBJECT_getitem\\\\\\', \\\\\\'0xffffb23ebd54\\\\\\', \\\\\\'0x0\\\\\\', \\\\\\'0xffff7f9d92d0\\\\\\')\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "full-stack-v4-r4",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": [
+        {
+          "name": "libpython3.12.so.1.0",
+          "error": "RuntimeError('opcode基址不是唯一相邻同寄存器ADRP/ADD，拒绝猜测:0')"
+        },
+        {
+          "name": "libophost_transformer.so",
+          "error": "RuntimeError('{\\'status\\': \\'error\\', \\'error\\': \"RuntimeError(\\'找不到库地址范围内的新区域:libophost_transformer.so\\')\", \\'traceback\\': \\'Traceback (most recent call last):\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r4/source-snapshot/scripts/model_worker.py\", line 177, in handle\\\\n    cmd=json.loads(ctypes.string_at(pointer,length));result=worker.command(cmd)\\\\n                                                            ^^^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r4/source-snapshot/scripts/model_worker.py\", line 158, in command\\\\n    return reserve(self,cmd)\\\\n           ^^^^^^^^^^^^^^^^^\\\\n  File \"${FROZEN_ROOT}/runs/full-stack-v4-r4/source-snapshot/scripts/online.py\", line 106, in reserve\\\\n    raise RuntimeError(\\\\\\'找不到库地址范围内的新区域:\\\\\\'+name)\\\\nRuntimeError: 找不到库地址范围内的新区域:libophost_transformer.so\\\\n\\'}')"
+        }
+      ]
+    },
+    {
+      "tag": "max-coverage-seven-v2",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r1",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"非函数入口指针变化:(\\'.init_array\\', \\'0x1fc80\\', \\'0x11b0\\', \\'0x2a002dc\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/native_worker.py\\\\\", line 48, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 97, in load\\\\n    old,new,proof=qualify(source,output,report)\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 74, in qualify\\\\n    if entrymap.get(oldvalue)!=newvalue:raise RuntimeError(\\'非函数入口指针变化:\\'+str((change[\\'name\\'],hex(asec[\\'addr\\']+offset),hex(oldvalue),hex(newvalue))))\\\\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 非函数入口指针变化:(\\'.init_array\\', \\'0x1fc80\\', \\'0x11b0\\', \\'0x2a002dc\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r2",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"非函数入口指针变化:(\\'.data.rel.ro\\', \\'0x1fcd8\\', \\'0x0\\', \\'0x2a005c8\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/native_worker.py\\\\\", line 48, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 108, in load\\\\n    old,new,proof=qualify(source,output,report)\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 85, in qualify\\\\n    if entrymap.get(oldvalue)!=newvalue:raise RuntimeError(\\'非函数入口指针变化:\\'+str((change[\\'name\\'],hex(asec[\\'addr\\']+offset),hex(oldvalue),hex(newvalue))))\\\\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 非函数入口指针变化:(\\'.data.rel.ro\\', \\'0x1fcd8\\', \\'0x0\\', \\'0x2a005c8\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r3",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"非函数入口指针变化:(\\'.data\\', \\'0x20020\\', \\'0x0\\', \\'0x1050\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r3/source-snapshot/scripts/native_worker.py\\\\\", line 48, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r3/source-snapshot/scripts/online.py\\\\\", line 118, in load\\\\n    old,new,proof=qualify(source,output,report)\\\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r3/source-snapshot/scripts/online.py\\\\\", line 95, in qualify\\\\n    if entrymap.get(oldvalue)!=newvalue:raise RuntimeError(\\'非函数入口指针变化:\\'+str((change[\\'name\\'],hex(asec[\\'addr\\']+offset),hex(oldvalue),hex(newvalue))))\\\\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 非函数入口指针变化:(\\'.data\\', \\'0x20020\\', \\'0x0\\', \\'0x1050\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r4",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r5",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\'call_weak_fn不是已经证明的无栈尾调用模板\\')\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r5/source-snapshot/scripts/native_worker.py\\\\\", line 48, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r5/source-snapshot/scripts/online.py\\\\\", line 185, in load\\\\n    if not valid:raise RuntimeError(\\'call_weak_fn不是已经证明的无栈尾调用模板\\')\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: call_weak_fn不是已经证明的无栈尾调用模板\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-full-r6",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'rb_fixture_count\\', \\'0xffffae1c04b4\\', \\'0x0\\', \\'0xffffab7c11c0\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r6/source-snapshot/scripts/native_worker.py\\\\\", line 48, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-full-r6/source-snapshot/scripts/online.py\\\\\", line 215, in load\\\\n    if actual!=target and original:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'rb_fixture_count\\', \\'0xffffae1c04b4\\', \\'0x0\\', \\'0xffffab7c11c0\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-fixed-r2",
+      "status": "failed",
+      "error": "CalledProcessError(1, ['${FROZEN_ROOT}/tool-work/identity-v1/llvm-bolt', '${FROZEN_ROOT}/artifacts/native-identity-fixed-r2/fixture.so', '-o', '${FROZEN_ROOT}/artifacts/native-identity-fixed-r2/optimized/fixture.so', '-data=${FROZEN_ROOT}/artifacts/native-identity-fixed-r2/native.fdata', '-custom-allocation-vma=41943040', '-reorder-blocks=ext-tsp', '-reorder-functions=hfsort+', '-split-functions', '-split-all-cold', '-split-eh', '-trap-old-code=false', '-use-old-text=false', '-skip-funcs=call_weak_fn', '-thread-count=4', '-runtime-preserve-function-identity'])",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-fixed-v2-r1",
+      "status": "failed",
+      "error": "CalledProcessError(-6, ['${FROZEN_ROOT}/tool-work/identity-v2/llvm-bolt', '${FROZEN_ROOT}/artifacts/native-identity-fixed-v2-r1/fixture.so', '-o', '${FROZEN_ROOT}/artifacts/native-identity-fixed-v2-r1/optimized/fixture.so', '-data=${FROZEN_ROOT}/artifacts/native-identity-fixed-v2-r1/native.fdata', '-custom-allocation-vma=44040192', '-reorder-blocks=ext-tsp', '-reorder-functions=hfsort+', '-split-functions', '-split-all-cold', '-split-eh', '-trap-old-code=false', '-use-old-text=false', '-skip-funcs=call_weak_fn', '-thread-count=4', '-runtime-preserve-function-identity'])",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-fixed-v3-r1",
+      "status": "failed",
+      "error": "CalledProcessError(1, ['${FROZEN_ROOT}/tool-work/identity-v3/llvm-bolt', '${FROZEN_ROOT}/artifacts/native-identity-fixed-v3-r1/fixture.so', '-o', '${FROZEN_ROOT}/artifacts/native-identity-fixed-v3-r1/optimized/fixture.so', '-data=${FROZEN_ROOT}/artifacts/native-identity-fixed-v3-r1/native.fdata', '-custom-allocation-vma=44040192', '-reorder-blocks=ext-tsp', '-reorder-functions=hfsort+', '-split-functions', '-split-all-cold', '-split-eh', '-trap-old-code=false', '-use-old-text=false', '-skip-funcs=call_weak_fn', '-thread-count=4', '-runtime-preserve-function-identity'])",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-fixed-v4-r2-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-r1",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'_ZL9hidden_fnm\\', \\'0xffff8f6004b4\\', \\'0x0\\', \\'0xffff8cc01280\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-identity-r1/source-snapshot/scripts/native_worker.py\\\\\", line 49, in main\\\\n    elif op==\\'load-full\\':result=load(w,cmd)\\\\n                                ^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-identity-r1/source-snapshot/scripts/online.py\\\\\", line 215, in load\\\\n    if actual!=target and original:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'_ZL9hidden_fnm\\', \\'0xffff8f6004b4\\', \\'0x0\\', \\'0xffff8cc01280\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-identity-r2",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\'函数地址身份发生变化\\')\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/native-identity-r2/source-snapshot/scripts/native_worker.py\\\\\", line 63, in main\\\\n    if lib.rb_fixture_identity()!=1 or lib.rb_fixture_function_address()!=function_address:raise RuntimeError(\\'函数地址身份发生变化\\')\\\\n                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 函数地址身份发生变化\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "native-near-fastplt-r1",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r1",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'call_weak_fn\\', \\'0xffffbb7ac330\\', \\'0x0\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/model_worker.py\\\\\", line 173, in main\\\\n    cmd=json.loads(line);result=worker.command(cmd)\\\\n                                ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/model_worker.py\\\\\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 119, in load\\\\n    if actual!=target:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual))))\\\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'call_weak_fn\\', \\'0xffffbb7ac330\\', \\'0x0\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r2",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'call_weak_fn\\', \\'0xffffba15ab9c\\', \\'0x0\\', \\'0xffffb458abb4\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/model_worker.py\\\\\", line 173, in main\\\\n    cmd=json.loads(line);result=worker.command(cmd)\\\\n                                ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/model_worker.py\\\\\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/scripts/online.py\\\\\", line 134, in load\\\\n    if actual!=target and original:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'call_weak_fn\\', \\'0xffffba15ab9c\\', \\'0x0\\', \\'0xffffb458abb4\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r3",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'call_weak_fn\\', \\'0xffff80c4ab9c\\', \\'0x0\\', \\'0xffff7c27abb4\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r3/source-snapshot/scripts/model_worker.py\\\\\", line 173, in main\\\\n    cmd=json.loads(line);result=worker.command(cmd)\\\\n                                ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r3/source-snapshot/scripts/model_worker.py\\\\\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r3/source-snapshot/scripts/online.py\\\\\", line 177, in load\\\\n    if actual!=target and original:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'call_weak_fn\\', \\'0xffff80c4ab9c\\', \\'0x0\\', \\'0xffff7c27abb4\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r4",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\'call_weak_fn不是已经证明的无栈尾调用模板\\')\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r4/source-snapshot/scripts/model_worker.py\\\\\", line 173, in main\\\\n    cmd=json.loads(line);result=worker.command(cmd)\\\\n                                ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r4/source-snapshot/scripts/model_worker.py\\\\\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r4/source-snapshot/scripts/online.py\\\\\", line 185, in load\\\\n    if not valid:raise RuntimeError(\\'call_weak_fn不是已经证明的无栈尾调用模板\\')\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: call_weak_fn不是已经证明的无栈尾调用模板\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r5",
+      "status": "failed",
+      "error": "RuntimeError('{\\n  \"error\": \"RuntimeError(\\\\\"新CFI入口不符:(\\'_ZNK3c109Allocator11raw_deleterEv\\', \\'0xffffc236c418\\', \\'0x0\\', \\'0xffffab39aca0\\')\\\\\")\",\\n  \"traceback\": \"Traceback (most recent call last):\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r5/source-snapshot/scripts/model_worker.py\\\\\", line 173, in main\\\\n    cmd=json.loads(line);result=worker.command(cmd)\\\\n                                ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r5/source-snapshot/scripts/model_worker.py\\\\\", line 161, in command\\\\n    return load(self,cmd)\\\\n           ^^^^^^^^^^^^^^\\\\n  File \\\\\"${FROZEN_ROOT}/runs/online-c10-r5/source-snapshot/scripts/online.py\\\\\", line 215, in load\\\\n    if actual!=target and original:raise RuntimeError(\\'新CFI入口不符:\\'+str((f[\\'name\\'],hex(target),hex(actual),hex(original))))\\\\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nRuntimeError: 新CFI入口不符:(\\'_ZNK3c109Allocator11raw_deleterEv\\', \\'0xffffc236c418\\', \\'0x0\\', \\'0xffffab39aca0\\')\\\\n\"\\n}\\n')",
+      "qualification_failures": []
+    },
+    {
+      "tag": "online-c10-r6",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    },
+    {
+      "tag": "python-private-r2",
+      "status": "complete",
+      "error": null,
+      "qualification_failures": []
+    }
+  ],
+  "containers": [],
+  "workers": [],
+  "cpu_topology": {
+    "192": {
+      "thread_siblings_list": "192-193",
+      "core_id": "721920",
+      "physical_package_id": "1"
+    },
+    "194": {
+      "thread_siblings_list": "194-195",
+      "core_id": "721921",
+      "physical_package_id": "1"
+    },
+    "196": {
+      "thread_siblings_list": "196-197",
+      "core_id": "721922",
+      "physical_package_id": "1"
+    },
+    "198": {
+      "thread_siblings_list": "198-199",
+      "core_id": "721923",
+      "physical_package_id": "1"
+    },
+    "200": {
+      "thread_siblings_list": "200-201",
+      "core_id": "722176",
+      "physical_package_id": "1"
+    },
+    "208": {
+      "thread_siblings_list": "208-209",
+      "core_id": "722432",
+      "physical_package_id": "1"
+    }
+  },
+  "scope": "核对已登记历史输入/工具/源码/正式画像及新目录冻结工件；保留全部成功与失败会话，不删除任何原件。"
+}

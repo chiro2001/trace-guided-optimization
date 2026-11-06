@@ -1,0 +1,176 @@
+{
+  "original": {
+    "libraries": {
+      "libpython3.12.so.1.0": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libpython3.12.so.1.0",
+        "path": "${FROZEN_ROOT}/inputs/pool/de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88.so",
+        "sha256": "de439dc24ea47b35d5e50ee269c7421b5f0eb5d4d129a9ab7ef1210d487c3c88",
+        "bytes": 30689272
+      },
+      "libtorch_cpu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_cpu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926.so",
+        "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+        "bytes": 255800841
+      },
+      "libtorch_python.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_python.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577.so",
+        "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+        "bytes": 28367960
+      },
+      "libc10.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1.so",
+        "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+        "bytes": 1643448
+      },
+      "libtorch_npu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_npu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842.so",
+        "sha256": "83fb9a0eb249aef6bca7f8463047fcb4d3062cc4849f17ddf31a5e050c838842",
+        "bytes": 82429241
+      },
+      "_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0.so",
+        "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+        "bytes": 4597833
+      },
+      "libnnopbase.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libnnopbase.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b.so",
+        "sha256": "308dda461704a6e5f70de6e0eac4495e9829b9cec3328563b75a5b382c6e438b",
+        "bytes": 4328144
+      },
+      "libophost_transformer.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libophost_transformer.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b.so",
+        "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+        "bytes": 26741336
+      }
+    },
+    "sources": {
+      "attention_v1.py": "4ba903ee8afb23012e78870034b1280039ccf81edb41b8e16f00e6e5bbc4c076",
+      "module.py": "34c99682b7832a5110dfd85bd886f542fa62aff35ddf3f1473ea86a8abd4adeb"
+    },
+    "source_arm": "baseline",
+    "file_copy_node": 2
+  },
+  "current": {
+    "libraries": {
+      "libpython3.12.so.1.0": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/python-current-pgo-lto/libpython3.12.so.1.0",
+        "path": "${FROZEN_ROOT}/inputs/pool/c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79.so",
+        "sha256": "c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79",
+        "bytes": 64109952
+      },
+      "libtorch_cpu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_cpu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926.so",
+        "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+        "bytes": 255800841
+      },
+      "libtorch_python.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_python.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577.so",
+        "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+        "bytes": 28367960
+      },
+      "libc10.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1.so",
+        "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+        "bytes": 1643448
+      },
+      "libtorch_npu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/npu-pgo-use/libtorch_npu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d.so",
+        "sha256": "5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d",
+        "bytes": 80840800
+      },
+      "_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0.so",
+        "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+        "bytes": 4597833
+      },
+      "libnnopbase.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/cann-pgo-use/libnnopbase.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056.so",
+        "sha256": "1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056",
+        "bytes": 3476744
+      },
+      "libophost_transformer.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libophost_transformer.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b.so",
+        "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+        "bytes": 26741336
+      }
+    },
+    "sources": {
+      "attention_v1.py": "3b05f739c8d8bbb23f37d1b133499e8833914dc8073b7c90aa930cf1f7d40ffd",
+      "module.py": "5547b3fd26623cc3acd37993f6ff9e36d7dc99b15b6c9879bf8022d5597a0820"
+    },
+    "source_arm": "combined",
+    "file_copy_node": 2
+  },
+  "offline": {
+    "libraries": {
+      "libpython3.12.so.1.0": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-python-bolt/libpython3.12.so.1.0",
+        "path": "${FROZEN_ROOT}/inputs/pool/15b3b792cae7dfd28d8b2a164bf5f0a63b758f7bcea65115184dc625bd09efeb.so",
+        "sha256": "15b3b792cae7dfd28d8b2a164bf5f0a63b758f7bcea65115184dc625bd09efeb",
+        "bytes": 16025648
+      },
+      "libtorch_cpu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_cpu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/a571a8ef439d24acef90ace784a1c0d06a91ff25d7c99bf9ac23e02b6df376c4.so",
+        "sha256": "a571a8ef439d24acef90ace784a1c0d06a91ff25d7c99bf9ac23e02b6df376c4",
+        "bytes": 626861280
+      },
+      "libtorch_python.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_python.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/d52662d79d530c8148d992aff07dfc524f411188a9ec49f150eeeb84f6f4dbac.so",
+        "sha256": "d52662d79d530c8148d992aff07dfc524f411188a9ec49f150eeeb84f6f4dbac",
+        "bytes": 65827728
+      },
+      "libc10.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8.so",
+        "sha256": "da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8",
+        "bytes": 7697952
+      },
+      "libtorch_npu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libtorch_npu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/a0f7df0e1e3cb616f75430258b29c5a0d238a0c1b2576c9ced8388f0845007ff.so",
+        "sha256": "a0f7df0e1e3cb616f75430258b29c5a0d238a0c1b2576c9ced8388f0845007ff",
+        "bytes": 184974272
+      },
+      "_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/29e2c9245eead4f330ab6a8fec2191c270fce222ff2cdb2971d9772b19cd60c7.so",
+        "sha256": "29e2c9245eead4f330ab6a8fec2191c270fce222ff2cdb2971d9772b19cd60c7",
+        "bytes": 15330000
+      },
+      "libnnopbase.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libnnopbase.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/41cfda52561691fdcca30c4bf5adf9b43035733e7ed06f10611931a266c1bb0a.so",
+        "sha256": "41cfda52561691fdcca30c4bf5adf9b43035733e7ed06f10611931a266c1bb0a",
+        "bytes": 19280320
+      },
+      "libophost_transformer.so": {
+        "source": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libophost_transformer.so",
+        "path": "${FROZEN_ROOT}/inputs/pool/3c10a95d0b473e4fda2b75e05bcd18a7cb3330304c4f815f3e15d4fe284681aa.so",
+        "sha256": "3c10a95d0b473e4fda2b75e05bcd18a7cb3330304c4f815f3e15d4fe284681aa",
+        "bytes": 82072592
+      }
+    },
+    "sources": {
+      "attention_v1.py": "3b05f739c8d8bbb23f37d1b133499e8833914dc8073b7c90aa930cf1f7d40ffd",
+      "module.py": "5547b3fd26623cc3acd37993f6ff9e36d7dc99b15b6c9879bf8022d5597a0820"
+    },
+    "source_arm": "combined",
+    "file_copy_node": 2
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "server": "a3-21",
+  "files": {
+    "${VLLM_HISTORY_ROOT}/pgo128_compiler_20261026/tools/llvm22/source/bolt/lib/Rewrite/RewriteInstance.cpp": {
+      "expected": "449aa4d62b8bc3d5db18825b25c4b14266bdc43dd15f58daf6afca80b9b9b6b0",
+      "sha256": "449aa4d62b8bc3d5db18825b25c4b14266bdc43dd15f58daf6afca80b9b9b6b0"
+    },
+    "${VLLM_HISTORY_ROOT}/pgo128_compiler_20261026/tools/llvm22/source/bolt/lib/Rewrite/JITLinkLinker.cpp": {
+      "expected": "8665089e502f7d13b3470a19d9877090c31a973a06852baeb8d822d16b918409",
+      "sha256": "8665089e502f7d13b3470a19d9877090c31a973a06852baeb8d822d16b918409"
+    }
+  }
+}

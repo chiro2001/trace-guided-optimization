@@ -1,0 +1,28 @@
+{
+  "status": "failed",
+  "tag": "max-coverage-seven-v1",
+  "started_unix": 1793894430.8903475,
+  "command": [
+    "/usr/bin/python3",
+    "${FROZEN_ROOT}/scripts/online_session.py",
+    "--tag",
+    "max-coverage-seven-v1",
+    "--identity",
+    "--plt",
+    "--formal",
+    "--python-gate",
+    "--requests",
+    "1",
+    "--libraries",
+    "libc10.so",
+    "libnnopbase.so",
+    "libpython3.12.so.1.0",
+    "libtorch_python.so",
+    "libtorch_npu.so",
+    "libtorch_cpu.so",
+    "_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+  ],
+  "launched_unix": 1793894988.9599323,
+  "exit_code": 1,
+  "finished_unix": 1793894989.0165324
+}

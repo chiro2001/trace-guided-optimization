@@ -1,0 +1,126 @@
+{
+  "schema": "qemu-fdata-provenance-v1",
+  "source_profile_manifest": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/profiles/trace-all-current-raw-r1/manifest.json",
+  "source_profile_manifest_sha256": "1e5722b66a8d501df78ad4531ecda0ef501a52c30198ad772efb192d34da9ee2",
+  "source_pa": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/profiles/trace-all-current-raw-r1/libc10.so.pa",
+  "source_pa_sha256": "e876e4640a5fe662064674a3149c4ef4345ec6ab4b547309e680b9399257e736",
+  "fdata_path": "${VLLM_HISTORY_ROOT}/runtime-bolt-replay-20261105/inputs/libc10.so.fdata",
+  "fdata_sha256": "39e34c5bf22a16315cebb1ea91b6a632cc966abe8a8a6ef81a3c54f19815f0a8",
+  "historical_fdata_path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so.fdata",
+  "historical_build_record": {
+    "input": {
+      "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so",
+      "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "dynamic_instructions": 2591869,
+      "verified_static_pcs": 2207,
+      "branch_records": 427,
+      "fallthrough_records": 350
+    },
+    "aggregate": {
+      "command": [
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-recover-v12/bin/perf2bolt",
+        "-pa",
+        "-p",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/profiles/trace-all-current-raw-r1/libc10.so.pa",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-bind-now/libc10.so",
+        "-o",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so.fdata",
+        "-allow-stripped",
+        "-thread-count=4",
+        "-relocs",
+        "-force-patch",
+        "-pgo128-trampoline-mode",
+        "-pgo128-recover-code-relocs",
+        "-aarch64-relaxation-non-reloc",
+        "-pgo128-assume-code-pages-safe"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.1794124599546194,
+      "log": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/logs/all-current-seven/libc10.so.aggregate.log"
+    },
+    "bind_now_input": {
+      "source": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so",
+      "source_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+      "output_sha256": "b78af468f90bef78afb8374a4ca461c1cfd8fc730d7074494dba5849f22efc0a",
+      "dynamic_entry_offset": 1243592,
+      "old_tag": 1879048185,
+      "old_value": 1223,
+      "new_entry": [
+        30,
+        8
+      ],
+      "all_other_bytes_unchanged": true,
+      "executable_instructions_unchanged": true,
+      "bind_now_visible_before_first_dt_null": true
+    },
+    "optimize": {
+      "command": [
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-recover-v12/bin/llvm-bolt",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-bind-now/libc10.so",
+        "-data=${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so.fdata",
+        "-o",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so",
+        "-reorder-blocks=ext-tsp",
+        "-reorder-functions=hfsort+",
+        "-split-functions",
+        "-split-strategy=profile2",
+        "-split-all-cold",
+        "-cold-threshold=0",
+        "-align-functions=4",
+        "-align-functions-max-bytes=4",
+        "-thread-count=4",
+        "-allow-stripped",
+        "-dyno-stats",
+        "-enable-bat",
+        "-group-stubs=false",
+        "-relocs",
+        "-force-patch",
+        "-pgo128-trampoline-mode",
+        "-pgo128-recover-code-relocs",
+        "-aarch64-relaxation-non-reloc",
+        "-pgo128-assume-code-pages-safe",
+        "-use-old-text=false",
+        "-eliminate-unreachable",
+        "-peepholes=all",
+        "-simplify-conditional-tail-calls",
+        "-sctc-mode=always",
+        "-split-eh",
+        "-plt=all"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.6962779201567173,
+      "log": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/logs/all-current-seven/libc10.so.optimize.log"
+    },
+    "retained_relocations": false,
+    "recovered_code_relocations": true,
+    "hugify": false,
+    "no_lite": true,
+    "aggressive": true,
+    "split_strategy": "profile2",
+    "compact_code_model": false,
+    "reorder_functions": "hfsort+",
+    "inline_small_bytes": null,
+    "strict": false,
+    "experimental_assume_code_pages_safe": true,
+    "fdata_sha256": "39e34c5bf22a16315cebb1ea91b6a632cc966abe8a8a6ef81a3c54f19815f0a8",
+    "normalization": {
+      "command": [
+        "python3",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/reference/normalize_elf_loads.py",
+        "--source",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so.raw",
+        "--output",
+        "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.04490453004837036,
+      "log": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/logs/all-current-seven/libc10.so.normalize.log"
+    },
+    "output": {
+      "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/all-current-seven/libc10.so",
+      "sha256": "da3cc419e21ba6ff70434126de9af096b01f61f0137a8f25455411e5359073a8"
+    }
+  },
+  "input_sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+  "binding_bridge_executable_bytes_unchanged": true
+}

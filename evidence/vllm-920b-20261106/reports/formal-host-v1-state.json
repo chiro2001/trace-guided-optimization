@@ -1,0 +1,147 @@
+{
+  "status": "complete",
+  "candidate": "full-stack-lite-fast-r1",
+  "candidate_session_sha256": "d9a725584b2c05f21eb58c875dbca6fdd3b2cda56a9cb13fed9213f2fdd76196",
+  "libraries": [
+    "libc10.so",
+    "libnnopbase.so",
+    "libtorch_python.so",
+    "libtorch_npu.so",
+    "libtorch_cpu.so",
+    "_multiarray_umath.cpython-312-aarch64-linux-gnu.so"
+  ],
+  "orders": [
+    [
+      "original",
+      "online",
+      "offline"
+    ],
+    [
+      "offline",
+      "online",
+      "original"
+    ],
+    [
+      "online",
+      "original",
+      "offline"
+    ]
+  ],
+  "requests_per_state": 2,
+  "software_sha256": {
+    "scripts/calibrate.py": "87944c43f9a61b02b32abc3ecdbebc5acd5db1feacdeb22194bea63321c517af",
+    "scripts/native_worker.py": "eb46aa782eb8fe60822d8dbb5ce78838f478bc42c35be7ef205096d1c9050598",
+    "scripts/private_tables.py": "e579a115f5a7fd58a992ff0c933c7bc811bc22d48c5c068a789239836af30029",
+    "scripts/eh_frame.py": "3fd9a2e3678c920033e15962efec6bd906a4ae5ffc5aad29c464e26be4828c57",
+    "scripts/model_worker.py": "6edad328ea02d41673b30b0568184f34dc669e4e1e2efb8d3a32dacaede62336",
+    "scripts/common.py": "95ba63791466b47bca8623ee53044fa3f1030e1aac15671cb94f4db0491b4eae",
+    "scripts/online_session.py": "88917fc5502cdc1b8bf0cd58a38e81c77c7adc72ca558e68e95ca4f0d9fba75d",
+    "scripts/python_gate.py": "e42d1578073b5b4b7e16ceeb7c73a47b43476fec865bdc0a5d288941fe93ee37",
+    "scripts/prepare.py": "96e910bbe0e93f491ed4902bd51204181cc2290d6b709f9dc78e5a272bc093c3",
+    "scripts/full_stack.py": "8c3fbb7c336068a9da306e179fc26d6f416d3234fc7e8615cf4033c2295ca5b5",
+    "scripts/near_fastplt.py": "225a7c1b7cbe4d6d645df30ee5f65ac4a0a45248ed1554ea5b2e23f7f8bfbd3e",
+    "scripts/normalize.py": "6790f4cb24264edad623cd770e922607e5608afee87e89f33545fa402118badd",
+    "scripts/online.py": "52ac6f691bf2370c411a52ebef4b1c536fd6c2c7f68dd03572cf0864ac83ea79",
+    "scripts/build_full.py": "480e5e6201510a93b10e55e96b5eb4f0a0298ae264025f5909d1b02599d660c4",
+    "scripts/freeze_and_measure.py": "e3852f575d8d44d7d237ee2d9d7dff6e6495f4a1099c6222ed6a2cee90510106",
+    "scripts/bench.py": "f90ccc6935e72f50619a9d08af67b0669d38ae2b7428326fd2b419cc84505cfe",
+    "scripts/probe.py": "d32513a0410f294221c63ddd1090617bf3921fa4182f218ae872c517aac301d0",
+    "scripts/formal_matrix.py": "84924f18ad0d6f7efcc6760237460f48a43ba0db39966dee9d56b9d558e1f913",
+    "scripts/inventory.py": "a85fcb40e9ffdfca4dcbfb398022a50809f2c49ffa4b4f6275abaf699153756d",
+    "scripts/native_test.py": "8eb5d08b23c4b68e981d5cc48216c02a9bfb40095d4b0dedeb2d0f7eceaae0da",
+    "native/fixture.cpp": "9e5769c46ab3a1f2c0615cd782d096cf78d49c5fdc9e170b4e8a6c0176cb1e74",
+    "native/libreplay_loader.so": "7da3c1bf486bd128668d1ec3371f32e705a0b804b411631c260b26a33fb781e2",
+    "native/libreplay_loader_gate.so": "5a5c1688e8314a0086f6c47dcf43d13b4b68ddb419f67e9b26dcbfd49331ee6a",
+    "native/loader.c": "16df0ee296e31622504414d0b142776a75857dfb6ec29ade9ac9056c38c9df79",
+    "reference/transaction_v2.py": "e22c92f35673efdb4eae2461154377ae2e47e898388ca3b7bc1187c97306af64",
+    "reference/elf_aarch64.py": "b3cd0eb45257613ed719aa37b71e75e56e0921dcc92dd17ef2d9f5f9c6e63246",
+    "reference/normalize_elf_loads.py": "59a58b330f76e498e1003ffff7ac1ed65ce175db7f4df784ae2e79a61c0ed432",
+    "reference/measure_roi.py": "d7973c7a4e34bf02a7f43727bbc1f85e4caf398518ec26294e822b2753686301"
+  },
+  "steps": [
+    {
+      "tag": "formal-host-v1-r0-original",
+      "arm": "original",
+      "seed": 0,
+      "exit_code": 0,
+      "finished_unix": 1793893447.6840825
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "exit_code": 0,
+      "finished_unix": 1793893784.8930132
+    },
+    {
+      "tag": "formal-host-v1-r0-offline",
+      "arm": "offline",
+      "seed": 0,
+      "exit_code": 0,
+      "finished_unix": 1793893873.4156826
+    },
+    {
+      "tag": "formal-host-v1-r1-offline",
+      "arm": "offline",
+      "seed": 1,
+      "exit_code": 0,
+      "finished_unix": 1793893963.7001538
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "exit_code": 0,
+      "finished_unix": 1793894297.7677827
+    },
+    {
+      "tag": "formal-host-v1-r1-original",
+      "arm": "original",
+      "seed": 1,
+      "exit_code": 0,
+      "finished_unix": 1793894427.6296008
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "exit_code": 0,
+      "finished_unix": 1793894768.1256728
+    },
+    {
+      "tag": "formal-host-v1-r2-original",
+      "arm": "original",
+      "seed": 2,
+      "exit_code": 0,
+      "finished_unix": 1793894897.7298312
+    },
+    {
+      "tag": "formal-host-v1-r2-offline",
+      "arm": "offline",
+      "seed": 2,
+      "exit_code": 0,
+      "finished_unix": 1793894987.675147
+    }
+  ],
+  "started_unix": 1793893318.9243326,
+  "current": {
+    "tag": "formal-host-v1-r2-offline",
+    "arm": "offline",
+    "seed": 2,
+    "command": [
+      "/usr/bin/python3",
+      "${FROZEN_ROOT}/scripts/bench.py",
+      "--tag",
+      "formal-host-v1-r2-offline",
+      "--seed",
+      "2",
+      "--arm",
+      "offline",
+      "--requests",
+      "2",
+      "--normalize",
+      "--python-gate"
+    ]
+  },
+  "finished_unix": 1793894987.6757655
+}

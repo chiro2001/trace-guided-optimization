@@ -1,0 +1,146 @@
+{
+  "schema": "tgo.vllm920b-verification.v1",
+  "passed": true,
+  "independent_processes": 9,
+  "requests": 42,
+  "thread_count_per_roi": 56,
+  "main_cpu": 192,
+  "auxiliary_cpus": [
+    194,
+    196,
+    198
+  ],
+  "separate_physical_cores": true,
+  "release_runqueue_wait_range_s": [
+    0.00220044,
+    0.01950227
+  ],
+  "performance_entries": 2576,
+  "fast_plt_sites": [
+    2514,
+    2722,
+    2683
+  ],
+  "seven_library_entries": 142748,
+  "comparisons": {
+    "原始→在线全方案": {
+      "paired_reductions_pct": [
+        41.117378971216745,
+        42.763614899386496,
+        41.00409455985139
+      ],
+      "median_pct": 41.117378971216745,
+      "descriptive_bootstrap_95_pct": [
+        41.00409455985139,
+        42.763614899386496
+      ],
+      "independent_pairs": 3
+    },
+    "原始→当前源码/PGO": {
+      "paired_reductions_pct": [
+        25.932551006343253,
+        27.48812414638181,
+        25.300959625936514
+      ],
+      "median_pct": 25.932551006343253,
+      "descriptive_bootstrap_95_pct": [
+        25.300959625936514,
+        27.48812414638181
+      ],
+      "independent_pairs": 3
+    },
+    "当前源码/PGO→在线全方案": {
+      "paired_reductions_pct": [
+        20.501351364448837,
+        21.066191672991263,
+        21.021869699101536
+      ],
+      "median_pct": 21.021869699101536,
+      "descriptive_bootstrap_95_pct": [
+        20.501351364448837,
+        21.066191672991263
+      ],
+      "independent_pairs": 3
+    },
+    "当前源码/PGO→BOLT": {
+      "paired_reductions_pct": [
+        11.554631418358408,
+        11.633780386684522,
+        12.585643468542628
+      ],
+      "median_pct": 11.633780386684522,
+      "descriptive_bootstrap_95_pct": [
+        11.554631418358408,
+        12.585643468542628
+      ],
+      "independent_pairs": 3
+    },
+    "BOLT→快捷PLT增量": {
+      "paired_reductions_pct": [
+        10.115532434953845,
+        10.674227467897046,
+        9.650847486960556
+      ],
+      "median_pct": 10.115532434953845,
+      "descriptive_bootstrap_95_pct": [
+        9.650847486960556,
+        10.674227467897046
+      ],
+      "independent_pairs": 3
+    },
+    "原始→离线参照": {
+      "paired_reductions_pct": [
+        45.49426059716365,
+        44.67611780659138,
+        45.206191190151834
+      ],
+      "median_pct": 45.206191190151834,
+      "descriptive_bootstrap_95_pct": [
+        44.67611780659138,
+        45.49426059716365
+      ],
+      "independent_pairs": 3
+    },
+    "基线→全回滚漂移": {
+      "paired_reductions_pct": [
+        -0.12880161654089672,
+        -0.8933481648645714,
+        0.0538342777404166
+      ],
+      "median_pct": -0.12880161654089672,
+      "descriptive_bootstrap_95_pct": [
+        -0.8933481648645714,
+        0.0538342777404166
+      ],
+      "independent_pairs": 3
+    },
+    "BOLT→撤销快捷PLT漂移": {
+      "paired_reductions_pct": [
+        0.13604406746422493,
+        1.7435447506052415,
+        0.5568739130100586
+      ],
+      "median_pct": 0.5568739130100586,
+      "descriptive_bootstrap_95_pct": [
+        0.13604406746422493,
+        1.7435447506052415
+      ],
+      "independent_pairs": 3
+    },
+    "在线与离线wall比": {
+      "paired_reductions_pct": [
+        -8.030129806328489,
+        -3.456921010204783,
+        -7.668925963666906
+      ],
+      "median_pct": -7.668925963666906,
+      "descriptive_bootstrap_95_pct": [
+        -8.030129806328489,
+        -3.456921010204783
+      ],
+      "independent_pairs": 3
+    }
+  },
+  "brbe_collected": false,
+  "scope": "原生实测设备桩完整generate与最终同步的主机wall；不是合成数据或真实NPU计算吞吐"
+}

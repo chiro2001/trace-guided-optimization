@@ -1,0 +1,21 @@
+{
+  "schema": "tgo.vllm920b-negative-checks.v1",
+  "passed": true,
+  "cases": [
+    {
+      "case": "csv-wall",
+      "rejected": true,
+      "reason": "CSV wall与原始ns不符"
+    },
+    {
+      "case": "release-single-core",
+      "rejected": true,
+      "reason": "发现整体单核或线程亲和性越界"
+    },
+    {
+      "case": "paired-percentage",
+      "rejected": true,
+      "reason": "配对中位收益不符"
+    }
+  ]
+}

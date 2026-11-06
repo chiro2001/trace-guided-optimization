@@ -1,0 +1,408 @@
+{
+  "schema": "tgo.vllm920b-evidence.v1",
+  "measurement_date": "2026-11-06",
+  "matrix": "formal-host-v1",
+  "real_measurement": true,
+  "brbe_collected": false,
+  "numeric_values_unchanged": true,
+  "redaction": "本地用户名/绝对工程路径与私网IP替换为变量；保留所有测量数值和原/公开两种摘要；不复制ELF、完整trace或凭据",
+  "files": {
+    "REPORT.md": {
+      "source_relative": "REPORT.md",
+      "source_sha256": "7c68e5867fc34d5dd583a69431ea9c2ebd0285bc234a9d055222b74b9a2d1f30",
+      "source_bytes": 11859,
+      "export_sha256": "7c68e5867fc34d5dd583a69431ea9c2ebd0285bc234a9d055222b74b9a2d1f30",
+      "export_bytes": 11859,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json",
+      "source_sha256": "41e18a77098cc7798ceae7514fd218d5da317de2d52607576ada9226789c9919",
+      "source_bytes": 2864,
+      "export_sha256": "853b18ad9e46ca271eb57843a7da433805914e9822dff4d16dffb21a452d2347",
+      "export_bytes": 2744,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-libc10.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-libc10.so/build.json",
+      "source_sha256": "eaa09788994ef3263403fa1b3c8d6d491632ff22538daa794343abb7187a8334",
+      "source_bytes": 2577,
+      "export_sha256": "f057a6470207a57ca9368d1ff93b02c5672df8c042f6e505110e2f78a4d99588",
+      "export_bytes": 2457,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-libnnopbase.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-libnnopbase.so/build.json",
+      "source_sha256": "1f4f7a13e499f77e6eac7345c9fa119d887428a9ca10ce9e0dc6ca5d4182f5ec",
+      "source_bytes": 2631,
+      "export_sha256": "b64059ecff70f679ee9bb1bb74591c5c37c9a5e660a5ab705d286a7a13f59a94",
+      "export_bytes": 2511,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-libtorch_cpu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-libtorch_cpu.so/build.json",
+      "source_sha256": "35854b95f7aaa088e328213d6bdd6b5400cd9d7993afc159918c029ea5d9d64d",
+      "source_bytes": 2623,
+      "export_sha256": "0355e0fe910671b392d01bbd261758f058149d84100d362483eb0ebc01c85fb3",
+      "export_bytes": 2503,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-libtorch_npu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-libtorch_npu.so/build.json",
+      "source_sha256": "39bae9b1082b8a172c0c0d8fc696483a052cea3f16b611d47633d2c3a1bace2c",
+      "source_bytes": 2638,
+      "export_sha256": "7f15b798bc2919c278c49857b0cf8ba62d65f1da6b8fab2690a508ba9c1f28d5",
+      "export_bytes": 2518,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r0-online-libtorch_python.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r0-online-libtorch_python.so/build.json",
+      "source_sha256": "94e826ceb44c2ea442782c79d1162d3d40425627332f93abe779852493865261",
+      "source_bytes": 2642,
+      "export_sha256": "6be795caa3a8f579dbba6ca00897834466b557b9c110acad58d91621252916ff",
+      "export_bytes": 2522,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json",
+      "source_sha256": "b0ea03e513a797b4419208236eaf749765e6fdf24a7e0dec0067be45da918f01",
+      "source_bytes": 2864,
+      "export_sha256": "28c13e2c8c22800b0fa23213024203281ef95abe8144c2e0d91c4aa38d0a60fa",
+      "export_bytes": 2744,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-libc10.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-libc10.so/build.json",
+      "source_sha256": "d9061238153d071c5e3f42b9e0ff2e676042a31548bc1df9bb35cfe4a54c1713",
+      "source_bytes": 2576,
+      "export_sha256": "0e4d2805f8bc79d2762a1bfc0d7fcf8ef6f53093b7bb8bfe1c40c5e8a0210ee2",
+      "export_bytes": 2456,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-libnnopbase.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-libnnopbase.so/build.json",
+      "source_sha256": "86103e864001f5113afd1a1eb4c60a482d21c0835fc6731e5c0ca0659e6fe9b6",
+      "source_bytes": 2631,
+      "export_sha256": "db1982fa7c2909a7962f40ce42551c1731dd099d45c2e50db0263379164469f7",
+      "export_bytes": 2511,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-libtorch_cpu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-libtorch_cpu.so/build.json",
+      "source_sha256": "b37e3df4f511646c01d78e7c9750652e727759ee14a2be460f61b6c397e50b1f",
+      "source_bytes": 2623,
+      "export_sha256": "e0e84ecccff0f5af998b21b26895fa6ee84d770f355fe3f212e435bf9ebd9a6a",
+      "export_bytes": 2503,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-libtorch_npu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-libtorch_npu.so/build.json",
+      "source_sha256": "f35f4d58935c584b47f49cc9f6afb200d9288c271c2db656960c3ab248f469f6",
+      "source_bytes": 2638,
+      "export_sha256": "369a1970caf762d18405560009b641b2a6bd357f811ef56181fba299cc8c1137",
+      "export_bytes": 2518,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r1-online-libtorch_python.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r1-online-libtorch_python.so/build.json",
+      "source_sha256": "4e61456920acffe900ef904dd6b0defe882366b0bb8023140897ef5737a4868c",
+      "source_bytes": 2642,
+      "export_sha256": "628d69cf58722bbe0f6582c846d65cec06219393c02c712923279425216ffcfe",
+      "export_bytes": 2522,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-_multiarray_umath.cpython-312-aarch64-linux-gnu.so/build.json",
+      "source_sha256": "d2d874569b148b13653be8ff48371aed200db65b137b1b7215eda3b2fca7a6c6",
+      "source_bytes": 2864,
+      "export_sha256": "c9e2fbe8e6ee13749191ec95f4366a1b75df15713597b89b766cb0eb4b8a2520",
+      "export_bytes": 2744,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-libc10.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-libc10.so/build.json",
+      "source_sha256": "a3a4a405606437675843c3313699849973c2b06b7b6c9cfbf2ca123f3aa88c44",
+      "source_bytes": 2577,
+      "export_sha256": "d3af6cd55ec15b4e645006664fd452a02434fc779b038234d2b8c33318af3b6b",
+      "export_bytes": 2457,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-libnnopbase.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-libnnopbase.so/build.json",
+      "source_sha256": "f43e260ab67eb892f7ddc5321af394cebf75a92cf6e0346483d193ca25a14362",
+      "source_bytes": 2631,
+      "export_sha256": "daffa183f4f7838df9d8ef82fa1cd11e40f6469c3704fa41c726ddd1575f7edd",
+      "export_bytes": 2511,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-libtorch_cpu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-libtorch_cpu.so/build.json",
+      "source_sha256": "262d2b2a647c8484bcaf763a992c172bbc70127cdb927859158d6078831e304b",
+      "source_bytes": 2623,
+      "export_sha256": "1a8e95ccd4882ea9384e906a2fb71c9a2d5973980b0f00cdf83b792a186a5229",
+      "export_bytes": 2503,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-libtorch_npu.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-libtorch_npu.so/build.json",
+      "source_sha256": "378122a1747c85d0291635d4040899d786b85c150c0c9ca2fd895dc0bd5ead21",
+      "source_bytes": 2638,
+      "export_sha256": "907dbc68a1a4520b3b6f70937080d1123f62a70cd524b43f480d320d864a921b",
+      "export_bytes": 2518,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "artifacts/formal-host-v1-r2-online-libtorch_python.so/build.json": {
+      "source_relative": "artifacts/formal-host-v1-r2-online-libtorch_python.so/build.json",
+      "source_sha256": "45a61f4536b140dd2abf86e3e70503f4fa6fa047243fd55cbfc49f31e3001254",
+      "source_bytes": 2642,
+      "export_sha256": "84dbd03d47bf83038cb6e2a96a2c5c363c63b1ba700a80c2474292c0f5bb73c8",
+      "export_bytes": 2522,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "inputs/actual-input-hashes.json": {
+      "source_relative": "inputs/actual-input-hashes.json",
+      "source_sha256": "3c3448fcfcb37f94a61fca71a63d56f296b179bdcaac9d468a2525f009d6fe7d",
+      "source_bytes": 3566,
+      "export_sha256": "fe29659aba8717b1b7a41031c1467c8b8dd8cfd15616aaf8c72178b05c30f661",
+      "export_bytes": 3458,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "inputs/matrix.json": {
+      "source_relative": "inputs/matrix.json",
+      "source_sha256": "21bbb397b3301aa1745d3e2b9b1222565be2049904976a98ea9f98450864c068",
+      "source_bytes": 11322,
+      "export_sha256": "5d26444daf73cdc7f1d71218dc32be2b2a1d8da33af7442878b4101f21572c8a",
+      "export_bytes": 10098,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "inputs/profile-provenance.json": {
+      "source_relative": "inputs/profile-provenance.json",
+      "source_sha256": "ba88fcc3a51bc0ee18e02e488c3e631368548b8616ee8cd356d2b97e99f314ec",
+      "source_bytes": 5789,
+      "export_sha256": "e3e8e286e002715453b951ff63d711e96aaec02e2815967fefe6dda76b193551",
+      "export_bytes": 5600,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/compiler-source-final-audit.json": {
+      "source_relative": "reports/compiler-source-final-audit.json",
+      "source_sha256": "9beaf01772f3f8580f43cd310547630a641f826ad6eb66e29fff11043466325f",
+      "source_bytes": 651,
+      "export_sha256": "0284d838a6396b76a874cd17e0ce6e11764c29ad78854d0915d1b2d7cde1c39f",
+      "export_bytes": 633,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/formal-host-v1-audit.json": {
+      "source_relative": "reports/formal-host-v1-audit.json",
+      "source_sha256": "c919e35feb4acc52e757bf79af9308222c9fa4dea0eebde5f5ab1ce2ad3d317e",
+      "source_bytes": 44970,
+      "export_sha256": "c919e35feb4acc52e757bf79af9308222c9fa4dea0eebde5f5ab1ce2ad3d317e",
+      "export_bytes": 44970,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/formal-host-v1-requests.csv": {
+      "source_relative": "reports/formal-host-v1-requests.csv",
+      "source_sha256": "e707ccf528128b562bc083b4709fde6d27bc66f389f0e4086e712111fd5e8dd3",
+      "source_bytes": 4699,
+      "export_sha256": "e707ccf528128b562bc083b4709fde6d27bc66f389f0e4086e712111fd5e8dd3",
+      "export_bytes": 4699,
+      "transformation": "逐字节复制"
+    },
+    "reports/formal-host-v1-state.json": {
+      "source_relative": "reports/formal-host-v1-state.json",
+      "source_sha256": "94d0a20b70cdd91623231f74ff23b53b62c86080382a2e097f1c08839aaede3a",
+      "source_bytes": 5310,
+      "export_sha256": "f486e23c8a57bd3b7c93b0a6bc185f12e3905b2523c488b19e5439e9ebd823ac",
+      "export_bytes": 5268,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/formal-host-v1-terminal-audit.json": {
+      "source_relative": "reports/formal-host-v1-terminal-audit.json",
+      "source_sha256": "cd8075e98e56e0d49814cfc2231ce1e627a7cfd1ab95a41a40f53b7f7fa5fcbf",
+      "source_bytes": 77806,
+      "export_sha256": "84e4ce16a44134cf33955bc7eff733b3f096e0c8d1c1f1b6a83101c462207ce0",
+      "export_bytes": 70528,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/frozen-selection-v1.json": {
+      "source_relative": "reports/frozen-selection-v1.json",
+      "source_sha256": "6c7b74f1e1e99f564e71998366eb462feda0bd45bc668eab1c1759472c7e225e",
+      "source_bytes": 2029,
+      "export_sha256": "dc0c65df1725c556996c013b9bdbd43890cce2af5db429cd66f832cb63ce6297",
+      "export_bytes": 1987,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/max-coverage-seven-v1-state.json": {
+      "source_relative": "reports/max-coverage-seven-v1-state.json",
+      "source_sha256": "54a85b477156c05125d9aa88a9c6d03bb00778fc6881c3c8e2f99d5dd3547316",
+      "source_bytes": 679,
+      "export_sha256": "4c170020a162c1a8ce9be58e0ff1ea383df797ab4860930193464a610cc689e3",
+      "export_bytes": 637,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/max-coverage-seven-v2-audit.json": {
+      "source_relative": "reports/max-coverage-seven-v2-audit.json",
+      "source_sha256": "092f8440f320c59a4a3b57532597635e52b4173a2bac30c1be01f5732fc8f8fe",
+      "source_bytes": 3128,
+      "export_sha256": "092f8440f320c59a4a3b57532597635e52b4173a2bac30c1be01f5732fc8f8fe",
+      "export_bytes": 3128,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "reports/max-coverage-seven-v2-state.json": {
+      "source_relative": "reports/max-coverage-seven-v2-state.json",
+      "source_sha256": "22ce83a8d0bbe17be6946e469f3887ee1eb3a4df4a86aaad48f22c13c3251161",
+      "source_bytes": 680,
+      "export_sha256": "b414de15266163be575b6e3c8bbc7e2568ae8d8ddb055aaf4fd5f068fae5ea54",
+      "export_bytes": 638,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/combined-eval-fast-r5.json": {
+      "source_relative": "runs/combined-eval-fast-r5/session.json",
+      "source_sha256": "d33cea8724c6c97d5ae6ee48f1a4b879aad1532d40fff1e063be25ca8f5b5b2b",
+      "source_bytes": 587985,
+      "export_sha256": "bc0b2a2a6d4fd9850722beb4a38305b62f161926e01c51c37f5d2999d0e0ea71",
+      "export_bytes": 587691,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r0-offline.json": {
+      "source_relative": "runs/formal-host-v1-r0-offline/session.json",
+      "source_sha256": "b692c9815b31babca2a413b73646980656e570426a788af7f785cdf97952bf41",
+      "source_bytes": 100698,
+      "export_sha256": "b692c9815b31babca2a413b73646980656e570426a788af7f785cdf97952bf41",
+      "export_bytes": 100698,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r0-online.json": {
+      "source_relative": "runs/formal-host-v1-r0-online/session.json",
+      "source_sha256": "c39ed766c33ff0e5d751113eb9d331f2f0156d730afb9a255e11674b42062906",
+      "source_bytes": 454318,
+      "export_sha256": "c39ed766c33ff0e5d751113eb9d331f2f0156d730afb9a255e11674b42062906",
+      "export_bytes": 454318,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r0-original.json": {
+      "source_relative": "runs/formal-host-v1-r0-original/session.json",
+      "source_sha256": "a707a5abe802b86c8ca2892cf3b2614ea824f3eec3252b3a871e1d771e5982d4",
+      "source_bytes": 100628,
+      "export_sha256": "a707a5abe802b86c8ca2892cf3b2614ea824f3eec3252b3a871e1d771e5982d4",
+      "export_bytes": 100628,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r1-offline.json": {
+      "source_relative": "runs/formal-host-v1-r1-offline/session.json",
+      "source_sha256": "bd668384133001f9dd79b1448480ade68f1b680f839085ffb614e25a875819f6",
+      "source_bytes": 100728,
+      "export_sha256": "bd668384133001f9dd79b1448480ade68f1b680f839085ffb614e25a875819f6",
+      "export_bytes": 100728,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r1-online.json": {
+      "source_relative": "runs/formal-host-v1-r1-online/session.json",
+      "source_sha256": "af12c55009e4d25dd218333289419f9ee855ce00e0b8e3cae7684db301af9ebd",
+      "source_bytes": 454039,
+      "export_sha256": "af12c55009e4d25dd218333289419f9ee855ce00e0b8e3cae7684db301af9ebd",
+      "export_bytes": 454039,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r1-original.json": {
+      "source_relative": "runs/formal-host-v1-r1-original/session.json",
+      "source_sha256": "8228ded6da88e5b557015667f1d9806745d785652e1d6a74aca897f1350b8758",
+      "source_bytes": 100742,
+      "export_sha256": "8228ded6da88e5b557015667f1d9806745d785652e1d6a74aca897f1350b8758",
+      "export_bytes": 100742,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r2-offline.json": {
+      "source_relative": "runs/formal-host-v1-r2-offline/session.json",
+      "source_sha256": "873bef9cf5394dab7f96adce9c9df99f8512202fb037eaf37d1c9a3a95770c89",
+      "source_bytes": 100604,
+      "export_sha256": "873bef9cf5394dab7f96adce9c9df99f8512202fb037eaf37d1c9a3a95770c89",
+      "export_bytes": 100604,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r2-online.json": {
+      "source_relative": "runs/formal-host-v1-r2-online/session.json",
+      "source_sha256": "6c355cd65d4805f272d7a7150be0a4397d56f52c204b69f72004271d902c76cd",
+      "source_bytes": 454374,
+      "export_sha256": "6c355cd65d4805f272d7a7150be0a4397d56f52c204b69f72004271d902c76cd",
+      "export_bytes": 454374,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/formal-host-v1-r2-original.json": {
+      "source_relative": "runs/formal-host-v1-r2-original/session.json",
+      "source_sha256": "1ddc2da89e3160406afcc5870e72c1b8cff57c31421506b1b073418bc0883361",
+      "source_bytes": 100712,
+      "export_sha256": "1ddc2da89e3160406afcc5870e72c1b8cff57c31421506b1b073418bc0883361",
+      "export_bytes": 100712,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/full-stack-lite-fast-r1.json": {
+      "source_relative": "runs/full-stack-lite-fast-r1/session.json",
+      "source_sha256": "d9a725584b2c05f21eb58c875dbca6fdd3b2cda56a9cb13fed9213f2fdd76196",
+      "source_bytes": 844341,
+      "export_sha256": "4115089370b3e95183e27276e352a4443305691ddd8719817f12376cfa0b6513",
+      "export_bytes": 843837,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/full-stack-v4-r4.json": {
+      "source_relative": "runs/full-stack-v4-r4/session.json",
+      "source_sha256": "3e03c5ae8f1d10bca4bf34f6e06408738e6c1af527046efe0421b549fd28ff82",
+      "source_bytes": 727822,
+      "export_sha256": "b822fc8e40961f44fbc7d44d04eea295951c30c4545fe30f744d9ab3663806bc",
+      "export_bytes": 727318,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/max-coverage-seven-v2.json": {
+      "source_relative": "runs/max-coverage-seven-v2/session.json",
+      "source_sha256": "ae81d970d72bf99a0c9985dfea0089357f7d45e91219f38c8710cc478b778c84",
+      "source_bytes": 445374,
+      "export_sha256": "ae81d970d72bf99a0c9985dfea0089357f7d45e91219f38c8710cc478b778c84",
+      "export_bytes": 445374,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "sessions/python-private-r2.json": {
+      "source_relative": "runs/python-private-r2/session.json",
+      "source_sha256": "76e211c812b65d94cfb1eecdcffe3d19cb2170cf1c2502be7ddad9f03182cbd1",
+      "source_bytes": 190381,
+      "export_sha256": "76e211c812b65d94cfb1eecdcffe3d19cb2170cf1c2502be7ddad9f03182cbd1",
+      "export_bytes": 190381,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "source-snapshots/analysis/audit_formal.py": {
+      "source_relative": "analysis/audit_formal.py",
+      "source_sha256": "40d1245f42e041ea7f94df0f8ecf773c5b8c4da423e2c75124c1233e649cdeab",
+      "source_bytes": 11379,
+      "export_sha256": "40d1245f42e041ea7f94df0f8ecf773c5b8c4da423e2c75124c1233e649cdeab",
+      "export_bytes": 11379,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "source-snapshots/analysis/render_report.py": {
+      "source_relative": "analysis/render_report.py",
+      "source_sha256": "4dc2d77d8a5e47b53570f8ae4de5b40be5dffeee03f22fc7834fb8c1e35cb1bf",
+      "source_bytes": 14732,
+      "export_sha256": "4dc2d77d8a5e47b53570f8ae4de5b40be5dffeee03f22fc7834fb8c1e35cb1bf",
+      "export_bytes": 14732,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "source-snapshots/scripts/formal_matrix.py": {
+      "source_relative": "scripts/formal_matrix.py",
+      "source_sha256": "84924f18ad0d6f7efcc6760237460f48a43ba0db39966dee9d56b9d558e1f913",
+      "source_bytes": 2815,
+      "export_sha256": "84924f18ad0d6f7efcc6760237460f48a43ba0db39966dee9d56b9d558e1f913",
+      "export_bytes": 2815,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "source-snapshots/scripts/model_worker.py": {
+      "source_relative": "scripts/model_worker.py",
+      "source_sha256": "6edad328ea02d41673b30b0568184f34dc669e4e1e2efb8d3a32dacaede62336",
+      "source_bytes": 10636,
+      "export_sha256": "6edad328ea02d41673b30b0568184f34dc669e4e1e2efb8d3a32dacaede62336",
+      "export_bytes": 10636,
+      "transformation": "路径文本脱敏；JSON所有数值保持原值"
+    },
+    "README.md": {
+      "export_sha256": "527f05e31e1ec8753b0df6dbcf47089ba12bacca20d0c0b45165857c3d005266",
+      "export_bytes": 4689,
+      "transformation": "新增数据说明"
+    }
+  }
+}

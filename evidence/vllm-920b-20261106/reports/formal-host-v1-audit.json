@@ -1,0 +1,1966 @@
+{
+  "passed": true,
+  "matrix": "formal-host-v1",
+  "independent_processes": 9,
+  "output_sha256": "39a89ca038c30d3be20d01b2ed147c2da452210f65f95d01fcc372633836e1d2",
+  "rows": [
+    {
+      "tag": "formal-host-v1-r0-original",
+      "arm": "original",
+      "seed": 0,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 27.185210195,
+      "cycles": 76193291788.5,
+      "instructions": 74077338878.5
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "baseline",
+      "requests": 2,
+      "wall_s": 20.135391695,
+      "cycles": 56205754534.5,
+      "instructions": 58515652852.5
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online",
+      "requests": 2,
+      "wall_s": 17.8088214,
+      "cycles": 49562259816.0,
+      "instructions": 58543932298.0
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online-near-fastplt",
+      "requests": 2,
+      "wall_s": 16.007364295,
+      "cycles": 44408697277.0,
+      "instructions": 57940802851.5
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "after-fast-rollback",
+      "requests": 2,
+      "wall_s": 17.784593555,
+      "cycles": 49484903222.0,
+      "instructions": 58581405911.5
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "rollback",
+      "requests": 2,
+      "wall_s": 20.161326405,
+      "cycles": 56242884594.5,
+      "instructions": 58456250014.0
+    },
+    {
+      "tag": "formal-host-v1-r0-offline",
+      "arm": "offline",
+      "seed": 0,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 14.817499825,
+      "cycles": 41054511102.0,
+      "instructions": 58301580409.5
+    },
+    {
+      "tag": "formal-host-v1-r1-offline",
+      "arm": "offline",
+      "seed": 1,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 15.264709215,
+      "cycles": 42445804165.0,
+      "instructions": 58356901749.5
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "baseline",
+      "requests": 2,
+      "wall_s": 20.00714078,
+      "cycles": 55976013422.5,
+      "instructions": 58658632529.0
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online",
+      "requests": 2,
+      "wall_s": 17.67955396,
+      "cycles": 49325258093.0,
+      "instructions": 58519346433.5
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online-near-fastplt",
+      "requests": 2,
+      "wall_s": 15.792398155,
+      "cycles": 43899000191.5,
+      "instructions": 58045283095.5
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "after-fast-rollback",
+      "requests": 2,
+      "wall_s": 17.371303025,
+      "cycles": 48445892536.5,
+      "instructions": 58561325734.5
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "rollback",
+      "requests": 2,
+      "wall_s": 20.185874205,
+      "cycles": 56500455981.5,
+      "instructions": 58689145239.0
+    },
+    {
+      "tag": "formal-host-v1-r1-original",
+      "arm": "original",
+      "seed": 1,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 27.59153662,
+      "cycles": 77374867307.5,
+      "instructions": 74186426168.0
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "baseline",
+      "requests": 2,
+      "wall_s": 20.57564523,
+      "cycles": 57434055218.0,
+      "instructions": 58704217139.5
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online",
+      "requests": 2,
+      "wall_s": 17.98606788,
+      "cycles": 50046307612.0,
+      "instructions": 58651334197.5
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online-near-fastplt",
+      "requests": 2,
+      "wall_s": 16.2502599,
+      "cycles": 45038956375.5,
+      "instructions": 58127195064.5
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "after-fast-rollback",
+      "requests": 2,
+      "wall_s": 17.88590816,
+      "cycles": 49755054196.0,
+      "instructions": 58690434167.0
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "rollback",
+      "requests": 2,
+      "wall_s": 20.56456848,
+      "cycles": 57406902520.0,
+      "instructions": 58682714842.5
+    },
+    {
+      "tag": "formal-host-v1-r2-original",
+      "arm": "original",
+      "seed": 2,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 27.544724975,
+      "cycles": 77241630526.5,
+      "instructions": 73974547476.5
+    },
+    {
+      "tag": "formal-host-v1-r2-offline",
+      "arm": "offline",
+      "seed": 2,
+      "state": "measured",
+      "requests": 2,
+      "wall_s": 15.09280394,
+      "cycles": 41794997924.0,
+      "instructions": 58281051880.5
+    }
+  ],
+  "requests": [
+    {
+      "tag": "formal-host-v1-r0-original",
+      "arm": "original",
+      "seed": 0,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 27.1506692,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.06902571,
+          "runqueue_wait_s": 0.00335402,
+          "timeslices": 7919
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49137859,
+          "runqueue_wait_s": 0.01564752,
+          "timeslices": 515690
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-original",
+      "arm": "original",
+      "seed": 0,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 27.21975119,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.13036124,
+          "runqueue_wait_s": 0.0041607,
+          "timeslices": 7712
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49171587,
+          "runqueue_wait_s": 0.01950227,
+          "timeslices": 516841
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "baseline",
+      "index": 0,
+      "wall_s": 20.12871285,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.05564644,
+          "runqueue_wait_s": 0.00102315,
+          "timeslices": 9031
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37163853,
+          "runqueue_wait_s": 0.01248925,
+          "timeslices": 382237
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "baseline",
+      "index": 1,
+      "wall_s": 20.14207054,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.06775825,
+          "runqueue_wait_s": 0.00030266,
+          "timeslices": 9014
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37195179,
+          "runqueue_wait_s": 0.00458481,
+          "timeslices": 382591
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online",
+      "index": 0,
+      "wall_s": 17.8490802,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.77975316,
+          "runqueue_wait_s": 0.00022529,
+          "timeslices": 9035
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33584696,
+          "runqueue_wait_s": 0.01087115,
+          "timeslices": 338954
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online",
+      "index": 1,
+      "wall_s": 17.7685626,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.70309858,
+          "runqueue_wait_s": 0.00022285,
+          "timeslices": 9031
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33298075,
+          "runqueue_wait_s": 0.00298657,
+          "timeslices": 337672
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online-near-fastplt",
+      "index": 0,
+      "wall_s": 16.06158619,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.99727595,
+          "runqueue_wait_s": 0.00011221,
+          "timeslices": 9023
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.30607854,
+          "runqueue_wait_s": 0.00776421,
+          "timeslices": 305025
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "online-near-fastplt",
+      "index": 1,
+      "wall_s": 15.9531424,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.88988935,
+          "runqueue_wait_s": 0.0001881,
+          "timeslices": 9032
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.30584557,
+          "runqueue_wait_s": 0.00612028,
+          "timeslices": 303030
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "after-fast-rollback",
+      "index": 0,
+      "wall_s": 17.75529718,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.68886536,
+          "runqueue_wait_s": 0.00021903,
+          "timeslices": 9035
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33468498,
+          "runqueue_wait_s": 0.01219155,
+          "timeslices": 337131
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "after-fast-rollback",
+      "index": 1,
+      "wall_s": 17.81388993,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.74756112,
+          "runqueue_wait_s": 0.00016562,
+          "timeslices": 9031
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33520638,
+          "runqueue_wait_s": 0.00343882,
+          "timeslices": 338414
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "rollback",
+      "index": 0,
+      "wall_s": 20.22668796,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.13552575,
+          "runqueue_wait_s": 0.0002696,
+          "timeslices": 8979
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37812411,
+          "runqueue_wait_s": 0.00265203,
+          "timeslices": 384289
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "arm": "online",
+      "seed": 0,
+      "state": "rollback",
+      "index": 1,
+      "wall_s": 20.09596485,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.00768389,
+          "runqueue_wait_s": 0.00018926,
+          "timeslices": 8981
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37439582,
+          "runqueue_wait_s": 0.00220044,
+          "timeslices": 381848
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-offline",
+      "arm": "offline",
+      "seed": 0,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 14.85269128,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 14.79096464,
+          "runqueue_wait_s": 0.00071297,
+          "timeslices": 9040
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.27627491,
+          "runqueue_wait_s": 0.00267138,
+          "timeslices": 282225
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r0-offline",
+      "arm": "offline",
+      "seed": 0,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 14.78230837,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 14.72083797,
+          "runqueue_wait_s": 0.00027985,
+          "timeslices": 9034
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.27698842,
+          "runqueue_wait_s": 0.00276527,
+          "timeslices": 280851
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-offline",
+      "arm": "offline",
+      "seed": 1,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 15.21567805,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.15199904,
+          "runqueue_wait_s": 0.00104164,
+          "timeslices": 9040
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.28300468,
+          "runqueue_wait_s": 0.01133717,
+          "timeslices": 289015
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-offline",
+      "arm": "offline",
+      "seed": 1,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 15.31374038,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.24988518,
+          "runqueue_wait_s": 0.00020579,
+          "timeslices": 9031
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.28353724,
+          "runqueue_wait_s": 0.00285435,
+          "timeslices": 290975
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "baseline",
+      "index": 0,
+      "wall_s": 19.99203516,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 19.92051809,
+          "runqueue_wait_s": 0.00084507,
+          "timeslices": 8986
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.36316881,
+          "runqueue_wait_s": 0.00347429,
+          "timeslices": 379830
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "baseline",
+      "index": 1,
+      "wall_s": 20.0222464,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 19.94267063,
+          "runqueue_wait_s": 0.00018401,
+          "timeslices": 8996
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.36364437,
+          "runqueue_wait_s": 0.00314705,
+          "timeslices": 380403
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online",
+      "index": 0,
+      "wall_s": 17.74423791,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.67596306,
+          "runqueue_wait_s": 0.00022954,
+          "timeslices": 9026
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.32561755,
+          "runqueue_wait_s": 0.00338903,
+          "timeslices": 337235
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online",
+      "index": 1,
+      "wall_s": 17.61487001,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.54731528,
+          "runqueue_wait_s": 0.00017433,
+          "timeslices": 9029
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.32387089,
+          "runqueue_wait_s": 0.00294686,
+          "timeslices": 334818
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online-near-fastplt",
+      "index": 0,
+      "wall_s": 15.71729165,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.65269697,
+          "runqueue_wait_s": 0.00019013,
+          "timeslices": 9030
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.29388813,
+          "runqueue_wait_s": 0.00286836,
+          "timeslices": 298706
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "online-near-fastplt",
+      "index": 1,
+      "wall_s": 15.86750466,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.80346594,
+          "runqueue_wait_s": 0.00017367,
+          "timeslices": 9027
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.29653069,
+          "runqueue_wait_s": 0.00270663,
+          "timeslices": 301622
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "after-fast-rollback",
+      "index": 0,
+      "wall_s": 17.2913846,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.22297567,
+          "runqueue_wait_s": 0.00011717,
+          "timeslices": 9027
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.31838794,
+          "runqueue_wait_s": 0.00315602,
+          "timeslices": 328540
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "after-fast-rollback",
+      "index": 1,
+      "wall_s": 17.45122145,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.38426584,
+          "runqueue_wait_s": 0.00019819,
+          "timeslices": 9033
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.32088903,
+          "runqueue_wait_s": 0.00323598,
+          "timeslices": 331619
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "rollback",
+      "index": 0,
+      "wall_s": 20.13689764,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.06511148,
+          "runqueue_wait_s": 0.00017511,
+          "timeslices": 9023
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.36433417,
+          "runqueue_wait_s": 0.0036578,
+          "timeslices": 382571
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "arm": "online",
+      "seed": 1,
+      "state": "rollback",
+      "index": 1,
+      "wall_s": 20.23485077,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.16279078,
+          "runqueue_wait_s": 0.00017017,
+          "timeslices": 8973
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.36580838,
+          "runqueue_wait_s": 0.00337057,
+          "timeslices": 384473
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-original",
+      "arm": "original",
+      "seed": 1,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 27.63529572,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.55200037,
+          "runqueue_wait_s": 0.00316621,
+          "timeslices": 7797
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49500108,
+          "runqueue_wait_s": 0.01515031,
+          "timeslices": 524879
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r1-original",
+      "arm": "original",
+      "seed": 1,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 27.54777752,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.46443195,
+          "runqueue_wait_s": 0.00018468,
+          "timeslices": 7830
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49426861,
+          "runqueue_wait_s": 0.00580404,
+          "timeslices": 523372
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "baseline",
+      "index": 0,
+      "wall_s": 20.44933425,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.37529964,
+          "runqueue_wait_s": 0.00098686,
+          "timeslices": 9040
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37590049,
+          "runqueue_wait_s": 0.00380664,
+          "timeslices": 388490
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "baseline",
+      "index": 1,
+      "wall_s": 20.70195621,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.62527073,
+          "runqueue_wait_s": 0.00022204,
+          "timeslices": 9016
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37941419,
+          "runqueue_wait_s": 0.00374038,
+          "timeslices": 393260
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online",
+      "index": 0,
+      "wall_s": 18.04945542,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.98156442,
+          "runqueue_wait_s": 0.00011346,
+          "timeslices": 9034
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33647438,
+          "runqueue_wait_s": 0.00320528,
+          "timeslices": 342965
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online",
+      "index": 1,
+      "wall_s": 17.92268034,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.8557721,
+          "runqueue_wait_s": 0.00018183,
+          "timeslices": 9035
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33508486,
+          "runqueue_wait_s": 0.00315437,
+          "timeslices": 340621
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online-near-fastplt",
+      "index": 0,
+      "wall_s": 16.10375936,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 16.03999573,
+          "runqueue_wait_s": 0.00010348,
+          "timeslices": 9033
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.30695804,
+          "runqueue_wait_s": 0.00288899,
+          "timeslices": 306069
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "online-near-fastplt",
+      "index": 1,
+      "wall_s": 16.39676044,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 16.31669017,
+          "runqueue_wait_s": 0.00021361,
+          "timeslices": 9035
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.31307165,
+          "runqueue_wait_s": 0.01077245,
+          "timeslices": 311510
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "after-fast-rollback",
+      "index": 0,
+      "wall_s": 17.89626597,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.82706003,
+          "runqueue_wait_s": 0.00020149,
+          "timeslices": 9039
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33502738,
+          "runqueue_wait_s": 0.00732295,
+          "timeslices": 339918
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "after-fast-rollback",
+      "index": 1,
+      "wall_s": 17.87555035,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 17.80805182,
+          "runqueue_wait_s": 0.00017325,
+          "timeslices": 9033
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.33341292,
+          "runqueue_wait_s": 0.00634143,
+          "timeslices": 339623
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "rollback",
+      "index": 0,
+      "wall_s": 20.64028184,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.56623234,
+          "runqueue_wait_s": 0.00022883,
+          "timeslices": 9027
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.38010765,
+          "runqueue_wait_s": 0.00955697,
+          "timeslices": 391978
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "arm": "online",
+      "seed": 2,
+      "state": "rollback",
+      "index": 1,
+      "wall_s": 20.48885512,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 20.41647996,
+          "runqueue_wait_s": 0.00021509,
+          "timeslices": 9018
+        },
+        {
+          "tid": 24,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.37655643,
+          "runqueue_wait_s": 0.00595204,
+          "timeslices": 389236
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-original",
+      "arm": "original",
+      "seed": 2,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 27.53532254,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.45639731,
+          "runqueue_wait_s": 0.00094147,
+          "timeslices": 7558
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49283358,
+          "runqueue_wait_s": 0.01242119,
+          "timeslices": 523039
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-original",
+      "arm": "original",
+      "seed": 2,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 27.55412741,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 27.47507539,
+          "runqueue_wait_s": 0.00035623,
+          "timeslices": 7506
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.49431102,
+          "runqueue_wait_s": 0.01939698,
+          "timeslices": 523285
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-offline",
+      "arm": "offline",
+      "seed": 2,
+      "state": "measured",
+      "index": 0,
+      "wall_s": 15.12339051,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.06090911,
+          "runqueue_wait_s": 0.00074752,
+          "timeslices": 9040
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.28717826,
+          "runqueue_wait_s": 0.0144355,
+          "timeslices": 287166
+        }
+      ]
+    },
+    {
+      "tag": "formal-host-v1-r2-offline",
+      "arm": "offline",
+      "seed": 2,
+      "state": "measured",
+      "index": 1,
+      "wall_s": 15.06221737,
+      "thread_count": 56,
+      "scheduling": [
+        {
+          "tid": 1,
+          "comm": "python3",
+          "cpus": [
+            192
+          ],
+          "runtime_s": 15.00092097,
+          "runqueue_wait_s": 0.00030619,
+          "timeslices": 9035
+        },
+        {
+          "tid": 25,
+          "comm": "release_thread",
+          "cpus": [
+            194,
+            196,
+            198
+          ],
+          "runtime_s": 0.28524,
+          "runqueue_wait_s": 0.00931752,
+          "timeslices": 286101
+        }
+      ]
+    }
+  ],
+  "comparisons": {
+    "原始→在线全方案": {
+      "paired_reductions_pct": [
+        41.117378971216745,
+        42.763614899386496,
+        41.00409455985139
+      ],
+      "median_pct": 41.117378971216745,
+      "descriptive_bootstrap_95_pct": [
+        41.00409455985139,
+        42.763614899386496
+      ],
+      "independent_pairs": 3
+    },
+    "原始→当前源码/PGO": {
+      "paired_reductions_pct": [
+        25.932551006343253,
+        27.48812414638181,
+        25.300959625936514
+      ],
+      "median_pct": 25.932551006343253,
+      "descriptive_bootstrap_95_pct": [
+        25.300959625936514,
+        27.48812414638181
+      ],
+      "independent_pairs": 3
+    },
+    "当前源码/PGO→在线全方案": {
+      "paired_reductions_pct": [
+        20.501351364448837,
+        21.066191672991263,
+        21.021869699101536
+      ],
+      "median_pct": 21.021869699101536,
+      "descriptive_bootstrap_95_pct": [
+        20.501351364448837,
+        21.066191672991263
+      ],
+      "independent_pairs": 3
+    },
+    "当前源码/PGO→BOLT": {
+      "paired_reductions_pct": [
+        11.554631418358408,
+        11.633780386684522,
+        12.585643468542628
+      ],
+      "median_pct": 11.633780386684522,
+      "descriptive_bootstrap_95_pct": [
+        11.554631418358408,
+        12.585643468542628
+      ],
+      "independent_pairs": 3
+    },
+    "BOLT→快捷PLT增量": {
+      "paired_reductions_pct": [
+        10.115532434953845,
+        10.674227467897046,
+        9.650847486960556
+      ],
+      "median_pct": 10.115532434953845,
+      "descriptive_bootstrap_95_pct": [
+        9.650847486960556,
+        10.674227467897046
+      ],
+      "independent_pairs": 3
+    },
+    "原始→离线参照": {
+      "paired_reductions_pct": [
+        45.49426059716365,
+        44.67611780659138,
+        45.206191190151834
+      ],
+      "median_pct": 45.206191190151834,
+      "descriptive_bootstrap_95_pct": [
+        44.67611780659138,
+        45.49426059716365
+      ],
+      "independent_pairs": 3
+    },
+    "基线→全回滚漂移": {
+      "paired_reductions_pct": [
+        -0.12880161654089672,
+        -0.8933481648645714,
+        0.0538342777404166
+      ],
+      "median_pct": -0.12880161654089672,
+      "descriptive_bootstrap_95_pct": [
+        -0.8933481648645714,
+        0.0538342777404166
+      ],
+      "independent_pairs": 3
+    },
+    "BOLT→撤销快捷PLT漂移": {
+      "paired_reductions_pct": [
+        0.13604406746422493,
+        1.7435447506052415,
+        0.5568739130100586
+      ],
+      "median_pct": 0.5568739130100586,
+      "descriptive_bootstrap_95_pct": [
+        0.13604406746422493,
+        1.7435447506052415
+      ],
+      "independent_pairs": 3
+    },
+    "在线与离线wall比": {
+      "paired_reductions_pct": [
+        -8.030129806328489,
+        -3.456921010204783,
+        -7.668925963666906
+      ],
+      "median_pct": -7.668925963666906,
+      "descriptive_bootstrap_95_pct": [
+        -8.030129806328489,
+        -3.456921010204783
+      ],
+      "independent_pairs": 3
+    }
+  },
+  "coverage": [
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "libc10.so",
+      "patched_entries": 98,
+      "generated_functions": 98,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "libnnopbase.so",
+      "patched_entries": 306,
+      "generated_functions": 306,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "libtorch_python.so",
+      "patched_entries": 898,
+      "generated_functions": 898,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "libtorch_npu.so",
+      "patched_entries": 555,
+      "generated_functions": 555,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "libtorch_cpu.so",
+      "patched_entries": 421,
+      "generated_functions": 421,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r0-online",
+      "library": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "patched_entries": 298,
+      "generated_functions": 298,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "libc10.so",
+      "patched_entries": 98,
+      "generated_functions": 98,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "libnnopbase.so",
+      "patched_entries": 306,
+      "generated_functions": 306,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "libtorch_python.so",
+      "patched_entries": 898,
+      "generated_functions": 898,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "libtorch_npu.so",
+      "patched_entries": 555,
+      "generated_functions": 555,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "libtorch_cpu.so",
+      "patched_entries": 421,
+      "generated_functions": 421,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "library": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "patched_entries": 298,
+      "generated_functions": 298,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "libc10.so",
+      "patched_entries": 98,
+      "generated_functions": 98,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "libnnopbase.so",
+      "patched_entries": 306,
+      "generated_functions": 306,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "libtorch_python.so",
+      "patched_entries": 898,
+      "generated_functions": 898,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "libtorch_npu.so",
+      "patched_entries": 555,
+      "generated_functions": 555,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "libtorch_cpu.so",
+      "patched_entries": 421,
+      "generated_functions": 421,
+      "isb_threads": 55
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "library": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "patched_entries": 298,
+      "generated_functions": 298,
+      "isb_threads": 55
+    }
+  ],
+  "fast_sites": [
+    {
+      "tag": "formal-host-v1-r0-online",
+      "patched_sites": 2514,
+      "stats": {
+        "original_plt": 0,
+        "new_tail_plt": 0,
+        "inlined_plt": 2514,
+        "far_skipped": 881,
+        "unmapped_skipped": 54151,
+        "conflicts": 0
+      }
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "patched_sites": 2722,
+      "stats": {
+        "original_plt": 208,
+        "new_tail_plt": 0,
+        "inlined_plt": 2514,
+        "far_skipped": 673,
+        "unmapped_skipped": 54151,
+        "conflicts": 0
+      }
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "patched_sites": 2683,
+      "stats": {
+        "original_plt": 169,
+        "new_tail_plt": 0,
+        "inlined_plt": 2514,
+        "far_skipped": 712,
+        "unmapped_skipped": 54151,
+        "conflicts": 0
+      }
+    }
+  ],
+  "costs": [
+    {
+      "tag": "formal-host-v1-r0-online",
+      "ready_to_first_baseline_roi_s": 78.41960686,
+      "transactions": {
+        "apply": {
+          "controller_elapsed_ms": 103.44284,
+          "all_stopped_window_ms": 98.8419
+        },
+        "fast_apply": {
+          "controller_elapsed_ms": 71.10734,
+          "all_stopped_window_ms": 66.66914
+        },
+        "fast_rollback": {
+          "controller_elapsed_ms": 70.71484,
+          "all_stopped_window_ms": 66.30648
+        },
+        "rollback": {
+          "controller_elapsed_ms": 106.66894,
+          "all_stopped_window_ms": 102.17216
+        }
+      },
+      "bolt_build_s": 31.9914302,
+      "new_pages": 5396
+    },
+    {
+      "tag": "formal-host-v1-r1-online",
+      "ready_to_first_baseline_roi_s": 77.86656324,
+      "transactions": {
+        "apply": {
+          "controller_elapsed_ms": 102.08273,
+          "all_stopped_window_ms": 97.5017
+        },
+        "fast_apply": {
+          "controller_elapsed_ms": 75.89159,
+          "all_stopped_window_ms": 71.23168
+        },
+        "fast_rollback": {
+          "controller_elapsed_ms": 74.96022,
+          "all_stopped_window_ms": 70.66247
+        },
+        "rollback": {
+          "controller_elapsed_ms": 103.13336,
+          "all_stopped_window_ms": 98.71169
+        }
+      },
+      "bolt_build_s": 32.40414503,
+      "new_pages": 5389
+    },
+    {
+      "tag": "formal-host-v1-r2-online",
+      "ready_to_first_baseline_roi_s": 78.95847158,
+      "transactions": {
+        "apply": {
+          "controller_elapsed_ms": 103.5407,
+          "all_stopped_window_ms": 98.91897
+        },
+        "fast_apply": {
+          "controller_elapsed_ms": 75.23613,
+          "all_stopped_window_ms": 70.82677
+        },
+        "fast_rollback": {
+          "controller_elapsed_ms": 75.12837,
+          "all_stopped_window_ms": 70.799
+        },
+        "rollback": {
+          "controller_elapsed_ms": 103.80766,
+          "all_stopped_window_ms": 99.31808
+        }
+      },
+      "bolt_build_s": 32.84986215,
+      "new_pages": 5390
+    }
+  ],
+  "scope": "主机设备桩完整generate＋同步wall；3个进程配对的描述性统计，非真实NPU计算吞吐与普遍保证"
+}

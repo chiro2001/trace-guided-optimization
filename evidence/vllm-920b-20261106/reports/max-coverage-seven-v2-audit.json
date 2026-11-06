@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "tag": "max-coverage-seven-v2",
+  "transactions": {
+    "apply": {
+      "controller_elapsed_s": 3.17257806,
+      "all_stopped_window_s": 3.16786175
+    },
+    "rollback": {
+      "controller_elapsed_s": 3.27410565,
+      "all_stopped_window_s": 3.26963008
+    }
+  },
+  "libraries": [
+    {
+      "name": "libc10.so",
+      "function_count": 2198,
+      "generated_function_count": 2198,
+      "entry_rejection_count": 0,
+      "new_pages": 277
+    },
+    {
+      "name": "libnnopbase.so",
+      "function_count": 2780,
+      "generated_function_count": 2780,
+      "entry_rejection_count": 0,
+      "new_pages": 867
+    },
+    {
+      "name": "libpython3.12.so.1.0",
+      "function_count": 5992,
+      "generated_function_count": 5992,
+      "entry_rejection_count": 0,
+      "new_pages": 539
+    },
+    {
+      "name": "libtorch_python.so",
+      "function_count": 21571,
+      "generated_function_count": 21571,
+      "entry_rejection_count": 0,
+      "new_pages": 4985
+    },
+    {
+      "name": "libtorch_npu.so",
+      "function_count": 50204,
+      "generated_function_count": 50204,
+      "entry_rejection_count": 0,
+      "new_pages": 15746
+    },
+    {
+      "name": "libtorch_cpu.so",
+      "function_count": 53504,
+      "generated_function_count": 211869,
+      "entry_rejection_count": 158365,
+      "new_pages": 41872
+    },
+    {
+      "name": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "function_count": 6499,
+      "generated_function_count": 6499,
+      "entry_rejection_count": 0,
+      "new_pages": 1051
+    }
+  ],
+  "patched_entries": 142748,
+  "hardware_execution_libraries": [
+    "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+    "libc10.so",
+    "libnnopbase.so",
+    "libpython3.12.so.1.0",
+    "libtorch_cpu.so",
+    "libtorch_npu.so",
+    "libtorch_python.so"
+  ],
+  "python_semantic_checks_per_gate": 329,
+  "results": [
+    {
+      "state": "baseline",
+      "library": null,
+      "wall_s": 19.7710075
+    },
+    {
+      "state": "execution-proof",
+      "library": "libc10.so",
+      "wall_s": 17.97789026
+    },
+    {
+      "state": "execution-proof",
+      "library": "libnnopbase.so",
+      "wall_s": 17.92616271
+    },
+    {
+      "state": "execution-proof",
+      "library": "libpython3.12.so.1.0",
+      "wall_s": 18.28993717
+    },
+    {
+      "state": "execution-proof",
+      "library": "libtorch_python.so",
+      "wall_s": 18.00082855
+    },
+    {
+      "state": "execution-proof",
+      "library": "libtorch_npu.so",
+      "wall_s": 18.26173004
+    },
+    {
+      "state": "execution-proof",
+      "library": "libtorch_cpu.so",
+      "wall_s": 18.08118859
+    },
+    {
+      "state": "execution-proof",
+      "library": "_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+      "wall_s": 18.11289192
+    },
+    {
+      "state": "online",
+      "library": null,
+      "wall_s": 18.05914799
+    },
+    {
+      "state": "rollback",
+      "library": null,
+      "wall_s": 19.6800537
+    }
+  ],
+  "scope": "最大覆盖的单进程功能验证；硬件断点请求耗时不用于性能统计；正式收益使用独立冻结矩阵。"
+}

@@ -1,0 +1,70 @@
+{
+  "libtorch_python.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_python.so",
+    "sha256": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+    "expected": "6b2c97897785c9d4d89af21cf587f346ba532ac03bc875ff63a72421a09f6577",
+    "match": true,
+    "bytes": 28367960
+  },
+  "_multiarray_umath.cpython-312-aarch64-linux-gnu.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/_multiarray_umath.cpython-312-aarch64-linux-gnu.so",
+    "sha256": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+    "expected": "fb1837bd38404656b3030d6945c4bceb253d6b308a0e45058af58de4b0725cf0",
+    "match": true,
+    "bytes": 4597833
+  },
+  "libc10.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libc10.so",
+    "sha256": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+    "expected": "6af47532fcb08495ac2094cf3dec3cb71c07fee89b00061adb037ce6b4ba17d1",
+    "match": true,
+    "bytes": 1643448
+  },
+  "libpython3.12.so.1.0": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/python-current-pgo-lto/libpython3.12.so.1.0",
+    "sha256": "c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79",
+    "expected": "c98b9b649aa6238c77f4e3ec7309a5387875096fcc12a285119ece77734f2a79",
+    "match": true,
+    "bytes": 64109952
+  },
+  "libophost_transformer.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libophost_transformer.so",
+    "sha256": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+    "expected": "3f5758ed76ce537f3d005bb03b55e3030b210e206f5cb9809ab4346b98bae33b",
+    "match": true,
+    "bytes": 26741336
+  },
+  "libtorch_cpu.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/artifacts/baseline/libtorch_cpu.so",
+    "sha256": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+    "expected": "d9529119ac18ba154521854dc8da477c25c9a34c3265c95e40086a593d741926",
+    "match": true,
+    "bytes": 255800841
+  },
+  "libtorch_npu.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/npu-pgo-use/libtorch_npu.so",
+    "sha256": "5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d",
+    "expected": "5d66daa0a0f5f4b4a776ec980e1243a00ca8136433188175989d7e5948ff1d9d",
+    "match": true,
+    "bytes": 80840800
+  },
+  "libnnopbase.so": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/artifacts/cann-pgo-use/libnnopbase.so",
+    "sha256": "1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056",
+    "expected": "1088795d5052e96e65aacc2194c1f875a97685c46d0bf7f36b32950f06ec2056",
+    "match": true,
+    "bytes": 3476744
+  },
+  "bolt22-pages": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-pages/bin/llvm-bolt",
+    "sha256": "4e9eaaa5ba167913b6e3c5ac821a412e76a6dc1295c574efbe2fca903b50c090",
+    "bytes": 54949896,
+    "realpath": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/tools/bolt22-pages/bin/llvm-bolt"
+  },
+  "bolt22-recover-v12": {
+    "path": "${VLLM_HISTORY_ROOT}/eager-source-attribution-20261027/tools/bolt22-recover-v12/bin/llvm-bolt",
+    "sha256": "ac9e7499f16abc0f6ede1859ee2c1b83191c0bc560e7ba8e75a455ea734b2beb",
+    "bytes": 54974256,
+    "realpath": "${VLLM_HISTORY_ROOT}/eager-pgo-128b-20261026/tools/bolt22-recover-v12/bin/llvm-bolt"
+  }
+}
