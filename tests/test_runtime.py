@@ -74,6 +74,18 @@ class RuntimeTests(unittest.TestCase):
                 make_launcher(root, p, ["/usr/bin/true"], [])
             self.assertEqual(p.read_text(), "preserve")
 
+    def test_same_size_content_change_with_restored_mtime_is_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);build_runtime(root);artifact=root/'artifact'
+            artifact.write_bytes(b'original-artifact');before=artifact.stat()
+            entry=root/'entry';make_launcher(root,entry,['/usr/bin/true'],[],check_paths=[artifact])
+            self.assertEqual(subprocess.run([entry],capture_output=True).returncode,0)
+            artifact.write_bytes(b'modified-artifact')
+            self.assertEqual(artifact.stat().st_size,before.st_size)
+            os.utime(artifact,ns=(before.st_atime_ns,before.st_mtime_ns))
+            result=subprocess.run([entry],capture_output=True)
+            self.assertEqual(result.returncode,125);self.assertIn(b'ELF changed',result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -5,7 +5,7 @@ import hashlib
 import shlex
 import shutil
 from .elf import ELF, is_executable_image, normalize_loads
-from .runtime import build_runtime, make_launcher
+from .runtime import build_runtime, make_launcher,publication_environment
 from .util import read_json, write_json, run, sha256, tool, tool_env, IdentityError
 from .capture_set import SCHEMA as CAPTURE_SET, verified_sources, observations
 from .recipes import resolve_recipe, recovered_policy
@@ -19,6 +19,9 @@ def eligible(row, allow_stripped=False):
     name = Path(row["path"]).name
     if row["go"]:
         return "Go pclntab/stack maps require a Go-aware rewriter; layout rewrite disabled"
+    if Path(row['path']).is_file():
+        from .capabilities import classify_profile_image
+        if classify_profile_image(row)['runtime']=='go':return 'Go metadata requires a Go-aware rewriter'
     if row.get("profile_unavailable"):
         return "no compatible object profile in this hybrid training set"
     if name.startswith(("ld-linux", "ld-musl", "libc.so", "libpthread.so", "libdl.so", "libtgo_")):
@@ -35,12 +38,21 @@ def eligible(row, allow_stripped=False):
 def select_images(args, state, profile):
     selected, skipped = [], []
     automatic = args.bolt_mode == "auto"
+    matched = set()
+    def matches(selector, path):
+        if selector == path or selector == Path(path).name:
+            return True
+        try:
+            # Match symlinks and hard links to the recorded object, never a
+            # different unloaded copy merely because its contents are equal.
+            return Path(selector).samefile(path)
+        except OSError:
+            return False
     ranked = sorted(profile["images"], key=lambda row: row.get("dynamic_instructions", row.get("sample_percent", 0)), reverse=True)
     for row in ranked:
-        recipe = getattr(args, "_recipe_plan", None)
-        if recipe and Path(row["path"]).name not in recipe["images"]:
-            continue
-        if args.image and not any(x == row["path"] or x == Path(row["path"]).name for x in args.image):
+        selectors = {x for x in args.image if matches(x, row["path"])}
+        matched.update(selectors)
+        if args.image and not selectors:
             continue
         reason = eligible(row, args.allow_stripped or automatic)
         if not reason and is_executable_image(row) and Path(row["path"]).resolve() != Path(state["command"][0]).resolve():
@@ -49,8 +61,11 @@ def select_images(args, state, profile):
             reason = "recovery policy requires an AArch64 shared object"
         if reason:
             skipped.append({"path": row["path"], "reason": reason})
-        elif len(selected) < (len(recipe["images"]) if recipe else args.top):
+        elif len(selected) < args.top:
             selected.append(row)
+    missing = set(args.image) - matched
+    if missing:
+        raise ValueError("显式 --image 未匹配画像中的映像（可用路径、文件名或同 inode 别名）: " + ", ".join(sorted(missing)))
     return selected, skipped
 
 
@@ -101,7 +116,10 @@ def aggregate_environment(out, profile, result):
     env = tool_env()
     if profile["backend"] in ("qemu", "hybrid"):
         return env
-    perf = tool("perf")
+    decoder=profile.get('perf_decoder')
+    perf = tool("perf", decoder['path'] if decoder else None)
+    if decoder:
+        verify_identity(perf, decoder['sha256'])
     helper = out / "tools"; helper.mkdir()
     shim = helper / "perf"
     script = "#!/bin/sh\n"
@@ -133,7 +151,7 @@ def aggregate_observation(args, row, state, backend, directory, policy, aggregat
         cmd += ["-pa", "-p", row["preaggregate"]]
     else:
         cmd += ["-p", row["perf_data"]]
-        cmd += ["-spe"] if backend == "spe" else ([] if args.branch_stack or state.get("branch_stack") else ["-nl"])
+        cmd += ["-spe"] if backend == "spe" else ([] if backend == 'brbe' or args.branch_stack or state.get("branch_stack") else ["-nl"])
     cmd += recovery
     if policy["allow_stripped"]:
         cmd += ["-allow-stripped"]
@@ -199,14 +217,25 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
     recover = policy["mode"] == "recover"
     recovery = RECOVERY if recover else []
     full = recovered_policy(args, row)
+    level=getattr(args,'optimization_level','balanced')
     binding = None
+    binding_skip = None
     rewritten_input = original
     if full:
         if not recover:
-            raise ValueError("eager-v12 seven-library policy requires recovery BOLT")
-        rewritten_input = image_dir / (original.name + ".bind-now")
-        binding = bind_now(original, rewritten_input)
+            raise ValueError("full code recovery requires recovery BOLT")
         recovery = [*recovery, "-pgo128-assume-code-pages-safe"]
+    if recover and level!='conservative':
+        from .capabilities import inspect_image
+        structure=inspect_image(original)
+        wants_plt=structure['runtime']!='cpython' and '.rela.plt' in ELF(original).sections
+    else:wants_plt=False
+    if wants_plt:
+        rewritten_input = image_dir / (original.name + ".bind-now")
+        try:binding = bind_now(original, rewritten_input)
+        except (ValueError,OSError) as error:
+            if isinstance(error,IdentityError):raise
+            binding_skip=str(error);rewritten_input=original
     fdata, aggregation = aggregate_image(args, row, state, profile, image_dir, policy, aggregate_env)
     target = image_dir / original.name
     flags = ["-reorder-blocks=ext-tsp", "-reorder-functions=" + ("hfsort+" if row["relocations"] or recover else "none"),
@@ -222,14 +251,17 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
         flags += [*recovery, "-use-old-text=false"]
         if not full:
             flags += ["-lite", "-lite-threshold-count=1"]
-    if full:
-        flags += ["-eliminate-unreachable", "-peepholes=all",
-                  "-simplify-conditional-tail-calls", "-sctc-mode=always", "-split-eh", "-plt=all"]
+    if level!='conservative':
+        flags += ["-eliminate-unreachable", "-peepholes=all", "-split-eh"]
+    if level=='aggressive':
+        flags += ["-simplify-conditional-tail-calls", "-sctc-mode=always"]
+    if binding:flags += ["-plt=all"]
     if policy["allow_stripped"]:
         flags += ["-allow-stripped"]
     flags += args.bolt_arg
     optimization = run([policy["bolt"], rewritten_input, "-data=" + str(fdata), "-o", target, *flags],
                        image_dir / "bolt.log", timeout=args.timeout)
+    shutil.copy2(target,target.with_name(target.name+'.bolt-output'))
     normalization = None
     if recover:
         raw = target.with_name(target.name + ".raw"); target.rename(raw)
@@ -243,14 +275,18 @@ def rewrite_image(args, row, state, profile, image_dir, policy, aggregate_env, p
         run([patchelf, *preserve, "--set-rpath", paths, target], image_dir / "rpath.log", timeout=30)
     elif row["interpreter"] is None and row["type"] == 3 and b"$ORIGIN" in ELF(original).data:
         raise ValueError("DSO uses $ORIGIN; patchelf is required to preserve dependency search")
+    before_final=target.with_name(target.name+'.pre-final-normalize');target.rename(before_final)
+    final_normalization=normalize_loads(before_final,target)
+    normalization={'pre_rpath':normalization,'final':final_normalization}
     output = ELF(target).metadata()
     os.chmod(target, original.stat().st_mode & 0o777)
     result = {"original": str(original), "optimized": str(target), "input": row, "output": output,
               "fdata_sha256": sha256(fdata), "recovered_relocations": recover,
+              "optimization_level":level,"binding_skip_reason":binding_skip,
               "load_order_normalization": normalization, "aggregation": aggregation, "optimization": optimization,
               "policy": {**policy, "bolt_sha256": sha256(policy["bolt"]), "perf2bolt_sha256": sha256(policy["perf2bolt"])}}
     if binding:
-        result.update(binding=binding, recipe="eager-v12", full_function_scope=True)
+        result.update(binding=binding, recipe="structural-v1", full_function_scope=full)
     if profile["backend"] == "spe" and not row.get("native_fdata") and row.get("profile_backend") != "qemu":
         result["spe_conversion"] = read_json(image_dir / "spe-bridge.json")
     return result
@@ -332,7 +368,8 @@ def optimize(args):
         entry = Path(args.entry).absolute() if args.entry else out / "run"
         result["entry_mode"] = args.entry_mode
         deployed = state["command"][:1] if args.entry_mode == "executable" else state["command"]
-        result["entry"] = make_launcher(out, entry, deployed, result["images"], state["env"],
+        affinity=getattr(args,'publish_affinity','inherit');result['published_affinity']=affinity
+        result["entry"] = make_launcher(out, entry, deployed, result["images"], publication_environment(state["env"],affinity),
                                          None if args.entry_mode == "executable" else state["cwd"])
         result["state"] = "candidate"; write_json(out / "build.json", result)
         if args.validate:

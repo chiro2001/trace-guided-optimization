@@ -1,0 +1,8 @@
+{
+  "schema": "tgo.testkit-artifact.v1",
+  "version": "0.6.0.dev4",
+  "filename": "brbe-testkit-0.6.0.dev4.tar.gz",
+  "bytes": 364109,
+  "sha256": "906e96fab5bbb43cdb105c3acce811c9f489470807bc71879c52dbde7f2d2532",
+  "hardware_brbe_tested": false
+}

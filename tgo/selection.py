@@ -8,7 +8,7 @@ def complete(validation):
 
 
 def screening_score(validation, minimum_gain):
-    score = validation.get("median_reduction_percent", float("nan"))
+    score = validation.get('worst_case_median_reduction_percent',validation.get("median_reduction_percent", float("nan")))
     return score if complete(validation) and math.isfinite(score) and score > minimum_gain else None
 
 

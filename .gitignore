@@ -7,3 +7,6 @@ deps/
 runs/
 *.egg-info/
 .tgo-cache/
+jobs/
+tool-work/
+repo-work/

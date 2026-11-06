@@ -9,8 +9,8 @@ import shutil
 import subprocess
 import time
 from dataclasses import dataclass, replace
-from .runtime import build_runtime, make_launcher
-from .util import command_path, read_json, write_json, sha256, tool, workload_env
+from .runtime import build_runtime, make_launcher,publication_environment
+from .util import command_path, read_json, write_json, sha256, tool, workload_env,cpu_set
 from .validate import execute_trial, validate
 from .go_layout import profile_order, linker_overlay, layout_report
 from .selection import screening_score, confirmed
@@ -219,6 +219,7 @@ def build_candidate(ctx, candidate, extra_gc="", extra_ld="", layout=False, layo
     checks = [ctx.go, ctx.compiler, optimized, ctx.runtime / "go-tool"]
     entry = make_launcher(candidate, candidate / "run", ctx.state["command"], [], deployed, ctx.state["cwd"], check_paths=checks)
     built = {"schema": "tgo.build.v1", "strategy": "go-compiler-pgo", "source_run": str(ctx.capture),
+             "replay_env":deployed,"replay_checks":{str(path):sha256(path) for path in checks},
              "workload": {k: ctx.state[k] for k in ("command", "cwd", "env")}, "images": [],
              "entry": entry, "entry_mode": "command", "state": "candidate",
              "go_compiler": {"original": ctx.compiler, "optimized": str(optimized), "sha256": digest,
@@ -250,6 +251,7 @@ def tune_go(args, root_exists=False):
     command = command_path(raw_command)
     overrides = dict(prior_state["env"]) if prior_state else {}
     overrides.update(dict(item.split("=", 1) for item in args.env))
+    if getattr(args,'cpus',None):overrides['TGO_WORKLOAD_CPUS']=cpu_set(args.cpus)
     base = workload_env(); base.update(overrides)
     # Shell drivers that invoke `go` must see the selected toolchain too.
     base["PATH"] = str(Path(go).parent) + os.pathsep + base.get("PATH", "")
@@ -272,6 +274,7 @@ def tune_go(args, root_exists=False):
     write_json(root / "tune.json", result)
     try:
         runtime = build_runtime(root / "runtime")
+        base['PYTHONPATH']=str(runtime/'support')+(os.pathsep+base['PYTHONPATH'] if base.get('PYTHONPATH') else '')
         if not (runtime / "go-tool").exists():
             raise ValueError("Go tool adapter absent from this package; rebuild TGO")
         capture = root / "capture"; capture.mkdir()
@@ -404,11 +407,14 @@ def tune_go(args, root_exists=False):
             deployed_env, checks = overrides, []
         build_runtime(root)
         deployed = command[:1] if args.entry_mode == "executable" else command
-        result["entry"] = make_launcher(root, args.entry or root / "run", deployed, [], deployed_env,
+        affinity=getattr(args,'publish_affinity','inherit');result['published_affinity']=affinity
+        result["entry"] = make_launcher(root, args.entry or root / "run", deployed, [], publication_environment(deployed_env,affinity),
                                          None if args.entry_mode == "executable" else state["cwd"], check_paths=checks)
         result.update(entry_mode=args.entry_mode, optimized_compiler=best["compiler"] if selected else None, state="complete")
         final_build = {"schema": "tgo.build.v1", "strategy": "go-compiler-pgo", "source_run": str(capture),
+            "replay_env":deployed_env,"replay_checks":{str(path):sha256(path) for path in checks},
             "images": [], "entry": result["entry"], "entry_mode": args.entry_mode,
+            'published_affinity':affinity,
             "state": "validated" if selected else "baseline", "validation": result.get("confirmation"),
             "workload": {k: state[k] for k in ("command", "cwd", "env")}}
         if selected:

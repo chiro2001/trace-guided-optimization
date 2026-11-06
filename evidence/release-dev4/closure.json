@@ -1,0 +1,12 @@
+{
+  "schema": "tgo.closure.v1",
+  "date": "2026-11-06",
+  "gem5_build_state": "complete",
+  "build_info_returncode": 0,
+  "machine": 183,
+  "image_bytes": 133180904,
+  "source_sha256": "e7700d8411a703a521aa0520b142730cc8248b0b9b82491dd16ad04617f1924b",
+  "active_jobs": [],
+  "performance_tested": false,
+  "hardware_brbe_tested": false
+}

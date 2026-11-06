@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from tgo.elf import ELF
-from tgo.optimize import optimize, image_policy, IdentityError
+from tgo.optimize import optimize, image_policy, select_images, IdentityError
 from tgo.util import write_json, read_json
 
 
@@ -71,6 +71,22 @@ class ObjectFailureFallback(unittest.TestCase):
             self.assertEqual(image_policy(args,row,{})["mode"],"recover")
             for changed in ({"relocations":True},{"machine":62},{"type":2,"entry":4096}):
                 self.assertEqual(image_policy(args,{**row,**changed},{})["mode"],"standard")
+
+    def test_explicit_image_matches_symlink_and_inode_but_not_identical_copy(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); capture, libs=self.fixture(root)
+            profile=read_json(capture/'profile.json'); state=read_json(capture/'run.json')
+            alias=root/'symlink.so';alias.symlink_to(libs[0])
+            hardlink=root/'hardlink.so';hardlink.hardlink_to(libs[0])
+            copy=root/'copy.so';shutil.copy2(libs[0],copy)
+            for selector in (str(alias),str(hardlink),libs[0].name):
+                args=arguments(root,capture);args.image=[selector]
+                selected,skipped=select_images(args,state,profile)
+                self.assertEqual([r['path'] for r in selected],[str(libs[0])]);self.assertFalse(skipped)
+            args.image=[str(copy)]
+            with self.assertRaisesRegex(ValueError,'未匹配'):select_images(args,state,profile)
+            args.image=[str(alias),'missing.so']
+            with self.assertRaisesRegex(ValueError,'missing.so'):select_images(args,state,profile)
 
 
 if __name__ == "__main__":

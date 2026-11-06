@@ -1,0 +1,32 @@
+{
+  "schema": "tgo.family-selection.v1",
+  "nominees": [
+    {
+      "family": "gem5-mixed-full-r1",
+      "layout": "aligned",
+      "screening_worst_case_median": 7.482706346135098
+    },
+    {
+      "family": "gem5-mixed-lite-r1",
+      "layout": "aligned",
+      "screening_worst_case_median": 10.760053229546042
+    }
+  ],
+  "choice": {
+    "family": "gem5-mixed-lite-r1",
+    "layout": "aligned",
+    "screening_worst_case_median": 10.760053229546042
+  },
+  "criterion": "只用原筛选的最差场景中位数排名；各家族确认结果只作通过/拒绝；之后再做全新确认",
+  "heldout_seen": true,
+  "final_bundle": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1",
+  "independent_confirmation_passed": true,
+  "confirmation_evidence": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/e10378d5f39542699a504dc71695fa40",
+  "heldout_passed": true,
+  "published_entry": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-published-r1/gem5.tgo",
+  "publication": {
+    "path_redaction": true,
+    "numeric_values_unchanged": true,
+    "internal_source_sha256": "c151995a4ac1074c6e3fdd947936c256d384e8cee605fa11aa0318e9af6c6bf1"
+  }
+}

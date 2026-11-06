@@ -7,6 +7,12 @@ from .util import run, tool, sha256
 
 NATIVE = Path(__file__).parent / "native"
 
+def publication_environment(environment,affinity='inherit'):
+    if affinity not in ('inherit','workload'):raise ValueError('未知发布亲和性策略')
+    result=dict(environment)
+    if affinity=='inherit':result.pop('TGO_WORKLOAD_CPUS',None)
+    return result
+
 
 def build_runtime(out, qemu_header=None):
     out = Path(out)
@@ -15,6 +21,9 @@ def build_runtime(out, qemu_header=None):
     support.mkdir(parents=True, exist_ok=True)
     for name in ("__init__.py", "roi.py", "pmu.py", "python_entry.py", "training.py", "util.py"):
         shutil.copy2(NATIVE.parent / name, support / name)
+    workloads=NATIVE.parent/'workloads'
+    if workloads.is_dir():
+        shutil.copytree(workloads,support/'workloads',dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
     shipped = os.environ.get("TGO_RUNTIME_DIR")
     if shipped:
         for name in ("libtgo_audit.so", "libtgo_roi.so", "libtgo_perf_spe.so", "launcher", "go-tool", "libtgo_qemu.so"):
@@ -64,10 +73,16 @@ def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=(
     for row in images:
         if any(c in row[k] for c in "\t\n" for k in ("original", "optimized")):
             raise ValueError("ELF paths containing tabs/newlines are not supported")
-    mapfile.write_text(''.join(f"{r['original']}\t{r['optimized']}\n" for r in images))
+    mapfile.write_text(''.join(f"{Path(r['original']).resolve()}\t{Path(r['optimized']).resolve()}\n" for r in images))
     executable = next((r["optimized"] for r in images
                        if Path(r["original"]).resolve() == Path(command[0]).resolve()), command[0])
     needs_audit = any(Path(r["original"]).resolve() != Path(command[0]).resolve() for r in images)
+    if not needs_audit:
+        from .elf import ELF
+        for row in images:
+            metadata=row.get('input',{})
+            interpreter=metadata['interpreter'] if 'interpreter' in metadata else ELF(row['original']).interpreter
+            if interpreter:needs_audit=True;break
     checks = list(dict.fromkeys([p for r in images for p in (r["original"], r["optimized"])] + list(map(str, check_paths))))
     command = list(command)
     if len(command) > 3 and Path(command[1]).name == "python_entry.py" and command[2] == "--hook":
@@ -96,17 +111,20 @@ def make_launcher(out, entry, command, images, env=None, cwd=None, check_paths=(
         digest = sha256(path)
         if path in expected and digest != expected[path]:
             raise ValueError(f"ELF changed before entry publication: {path}")
-        payload += string(str(path)) + struct.pack("<qqqQQ", st.st_size,
-            st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev)
+        payload += string(str(path)) + struct.pack("<qqqQQqq", st.st_size,
+            st.st_mtime_ns // 10**9, st.st_mtime_ns % 10**9, st.st_ino, st.st_dev,
+            st.st_ctime_ns // 10**9,st.st_ctime_ns % 10**9)
         payload += bytes.fromhex(digest)
     template = (out / "launcher").read_bytes()
-    if b"TGO_LAUNCHER_ABI_2\0" not in template:
+    if b"TGO_LAUNCHER_ABI_3\0" not in template:
         raise ValueError("runtime launcher ABI mismatch; rebuild TGO and unset an older TGO_RUNTIME_DIR")
+    if env.get('TGO_WORKLOAD_CPUS') and b'TGO_LAUNCHER_CPU_AFFINITY_1\0' not in template:
+        raise ValueError('预编译入口缺少亲和性能力，请重建runtime或取消旧TGO_RUNTIME_DIR')
     with tempfile.NamedTemporaryFile(dir=entry.parent, prefix=".tgo-entry-", delete=False) as f:
         tmp = Path(f.name)
         f.write(template)
         f.write(payload)
-        f.write(struct.pack("<Q8s", len(payload), b"TGOCFG02"))
+        f.write(struct.pack("<Q8s", len(payload), b"TGOCFG03"))
     tmp.chmod(0o755)
     # Atomic publication refuses overwrite, including races.
     try:

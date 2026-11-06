@@ -8,11 +8,12 @@ import math
 import threading
 import shutil
 import uuid
-from .util import read_json, write_json, workload_env, sha256, terminate_process_group
+from .util import read_json, write_json, workload_env, sha256, terminate_process_group,affinity_command
 from .elf import is_executable_image
 
 
 def execute_trial(command, prefix, env, cwd, timeout):
+    command=affinity_command(command,env.get('TGO_WORKLOAD_CPUS'))
     stdout, stderr = Path(str(prefix) + ".stdout"), Path(str(prefix) + ".stderr")
     timed_out = False
     start = time.perf_counter()
@@ -57,7 +58,8 @@ def validate(bundle, pairs=5, timeout=300, metric=None):
     trials = []
     warmup_trials = []
     warmup_count = state.get("validation", {}).get("warmup_pairs", 0)
-    expected = {r["optimized"] for r in build["images"] if not is_executable_image(r["input"])}
+    expected = {str(Path(r["optimized"]).resolve()) for r in build["images"]
+                if not is_executable_image(r["input"]) or r['input'].get('interpreter')}
     equivalent = True
     for i in range(-warmup_count, pairs):
         pair = {}

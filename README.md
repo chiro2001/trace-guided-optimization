@@ -1,210 +1,47 @@
-# Trace-guided optimization (TGO)
+# TGO：通用原生代码优化工具
 
-输入负载命令，采集目标区间的画像，优化热点 ELF/DSO，输出独立的原生 ELF 入口。
-原文件保持原状；新入口可以放在原入口旁边，例如 `python3.tgo`。
+0.6.0.dev4增加标准Arm BRBE实机采集后端，内网测试见[BRBE指南](docs/BRBE.md)。dev3及更早wheel保持固定快照，见dist与evidence。应用资格根据实际ELF、ABI、运行时结构与工具能力决定，已移除旧八库应用SHA白名单。SHA保留用于画像/输入绑定、事务一致性及证据复现；未来版本不需要预登记文件哈希。
 
-目前实现 Linux AArch64 / x86-64、glibc、LLVM BOLT，以及 Go 编译器的 PGO 和包内
-函数布局。不能保证所有二进制都可改写，也不能保证所有负载都有收益。
-
-当前进展见 [状态](docs/STATUS.md) 和 [实测记录](docs/RESULTS-20261029.md)。
-
-0.5.0 已用单个 AppImage 从头复现 vLLM 主机侧 eager decode：独立五对 ROI 时间
-减少中位数 **39.47%**、cycles 减少 **40.80%**，八库实际加载与新容器入口均通过。
-此结果限于固定 CPU-stub 负载；[完整证据](evidence/2026-10-29/vllm-full-route/README.md)
-区分了从头运行、缓存复用和旧工件加载回归。
+首个复杂Python混合负载在920B上完成离线BOLT闭环：独立确认三对wall缩短中位数21.10%，另一个未参与选型的seed三对缩短20.80%，语义一致。Go编译对照的首轮PGO和布局候选为-3.03%和-0.33%，因此保留原编译器。范围、原始证据与后续进展见[持续状态](WORK_STATE.md)。这些数据不与此前vLLM全方案41.117%合并。
 
 ```sh
-python3 scripts/bootstrap.py --jobs 8
 python3 -m tgo doctor
-python3 -m tgo tune -o runs/my-app --backend auto -- /path/to/python app.py
-runs/my-app/run
+python3 -m tgo capabilities /path/to/image.so
+python3 -m tgo workload list
+python3 -m tgo experiment python -o runs/new-tag --python /path/to/python --cpus 0,2,4,6
 ```
 
-`tune` 默认独立采集三轮训练 ROI，逐轮归一化并合并画像，自动选择采集后端、热点库
-及每库 BOLT 策略，再执行三种布局初筛、独立 AB/BA
-确认和入口生成。仅在每一对确认
-运行都正确且收益超过阈值时选择候选；否则生成调用原版的入口。`tune.json` 记录
-实际选择，不能仅凭生成了一个 ELF 就判断优化有效。
-
-当完整输入指纹匹配已有八库 eager 配方时，自动策略还会私有重建 CPython ROI
-PGO/LTO，为 Python 记录原生 BOLT 边计数，并为其余七库采集完整 QEMU ROI。
-每库独立使用对应画像；源码编译需要 GCC/g++/make。其他 CPython 负载可显式
-选择 `--strategy cpython`，目前源码锁支持 3.12.13。
-具体流程与复用约束见 [自动调优](docs/AUTOMATIC-TUNING.md)，固定 vLLM 镜像的一条
-命令入口见 [负载协议](docs/WORKLOADS.md)。
-
-想单独审查画像或候选时：
+`experiment python`使用短训练、较长的原生筛选/独立确认和另一seed留出；留出只用于验证与发布门禁，不参与候选重新排名。没有可靠收益时发布原版入口。可用`record`、`tune --run`与`evaluate --bundle`分步组织任意负载。QEMU只用于画像，性能使用原生wall。
 
 ```sh
-python3 -m tgo record -o runs/train --backend perf -- /path/to/program arg
-python3 -m tgo inspect runs/train
-python3 -m tgo optimize --run runs/train -o runs/candidate --image libpython3.12.so.1.0
-python3 -m tgo validate runs/candidate --pairs 5
+python3 -m tgo job start -o jobs/new-tag --timeout 3600 -- python3 -m tgo experiment python -o runs/new-tag --python /path/to/python
+python3 -m tgo job status jobs/new-tag
+python3 -m tgo job stop jobs/new-tag
 ```
 
-`--train-runs 1` 可减少新训练次数；`--run` 复用已有发现画像，通用 BOLT 流程不追加
-采集，CPython 策略仍继续各阶段训练。可手动合并多份
-已完成且采样设置、负载和 ROI 相同的记录，再搜索布局：
+TGO任务自动复制工具源码；已启动任务不会读取后续修改的工具版本。取消时核验监督器身份并清理自有后代，包含独立会话中的子进程；大编译任务可使用`--mem-floor-gib`。任务、输出和失败目录不覆盖。
+
+Go通过自身PGO与私有链接器更新PC、栈和GC元数据，使用`--strategy go-compiler`，不直接按普通ELF改写Go运行时。工作集可用`workload go prepare`生成，冷缓存与保留缓存分开测量。Go包装器主线程PMU不代表编译器进程树PMU。
+
+现有二进制的BOLT优化不要求CPython源码；可选源码PGO通过`--python-source`接收匹配版本的归档，并检查源码版本及重建ABI。生成ELF经过程序头归一和真实加载/语义验证；对齐修复不修改节内代码、数据或虚拟地址，不能按目标页大小映射的工件仍拒绝。
+
+Agent入口为`python3 -m tgo agent`（MCP stdio），提供诊断、BRBE探测/采集、任务管理、在线Python任务和清单读取九个工具。[技能](skills/tgo-optimize/SKILL.md)支持源码工作区与安装副本，可通过`TGO_PROJECT_ROOT`定位项目；[接口说明](skills/tgo-optimize/references/interface.md)包含具体调用。
+
+`live tune-python`已完成五种在线配置筛选、独立确认和新seed303留出。选中ext-tsp，五对确认中位数7.66%、留出8.48%，留出最小6.15%，语义/新代码硬件命中/回滚通过；迁移包含解释器主循环的5718个入口和256项私有分派表。MCP的`tgo_live_python_start`支持`mode=tune`或固定配置`mode=replay`。各会话完成后均回滚退出，不自动部署到外部进程。
+
+通用在线后端已在920B的AArch64/4KiB页上完成自有进程原生门禁和长驻Python闭环。`live native-check`现场编译/插桩未知ELF；`live python`复用现有画像，在同一PID与原对象图上构建、切换、交替AB/BA并回滚。新入口须在业务ROI内有硬件执行断点证明；探针与预热不计入性能样本。Python混合负载三对中位数缩短8.04%，最小7.29%，切换5717个入口；源库5751个有大小函数中34个未生成唯一对应入口，保留原代码。它与离线20.80%是不同执行路径和分母，详见[实测报告](REPORT.md)。
+
+`online.static_candidate`只表示静态条件。实际提交还需原状态/函数地址身份、旧帧、CFI、线程同步与回滚门禁；现阶段提供自有进程与内置Python工作集，不支持任意未知进程attach，也未资格化BTI/PAC、x86在线或Go二进制在线。此前七库实验继续保存在独立冻结工程。
 
 ```sh
-python3 -m tgo merge -o runs/combined runs/train-a runs/train-b runs/train-c
-python3 -m tgo tune --run runs/combined -o runs/tuned
+python3 -m tgo live native-check -o runs/native-new --bolt /path/to/identity-capable-bolt --runtime /path/to/libbolt_rt_instr.a --cpus 0,2,4,6
+python3 -m tgo live python -o runs/live-new --bundle runs/selected --image /path/to/libpython.so --python /path/to/python --bolt /path/to/identity-capable-bolt --case mixed --seed 303 --rounds 500 --pairs 5 --cpus 0,2,4,6
+python3 -m tgo experiment python-stdlib -o runs/stdlib-new --python /path/to/python --image /path/to/libpython.so --train-rounds 1 --rounds 25
 ```
 
-合并目录通过 SHA256 引用原始记录，需保留源目录。不同事件、周期或 ELF 内容不能
-合并；有意混合不同负载参数时需显式 `--allow-workload-variation`，差异会写入画像。
-多轮训练提高画像覆盖，但不能保证收益，最终仍须独立确认。
+`python-stdlib`编译真实标准库源码，按不同seed选择模块子集，检查AST统计与字节码摘要。gem5提供`workload gem5 prepare`生成无libc的AArch64 guest和独立SE配置；宿主`m5.simulate`的原生wall用于收益，guest校验和与simTicks/simInsts/simOps用于语义。gem5最终混合O3/Minor画像后，按最差场景确认，seed505留出分别缩短9.02%/11.79%，各五对且语义/实际映像通过。只用O3训练的旧方案曾使Minor退化，失败数据同样保留。
 
-`optimize` 输出未经收益筛选的候选，默认做三对正确性/加载验证。性能建议保存在
-`validation.json`。`tune` 才会根据收益选择最终入口。
+构建依赖可运行`scripts/bootstrap.py`或通过`TGO_LLVM_BOLT`、`TGO_LLVM_BOLT_RECOVER`、`TGO_PERF`、`TGO_QEMU_HEADER`、`TGO_INSTALL_PREFIX`等变量提供。依赖下载锁与应用优化资格分离。历史工具目录保持只读，本目录保存新代码、工件和数据。
 
-默认 `--bolt-mode auto` 按库选择策略：有保留重定位时使用标准 BOLT；AArch64 DSO
-缺少重定位且 recovery 工具可用时自动使用 recovery。自动策略也会尝试 stripped
-ELF 中可识别的函数，仍须通过输出及真实加载验证，不保证恢复完整代码边界。
-`--bolt-mode standard` 保持手工标准策略，缺符号时需显式 `--allow-stripped`。
 
-单库构建失败会保留该库原版并记录原因，其他库继续。整组验证失败或没有初筛收益
-时，默认探测有效子集，复用已经生成的 DSO。初筛按中位数排序；最终独立确认仍
-要求每一对超过 `--minimum-gain`（默认 0.5%）。详见 [自动调优](docs/AUTOMATIC-TUNING.md)。
-
-## 精确选择 ROI
-
-支持整段进程、从启动后指定的时间窗口，以及重复的显式标记。
-
-```sh
-python3 -m tgo record -o runs/window --roi window --delay 20 --duration 10 -- ./server
-python3 -m tgo record -o runs/attach --backend perf --pid 1234 --duration 10
-python3 -m tgo bind runs/attach -- ./server --same-arguments
-```
-
-时间单位为秒。attach 使用 perf；QEMU 必须从启动时运行，不能事后 attach。
-使用 argv 启动，不隐式执行 shell。管道或重定向可显式传 `sh -c '...'`。
-
-Python 中可直接标记任意区间；采集和生成的入口会自动提供轻量 ROI helper：
-
-```python
-from tgo.roi import region, emit_result
-
-warmup()
-with region("decode"):
-    tokens = decode_and_synchronize()
-emit_result({"tokens": tokens})
-```
-
-```sh
-python3 -m tgo tune -o runs/decode --roi marker --metric decode -- python app.py
-```
-
-原生代码可以加载运行目录的 `runtime/libtgo_roi.so`，调用
-`tgo_roi_begin()` / `tgo_roi_end()`。QEMU 也识别先前实验的 QMSTART/QMSTOP
-getpid syscall 标记。C API 支持同线程嵌套。perf 的标记是整个采集组的开关，
-应由同一生产线程串行发出；QEMU 的标记只选择发出标记的线程。
-
-不改 Python 负载源码，也可显式指定函数：
-
-```sh
-python3 -m tgo record -o runs/hook --python-hook package.module:Class.method -- python app.py
-```
-
-函数 hook 会在入口脚本运行前导入该模块并包装函数。它不会自动判断某次调用是
-prefill 还是 decode；有语义边界的服务应采用显式 ROI adapter。
-目前 hook 面向普通同步函数；异步/生成器和特殊描述符应使用显式标记。
-
-## 后端
-
-| 后端 | 适合场景 | 实现与限制 |
-| --- | --- | --- |
-| perf | 原生低开销采样、长任务、编译器进程树、attach | 默认 cycles IP 样本；`--branch-stack` 可使用硬件分支栈；无分支栈采用 BOLT basic profile |
-| SPE | ARM 分支采样 | `--backend spe`，需要内核、PMU 和权限支持；内置已验证的 perf 分支样本转换桥，事件可用 `--event` 覆盖 |
-| QEMU | 无 PMU 权限、精确 ROI 路径 | TCG 插件汇总分支/连续落空路径，不把 QEMU wall time 当原生性能；native exec 子进程不在此画像范围 |
-
-`auto` 实际探测事件权限：优先选择可打开的 retired-branch SPE，其次使用 cycles
-采样，硬件采样不可用时选择 QEMU。探测验证 recorder 和对应缓冲可打开，实际采样覆盖由记录阶段
-检查。它不会因负载执行失败而自动重跑负载。`--qemu-header` 必须与 QEMU 插件 ABI 匹配；bootstrap 下载的
-头文件可通过 `TGO_QEMU_HEADER=.../deps/install/include/qemu-plugin.h` 指定。
-AppImage 已内置编译好的插件和匹配 QEMU，不要求目标机安装开发头文件或编译器。
-
-## Go 编译负载
-
-直接的 `go` 命令会自动选择 Go 策略；shell/build driver 可显式指定：
-
-```sh
-python3 -m tgo tune --strategy go-compiler --go /path/to/go \
-  -o runs/go-build --timeout 900 -- go build ./...
-python3 -m tgo tune --strategy go-compiler --go /path/to/go \
-  -o runs/go-driver --timeout 900 -- sh benchmarks/go_compile.sh
-runs/go-build/run
-```
-
-训练通过原生 `-toolexec` helper 给实际 compiler 进程加 CPU profile，合并画像后私有
-重建 `cmd/compile`。候选包括工作负载 PGO、紧凑内联、函数对齐、与 SDK 原画像混合、
-按调用热度聚类的包内函数布局。可用 `--go-variant layout` 等限制搜索范围。
-布局模式通过 source overlay 重建私有 linker，由 Go 自己生成 PC、栈和 GC metadata；
-保持包依赖顺序，跳过 FIPS、重复和外来符号；`layout-runtime` 还调整 runtime 的
-Go 函数，但保留其汇编函数位置。两者均不直接 BOLT 静态 Go 文件。
-`layout.json` 记录画像匹配和最终 ELF 地址检查。
-
-需要工作负载对应的完整 Go SDK（含源码）；`bootstrap.py --components go` 可下载
-锁定的官方 SDK。训练和验证较慢，默认每次运行使用独立冷 build cache，并先做两对
-不计入结果的预热。`--go-cache preserve` 适合有意评估真实缓存行为的负载。
-`--run runs/go-build/capture` 可复用同一 compiler 的已校验原始画像。
-生成入口检查版本漂移，并给 Go build cache 提供候选 compiler 的独立身份；
-`TGO_DISABLE=1` 恢复原工具。详见 [Go 策略](docs/GO-COMPILER.md)。
-
-环境变量通过 `--env KEY=VALUE` 显式保存供新入口重放；当前 shell 的其余环境由
-调用者提供，不会把全部环境或凭据写入产物。新入口保留固定 argv、追加的参数、
-cwd 和指定环境。虚拟环境的入口路径不会提前解析为其底层 Python 路径。
-
-## 入口与验证
-
-```sh
-python3 -m tgo tune -o runs/demo --entry /writable/venv/bin/python3.tgo \
-  --entry-mode executable -- python app.py
-/writable/venv/bin/python3.tgo app.py
-TGO_DISABLE=1 /writable/venv/bin/python3.tgo app.py
-```
-
-默认 command 模式保存完整负载命令；executable 模式仅替换可执行入口，参数和当前
-工作目录由调用者提供，可像原 Python 解释器一样运行。相邻入口是新的原生 ELF，
-使用 exec 保留退出码和信号行为。它携带二进制配置，
-不依赖 Python 来启动原负载。glibc audit 按完整真实路径重定向依赖，包括绝对路径
-dlopen；同名但不同路径的库不会混用。每库独立目录，保留原 `$ORIGIN` 搜索语义。
-DSO 本身需要兼容原 ABI；不会将任意 ET_EXEC 硬转换成 DSO。
-
-构建时保存 SHA256/build-id，启动时快速核对输入/输出 ELF 的 inode、设备、大小与
-纳秒 mtime。元数据不同时再校验 SHA256，允许同内容文件在新容器的不同 overlay
-设备上使用；内容不符则要求重建或显式 `TGO_DISABLE=1`。这是版本漂移检查，不是
-防篡改机制。已有 `LD_AUDIT` 配置会报冲突。产物仍绑定原路径，移动目录需要重建入口。
-
-验证使用新进程 AB/BA 交替运行，比较退出码、确定性输出和真实映射的优化库。
-`emit_result` 有输出时使用其规范化 JSON，否则比较 stdout。业务自身的正确性测试
-仍需另外执行。`--metric decode` 使用命名 ROI 的时间，并尝试记录同线程用户态的
-cycles、instructions、frontend stall、L1I read miss；每项都保留打开失败原因，以及
-enabled/running，不能把复用计数当成无复用实测。
-每轮验证的原始证据独立保存在 `validations/<id>/`，探测、初筛和确认不会覆盖彼此。
-
-## 构建与分发
-
-`scripts/bootstrap.py` 将依赖放入 `deps/`，从锁定的官方源码归档构建 LLVM/BOLT、
-QEMU 和 patchelf，检查 SHA256，自动应用已复用的 AArch64 ADR/ADRP 修复。
-基础环境需要 C/C++ 编译器、Python 3.10+、make、patch、pkg-config 和可用网络。
-缺失的 zlib、libffi、GLib、libelf 会按依赖顺序构建到私有 prefix。构建前端
-cmake/ninja/meson 使用固定版本的 Python wheel；归档和工具身份写入清单。
-perf 的构建还需要基础开发环境中的 flex、bison、m4。
-
-```sh
-python3 scripts/bootstrap.py --components llvm qemu patchelf python --jobs 8
-# 可选：缺少保留重定位的 AArch64 DSO
-python3 scripts/bootstrap.py --components llvm --llvm-variant recover --jobs 8
-export TGO_QEMU_HEADER="$PWD/deps/install/include/qemu-plugin.h"
-python3 scripts/package_appimage.py --python deps/install/bin/python3.12 --output dist/0.5.0
-dist/0.5.0/tgo-0.5.0-aarch64.AppImage doctor
-# 无 FUSE 环境
-APPIMAGE_EXTRACT_AND_RUN=1 dist/0.5.0/tgo-0.5.0-aarch64.AppImage doctor
-```
-
-每个 ISA 单独打包。AppImage 携带工具、Python 标准库及非 glibc 动态依赖；最低 glibc
-版本由构建机决定并写入 `package-manifest.json`。需要覆盖较老系统时，应在对应最低
-版本容器构建。AppImage 不绕过 PMU 权限或容器隔离。详细设计见
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)，负载协议见
-[docs/WORKLOADS.md](docs/WORKLOADS.md)。
+输入准备可用`prepare IMAGE -o NEWDIR --strip-debug`；保留FILE/函数符号并逐范围核验代码、数据、BSS和执行布局，再对准备后的实际文件采集。多负载使用`tune --strategy bolt --validation-cases FILE`，按最差场景中位数筛选并逐对确认；冻结后`validate --cases`运行role=heldout的新输入集。发布入口默认继承调用者亲和性，`--publish-affinity workload`才嵌入测试CPU集合。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TGO 原生代码优化"
+  short_description: "标准BRBE采集、跨负载BOLT调优、独立验证与任务管理"
+  default_prompt: "使用 $tgo-optimize 对我的负载做结构化资格诊断、独立调优与留出验证。"

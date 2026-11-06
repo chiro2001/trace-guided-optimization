@@ -1,0 +1,78 @@
+{
+  "schema": "tgo.references.v1",
+  "date": "2026-11-06",
+  "sources": [
+    {
+      "file": "arm_brbe.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/perf/arm_brbe.c",
+      "sha256": "860ba478294dbe3a1430eb3347fab698a0305558859eef6a922ba79735e988df",
+      "bytes": 23062
+    },
+    {
+      "file": "perf-script.txt",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/tools/perf/Documentation/perf-script.txt",
+      "sha256": "9ac14033ef9debc1b3ba2be0579282e1fb3d5c29660352fb7b04aa5ffb339d9f",
+      "bytes": 19332
+    },
+    {
+      "file": "DataAggregator.cpp",
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-21.1.8/bolt/lib/Profile/DataAggregator.cpp",
+      "sha256": "e5a6a27ed21b69038dfbb63bb37d766c82ba7b6f4aac0011bf4a7a7debd15059",
+      "bytes": 82013
+    },
+    {
+      "file": "brbe-arm-registers.pdf",
+      "url": "https://documentation-service.arm.com/static/606f045785368c4c2b1c198c",
+      "sha256": "d1b8cca92e0d6ddc8dc595fe6dd48610aabdcd0e3c999f1e21392f7265d4627d",
+      "bytes": 9911190
+    },
+    {
+      "file": "arm_pmuv3.c",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/drivers/perf/arm_pmuv3.c?format=TEXT",
+      "sha256": "ed661e40d642961453065647cd76772a25895d81cf35324a52e5618b91fe666f",
+      "bytes": 51211
+    },
+    {
+      "file": "builtin-script.c",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/perf/builtin-script.c?format=TEXT",
+      "sha256": "1ffd6bb4fb68937f2879fd203883a0d4f2d5e94377d895a9e502dd5cbbc59ecf",
+      "bytes": 117042
+    },
+    {
+      "file": "test_brstack.sh",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/perf/tests/shell/test_brstack.sh?format=TEXT",
+      "sha256": "61c960c6203b5e4e8073210fba3e99e45e97be75f28a197e43f24bc97cd53eb7",
+      "bytes": 3472
+    },
+    {
+      "file": "event.c",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/perf/util/event.c?format=TEXT",
+      "sha256": "d4aaf2d3a1d98f9589190f1926f78a17a774c36aa0d418ad1b70ca59896ca29a",
+      "bytes": 25492
+    },
+    {
+      "file": "perf_event.h",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/include/uapi/linux/perf_event.h?format=TEXT",
+      "sha256": "dd153c00f0a0ff2189cac428fb4346a6b3a712bc8bcccdc650a61992ef20c103",
+      "bytes": 44593
+    },
+    {
+      "file": "perf-record.txt",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/perf/Documentation/perf-record.txt?format=TEXT",
+      "sha256": "91ffcc9dc0e5a570f1ed2f4689acb92a2a548da9f8e71248c56145d5878b9081",
+      "bytes": 34046
+    },
+    {
+      "file": "perf.data-file-format.txt",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/perf/Documentation/perf.data-file-format.txt?format=TEXT",
+      "sha256": "99aba207c361adcfda6f4f189d0b6b9d1ba3a7aaeeafb47c2acec256e316f2c5",
+      "bytes": 17803
+    },
+    {
+      "file": "perf-event.h",
+      "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v6.17/tools/lib/perf/include/perf/event.h?format=TEXT",
+      "sha256": "47b01be4a16dac7fddb8105adf91780398652eb508dd953f7d3981a23546c901",
+      "bytes": 12575
+    }
+  ]
+}

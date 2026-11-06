@@ -16,4 +16,7 @@ tgo = "tgo.cli:main"
 version = {attr = "tgo.__version__"}
 
 [tool.setuptools.package-data]
-tgo = ["native/*.c", "native/include/*.h", "fixtures/*.go"]
+tgo = ["native/*.c", "native/include/*.h", "fixtures/*.go", "data/*.json", "live/native/*.c", "live/native/*.cpp", "workloads/*.c"]
+
+[tool.setuptools.packages.find]
+include = ["tgo*"]

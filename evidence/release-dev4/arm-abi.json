@@ -1,0 +1,18 @@
+{
+  "schema": "tgo.arm-brbe-abi-integration.v1",
+  "version": "0.6.0.dev4",
+  "state": "complete",
+  "hardware_brbe_tested": false,
+  "input": "人工标准ABI夹具，非硬件采集",
+  "machine": 183,
+  "source_branch": [
+    "0x400690",
+    "0x4006c0"
+  ],
+  "equivalent": true,
+  "stdout": "50000\n",
+  "fdata_sha256": "d1498cea8ba47fbd924202e2b08448b33f953666248d0d5a80712bab15027689",
+  "source_sha256": "f82da93ad607ff9dc2eddde7e5c8ccb27b502243854fc91cdd173846587d89cc",
+  "samples": 120,
+  "branches": 120
+}

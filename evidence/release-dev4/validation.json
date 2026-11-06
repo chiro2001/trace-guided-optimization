@@ -1,0 +1,47 @@
+{
+  "schema": "tgo.release-validation.v1",
+  "version": "0.6.0.dev4",
+  "state": "complete",
+  "date": "2026-11-06",
+  "hardware_brbe_tested": false,
+  "tests": {
+    "total": 105,
+    "passed": 103,
+    "skipped": 2,
+    "log_sha256": "0f6c155ac9d13f43e1cc16029985847cbf9ea8539faa34940f0717e3826e41dd"
+  },
+  "checks": [
+    "固定wheel源码匹配",
+    "隔离Python3.14安装",
+    "九工具MCP握手",
+    "真实MCP任务启动/查询/源码冻结",
+    "920B Python3.11与perf6.14标准ABI解码",
+    "920B真实事件拒绝不回退",
+    "x86与AArch64标准ABI夹具经perf/perf2bolt/BOLT后原生输出等价",
+    "attach亲和性不修改",
+    "有限诊断包"
+  ],
+  "branch_abi_fixture": {
+    "samples": 120,
+    "branch_entries": 120,
+    "synthetic": true,
+    "hardware_brbe_tested": false
+  },
+  "wheel": {
+    "filename": "trace_guided_optimization-0.6.0.dev4-py3-none-any.whl",
+    "sha256": "39bdf64572da17b6e1224b79f2347f7d9acb88169f113c8da0b224794f1a8edb",
+    "bytes": 185044
+  },
+  "limits": [
+    "BRBE硬件采集/开销/覆盖/收益待内网验证",
+    "未提供任意外部进程在线替换",
+    "不将既有40%收益作为BRBE新结果"
+  ],
+  "publication_tests": {
+    "total": 105,
+    "passed": 105,
+    "skipped": 0,
+    "environment": "显式解析已验证SDK工具后，在干净Git发布工作树运行",
+    "log_sha256": "7276cee22657f2cc41ac7225b28a74b98c780a8e3e449e7496917b4c68ce36db"
+  }
+}

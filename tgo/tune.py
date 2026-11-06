@@ -4,7 +4,7 @@ import hashlib
 import itertools
 from .collect import record
 from .optimize import optimize, verify_images, IdentityError
-from .runtime import build_runtime, make_launcher
+from .runtime import build_runtime, make_launcher,publication_environment
 from .util import read_json, write_json, sha256
 from .validate import validate
 from .selection import screening_score, confirmed
@@ -39,22 +39,30 @@ def image_subsets(images, exhaustive=False):
 def compose_bundle(path, source_build, images):
     """Reuse rewritten objects; subset search never reruns the rewriter."""
     verify_images(images)
-    path.mkdir()
-    build_runtime(path)
     state = read_json(Path(source_build["source_run"]) / "run.json")
-    entry = make_launcher(path, path / "run", state["command"], images, state["env"], state["cwd"])
+    workload={key:state[key] for key in ['command','cwd','env']}
+    path.mkdir()
     built = {"schema": "tgo.build.v1", "strategy": "bolt-subset", "source_run": source_build["source_run"],
-        "profile_sha256": source_build["profile_sha256"], "images": images, "entry": entry,
-        "entry_mode": "command", "state": "candidate", "workload": source_build["workload"],
+        "profile_sha256": source_build.get("profile_sha256"), "images": images,
+        "entry_mode": "command", "state": "building", "workload": workload,
         "reused_objects": True}
     write_json(path / "build.json", built)
+    try:
+        build_runtime(path)
+        entry = make_launcher(path, path / "run", state["command"], images, state["env"], state["cwd"])
+        built.update(entry=entry,state='candidate');write_json(path/'build.json',built)
+    except BaseException as error:
+        (path/'run').unlink(missing_ok=True);built.update(state='failed',error=str(error));write_json(path/'build.json',built);raise
     return built
 
 
 def evaluate(path, pairs, args):
     built = read_json(path / "build.json")
     verify_images(built["images"])
-    result = validate(path, pairs, args.timeout, args.metric)
+    if getattr(args,'_validation_cases',None):
+        from .scenarios import validate_scenarios
+        result=validate_scenarios(path,args._validation_cases,pairs,args.timeout,args.metric)
+    else:result = validate(path, pairs, args.timeout, args.metric)
     verify_images(built["images"])
     built.setdefault("validation_history", []).append(result)
     built["validation"] = result
@@ -89,8 +97,15 @@ def discover_cpython(args, root, capture, state, profile):
     if state.get("training_images"):
         return None
     explicit = args.strategy == "cpython"
-    if not explicit and (not resolve_recipe(args, state, profile) or not tool("gcc", required=False)):
+    from .capabilities import classify_profile_image
+    cores=[row for row in profile['images'] if classify_profile_image(row)['runtime']=='cpython']
+    entry=classify_profile_image({'path':state['command'][0]})
+    if len(cores)!=1 or not entry.get('cpython_entry'):
+        if explicit:raise ValueError('CPython source training requires a Python entry and one interpreter core')
         return None
+    if not explicit:
+        from .cpython import source_build_available
+        if not tool('gcc',required=False) or not source_build_available(args,state):return None
     if args.pid or state.get("roi") != "marker":
         if explicit:
             raise ValueError("CPython compiler training currently requires launch mode and an explicit marker ROI")
@@ -115,6 +130,12 @@ def tune(args):
               "confirmations": [], "selected": "baseline", "state": "recording"}
     write_json(root / "tune.json", result)
     try:
+        if getattr(args,'validation_cases',None):
+            from .scenarios import read_scenarios
+            args._validation_cases=read_scenarios(args.validation_cases)
+            if args._validation_cases.get('role','validation')!='validation':raise ValueError('调优只接收role=validation；选型冻结后再用validate --cases验证heldout')
+            frozen=root/'validation-cases.json';write_json(frozen,args._validation_cases)
+            result['validation_cases']={'path':str(frozen),'sha256':sha256(frozen)}
         if not args.run:
             repetitions = getattr(args, "train_runs", 1)
             first = capture if repetitions == 1 else root / "training/capture-000"
@@ -226,13 +247,16 @@ def tune(args):
         build_runtime(root)
         result["entry_mode"] = args.entry_mode
         deployed = state["command"][:1] if args.entry_mode == "executable" else state["command"]
-        result["entry"] = make_launcher(root, args.entry or root / "run", deployed, images, state["env"],
+        affinity=getattr(args,'publish_affinity','inherit');result['published_affinity']=affinity
+        result["entry"] = make_launcher(root, args.entry or root / "run", deployed, images, publication_environment(state["env"],affinity),
                                          None if args.entry_mode == "executable" else state["cwd"])
         result["optimized_images"] = [r["optimized"] for r in images]
         result["state"] = "complete"
         write_json(root / "build.json", {"schema": "tgo.build.v1", "strategy": "bolt", "source_run": str(capture),
             "images": images, "entry": result["entry"], "entry_mode": args.entry_mode,
             "state": "validated" if images else "baseline", "validation": result.get("confirmation"),
+            'validation_cases':result.get('validation_cases'),
+            'published_affinity':affinity,
             "workload": {k: state[k] for k in ("command", "cwd", "env")}})
     except BaseException as error:
         result.update(state="failed", error=str(error)); raise

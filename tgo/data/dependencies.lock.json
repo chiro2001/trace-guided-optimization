@@ -1,0 +1,82 @@
+{
+  "golang-aarch64": {
+    "version": "1.27.3",
+    "url": "https://go.dev/dl/go1.27.3.linux-arm64.tar.gz",
+    "sha256": "a06e99309dbcbdca1a8ccd2282c3ee146e55930886e26b4f1193269587165f49"
+  },
+  "golang-x86_64": {
+    "version": "1.27.3",
+    "url": "https://go.dev/dl/go1.27.3.linux-amd64.tar.gz",
+    "sha256": "65efbc80fdc1fa2cd2631cad5b481777a68e8725f34e89f50fc6ac714e379b40"
+  },
+  "llvm": {
+    "version": "22.1.0",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.0/llvm-project-22.1.0.src.tar.xz",
+    "sha256": "25d2e2adc4356d758405dd885fcfd6447bce82a90eb78b6b87ce0934bd077173"
+  },
+  "qemu": {
+    "version": "10.0.0",
+    "url": "https://download.qemu.org/qemu-10.0.0.tar.xz",
+    "sha256": "22c075601fdcf8c7b2671a839ebdcef1d4f2973eb6735254fd2e1bd0f30b3896"
+  },
+  "python": {
+    "version": "3.12.13",
+    "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tar.xz",
+    "sha256": "c08bc65a81971c1dd5783182826503369466c7e67374d1646519adf05207b684"
+  },
+  "zlib": {
+    "version": "1.3.1",
+    "url": "https://zlib.net/fossils/zlib-1.3.1.tar.gz",
+    "sha256": "9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23"
+  },
+  "libffi": {
+    "version": "3.4.6",
+    "url": "https://github.com/libffi/libffi/releases/download/v3.4.6/libffi-3.4.6.tar.gz",
+    "sha256": "b0dea9df23c863a7a50e825440f3ebffabd65df1497108e5d437747843895a4e"
+  },
+  "elfutils": {
+    "version": "0.193",
+    "url": "https://sourceware.org/elfutils/ftp/0.193/elfutils-0.193.tar.bz2",
+    "sha256": "7857f44b624f4d8d421df851aaae7b1402cfe6bcdd2d8049f15fc07d3dde7635"
+  },
+  "perf": {
+    "version": "6.14",
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.tar.xz",
+    "sha256": "a294b683e7b161bb0517bb32ec7ed1d2ea7603dfbabad135170ed12d00c47670"
+  },
+  "patchelf": {
+    "version": "0.18.0",
+    "url": "https://github.com/NixOS/patchelf/releases/download/0.18.0/patchelf-0.18.0.tar.bz2",
+    "sha256": "1952b2a782ba576279c211ee942e341748fdb44997f704dd53def46cd055470b"
+  },
+  "glib": {
+    "version": "2.84.1",
+    "url": "https://download.gnome.org/sources/glib/2.84/glib-2.84.1.tar.xz",
+    "sha256": "2b4bc2ec49611a5fc35f86aca855f2ed0196e69e53092bab6bb73396bf30789a"
+  },
+  "runtime-aarch64": {
+    "version": "snapshot-2026-10-29",
+    "url": "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-aarch64",
+    "sha256": "9a72a744d221576c9347ec074243acc5c3c7568896b12714e0e82e9f0bf47900"
+  },
+  "runtime-x86_64": {
+    "version": "snapshot-2026-10-29",
+    "url": "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64",
+    "sha256": "617aa77314d57c8b8e4fae9c3f0b35af7b30d5529cb69e98f64f92510ed98a46"
+  },
+  "appimagetool-aarch64": {
+    "version": "1.9.0",
+    "url": "https://github.com/AppImage/appimagetool/releases/download/1.9.0/appimagetool-aarch64.AppImage",
+    "sha256": "04f45ea45b5aa07bb2b071aed9dbf7a5185d3953b11b47358c1311f11ea94a96"
+  },
+  "appimagetool-x86_64": {
+    "version": "1.9.0",
+    "url": "https://github.com/AppImage/appimagetool/releases/download/1.9.0/appimagetool-x86_64.AppImage",
+    "sha256": "46fdd785094c7f6e545b61afcfb0f3d98d8eab243f644b4b17698c01d06083d1"
+  },
+  "python-gzip": {
+    "version": "3.12.13",
+    "url": "https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tgz",
+    "sha256": "0816c4761c97ecdb3f50a3924de0a93fd78cb63ee8e6c04201ddfaedca500b0b"
+  }
+}

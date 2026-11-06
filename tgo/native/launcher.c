@@ -1,6 +1,7 @@
 #define _GNU_SOURCE
 #include <fcntl.h>
 #include <stdint.h>
+#include <sched.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +10,8 @@
 #include "include/tgo_sha256.h"
 
 __attribute__((used)) static const char tgo_launcher_abi[]="TGO_LAUNCHER_ABI_2";
+__attribute__((used)) static const char tgo_launcher_ctime[]="TGO_LAUNCHER_ABI_3";
+__attribute__((used)) static const char tgo_launcher_affinity[]="TGO_LAUNCHER_CPU_AFFINITY_1";
 
 /* Template built once; each entry carries a binary configuration after the ELF. */
 static unsigned char *cursor,*end;
@@ -35,6 +38,32 @@ static void refresh_go_stamp(const char *path,const struct stat *st) {
         }
     }
 }
+static void workload_affinity(void) {
+    const char *value=getenv("TGO_WORKLOAD_CPUS");
+    if(!value || !*value) return;
+    long maximum=0;
+    for(int pass=0;pass<2;pass++) {
+        size_t size=pass?CPU_ALLOC_SIZE((size_t)maximum+1):0;
+        cpu_set_t *set=pass?CPU_ALLOC((size_t)maximum+1):NULL;
+        if(pass && !set) bad();
+        if(pass) CPU_ZERO_S(size,set);
+        const char *p=value;
+        while(*p) {
+            char *end;long low=strtol(p,&end,10),high=low;
+            if(end==p || low<0 || low>=1048576) bad();
+            p=end;
+            if(*p=='-') { p++;high=strtol(p,&end,10);if(end==p || high<low || high>=1048576) bad();p=end; }
+            if(high>maximum) maximum=high;
+            if(pass) for(long cpu=low;cpu<=high;cpu++) CPU_SET_S((size_t)cpu,size,set);
+            if(*p && *p!=',') bad();
+            if(*p==',') { p++;if(!*p) bad(); }
+        }
+        if(pass) {
+            if(sched_setaffinity(0,size,set)) { perror("tgo: sched_setaffinity");exit(125); }
+            CPU_FREE(set);
+        }
+    }
+}
 int main(int argc,char **argv) {
     int fd=open("/proc/self/exe",O_RDONLY|O_CLOEXEC); struct stat st;
     unsigned char footer[16];
@@ -42,7 +71,8 @@ int main(int argc,char **argv) {
     cursor=footer;end=footer+16;
     uint64_t size=number(8);
     int format2=!memcmp(cursor,"TGOCFG02",8);
-    if((!format2 && memcmp(cursor,"TGOCFG01",8)) || size>64*1024*1024 || size>(uint64_t)st.st_size-16) bad();
+    int format3=!memcmp(cursor,"TGOCFG03",8);
+    if((!format3 && !format2 && memcmp(cursor,"TGOCFG01",8)) || size>64*1024*1024 || size>(uint64_t)st.st_size-16) bad();
     unsigned char *data=malloc((size_t)size); if(!data) bad();
     if(pread(fd,data,(size_t)size,st.st_size-16-(off_t)size)!=(ssize_t)size) bad();
     close(fd); cursor=data;end=data+size;
@@ -77,11 +107,14 @@ int main(int argc,char **argv) {
     for(size_t i=0;i<nc;i++) {
         char *path=string(); int64_t sz=(int64_t)number(8),sec=(int64_t)number(8),ns=(int64_t)number(8);
         uint64_t ino=number(8),dev=number(8);
+        int64_t csec=0,cns=0;
+        if(format3) { csec=(int64_t)number(8);cns=(int64_t)number(8); }
         const unsigned char *digest=NULL;
-        if(format2) { if(end-cursor<32) bad();digest=cursor;cursor+=32; }
+        if(format2 || format3) { if(end-cursor<32) bad();digest=cursor;cursor+=32; }
         int same=!stat(path,&st) && st.st_size==sz && st.st_mtim.tv_sec==sec &&
-            st.st_mtim.tv_nsec==ns && st.st_ino==ino && st.st_dev==dev;
-        if(!disabled && !same && (!format2 || !tgo_sha256_matches(path,digest))) {
+            st.st_mtim.tv_nsec==ns && st.st_ino==ino && st.st_dev==dev &&
+            (!format3 || (st.st_ctim.tv_sec==csec && st.st_ctim.tv_nsec==cns));
+        if(!disabled && !same && (!(format2 || format3) || !tgo_sha256_matches(path,digest))) {
             fprintf(stderr,"tgo: ELF changed: %s; rebuild or use TGO_DISABLE=1\n",path); return 125;
         }
         if(!disabled && !stat(path,&st)) refresh_go_stamp(path,&st);
@@ -93,5 +126,6 @@ int main(int argc,char **argv) {
         setenv("TGO_REDIRECT",map,1); setenv("LD_AUDIT",audit,1);
     }
     if(*cwd && chdir(cwd)) { perror("tgo: chdir"); return 125; }
+    workload_affinity();
     execv(disabled?args[0]:target,args); perror("tgo: execv"); return 126;
 }

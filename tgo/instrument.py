@@ -9,13 +9,13 @@ import subprocess
 from .artifact import stage_image
 from .elf import ELF, normalize_loads
 from .runtime import build_runtime, make_launcher
-from .util import IdentityError, read_json, write_json, run, sha256, tool, tool_env, workload_env
+from .util import IdentityError, read_json, write_json, run, sha256, tool, tool_env, workload_env,dependency_asset
 from .validate import execute_trial
 
 
 def runtime_archive():
     root = Path(__file__).resolve().parents[1]
-    candidates = [os.environ.get('TGO_BOLT_RUNTIME'), root/'deps/install/lib/libbolt_rt_instr.a',
+    candidates = [os.environ.get('TGO_BOLT_RUNTIME'), dependency_asset('lib/libbolt_rt_instr.a'),
                   root/'deps/build/llvm/lib/libbolt_rt_instr.a']
     if os.environ.get('TGO_APPDIR'):
         candidates.insert(0, Path(os.environ['TGO_APPDIR'])/'usr/lib/tgo-bolt/libbolt_rt_instr.a')

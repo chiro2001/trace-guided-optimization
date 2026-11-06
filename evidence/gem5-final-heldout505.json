@@ -1,0 +1,1260 @@
+{
+  "schema": "tgo.validation.v1",
+  "state": "complete",
+  "equivalent": true,
+  "case_count": 2,
+  "requested_pairs": 10,
+  "completed_pairs": 10,
+  "cases": [
+    {
+      "name": "o3",
+      "evaluation": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/evaluation.json",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 4.5558728070463985,
+              "metric_seconds": 4.068978937,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "5302d82035930a73a3dd513837fb130c21f733d6b32dbf798fbd7df0f693c2b4",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 4082562661,
+                  "time_running": 4082562661,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 18838821309,
+                    "instructions": 40211615592,
+                    "frontend_stall_cycles": 4701008092,
+                    "l1i_read_misses": 81898586
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 4.1332668899558485,
+              "metric_seconds": 3.70213122,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "db2a704bae25b086f38dfcdf88add033838beb701a9cc77e3f3d8dfff22a9f11",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 3680943827,
+                  "time_running": 3680943827,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 17106893074,
+                    "instructions": 39900888572,
+                    "frontend_stall_cycles": 3006567507,
+                    "l1i_read_misses": 54127755
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 9.015719242588938
+          },
+          {
+            "candidate": {
+              "seconds": 4.0831964230164886,
+              "metric_seconds": 3.653222272,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "114e1f51593d19302e8dba3fe809bbc5501d4e7751630d90f31b48846b3f4f90",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 3647391802,
+                  "time_running": 3647391802,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 16973416341,
+                    "instructions": 39901315584,
+                    "frontend_stall_cycles": 3012849167,
+                    "l1i_read_misses": 54186254
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "baseline": {
+              "seconds": 4.571836690069176,
+              "metric_seconds": 4.142149494,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "353371c85cb1c01d64a062b7b65ae4cc670d3b0b6c156f966d555b041d53cd48",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 4135425304,
+                  "time_running": 4135425304,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 19169403457,
+                    "instructions": 40210912697,
+                    "frontend_stall_cycles": 5001498346,
+                    "l1i_read_misses": 80703241
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 11.803707778008077
+          },
+          {
+            "baseline": {
+              "seconds": 4.543770123040304,
+              "metric_seconds": 4.091586871,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "25b5c841919885a72a69c0626abbbdfb0452ca15960fed8f7a44c78fc0e82816",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 4082826260,
+                  "time_running": 4082826260,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 18910420580,
+                    "instructions": 40213081861,
+                    "frontend_stall_cycles": 4883781712,
+                    "l1i_read_misses": 81045858
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 4.21959182806313,
+              "metric_seconds": 3.73318869,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "77eae0db35181c6b41433957010d1c22f3abde4281bd1b11d361e4b9f4af1272",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 3709655240,
+                  "time_running": 3709655240,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 17209285516,
+                    "instructions": 39903341926,
+                    "frontend_stall_cycles": 3062536415,
+                    "l1i_read_misses": 54424859
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 8.759393171882135
+          },
+          {
+            "candidate": {
+              "seconds": 4.217369563062675,
+              "metric_seconds": 3.768512258,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "b6b6e977ac725f5d05bbcf5ccdd69ca4014f02d0f9f78ec183bdbe0554bc9aba",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 3751215112,
+                  "time_running": 3751215112,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 17462429726,
+                    "instructions": 39901687862,
+                    "frontend_stall_cycles": 2979135163,
+                    "l1i_read_misses": 53860760
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "baseline": {
+              "seconds": 4.548699641949497,
+              "metric_seconds": 4.107777166,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "b49d00152be5309dbf6b475e2b226c01e166efa473aa54ab0a775775e248aaf7",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 4098803360,
+                  "time_running": 4098803360,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 19063691838,
+                    "instructions": 40212326902,
+                    "frontend_stall_cycles": 4794773435,
+                    "l1i_read_misses": 81392744
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 8.259087440479728
+          },
+          {
+            "baseline": {
+              "seconds": 4.558548522996716,
+              "metric_seconds": 4.113696537,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "7576a72491ebee21f0aa6dce728f34d92ad45dda6365cab70faa69bd177f67ec",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 4102083745,
+                  "time_running": 4102083745,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 19034233297,
+                    "instructions": 40218115445,
+                    "frontend_stall_cycles": 4996749519,
+                    "l1i_read_misses": 83391635
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 4.1626317229820415,
+              "metric_seconds": 3.715891966,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "a45a6e32760c0602c8c99409101d1c2642d54072e4ed542f197c0d1fead3fc88",
+              "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 3709655160,
+                  "time_running": 3709655160,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 17265912745,
+                    "instructions": 39903386508,
+                    "frontend_stall_cycles": 3121089843,
+                    "l1i_read_misses": 53577318
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 9.670245907105912
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "gem5-simulate",
+        "median_reduction_percent": 9.015719242588938,
+        "min_reduction_percent": 8.259087440479728,
+        "max_reduction_percent": 11.803707778008077,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    },
+    {
+      "name": "minor",
+      "evaluation": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/evaluation.json",
+      "validation": {
+        "schema": "tgo.validation.v1",
+        "pairs": [
+          {
+            "baseline": {
+              "seconds": 2.6889646609779447,
+              "metric_seconds": 2.221521393,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-0-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "05bf884373e6335d726dfe4f2482466e1631f1ecda57b61d14273e6977d4fd1a",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 2231661160,
+                  "time_running": 2231661160,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 10295382859,
+                    "instructions": 23641655118,
+                    "frontend_stall_cycles": 2837260454,
+                    "l1i_read_misses": 64921925
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 2.3261424930533394,
+              "metric_seconds": 1.88176564,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-0-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "f01234f55d9e93272b33183dd2e118cf71f8599f34cb3a1152990bd10058760f",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 1878782145,
+                  "time_running": 1878782145,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 8765012313,
+                    "instructions": 23418853412,
+                    "frontend_stall_cycles": 1432942986,
+                    "l1i_read_misses": 48242787
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 15.293832149020414
+          },
+          {
+            "candidate": {
+              "seconds": 2.429597662994638,
+              "metric_seconds": 1.947004333,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-1-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "504bf3d19bbaef87372012358e2c9d72394642510ae8055b96c7471dd05603c6",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 1941515293,
+                  "time_running": 1941515293,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 8996185497,
+                    "instructions": 23423754660,
+                    "frontend_stall_cycles": 1578750070,
+                    "l1i_read_misses": 48528850
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "baseline": {
+              "seconds": 2.6087080830475315,
+              "metric_seconds": 2.151648651,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-1-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2a434aed650b322dcdc2e47f3da1e309e218b6ff7e6b68c21ec701ae79f83b40",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 2137649994,
+                  "time_running": 2137649994,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 9951201347,
+                    "instructions": 23648116255,
+                    "frontend_stall_cycles": 2638898462,
+                    "l1i_read_misses": 65851209
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 9.511047163991648
+          },
+          {
+            "baseline": {
+              "seconds": 2.4988893639529124,
+              "metric_seconds": 2.082363479,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-2-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "9555341d17601d5f3c62e3ca25117dcdc5b7df1f7d346a4554015ddd47a285e1",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 2068399643,
+                  "time_running": 2068399643,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 9641604227,
+                    "instructions": 23640827680,
+                    "frontend_stall_cycles": 2453388329,
+                    "l1i_read_misses": 75105555
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 2.3679492090595886,
+              "metric_seconds": 1.91864913,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-2-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "2db91a7470cfc1d9bdbb3e333598b0e48a32039467acba2fc41ae0b2fe5adf23",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 1915844032,
+                  "time_running": 1915844032,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 8933575190,
+                    "instructions": 23421885274,
+                    "frontend_stall_cycles": 1518087983,
+                    "l1i_read_misses": 47963857
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 7.8619487256192055
+          },
+          {
+            "candidate": {
+              "seconds": 2.305700606899336,
+              "metric_seconds": 1.867514401,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-3-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "0b794b70ba37474b9c57109e0e17ceb9b6717e11525e50720f433ec300667fba",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 1864742672,
+                  "time_running": 1864742672,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 8682267934,
+                    "instructions": 23420303473,
+                    "frontend_stall_cycles": 1396821110,
+                    "l1i_read_misses": 48177980
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "baseline": {
+              "seconds": 2.6369188689859584,
+              "metric_seconds": 2.214567518,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-3-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "12f49b7943606aae2d22bbdd82eafdc4941a36481d8057ce67cb21e443ac8ce1",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 2208296680,
+                  "time_running": 2208296680,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 10217595508,
+                    "instructions": 23639459345,
+                    "frontend_stall_cycles": 2797997812,
+                    "l1i_read_misses": 66546763
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "reduction_percent": 15.67137213831382
+          },
+          {
+            "baseline": {
+              "seconds": 2.632556152995676,
+              "metric_seconds": 2.150442615,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-4-baseline",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "3bbe6192e0612b63ab304a5afc5aabe5b569885edc96a17d14e1543ca766237d",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 2138258462,
+                  "time_running": 2138258462,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 9944377817,
+                    "instructions": 23640545826,
+                    "frontend_stall_cycles": 2582411690,
+                    "l1i_read_misses": 65632893
+                  }
+                }
+              ],
+              "loaded_optimized": []
+            },
+            "candidate": {
+              "seconds": 2.3457015260355547,
+              "metric_seconds": 1.896849269,
+              "returncode": 0,
+              "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-4-candidate",
+              "timed_out": false,
+              "metric_missing": false,
+              "stdout_sha256": "42697cbae2ca6f45bc8dba3c2727143a47e2987dca575a57465a3270fbeebb3d",
+              "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+              "correctness_source": "result-json",
+              "pmu": [
+                {
+                  "scope": "native-calling-thread-user",
+                  "open_errors": [],
+                  "time_enabled": 1888860309,
+                  "time_running": 1888860309,
+                  "no_multiplex": true,
+                  "events": {
+                    "cycles": 8755816971,
+                    "instructions": 23419533902,
+                    "frontend_stall_cycles": 1394099334,
+                    "l1i_read_misses": 48305188
+                  }
+                }
+              ],
+              "loaded_optimized": [
+                "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+              ]
+            },
+            "reduction_percent": 11.792611634047246
+          }
+        ],
+        "equivalent": true,
+        "evidence_directory": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36",
+        "requested_pairs": 5,
+        "completed_pairs": 5,
+        "warmup_pairs": [],
+        "metric": "gem5-simulate",
+        "median_reduction_percent": 11.792611634047246,
+        "min_reduction_percent": 7.8619487256192055,
+        "max_reduction_percent": 15.67137213831382,
+        "recommendation": "candidate",
+        "limits": "stdout equivalence and loaded-image checks; workload-specific correctness tests are additional"
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "baseline": {
+        "seconds": 4.5558728070463985,
+        "metric_seconds": 4.068978937,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-0-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "5302d82035930a73a3dd513837fb130c21f733d6b32dbf798fbd7df0f693c2b4",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 4082562661,
+            "time_running": 4082562661,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 18838821309,
+              "instructions": 40211615592,
+              "frontend_stall_cycles": 4701008092,
+              "l1i_read_misses": 81898586
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 4.1332668899558485,
+        "metric_seconds": 3.70213122,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-0-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "db2a704bae25b086f38dfcdf88add033838beb701a9cc77e3f3d8dfff22a9f11",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 3680943827,
+            "time_running": 3680943827,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 17106893074,
+              "instructions": 39900888572,
+              "frontend_stall_cycles": 3006567507,
+              "l1i_read_misses": 54127755
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 9.015719242588938,
+      "case": "o3"
+    },
+    {
+      "candidate": {
+        "seconds": 4.0831964230164886,
+        "metric_seconds": 3.653222272,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-1-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "114e1f51593d19302e8dba3fe809bbc5501d4e7751630d90f31b48846b3f4f90",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 3647391802,
+            "time_running": 3647391802,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 16973416341,
+              "instructions": 39901315584,
+              "frontend_stall_cycles": 3012849167,
+              "l1i_read_misses": 54186254
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "baseline": {
+        "seconds": 4.571836690069176,
+        "metric_seconds": 4.142149494,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-1-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "353371c85cb1c01d64a062b7b65ae4cc670d3b0b6c156f966d555b041d53cd48",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 4135425304,
+            "time_running": 4135425304,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 19169403457,
+              "instructions": 40210912697,
+              "frontend_stall_cycles": 5001498346,
+              "l1i_read_misses": 80703241
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": 11.803707778008077,
+      "case": "o3"
+    },
+    {
+      "baseline": {
+        "seconds": 4.543770123040304,
+        "metric_seconds": 4.091586871,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-2-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "25b5c841919885a72a69c0626abbbdfb0452ca15960fed8f7a44c78fc0e82816",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 4082826260,
+            "time_running": 4082826260,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 18910420580,
+              "instructions": 40213081861,
+              "frontend_stall_cycles": 4883781712,
+              "l1i_read_misses": 81045858
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 4.21959182806313,
+        "metric_seconds": 3.73318869,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-2-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "77eae0db35181c6b41433957010d1c22f3abde4281bd1b11d361e4b9f4af1272",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 3709655240,
+            "time_running": 3709655240,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 17209285516,
+              "instructions": 39903341926,
+              "frontend_stall_cycles": 3062536415,
+              "l1i_read_misses": 54424859
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 8.759393171882135,
+      "case": "o3"
+    },
+    {
+      "candidate": {
+        "seconds": 4.217369563062675,
+        "metric_seconds": 3.768512258,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-3-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "b6b6e977ac725f5d05bbcf5ccdd69ca4014f02d0f9f78ec183bdbe0554bc9aba",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 3751215112,
+            "time_running": 3751215112,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 17462429726,
+              "instructions": 39901687862,
+              "frontend_stall_cycles": 2979135163,
+              "l1i_read_misses": 53860760
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "baseline": {
+        "seconds": 4.548699641949497,
+        "metric_seconds": 4.107777166,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-3-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "b49d00152be5309dbf6b475e2b226c01e166efa473aa54ab0a775775e248aaf7",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 4098803360,
+            "time_running": 4098803360,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 19063691838,
+              "instructions": 40212326902,
+              "frontend_stall_cycles": 4794773435,
+              "l1i_read_misses": 81392744
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": 8.259087440479728,
+      "case": "o3"
+    },
+    {
+      "baseline": {
+        "seconds": 4.558548522996716,
+        "metric_seconds": 4.113696537,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-4-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "7576a72491ebee21f0aa6dce728f34d92ad45dda6365cab70faa69bd177f67ec",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 4102083745,
+            "time_running": 4102083745,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 19034233297,
+              "instructions": 40218115445,
+              "frontend_stall_cycles": 4996749519,
+              "l1i_read_misses": 83391635
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 4.1626317229820415,
+        "metric_seconds": 3.715891966,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/o3/bundle/validations/2cd0c38daa224b82b11bde0082e3ea05/validation-4-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "a45a6e32760c0602c8c99409101d1c2642d54072e4ed542f197c0d1fead3fc88",
+        "correctness_sha256": "67216afa7278096e1cd60483686f4f39186453ba265c68a3fe48703b6389e203",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 3709655160,
+            "time_running": 3709655160,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 17265912745,
+              "instructions": 39903386508,
+              "frontend_stall_cycles": 3121089843,
+              "l1i_read_misses": 53577318
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 9.670245907105912,
+      "case": "o3"
+    },
+    {
+      "baseline": {
+        "seconds": 2.6889646609779447,
+        "metric_seconds": 2.221521393,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-0-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "05bf884373e6335d726dfe4f2482466e1631f1ecda57b61d14273e6977d4fd1a",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 2231661160,
+            "time_running": 2231661160,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 10295382859,
+              "instructions": 23641655118,
+              "frontend_stall_cycles": 2837260454,
+              "l1i_read_misses": 64921925
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 2.3261424930533394,
+        "metric_seconds": 1.88176564,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-0-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "f01234f55d9e93272b33183dd2e118cf71f8599f34cb3a1152990bd10058760f",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 1878782145,
+            "time_running": 1878782145,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 8765012313,
+              "instructions": 23418853412,
+              "frontend_stall_cycles": 1432942986,
+              "l1i_read_misses": 48242787
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 15.293832149020414,
+      "case": "minor"
+    },
+    {
+      "candidate": {
+        "seconds": 2.429597662994638,
+        "metric_seconds": 1.947004333,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-1-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "504bf3d19bbaef87372012358e2c9d72394642510ae8055b96c7471dd05603c6",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 1941515293,
+            "time_running": 1941515293,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 8996185497,
+              "instructions": 23423754660,
+              "frontend_stall_cycles": 1578750070,
+              "l1i_read_misses": 48528850
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "baseline": {
+        "seconds": 2.6087080830475315,
+        "metric_seconds": 2.151648651,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-1-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "2a434aed650b322dcdc2e47f3da1e309e218b6ff7e6b68c21ec701ae79f83b40",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 2137649994,
+            "time_running": 2137649994,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 9951201347,
+              "instructions": 23648116255,
+              "frontend_stall_cycles": 2638898462,
+              "l1i_read_misses": 65851209
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": 9.511047163991648,
+      "case": "minor"
+    },
+    {
+      "baseline": {
+        "seconds": 2.4988893639529124,
+        "metric_seconds": 2.082363479,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-2-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "9555341d17601d5f3c62e3ca25117dcdc5b7df1f7d346a4554015ddd47a285e1",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 2068399643,
+            "time_running": 2068399643,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 9641604227,
+              "instructions": 23640827680,
+              "frontend_stall_cycles": 2453388329,
+              "l1i_read_misses": 75105555
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 2.3679492090595886,
+        "metric_seconds": 1.91864913,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-2-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "2db91a7470cfc1d9bdbb3e333598b0e48a32039467acba2fc41ae0b2fe5adf23",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 1915844032,
+            "time_running": 1915844032,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 8933575190,
+              "instructions": 23421885274,
+              "frontend_stall_cycles": 1518087983,
+              "l1i_read_misses": 47963857
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 7.8619487256192055,
+      "case": "minor"
+    },
+    {
+      "candidate": {
+        "seconds": 2.305700606899336,
+        "metric_seconds": 1.867514401,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-3-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "0b794b70ba37474b9c57109e0e17ceb9b6717e11525e50720f433ec300667fba",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 1864742672,
+            "time_running": 1864742672,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 8682267934,
+              "instructions": 23420303473,
+              "frontend_stall_cycles": 1396821110,
+              "l1i_read_misses": 48177980
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "baseline": {
+        "seconds": 2.6369188689859584,
+        "metric_seconds": 2.214567518,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-3-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "12f49b7943606aae2d22bbdd82eafdc4941a36481d8057ce67cb21e443ac8ce1",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 2208296680,
+            "time_running": 2208296680,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 10217595508,
+              "instructions": 23639459345,
+              "frontend_stall_cycles": 2797997812,
+              "l1i_read_misses": 66546763
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "reduction_percent": 15.67137213831382,
+      "case": "minor"
+    },
+    {
+      "baseline": {
+        "seconds": 2.632556152995676,
+        "metric_seconds": 2.150442615,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-4-baseline",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "3bbe6192e0612b63ab304a5afc5aabe5b569885edc96a17d14e1543ca766237d",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 2138258462,
+            "time_running": 2138258462,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 9944377817,
+              "instructions": 23640545826,
+              "frontend_stall_cycles": 2582411690,
+              "l1i_read_misses": 65632893
+            }
+          }
+        ],
+        "loaded_optimized": []
+      },
+      "candidate": {
+        "seconds": 2.3457015260355547,
+        "metric_seconds": 1.896849269,
+        "returncode": 0,
+        "evidence_prefix": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2/minor/bundle/validations/8495df0fa0394ba9975ce24905e21d36/validation-4-candidate",
+        "timed_out": false,
+        "metric_missing": false,
+        "stdout_sha256": "42697cbae2ca6f45bc8dba3c2727143a47e2987dca575a57465a3270fbeebb3d",
+        "correctness_sha256": "fe66a9d388026da47c94a0d3b0ac0eec5e588faa8f2ccb678e2ed589e80c09e9",
+        "correctness_source": "result-json",
+        "pmu": [
+          {
+            "scope": "native-calling-thread-user",
+            "open_errors": [],
+            "time_enabled": 1888860309,
+            "time_running": 1888860309,
+            "no_multiplex": true,
+            "events": {
+              "cycles": 8755816971,
+              "instructions": 23419533902,
+              "frontend_stall_cycles": 1394099334,
+              "l1i_read_misses": 48305188
+            }
+          }
+        ],
+        "loaded_optimized": [
+          "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-lite-r1/aligned/images/8a470578e399e7d4-e9954e25/gem5.opt"
+        ]
+      },
+      "reduction_percent": 11.792611634047246,
+      "case": "minor"
+    }
+  ],
+  "metric": "per-scenario-paired-native-wall",
+  "evidence_directory": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-final-candidate-r1/scenario-validations/87da71636a154fe9bccc64e24e752ff2",
+  "case_definition_sha256": "3af21775e25baac226a9492a74a270d53d8fe5e6d71ac5a0158f5845f336e5ef",
+  "selection_metric": "worst_case_median_reduction_percent",
+  "role": "heldout",
+  "started_unix": 1793922514.5112228,
+  "current_case": "minor",
+  "median_reduction_percent": 9.59064653554878,
+  "min_reduction_percent": 7.8619487256192055,
+  "max_reduction_percent": 15.67137213831382,
+  "worst_case_median_reduction_percent": 9.015719242588938,
+  "recommendation": "candidate",
+  "finished_unix": 1793922584.4533668,
+  "publication": {
+    "path_redaction": true,
+    "numeric_values_unchanged": true,
+    "internal_source_sha256": "454426988b0b9739fda16a26fcb06037a2cf9db9e8a0d45c54a209a2a4ee2c51"
+  }
+}

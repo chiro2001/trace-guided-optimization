@@ -11,7 +11,7 @@ from .util import IdentityError, sha256, tool, tool_env, run
 def executable_sections(path):
     elf = ELF(path)
     return {name: {"address": section[3], "size": section[5],
-                   "sha256": hashlib.sha256(elf.data[section[4]:section[4]+section[5]]).hexdigest()}
+                   "sha256": hashlib.sha256(elf.read(section[4],section[5])).hexdigest()}
             for name, section in elf.sections.items() if section[2] & 4}
 
 

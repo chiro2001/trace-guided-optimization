@@ -99,8 +99,8 @@ def merge_captures(runs, output, allow_variation=False):
             raise ValueError("cyclic capture set")
         active.add(root)
         state, profile = read_json(root / "run.json"), read_json(root / "profile.json")
-        if state["state"] != "recorded" or state["backend"] not in ("perf", "spe", "qemu"):
-            raise ValueError("merge requires completed perf/SPE/QEMU captures; Go CPU profiles use the Go strategy")
+        if state["state"] != "recorded" or state["backend"] not in ("perf", "brbe", "spe", "qemu"):
+            raise ValueError("merge requires completed perf/BRBE/SPE/QEMU captures; Go CPU profiles use the Go strategy")
         if profile.get("schema") == SCHEMA:
             verified_sources(profile)
             for ref in profile["sources"]:
@@ -150,6 +150,10 @@ def merge_captures(runs, output, allow_variation=False):
         "quality": {"kind": "independently-normalized-captures", "runs": len(roots),
                     "hotspot_weight": "summed dynamic instruction counts" if qemu else "mean per-run sample share",
                     "fdata_weight": "sum of counts after independent ELF mapping", "workload_variations": variations}}
+    if base_profile.get('perf_decoder'):
+        merged['perf_decoder'] = base_profile['perf_decoder']
+    if base_profile['backend'] == 'brbe':
+        merged['quality']['branch_stack_sources'] = [p['quality']['branch_stack'] for _, p in source_profiles]
     if qemu:
         merged.update(instructions=sum(p["instructions"] for _, p in source_profiles),
             unmapped_instructions=sum(p.get("unmapped_instructions", 0) for _, p in source_profiles),

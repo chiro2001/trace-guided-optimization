@@ -1,0 +1,198 @@
+{
+  "schema": "tgo.cross-workload-evidence.v1",
+  "date": "2026-11-06",
+  "results": [
+    {
+      "name": "python312-mixed-r4",
+      "mode": "offline-bolt",
+      "selected": "ext-tsp",
+      "published": "ext-tsp",
+      "confirmation_median_percent": 21.09533891088631,
+      "confirmation_min_percent": 7.027848862956121,
+      "heldout_median_percent": 20.802937510564735,
+      "heldout_min_percent": 19.934554943584903,
+      "equivalent": true,
+      "pairs": 3,
+      "heldout_pairs": 3
+    },
+    {
+      "name": "python312-dispatch-r1",
+      "mode": "offline-bolt",
+      "selected": "aligned",
+      "published": "aligned",
+      "confirmation_median_percent": 10.204903630706074,
+      "confirmation_min_percent": 10.143146911733968,
+      "heldout_median_percent": 10.378820066184746,
+      "heldout_min_percent": 9.687596547579124,
+      "equivalent": true,
+      "pairs": 3,
+      "heldout_pairs": 3
+    },
+    {
+      "name": "python312-graph-r1",
+      "mode": "offline-bolt",
+      "selected": "aligned",
+      "published": "aligned",
+      "confirmation_median_percent": 14.476036706683736,
+      "confirmation_min_percent": 14.262650383591568,
+      "heldout_median_percent": 13.514185966033699,
+      "heldout_min_percent": 13.411067501685114,
+      "equivalent": true,
+      "pairs": 3,
+      "heldout_pairs": 3
+    },
+    {
+      "name": "python312-parsers-r1",
+      "mode": "offline-bolt",
+      "selected": "ext-tsp",
+      "published": "ext-tsp",
+      "confirmation_median_percent": 21.648571265822568,
+      "confirmation_min_percent": 21.084165508161334,
+      "heldout_median_percent": 21.045522716443177,
+      "heldout_min_percent": 20.73795136495876,
+      "equivalent": true,
+      "pairs": 3,
+      "heldout_pairs": 3
+    },
+    {
+      "name": "live-python312-mixed-r2",
+      "mode": "same-process-online",
+      "entry_count": 5717,
+      "median_percent": 8.040780255254631,
+      "min_percent": 7.291870178906013,
+      "max_percent": 10.03643311071276,
+      "pairs": 3,
+      "seed": 202,
+      "equivalent": true,
+      "hardware_execution_proof": true,
+      "rollback": true
+    },
+    {
+      "name": "python312-stdlib-r1",
+      "mode": "offline-bolt",
+      "selected": "aligned",
+      "published": "aligned",
+      "confirmation_median_percent": 9.83385687955398,
+      "confirmation_min_percent": 8.72186557234641,
+      "heldout_median_percent": 8.718796693580867,
+      "heldout_min_percent": 8.685466191603798,
+      "pairs": 3,
+      "heldout_pairs": 3,
+      "equivalent": true
+    },
+    {
+      "name": "python311-mixed-r1",
+      "mode": "offline-bolt",
+      "selected": "aligned",
+      "published": "aligned",
+      "confirmation_median_percent": 3.7465958460722537,
+      "confirmation_min_percent": 3.2029414391125055,
+      "heldout_median_percent": 2.841035064941011,
+      "heldout_min_percent": 2.4707057065492033,
+      "pairs": 3,
+      "heldout_pairs": 3,
+      "equivalent": true
+    },
+    {
+      "name": "live-python312-tune-r1",
+      "mode": "same-process-online-capsule",
+      "selected": "ext-tsp",
+      "confirmation_median_percent": 7.6578172732588605,
+      "confirmation_min_percent": 6.880383735471218,
+      "heldout_median_percent": 8.484249905536467,
+      "heldout_min_percent": 6.149432422437872,
+      "pairs": 5,
+      "heldout_pairs": 5,
+      "heldout_seed": 303,
+      "entry_count": 5718,
+      "private_table_entries": 256,
+      "equivalent": true
+    },
+    {
+      "name": "gem5-o3-r2",
+      "mode": "offline-bolt",
+      "scope": "O3专用旧加载核验",
+      "equivalent": true,
+      "median_percent": 7.07495845676358,
+      "min_percent": 2.905867323520639,
+      "pairs": 5
+    },
+    {
+      "name": "gem5-o3-audited-r2",
+      "mode": "offline-bolt",
+      "scope": "O3专用实际映像核验",
+      "equivalent": true,
+      "median_percent": 8.129934545171736,
+      "min_percent": 5.219218321934371,
+      "pairs": 5
+    },
+    {
+      "name": "gem5-o3-heldout303-r1",
+      "mode": "offline-bolt-heldout",
+      "scope": "O3新seed303",
+      "equivalent": true,
+      "median_percent": 3.503612911530507,
+      "min_percent": 0.2953760273680994,
+      "pairs": 5
+    },
+    {
+      "name": "gem5-minor-cross-heldout-r1",
+      "mode": "offline-bolt-heldout",
+      "scope": "Minor跨模型seed404",
+      "equivalent": true,
+      "median_percent": -5.640890614658356,
+      "min_percent": -9.068903901931424,
+      "pairs": 5
+    },
+    {
+      "name": "live-stdlib312-tune-r1",
+      "mode": "same-process-online-capsule",
+      "selected": "aligned",
+      "heldout_seed": 505,
+      "heldout_pairs": 5,
+      "heldout_median_percent": 3.885145541061086,
+      "heldout_min_percent": 3.56878790470877,
+      "equivalent": true
+    }
+  ],
+  "historical_vllm_41_percent": "旧冻结工程的全方案结果；不作为本工具新负载收益",
+  "go": "r2/r3均保留baseline；r3确认中位数0.831%且最小0.291%，未通过每对>0.5%门槛",
+  "qualification": "ELF/ABI/运行时结构与生成器能力；SHA只用于本次证据和事务绑定",
+  "go_heldout": {
+    "equivalent": true,
+    "median_reduction_percent": -0.21243956946448428,
+    "min_reduction_percent": -2.2089479887793084,
+    "max_reduction_percent": 0.7823376579729091,
+    "completed_pairs": 5
+  },
+  "gem5_general_recommendation": "混合O3/Minor完整画像，按最差场景筛选；新seed505两模型均通过，入口继承调用者CPU集合",
+  "gem5_mixed_final": {
+    "role": "heldout",
+    "seed": 505,
+    "family": "lite",
+    "layout": "aligned",
+    "cases": [
+      {
+        "name": "o3",
+        "median_reduction_percent": 9.015719242588938,
+        "min_reduction_percent": 8.259087440479728,
+        "completed_pairs": 5,
+        "equivalent": true
+      },
+      {
+        "name": "minor",
+        "median_reduction_percent": 11.792611634047246,
+        "min_reduction_percent": 7.8619487256192055,
+        "completed_pairs": 5,
+        "equivalent": true
+      }
+    ],
+    "published_entry": "${INTERNAL_ARTIFACT_ROOT}/runs/gem5-mixed-published-r1/gem5.tgo",
+    "publication_affinity": "inherit"
+  },
+  "publication": {
+    "path_redaction": true,
+    "numeric_values_unchanged": true,
+    "internal_source_sha256": "0b1f546e17bedb03e907bfe42a18051dbf26ab49b1d67c02b4c09ba6528b32e3"
+  }
+}

@@ -54,7 +54,8 @@ def region(name="roi"):
         if metric:
             import json
             with open(metric, "a") as f:
-                f.write(json.dumps({"region": name, "nanoseconds": elapsed, "pid": os.getpid(), "pmu": counters}) + "\n")
+                f.write(json.dumps({"region": name, "nanoseconds": elapsed, "pid": os.getpid(), "pmu": counters,
+                    "thread_cpus":sorted(os.sched_getaffinity(0))}) + "\n")
 
 
 def install_hook(spec):

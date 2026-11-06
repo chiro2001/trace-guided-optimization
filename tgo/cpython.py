@@ -3,6 +3,7 @@ from copy import deepcopy
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -17,20 +18,73 @@ from .runtime import build_runtime,make_launcher
 from .util import read_json,write_json,sha256,run,tool,tool_env,workload_env,IdentityError
 from .validate import execute_trial
 
+ABI_KEYS=('version','soabi','gil_disabled','debug','trace_refs','pointer_bytes')
+
+def interpreter_info(binary,env=None,cwd=None):
+    query='''import json,sys,sysconfig
+v=sysconfig.get_config_var
+print(json.dumps({"version":sys.version.split()[0],"prefix":sys.base_prefix,"soabi":v("SOABI"),
+"compiler":v("CC"),"instsoname":v("INSTSONAME"),"ldlibrary":v("LDLIBRARY"),
+"gil_disabled":int(v("Py_GIL_DISABLED") or 0),"debug":int(v("Py_DEBUG") or 0),
+"trace_refs":int(v("Py_TRACE_REFS") or 0),"pointer_bytes":v("SIZEOF_VOID_P"),
+"pymalloc":v("WITH_PYMALLOC"),"config_args":v("CONFIG_ARGS")}))'''
+    return json.loads(subprocess.check_output([str(binary),'-I','-S','-c',query],env=env,cwd=cwd,text=True,timeout=30))
+
+def verify_abi(binary,expected,env=None,cwd=None):
+    actual=interpreter_info(binary,env,cwd)
+    changed={key:{'original':expected[key],'built':actual[key]} for key in ABI_KEYS if expected[key]!=actual[key]}
+    if changed:raise ValueError('重建解释器ABI不一致:'+json.dumps(changed,ensure_ascii=False))
+    return actual
+
+def built_library(tree,info):
+    name=info.get('instsoname') or info.get('ldlibrary')
+    if not isinstance(name,str) or not name or Path(name).name!=name:raise ValueError('重建共享库名称无效')
+    path=Path(tree)/name
+    if not path.is_file():raise ValueError('重建解释器缺少已声明的共享库:'+name)
+    return path
+
+def declared_source_version(path):
+    """读取源码自己的版本声明，不要求出现在工具发行时的SHA列表中。"""
+    with tarfile.open(path) as archive:
+        members=[m for m in archive.getmembers() if m.name.endswith('/Include/patchlevel.h') or m.name=='Include/patchlevel.h']
+        if len(members)!=1 or not members[0].isfile() or members[0].size>65536:
+            raise ValueError('CPython source needs one regular Include/patchlevel.h')
+        with archive.extractfile(members[0]) as stream:text=stream.read().decode('utf-8')
+    match=re.search(r'^\s*#\s*define\s+PY_VERSION\s+"([^"\r\n]+)"',text,re.M)
+    if not match:raise ValueError('CPython source has no literal PY_VERSION declaration')
+    return match.group(1)
+
+def source_build_available(args, state):
+    if getattr(args,'python_source',None) or getattr(args,'python_build',None):return True
+    env=workload_env();env.update(state.get('env',{}))
+    version=subprocess.check_output([state['command'][0],'-I','-S','-c','import sys;print(sys.version.split()[0])'],
+        cwd=state['cwd'],env=env,text=True,timeout=15).strip()
+    lock=read_json(source_lock())
+    return any(lock.get(kind,{}).get('version')==version for kind in ('python','python-gzip'))
+
+def source_lock():
+    if os.environ.get('TGO_APPDIR'):return Path(os.environ['TGO_APPDIR'])/'dependencies.lock.json'
+    root=Path(__file__).resolve().parents[1]/'dependencies.lock.json'
+    return root if root.is_file() else Path(__file__).parent/'data/dependencies.lock.json'
 
 def source_archive(version,args):
     project=Path(__file__).resolve().parents[1]
     lock_root=Path(os.environ['TGO_APPDIR']) if os.environ.get('TGO_APPDIR') else project
-    source_kind = 'python' if getattr(args,'python_source',None) and str(args.python_source).endswith('.xz') else 'python-gzip'
-    locked=read_json(lock_root/'dependencies.lock.json')[source_kind]
+    explicit=getattr(args,'python_source',None)
+    if explicit:
+        path=Path(explicit).resolve()
+        actual=declared_source_version(path)
+        if actual!=version:raise ValueError(f'CPython source version {actual} differs from interpreter {version}')
+        return path,{'version':actual,'path':str(path),'sha256':sha256(path),
+            'verification':'explicit source PY_VERSION matches interpreter; no known-input allowlist'}
+    source_kind = 'python-gzip'
+    locked=read_json(source_lock())[source_kind]
     if locked['version']!=version:
         raise ValueError(f'CPython {version} is not in the source lock; do not substitute a different version')
     name=locked['url'].rsplit('/',1)[-1]
-    explicit=getattr(args,'python_source',None)
     cached=project/'deps/downloads'/name
     packaged=lock_root/'usr/share/tgo/sources'/name
-    if explicit:path=Path(explicit).resolve()
-    elif packaged.exists():path=packaged
+    if packaged.exists():path=packaged
     elif cached.exists():path=cached
     else:
         cache=Path(os.environ.get('TGO_SOURCE_CACHE',str(Path.home()/'.cache/tgo/sources')))
@@ -42,6 +96,7 @@ def source_archive(version,args):
             if sha256(temporary)!=locked['sha256']:raise IdentityError('downloaded CPython source SHA differs from lock')
             temporary.replace(path)
     if sha256(path)!=locked['sha256']:raise IdentityError('CPython source archive SHA differs from lock')
+    if declared_source_version(path)!=version:raise ValueError('CPython source declared version differs from interpreter')
     return path,locked
 
 
@@ -66,10 +121,16 @@ def extract(archive,directory):
     return roots[0]
 
 
-def configuration(tree,prefix,lto=False):
+def configuration(tree,prefix,lto=False,abi=None):
     hooks=['-Wl,-u,__gcov_reset','-Wl,-u,__gcov_dump',
            '-Wl,--export-dynamic-symbol=__gcov_reset','-Wl,--export-dynamic-symbol=__gcov_dump']
-    return [str(tree/'configure'),'--prefix='+prefix,'--enable-shared','--enable-optimizations','--without-ensurepip',
+    preserve=[]
+    if abi:
+        preserve += ['--disable-gil'] if abi['gil_disabled'] else []
+        preserve += ['--with-pydebug'] if abi['debug'] else []
+        preserve += ['--with-trace-refs'] if abi['trace_refs'] else []
+        preserve += ['--without-pymalloc'] if abi.get('pymalloc')==0 else []
+    return [str(tree/'configure'),'--prefix='+prefix,'--enable-shared','--enable-optimizations','--without-ensurepip',*preserve,
             *(['--with-lto'] if lto else []),'CFLAGS=-O3 -g -fno-semantic-interposition',
             'LDFLAGS='+' '.join(['-Wl,-rpath,'+str(tree),'-Wl,-q',*hooks]),'LIBS=-ldl -lm -lgcov']
 
@@ -77,10 +138,10 @@ def configuration(tree,prefix,lto=False):
 def build_cpython(args,original,state,directory):
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
     env=workload_env();env.update(state['env'])
-    info=json.loads(subprocess.check_output([state['command'][0],'-c',
-        'import json,sys,sysconfig;print(json.dumps({"version":sys.version.split()[0],"prefix":sys.base_prefix,"soabi":sysconfig.get_config_var("SOABI"),"compiler":sysconfig.get_config_var("CC")}))'],
-        env=env,cwd=state['cwd'],text=True))
+    info=interpreter_info(state['command'][0],env,state['cwd'])
     original_meta=ELF(original).metadata()
+    from .elf import is_executable_image
+    if is_executable_image(original_meta):raise ValueError('源码DSO替换需要共享CPython核心；静态/嵌入入口继续使用原ELF的BOLT路线')
     archive,locked=source_archive(info['version'],args)
     compiler=tool('gcc')
     buildenv=tool_env();buildenv.update(CC=compiler,CXX=tool('g++'))
@@ -97,12 +158,14 @@ def build_cpython(args,original,state,directory):
         manifest['commands'].append(result);save();return result
     save()
     instrumented=extract(archive,directory/'instrumentation-source')
-    step(configuration(instrumented,info['prefix']),'configure-instrumentation',instrumented)
+    manifest['instrumented_tree_relative']=str(instrumented.relative_to(directory));save()
+    step(configuration(instrumented,info['prefix'],abi=info),'configure-instrumentation',instrumented)
     step(['make','-j'+jobs,'profile-gen-stamp'],'build-instrumentation',instrumented)
+    manifest['instrumented_abi']=verify_abi(instrumented/'python',info,buildenv,instrumented);save()
     stale=list(instrumented.rglob('*.gcda'))
     for profile in stale:profile.unlink()
     manifest['removed_build_profiles']=len(stale)
-    library=instrumented/Path(original).name
+    library=built_library(instrumented,info)
     image=stage_image(original,library,directory/'instrumented-image')
     runtime=build_runtime(directory/'runtime')
     hooks=directory/'gcc-hooks.json';roi_log=directory/'gcc-rois.jsonl'
@@ -132,12 +195,13 @@ def build_cpython(args,original,state,directory):
     manifest.update(state='building-pgo-lto',completed_rois=len(rois),
         profiles=[{'path':str(p.relative_to(instrumented)),'sha256':sha256(p)} for p in profiles]);save()
     optimized=extract(archive,directory/'optimized-source')
-    step(configuration(optimized,info['prefix'],True),'configure-pgo-lto',optimized)
+    step(configuration(optimized,info['prefix'],True,info),'configure-pgo-lto',optimized)
     for profile in profiles:
         target=optimized/profile.relative_to(instrumented);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(profile,target)
     step(['make','-j'+jobs,'build_all','CFLAGS_NODIST=-fprofile-use -fprofile-correction','LDFLAGS_NODIST='],
          'build-pgo-lto',optimized)
-    output=optimized/Path(original).name
+    manifest['optimized_abi']=verify_abi(optimized/'python',info,buildenv,optimized);save()
+    output=built_library(optimized,info)
     if not ELF(output).metadata()['relocations']:raise ValueError('PGO/LTO Python did not retain text relocations')
     image=stage_image(original,output,directory/'optimized-image')
     manifest.update(state='complete',output=image,training_runs_completed=len(manifest['training_trials']));save()
@@ -146,8 +210,9 @@ def build_cpython(args,original,state,directory):
 
 def tune_cpython(args,source):
     source=Path(source).resolve();state=read_json(source/'run.json');profile=read_json(source/'profile.json')
-    candidates=[r for r in profile['images'] if Path(r['path']).name.startswith('libpython')]
-    if len(candidates)!=1:raise ValueError('CPython adapter needs exactly one identified libpython')
+    from .capabilities import classify_profile_image
+    candidates=[r for r in profile['images'] if classify_profile_image(r)['runtime']=='cpython']
+    if len(candidates)!=1:raise ValueError('CPython adapter needs exactly one structurally identified interpreter core')
     original=candidates[0]['path']
     from .hybrid import reference,verify_reference
     from .optimize import verify_identity
@@ -169,7 +234,7 @@ def tune_cpython(args,source):
             verify_images([image])
             if sha256(original)!=compiler['original']['sha256']:
                 raise IdentityError('reused compiler belongs to a different baseline Python')
-            base=Path(prior).resolve()/'instrumentation-source'/('Python-'+compiler['interpreter']['version'])
+            base=Path(prior).resolve()/compiler.get('instrumented_tree_relative','instrumentation-source/Python-'+compiler['interpreter']['version'])
             for gcc_profile in compiler['profiles']:
                 if sha256(base/gcc_profile['path'])!=gcc_profile['sha256']:
                     raise IdentityError('GCC training profiles changed since the build')
@@ -197,7 +262,7 @@ def tune_cpython(args,source):
                 library_capture=recording.output
             from .hybrid import compose_profiles
             merged=root/'capture';compose_profiles(source,library_capture,image,native,merged,
-                recipe['images'] if recipe else ())
+                ())
             result.update(state='optimizing',training_phases={'compiler':compiler['training_runs_completed'],
                 'native_python':len(native['trials']),'qemu_libraries':1})
             write_json(root/'tune.json',result)
