@@ -1,0 +1,2 @@
+# 保留正式实测CSV原始CRLF，保持跨平台检出后的证据摘要一致。
+evidence/vllm-920b-20261106/reports/formal-host-v1-requests.csv -text whitespace=cr-at-eol
